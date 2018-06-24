@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.item{
+margin:10px;
+width:80px;
+height:80px;
+display:inline-block;
+border : 1px solid transparent;
+background-image: url("../img/folder.png");
+background-size: cover;
+}
+
+#create{
+	background-image: url("../img/folderadd.png");
+	background-size: 50%;
+	background-color: white;
+}
+
+.folder2{
+	width:110px;
+	height:110px;
+	display:inline-block;
+	
+}

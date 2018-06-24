@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 업로드 관련 -->	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+	
+	<!-- 스프링 프레임워크가 생성하고 관리하는 객체 -->
+	<!-- dataSource : 스프링 프레임워크가 생성하는 Connection Pool 객체 -->
+	<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value = "oracle.jdbc.OracleDriver"></property>
+	<property name="url" value = "jdbc:oracle:thin:@itwill.iptime.org:1521:xe"></property>
+	<property name="username" value = "scott"></property>
+	<property name="password" value = "tiger"></property>
+	</bean>
+	
+	<bean id = "sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource"  ref = "dataSource"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<property name="mapperLocations"  value = "classpath:mappers/*.xml"/>
+	</bean>
+	
+	<bean id = "sqlSession" class = "org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name = "sqlSessionFactory" ref="sessionFactory"/>
+	</bean>	
+	
+	<context:component-scan base-package="edu.job.project" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+		
+</beans>

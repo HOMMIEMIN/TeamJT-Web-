@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- MyBatis 프레임워크가 사용할 SQL 문장들을 정의 -->
+<mapper namespace="edu.job.project.mappers.OnLecMapper">
+
+<select id="selectAllOnLec" resultType="OnLec">
+select * from ${tbl_onlec} where ${col_userid} = #{userId}
+</select>
+
+<select id="selectBnoOnLec" resultType="OnLec">
+select * from ${tbl_onlec} where ${col_groupbno} = #{bno}
+</select>
+
+<select id="selectAllGroupOn" resultType="GroupOn">
+select * from ${tbl_groupon} where ${col_userid} = #{userId}
+</select>
+
+<select id="selectOneGroupOn" resultType="GroupOn">
+select * from ${tbl_groupon} where ${col_userid} = #{userId} and ${col_lecname} = #{lecName}
+</select>
+
+<insert id="groupInsert">
+insert into ${tbl_groupon}(${col_userid}, ${col_lecname}, ${col_lecCategory})
+values(#{userId}, #{lecName}, #{lecCategory})
+</insert>
+
+<insert id="insertOnLec">
+insert into ${tbl_onlec}(${col_groupbno}, ${col_leccategory}, ${col_title}, ${col_content}, ${col_videopath}, ${col_userid})
+values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId})
+</insert>
+
+</mapper>

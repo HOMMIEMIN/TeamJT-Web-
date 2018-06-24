@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  <!-- MyBatis 프레임워크에서 사용될 여러가지 환경 설정 정보들을 설정 -->
+<configuration>
+	<!-- 멤버 테이블 -->
+	<properties>
+	<property name="tbl_member" value="member"/>
+	<property name="col_userid" value="userId"/>
+	<property name="col_password" value="password"/>
+	<property name="col_username" value="userName"/>
+	<property name="col_phone" value="phone"/>
+	<property name="col_profileurl" value="profileUrl"/>
+	<property name="col_onlec" value="onLec"/>
+	<property name="col_offlec" value="offLec"/>
+	<property name="col_offlecwaiting" value = "offLecWaiting"/>
+	
+	<!-- 온라인강의 테이블 -->
+	<property name="tbl_onlec" value="onlec"/>
+	<property name="col_bno" value="bno"/>
+	<property name="col_groupbno" value="groupBno"/>
+	<property name="col_leccategory" value="lecCategory"/>
+	<property name="col_title" value="title"/>
+	<property name="col_content" value="content"/>
+	<property name="col_videopath" value="videoPath"/>
+	<property name="col_addfile" value="addFile"/>
+	<property name="col_userid" value = "userId"/>
+	<property name="col_regdate" value = "regDate"/>
+	<property name="tbl_groupon" value = "groupon"/>
+	<property name="col_groupbno" value = "groupBno"/>
+	<property name="col_lecbno" value = "lecBno"/>
+	<property name="col_lecname" value = "lecName"/>
+	<property name="col_lectype" value = "lecType"/>
+	<property name="col_leclike" value = "lecLike"/>
+		
+	</properties>
+	<!-- MyBatis 프레임워크에서 select의 결과를 저장할 Model 클래스(VO)를 찾기 위해서 -->
+	<typeAliases>
+	<package name="edu.job.project.domain"/>
+	</typeAliases>
+</configuration>
