@@ -13,6 +13,7 @@ public class OnLec {
 	private String addFile;
 	private String userId;
 	private Date regDate;
+	private String imagePath;
 	
 	
 	
@@ -23,7 +24,7 @@ public class OnLec {
 
 
 	public OnLec(int bno, int groupBno, String lecCategory, String title, String content, String videoPath,
-			String addFile, String userId, Date regDate) {
+			String addFile, String userId, Date regDate, String imagePath) {
 		this.bno = bno;
 		this.groupBno = groupBno;
 		this.lecCategory = lecCategory;
@@ -33,6 +34,7 @@ public class OnLec {
 		this.addFile = addFile;
 		this.userId = userId;
 		this.regDate = regDate;
+		this.imagePath = imagePath;
 	}
 
 
@@ -142,12 +144,19 @@ public class OnLec {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
-	
 
-	
-	
-	
-	
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
 
 }

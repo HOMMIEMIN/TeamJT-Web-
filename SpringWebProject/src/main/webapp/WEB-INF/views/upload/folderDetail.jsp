@@ -10,13 +10,16 @@
 <link href="${pageContext.request.contextPath}/resources/css/folder.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/folder2.css" rel="stylesheet" />
 <style>
-a{
-height: 280px;
+img{
+height: 35%;
 }
 
-video,source{
-height : 420px;
-max-width: 100%;
+div{
+max-width: 90%;
+max-height: 95%;
+}
+
+#addLec{
 
 }
 
@@ -24,14 +27,20 @@ max-width: 100%;
 </head>
 <body>
 
+
 <div id = folder>
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec">
+<img alt="" src="${pageContext.request.contextPath}/resources/img/addlec.png" id="add">
+</div>
 <c:forEach var="group" items="${onLecList }">
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 <div class="resent-grid-img recommended-grid-img">
-<a href="upload/folderDetail?bno=${group.bno }" class="detail"><video id="video1">
-    <source src="${pageContext.request.contextPath}/resources/video/tmpFiles/tmpFiles/${group.videoPath }" type="video/mp4">
-    <source src="mov_bbb.ogg" type="video/ogg"></video></a>
+<a href="upload/folderDetail?bno=${group.bno }" class="detail">
+<c:if test="${not empty group.imagePath }">
+<img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
+</c:if>
+</a>
 <div class="time small-time show-time movie-time">
 </div>
 <div class="clck movie-clock">
@@ -40,7 +49,7 @@ max-width: 100%;
 <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
 <h5><a href="single.html" class="title">${group.title }</a></h5>
 <ul>
-<li><p class="author author-info"><a href="#" class="author">${group.userId }</a></p></li>
+<li><p class="author author-info"><a href="#" class="author">${userName }</a></p></li>
 <li class="right-list"><p class="views views-info">${group.regDate} </p></li>
 </ul>
 </div>
@@ -53,13 +62,17 @@ max-width: 100%;
 
 
 <script>
+
 $(()=>{
+	$('#createFolder').css('display','none');
 	$('#btnUpload').click(()=>{
 		var bno = '${bno}';
 		var category = '${lecCategory}'
 		 $("#onLec").load("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category);
 		
 	});
+	
+	
 });
 
 	

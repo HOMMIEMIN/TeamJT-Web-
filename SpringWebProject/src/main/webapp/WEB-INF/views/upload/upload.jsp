@@ -11,14 +11,9 @@
     }
      </style>
     <title></title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+    
 	<link href="${pageContext.request.contextPath}/resources/css/upload.css" rel="stylesheet" />
-    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+   
     
     
     
@@ -39,8 +34,16 @@
  		 
  		  <div id="example">
             <div>
+            <h3>동영상 업로드</h3>
                 <div class="demo-section k-content">
-                    <input name="files" id="files" type="file" accept=".jpg,.jpeg.,.gif,.png,.mov,.mp4"/>
+                    <input name="files" id="files" type="file" accept=".mp4"/>
+                </div>
+                
+                <br/>
+                <img id = "image" alt="" src="">
+                <h3>이미지 업로드</h3>
+                <div class="demo-section k-content">
+                    <input name="files" id="files2" type="file" accept=".jpg,.jpeg.,.gif,.png"/>
                 </div>
             </div>
 		</div>
@@ -62,6 +65,7 @@
                 	
                 	
                 	var fileName = '';
+                	var imageName = '';
                 	
                 	
                     $("#files").kendoUpload({
@@ -75,53 +79,78 @@
                         upload:onUpload
                     
                     });
+                    
+                    $("#files2").kendoUpload({
+                        async: {
+                            chunkSize: 11000,// bytes
+                            saveUrl: "chunkSaveImage",
+                            removeUrl: "remove",
+                            autoUpload: true
+                        },
+                        success:onSuccess2
+                       
+                    
+                    });
+                    
+                    function onSuccess(e){
+                    	  $('#sample').css('display','none');
+                    	  $('#video1').css('display','block');
+                    	  var file0Uid = e.files[0].uid;
+                    	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
+                    	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
+                    	  console.log(name);
+                      }
+                    
+                    function onSuccess2(e){   	
+                  	  var file0Uid = e.files[0].uid;
+                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
+                  	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
+                  	$('#image').attr('src','${pageContext.request.contextPath}/resources/image'+ id + imageName);
+                  	  console.log(name);
+                    }
+                      function onUpload(e){
+                    	  $('#sample').attr('src','${pageContext.request.contextPath}/resources/css/folder.css');
+                      }
+                    
+                    $('#creatLec').click(()=>{
+                  	  var id = '${userId}';
+                  	  var title = $('#title').val();
+                  	  var content= $('#content').val();
+                  	  var groupBno = '${bno}';
+                  	  var category = '${lecCategory}'
+                  	  
+                  	  
+                  	  $.ajax({
+        					type:'post',
+        					url:'/project/upload/onLeccreate',
+        					headers:{
+        						'Content-Type' : 'application/json; charset=UTF-8',
+        						'X-HTTP-Method-Override' : 'post'
+        					},
+        					data: JSON.stringify({
+        						'userId' : id,
+        						'title' : title,
+        						'content' : content,
+        						'videoPath' : id+fileName,
+        						'groupBno' : groupBno,
+        						'lecCategory' : category,
+        						'imagePath' : id+imageName
+        					}),
+        					success:function(result){
+        						if(result === 'ok'){
+        							$("#onLec").load("/project/upload/folder");
+        							
+        						}else{
+        							alert('등록 실패');
+        						}
+        					}
+        					
+        				});
+                    });
                 });
                 
-              function onSuccess(e){
-            	  $('#sample').css('display','none');
-            	  $('#video1').css('display','block');
-            	  var file0Uid = e.files[0].uid;
-            	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-            	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
-            	  console.log(name);
-              }
-              function onUpload(e){
-            	  $('#sample').attr('src','${pageContext.request.contextPath}/resources/css/folder.css');
-              }
-              
-              $('#creatLec').click(()=>{
-            	  var id = '${userId}';
-            	  var title = $('#title').val();
-            	  var content= $('#content').val();
-            	  var groupBno = '${bno}';
-            	  var category = '${lecCategory}'
-            	  
-            	  
-            	  $.ajax({
-  					type:'post',
-  					url:'/project/upload/onLeccreate',
-  					headers:{
-  						'Content-Type' : 'application/json; charset=UTF-8',
-  						'X-HTTP-Method-Override' : 'post'
-  					},
-  					data: JSON.stringify({
-  						'userId' : id,
-  						'title' : title,
-  						'content' : content,
-  						'videoPath' : id+fileName,
-  						'groupBno' : groupBno,
-  						'lecCategory' : category
-  					}),
-  					success:function(result){
-  						if(result === 'ok'){
-  							$("#onLec").load("/project/upload/folder");
-  						}else{
-  							alert('등록 실패');
-  						}
-  					}
-  					
-  				});
-              });
+                             
+                
             </script>
         
 

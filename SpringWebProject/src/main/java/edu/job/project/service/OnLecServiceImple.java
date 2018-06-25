@@ -52,6 +52,12 @@ public class OnLecServiceImple implements OnLecService {
 		return dao.insertOnLec(on);
 	}
 
+	@Override
+	public int updateGroupImage(OnLec on) {
+		
+		return dao.updateGroupImage(on);
+	}
+
 	
 
 }
