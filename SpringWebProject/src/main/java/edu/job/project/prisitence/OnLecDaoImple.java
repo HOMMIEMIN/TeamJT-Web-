@@ -53,4 +53,10 @@ public class OnLecDaoImple implements OnLecDao{
 		return session.insert(NAMESPACE + ".insertOnLec",on);
 	}
 
+	@Override
+	public int updateGroupImage(OnLec on) {
+
+		return session.update(NAMESPACE + ".gropOnImageUpdate", on);
+	}
+
 }

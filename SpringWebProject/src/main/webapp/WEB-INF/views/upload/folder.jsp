@@ -15,9 +15,63 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 <style>
-a{
-height: 280px;
+img{
+height: 68%;
 }
+
+p.views.views-info{
+position:relative;
+left:100px;
+bottom: 90px;
+}
+
+div .col-md-3.resent-grid.recommended-grid.movie-video-grid{
+width:200px;
+height:280px;
+max-width: 200px;
+max-height: 280px;
+padding: 0px;
+margin-right: 20px;
+margin-bottom: 20px;
+}
+
+.overlay {
+  position: absolute; 
+  bottom: 0; 
+  margin:0px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  transition: .5s ease;
+  opacity:0;
+  width:200px;
+height:280px;
+max-width: 200px;
+max-height: 280px;
+  color: white;
+  font-size: 20px;
+  padding: 90px;
+  text-align: center;
+}
+
+div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
+  opacity: 1;
+}
+
+div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
+padding-top:10px;
+padding:0px;
+max-height: 86.5px;
+}
+
+.btndeup{
+position: relative;
+margin: 0px;
+padding: 0px;
+left: 170px;
+bottom: 40px;
+}
+
 </style>
 
 
@@ -33,19 +87,32 @@ height: 280px;
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 <div class="resent-grid-img recommended-grid-img">
-<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}" class="detail"><img src="images/mv1.jpg" alt=""></a>
+<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}">
+<c:if test="${not empty group.imagePath}">
+<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}" alt="">
+</c:if>
+<c:if test="${empty group.imagePath }">
+<img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt="">
+</c:if>
+</a>
 <div class="time small-time show-time movie-time">
 </div>
 <div class="clck movie-clock">
 </div>
 </div>
 <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-<h5><a href="single.html" class="title">${group.lecName }</a></h5>
+<h6 style="color: #04B486; font-size: 70%;font-weight: bold;">${group.lecCategory }.</h6>
+<h5 style="font-size: 60%"><a href="single.html" class="title">${group.lecName }</a></h5>
 <ul>
-<li><p class="author author-info"><a href="#" class="author">${group.userId }</a></p></li>
+<li><p class="author author-info"><a href="#" class="author">${userName}</a></p></li>
 <li class="right-list"><p class="views views-info">${group.lecLike} </p></li>
 </ul>
+<button class="btndeup" id="btnUpdate" style="background:${pageContext.request.contextPath}/resources/img/update.png;"></button>
+<button class="btndeup" id="btnDelete" style="background:${pageContext.request.contextPath}/resources/img/update.png;"></button>
 </div>
+<a href="upload/folderDetail?bno=${group.bno }" class="detail">
+<div class="overlay"></div>
+</a>
 </div>
 
 </c:forEach>
@@ -83,16 +150,20 @@ height: 280px;
        </div>
     </div>
   </div>
+<br/>
+<br/>
+<br/>
 
 <script>
 
 $(()=>{
-
+	
 	$("#btnFolder").click(function () {
 			
 		  var folderName = $('#folderName').val();
 		  var category = $('#category option:selected').val();
 		  var id = '${userId}';
+		  var name = '${userName}';
 		  
 		  console.log(folderName);
 		  console.log(category);
@@ -116,7 +187,7 @@ $(()=>{
 					success:function(result){
 						if(result != null){
 							console.log(result);
-							 $("#folder").append();
+							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno=${'+id+' }&lecCategory=${'+folderName+'}" class="detail"><img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">' + category +'</h6><h5 style="font-size: 60%"><a href="single.html" class="title">' +folderName +'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">${'0'} </p></li></ul></div></div>');
 							  $('#id01').css('display','none');
 							  $('#folderName').val('');  
 						}else{
@@ -129,23 +200,9 @@ $(()=>{
 		  }
 		  
 		});
-	$("#folder").on('click','.item', function(e){
-		var bno = $(this).val();
-		console.log('bno : '+bno);
-		$("#onLec").load("/project/upload/folderDetail?bno=" + bno);
-	});
+
 	
-	
-	
-	$("#folder").on('mouseenter','.folder2', function(){
-		$(this).css('background-color','lightgrey');
-	});
-	
-	$("#folder").on('mouseleave','.folder2', function(){
-		$(this).css('background-color','white');
-	});
-	
-	$("#folder").on('click','.col-md-3 .resent-grid-img .detail', function(){
+	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
 		event.preventDefault();
 		var location = $(this).attr('href');
 		 $("#onLec").load(location);

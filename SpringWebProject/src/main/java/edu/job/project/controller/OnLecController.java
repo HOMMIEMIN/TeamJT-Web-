@@ -78,8 +78,12 @@ public class OnLecController {
 		int result = service.create(on);
 		String re = null;
 		if(result == 1) {
-			re = "ok";
-		}
+			
+			int update = service.updateGroupImage(on);
+			if(update == 1) {
+				re = "ok";
+			}
+			}
 		
 		return new ResponseEntity<String>(re, HttpStatus.OK);
 	}

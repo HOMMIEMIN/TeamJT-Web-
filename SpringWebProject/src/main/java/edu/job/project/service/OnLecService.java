@@ -19,4 +19,6 @@ public interface OnLecService {
 	GroupOn readGroup(GroupOn on);
 	
 	int create(OnLec on);
+	
+	int updateGroupImage(OnLec on);
 }

@@ -67,7 +67,7 @@ public class UploadController {
         
          for (MultipartFile file : files) {
             byte[] bytes = file.getBytes();
-             String rootPath = "C:\\study\\web\\SpringWebProject\\src\\main\\webapp\\resources\\video\\tmpFiles";
+             String rootPath = "C:\\Users\\stu\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\video";
              File dir = new File(rootPath + File.separator + "tmpFiles");
              System.out.println(File.separator);
             if (!dir.exists())
@@ -89,6 +89,54 @@ public class UploadController {
         return mapper.writeValueAsString(fileBlob);
     }
     
+    
+    @RequestMapping(value = "/chunkSaveImage", method = RequestMethod.POST)
+    public @ResponseBody String chunksaveImage(@RequestParam List<MultipartFile> files, String metadata, HttpSession session) throws JsonGenerationException, JsonMappingException, IOException {
+    	logger.info("업로드 들어옴");
+        ObjectMapper mapper = new ObjectMapper();
+        long totalChunks = 0;
+        long chunkIndex = 0;
+        String userId = (String) session.getAttribute("userId");
+        String uploadUid = "";
+        String fileName = "";
+        //map json to student
+          
+        if(metadata == null){
+            return "";
+        }
+        
+        JsonNode rootNode = mapper.readTree(metadata);
+        totalChunks = rootNode.path("totalChunks").longValue();
+        chunkIndex = rootNode.path("chunkIndex").longValue();
+        uploadUid = rootNode.path("uploadUid").textValue();
+        fileName = userId + rootNode.path("fileName").textValue();
+        
+        OutputStream output = null;
+        // Save the files
+        
+         for (MultipartFile file : files) {
+            byte[] bytes = file.getBytes();
+             String rootPath = "C:\\Users\\stu\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\image";
+             File dir = new File(rootPath + File.separator + "tmpFiles");
+             System.out.println(File.separator);
+            if (!dir.exists())
+                dir.mkdirs();
+
+             // Create the file on server
+              File serverFile = new File(dir.getAbsolutePath()
+                    + File.separator + fileName);
+             BufferedOutputStream stream = new BufferedOutputStream(
+                     new FileOutputStream(serverFile,true));
+             stream.write(bytes);
+            stream.close();
+         }
+        
+        FileResult fileBlob = new FileResult();
+        fileBlob.uploaded = totalChunks - 1 <= chunkIndex;
+        fileBlob.fileUid = uploadUid;
+
+        return mapper.writeValueAsString(fileBlob);
+    }
     
     
    

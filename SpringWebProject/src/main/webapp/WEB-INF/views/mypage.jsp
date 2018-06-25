@@ -37,7 +37,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
     
-   
+   <style>
+   #createFolder1{
+   position: relative;
+   left: 850px;
+   background-image:url("resources/img/button.png");
+   margin-top:10px;
+   background-size: cover;
+
+   }
+   </style>
 
 	
   </head>
@@ -73,10 +82,10 @@
     
     <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'London')">나는 학생</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">나는 선생</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">나는 선생님</button>
   <button class="tablinks" onclick="openCity(event, 'Tokyo')">칠판</button>
-  <button id="createFolder" onclick="document.getElementById('id01').style.display='block'" style="display: none;">생성</button>
-  <button type="button" id= "btnUpload">Upload</button>
+  <button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"></button>
+
 </div>
 
 <div id="London" class="tabcontent" style="border:none;">
@@ -89,7 +98,7 @@
   <div id="onLec"></div>
   <script>
 			$(document).ready(function(){
-			$('#createFolder').css('display','block');
+			
    			 $("#onLec").load("/project/upload/folder");
 
 			});
@@ -102,7 +111,15 @@
 </div>
 
 <script>
+$('#createFolder1').css('display','none');
+
+$(()=>{
+
+	
+});
+
 function openCity(evt, cityName) {
+	
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -116,12 +133,14 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
     if(cityName === 'Paris'){
     	$(document).ready(function(){
-			$('#createFolder').css('display','block');
    			 $("#onLec").load("/project/upload/folder");
-
+   			$('#createFolder1').css('display','block');
 			});
+    }else{
+    	$('#createFolder1').css('display','none');
     }
 }
+
 </script>
     
     
@@ -135,8 +154,19 @@ function openCity(evt, cityName) {
     <!-- Custom scripts for this template -->
     <script src="resources/js/main/creative.js"></script>
 	
-	
-	
+	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
   </body>
 
 </html>
