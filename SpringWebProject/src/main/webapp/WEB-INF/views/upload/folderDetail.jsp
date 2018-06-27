@@ -38,8 +38,8 @@ max-height: 280px;
   position: absolute; 
   bottom: 0; 
   margin:0px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  background: none;
+  border : 1px solid grey;
   color: #f1f1f1; 
   transition: .5s ease;
   opacity:0;
@@ -55,8 +55,8 @@ max-height: 280px;
 
 
 div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
-padding-top:10px;
-padding:0px;
+padding-top:15px;
+padding-right:10px;
 max-height: 86.5px;
 }
 
@@ -66,6 +66,11 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 
 #addLec:hover #add{
   opacity: 0.8;
+}
+
+.author{
+position:relative;
+bottom: 8px;
 }
 
 </style>

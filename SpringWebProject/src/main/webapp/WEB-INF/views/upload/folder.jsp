@@ -39,8 +39,8 @@ margin-bottom: 20px;
   position: absolute; 
   bottom: 0; 
   margin:0px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+background: none;
+  border : 1px solid grey;
   color: #f1f1f1; 
   transition: .5s ease;
   opacity:0;
@@ -59,8 +59,8 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 }
 
 div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
-padding-top:10px;
-padding:0px;
+padding-top:15px;
+padding-right:10px;
 max-height: 86.5px;
 }
 
@@ -70,6 +70,16 @@ margin: 0px;
 padding: 0px;
 left: 170px;
 bottom: 40px;
+}
+
+
+.author{
+position:relative;
+bottom: 8px;
+}
+
+p.views.views-info{
+margin-right: 10px;
 }
 
 </style>
@@ -204,6 +214,7 @@ $(()=>{
 	
 	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
 		event.preventDefault();
+		myFunction();
 		var location = $(this).attr('href');
 		 $("#onLec").load(location);
 		console.log(location)

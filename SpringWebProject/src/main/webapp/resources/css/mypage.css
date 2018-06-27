@@ -125,24 +125,8 @@ img::-moz-selection {
   background-color: transparent;
 }
 
-.frame {
-    position: relative;
-    display: inline-block;
-    background: url(../img/test.png) center center no-repeat;
-    border-radius: 50%;
-    width: 250px;
-    height: 250px;
-    top:130px;
-    left:490px;
-    
-}
-#name{
- position: relative;
- top:160px;
-left:600px;	
-font-size: 130%;
 
-}
+
 
 #profileHr{
 	    border: 0;

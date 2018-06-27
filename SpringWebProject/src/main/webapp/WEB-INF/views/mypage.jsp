@@ -46,6 +46,88 @@
    background-size: cover;
 
    }
+   
+ #notClick {
+    background-color: rgba(1, 1, 1, 0.7);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}  
+
+#profile {
+    position: relative;
+    display: inline-block;
+    background: url(resources/img/test.png) center center no-repeat;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;  
+    top: 160px;
+    left: 230px;
+  
+}
+   
+ #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+top:500px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+div.tab{
+
+bottom:1000px;
+
+}
+
+.name{
+position: relative;
+top:70px;
+left:360px;	
+font-size: 80%;
+
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
    </style>
 
 	
@@ -74,11 +156,12 @@
     </nav>
 	
 	
-	
+	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
     <div class="frame" id="profile"></div>
-    <div id="name">이름</div>
-    
-    <hr id="profileHr"/>
+    <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
+    <div class="name" style="color: grey">${userId }</div>
+    </div>
+
     
     <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'London')">나는 학생</button>
@@ -95,7 +178,12 @@
 
 <div id="Paris" class="tabcontent" style="border:none;">
  
-  <div id="onLec"></div>
+  <div>
+  <div id="left" style="display: inline-block; width: 550px;"></div>
+  <div id="onLec" style="display: inline-block;">
+  <div id="light" style="display: inline-block; width: 550px;"></div>
+  </div>
+  </div>
   <script>
 			$(document).ready(function(){
 			
@@ -110,13 +198,11 @@
   <p>Tokyo is the capital of Japan.</p>
 </div>
 
+<div id="loader" style="display: none;">
+
+</div>
+<div id ="notClick" style="display: none"></div>
 <script>
-$('#createFolder1').css('display','none');
-
-$(()=>{
-
-	
-});
 
 function openCity(evt, cityName) {
 	
@@ -131,16 +217,28 @@ function openCity(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+    console.log(cityName)
     if(cityName === 'Paris'){
-    	$(document).ready(function(){
-   			 $("#onLec").load("/project/upload/folder");
-   			$('#createFolder1').css('display','block');
-			});
+    	
+    		myFunction();
+   			 $('#onLec').load("/project/upload/folder");
+   			$('#createFolder1').css('display','block');			
     }else{
     	$('#createFolder1').css('display','none');
     }
 }
 
+function myFunction() {
+	console.log('들어옴')
+	$('#loader').css('display','block');
+	$('#notClick').css('display','block');
+    var a = setTimeout(showPage, 1000);
+}
+
+function showPage() {
+	$('#notClick').css('display','none');
+  $('#loader').css('display','none');
+}
 </script>
     
     
