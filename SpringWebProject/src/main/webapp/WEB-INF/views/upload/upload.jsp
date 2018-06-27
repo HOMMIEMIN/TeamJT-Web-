@@ -9,6 +9,7 @@
     font-size: 14px; 
     font-family: Arial, Helvetica, sans-serif; 
     }
+ 
      </style>
     <title></title>
     
@@ -19,45 +20,54 @@
     
 
 </head>
-<body>
-		<form id="upload" method="post">
-		<div class="form-group">
-  <label for="usr">제목:</label>
-  <input type="text" class="form-control" id="title"> 
-</div>
+
+<body id ="bodyup" style="display: inline-block;">
 <br/>
-	<img id="sample" ></img>
-	<video id="video1" width="420" style="display: none;">
-    <source src="" type="video/mp4">
-    <source src="mov_bbb.ogg" type="video/ogg"></video>
- 		 <br/>
- 		 
- 		  <div id="example">
+<h4>강의 업로드</h4>
+<br/>
+	<div>
+	<div style="width: 854px; max-width: 854; border: 1px solid lightgrey">
+	<img id="imageUp" style = "margin: 0px;padding:0px; border-right: 1px solid lightgrey;"src="${pageContext.request.contextPath}/resources/img/addImage.png">
+	<div style ="display:inline-block;">
+	<div>
+	<div id="categoryName" style="color: #04B486; font-weight: bolder; font-size: 18px;margin-left: 10px">
+	ect.
+	</div>
+	<div id="title1" style="font-size: 18px;margin-top: 10px; margin-left: 10px">
+	북극여우
+	</div>
+	<input type="text" class="form-control" style="width: 360px; margin-top: 20px; margin-left: 8px;">
+	</div>
+	</div>
+	</div>
+	<br/>
+	<div>
+	<video id="video1"  width="854" height="480" style="background-color:#F2F2F2;border:1px solid lightgrey; border-radius: 16px; max-height: 480px; max-width: 854;" >
+    <source type="video/mp4">
+    <source id = "video2" type="video/ogg"></video>
+ <img id="loading" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: relative; right: 530px; bottom: 220px"></img>
+ <div id= "percent" style="left: 420px; top: 470px;position: absolute; display: none; font-weight: bold;">100%</div>		 
+</div>
             <div>
-            <h3>동영상 업로드</h3>
-                <div class="demo-section k-content">
+   
+                <div class="demo-section k-content" style="display: none;">
                     <input name="files" id="files" type="file" accept=".mp4"/>
                 </div>
                 
                 <br/>
-                <img id = "image" alt="" src="">
-                <h3>이미지 업로드</h3>
-                <div class="demo-section k-content">
+   
+
+                <div class="demo-section k-content" style="display: none;">
                     <input name="files" id="files2" type="file" accept=".jpg,.jpeg.,.gif,.png"/>
                 </div>
             </div>
-		</div>
 	
-		<br/>
+ 	<textarea class="form-control" style="width:854px; max-width: 854px;" placeholder="내용을 입력해주세요." rows="10" id="content"></textarea>
 
-<div class="form-group">
-  <label for="comment">소개:</label>
-  <textarea class="form-control" rows="5" id="content"></textarea>
-</div>
 		
-       
-		<input type="button" id="creatLec" value="등록"/>
-		</form>
+       <br/>
+		<input type="button" style="width: 854px;height:50px ;hemax-width: 854px; background-color: 3ED0C8; border: 1px solid 3ED0C8" id="creatLec" value=""/>
+</div>
 
 
             <script>
@@ -66,7 +76,7 @@
                 	
                 	var fileName = '';
                 	var imageName = '';
-                	
+                	var id = '${userId}'
                 	
                     $("#files").kendoUpload({
                         async: {
@@ -76,13 +86,14 @@
                             autoUpload: true
                         },
                         success:onSuccess,
-                        upload:onUpload
+                        progress:onUpload,
+                        select:onSelect
                     
                     });
                     
                     $("#files2").kendoUpload({
                         async: {
-                            chunkSize: 11000,// bytes
+                            chunkSize: 1100,// bytes
                             saveUrl: "chunkSaveImage",
                             removeUrl: "remove",
                             autoUpload: true
@@ -92,24 +103,29 @@
                     
                     });
                     
-                    function onSuccess(e){
-                    	  $('#sample').css('display','none');
-                    	  $('#video1').css('display','block');
+                    function onSelect(e){
+                    	console.log('들어옴');
+                    	$('#loading').attr('src','${pageContext.request.contextPath}/resources/img/loading.gif');
+                    	$('#percent').css('display','block');
+                    }
+                    
+                    function onSuccess(e){                 
                     	  var file0Uid = e.files[0].uid;
                     	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-                    	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
-                    	  console.log(name);
+                    	  $('#video1').attr('src','${pageContext.request.contextPath}/resources/video/tmpFiles/'+ id + fileName);
+                    	  $('#loading').css('display','none');
+                    	  $('#percent').css('display','none');
+                    	  console.log(id+fileName);
                       }
                     
                     function onSuccess2(e){   	
                   	  var file0Uid = e.files[0].uid;
-                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-                  	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
-                  	$('#image').attr('src','${pageContext.request.contextPath}/resources/image'+ id + imageName);
-                  	  console.log(name);
+                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	
+                  	$('#imageUp').attr('src','${pageContext.request.contextPath}/resources/image/tmpFiles/'+ id + imageName);
+                  	  console.log(id+imageName);
                     }
                       function onUpload(e){
-                    	  $('#sample').attr('src','${pageContext.request.contextPath}/resources/css/folder.css');
+                    	  $('#percent').text(e.percentComplete+'%');
                       }
                     
                     $('#creatLec').click(()=>{
@@ -147,6 +163,21 @@
         					
         				});
                     });
+                    
+                    $('#imageUp').click(()=>{
+                    	$('#files2').click();
+                    	
+                    });
+                    
+                    $('#video1').click(()=>{
+                    	$('#files').click();
+                    });
+                    
+                    $('#loading').click(()=>{
+                    	$('#files').click();
+                    });
+                    
+                    
                 });
                 
                              

@@ -48,13 +48,14 @@ public class OnLecController {
 	}
 	
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
-	public String folderDetail(int bno, String lecCategory, Model model) {
+	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("bno : " + bno);
 		System.out.println(lecCategory);
 		List<OnLec>list = service.read(bno);
 		model.addAttribute("onLecList",list);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
 		return "/upload/folderDetail";
 	}
 	

@@ -39,8 +39,8 @@ margin-bottom: 20px;
   position: absolute; 
   bottom: 0; 
   margin:0px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+background: none;
+  border : 1px solid grey;
   color: #f1f1f1; 
   transition: .5s ease;
   opacity:0;
@@ -59,17 +59,33 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 }
 
 div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
-padding-top:10px;
-padding:0px;
+padding-top:15px;
+padding-right:10px;
 max-height: 86.5px;
 }
 
 .btndeup{
 position: relative;
+height:20px;
+width:20px;
 margin: 0px;
 padding: 0px;
-left: 170px;
-bottom: 40px;
+left: 150px;
+bottom: 25px;
+background-color: white;
+background-size:cover;
+border: 1px solid white;
+
+}
+
+
+.author{
+position:relative;
+bottom: 8px;
+}
+
+p.views.views-info{
+margin-right: 10px;
 }
 
 </style>
@@ -77,12 +93,13 @@ bottom: 40px;
 
 </head>
 <body>
-
 <br/>
+<h4 style="font-weight: bold;">온라인 강의 관리</h4>
 <br/>
 
-
-<div id = folder>
+<div>
+<div style="display: inline-block; width: 550px;"></div>
+<div id = folder style="display: inline-block;">
 <c:forEach var="group" items="${groupList }">
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
@@ -107,17 +124,21 @@ bottom: 40px;
 <li><p class="author author-info"><a href="#" class="author">${userName}</a></p></li>
 <li class="right-list"><p class="views views-info">${group.lecLike} </p></li>
 </ul>
-<button class="btndeup" id="btnUpdate" style="background:${pageContext.request.contextPath}/resources/img/update.png;"></button>
-<button class="btndeup" id="btnDelete" style="background:${pageContext.request.contextPath}/resources/img/update.png;"></button>
 </div>
-<a href="upload/folderDetail?bno=${group.bno }" class="detail">
-<div class="overlay"></div>
+<a href="upload/folderDetail?bno=${group.bno }&lecName=${group.lecName}&lecCategory=${group.lecCategory}" class="detail">
+<div class="overlay">
+</div>
 </a>
+<button class="btndeup" id="btnUpdate" style="background:url('${pageContext.request.contextPath}/resources/img/update.png');"></button>
+<a href="upload/folderDelete?bno=${group.bno }">
+<button class="btndeup" id="btnDelete" style="background:url('${pageContext.request.contextPath}/resources/img/delete.png');"></button>
+</a>
+<div style="display: inline-block; width: 550px;"></div>
 </div>
 
 </c:forEach>
 </div>
-
+</div>
 <!-- 폴더 이름입력창 -->
 <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-animate-top w3-card-4">
@@ -187,7 +208,7 @@ $(()=>{
 					success:function(result){
 						if(result != null){
 							console.log(result);
-							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno=${'+id+' }&lecCategory=${'+folderName+'}" class="detail"><img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">' + category +'</h6><h5 style="font-size: 60%"><a href="single.html" class="title">' +folderName +'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">${'0'} </p></li></ul></div></div>');
+							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "0" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
 							  $('#id01').css('display','none');
 							  $('#folderName').val('');  
 						}else{
@@ -204,8 +225,12 @@ $(()=>{
 	
 	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
 		event.preventDefault();
+		console.log('들어옴');
+		myFunction();
 		var location = $(this).attr('href');
-		 $("#onLec").load(location);
+		$('#onLec').animate({opacity: 0},1000);
+		 $("#onLec").load(encodeURI(location));
+		$('#onLec').animate({opacity: 1},1000);		
 		console.log(location)
 	})
 	

@@ -46,6 +46,104 @@
    background-size: cover;
 
    }
+   
+ #notClick {
+    background-color: rgba(1, 1, 1, 0.7);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}  
+
+#profile {
+    position: relative;
+    display: inline-block;
+    background: url(resources/img/test.png) center center no-repeat;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;  
+    top: 160px;
+    left: 230px;
+  
+}
+   
+ #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+top:500px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+.tab{
+position:relative;
+bottom:800px;
+top:0px;
+background-color: white;
+border: 1px solid white;
+font-size: 80%;
+}
+
+.name{
+position: relative;
+top:70px;
+left:360px;	
+font-size: 80%;
+
+}
+
+.tablinks{
+position:relative;
+left: 400px;
+background-color: white;
+font-size: 80%;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+h4{
+font-family: hanna;
+}
+}
    </style>
 
 	
@@ -74,17 +172,18 @@
     </nav>
 	
 	
-	
+	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
     <div class="frame" id="profile"></div>
-    <div id="name">이름</div>
+    <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
+    <div class="name" style="color: grey">${userId }</div>
+    </div>
+
     
-    <hr id="profileHr"/>
-    
-    <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">나는 학생</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">나는 선생님</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">칠판</button>
-  <button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"></button>
+   <div class="tab">
+  <button class="tablinks" id="London" onclick="openCity(event, 'London')">나는 학생</button>
+  <button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는 선생님</button>
+  <button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
+  <button id="createFolder1" onclick="document.getElementById('id01').style.display='block'" style="display: none"></button>
 
 </div>
 
@@ -94,15 +193,7 @@
 </div>
 
 <div id="Paris" class="tabcontent" style="border:none;">
- 
-  <div id="onLec"></div>
-  <script>
-			$(document).ready(function(){
-			
-   			 $("#onLec").load("/project/upload/folder");
 
-			});
-			</script>
 </div>
 
 <div id="Tokyo" class="tabcontent" style="border:none;">
@@ -110,13 +201,18 @@
   <p>Tokyo is the capital of Japan.</p>
 </div>
 
+ <div>
+
+  <div id="onLec" style="display: inline-block; margin-left: 200px">
+
+  </div>
+  </div>
+
+<div id="loader" style="display: none;">
+
+</div>
+<div id ="notClick" style="display: none"></div>
 <script>
-$('#createFolder1').css('display','none');
-
-$(()=>{
-
-	
-});
 
 function openCity(evt, cityName) {
 	
@@ -131,16 +227,45 @@ function openCity(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+    console.log(cityName)
+   
     if(cityName === 'Paris'){
-    	$(document).ready(function(){
-   			 $("#onLec").load("/project/upload/folder");
-   			$('#createFolder1').css('display','block');
-			});
+    	console.log('들어옴');
+    
+    		myFunction();
+    		$('#onLec').animate({opacity: 0},1000);
+			$('#onLec').load("/project/upload/folder");
+			$('#onLec').animate({opacity: 1},1000);
+    		$('#Paris').css('border-bottom','5px solid black');
+    		$('#Tokyo').css('border-bottom','none');
+    		$('#London').css('border-bottom','none'); 		
+   			$('#createFolder1').css('display','block');	
+
+    				
+    }else if(cityName === 'London'){  	
+    	$('#London').css('border-bottom','5px solid black');
+    	$('#Paris').css('border-bottom','none');
+		$('#Tokyo').css('border-bottom','none');
+    }else if(cityName === 'Tokyo'){  	
+    	$('#Tokyo').css('border-bottom','5px solid black');
+    	$('#Paris').css('border-bottom','none');
+		$('#London').css('border-bottom','none');
     }else{
     	$('#createFolder1').css('display','none');
     }
 }
 
+function myFunction() {
+	console.log('들어옴')
+	$('#loader').css('display','block');
+	$('#notClick').css('display','block');
+    var a = setTimeout(showPage, 1000);
+}
+
+function showPage() {
+	$('#notClick').css('display','none');
+  $('#loader').css('display','none');
+}
 </script>
     
     
