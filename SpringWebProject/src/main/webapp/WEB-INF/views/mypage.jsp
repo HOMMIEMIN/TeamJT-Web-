@@ -86,10 +86,13 @@ top:500px;
   animation: spin 2s linear infinite;
 }
 
-div.tab{
-
-bottom:1000px;
-
+.tab{
+position:relative;
+bottom:800px;
+top:0px;
+background-color: white;
+border: 1px solid white;
+font-size: 80%;
 }
 
 .name{
@@ -98,6 +101,13 @@ top:70px;
 left:360px;	
 font-size: 80%;
 
+}
+
+.tablinks{
+position:relative;
+left: 400px;
+background-color: white;
+font-size: 80%;
 }
 
 @-webkit-keyframes spin {
@@ -163,11 +173,11 @@ font-size: 80%;
     </div>
 
     
-    <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">나는 학생</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">나는 선생님</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">칠판</button>
-  <button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"></button>
+   <div class="tab">
+  <button class="tablinks" id="London" onclick="openCity(event, 'London')">나는 학생</button>
+  <button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는 선생님</button>
+  <button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
+  <button id="createFolder1" onclick="document.getElementById('id01').style.display='block'" style="display: none"></button>
 
 </div>
 
@@ -177,26 +187,20 @@ font-size: 80%;
 </div>
 
 <div id="Paris" class="tabcontent" style="border:none;">
- 
-  <div>
-  <div id="left" style="display: inline-block; width: 550px;"></div>
-  <div id="onLec" style="display: inline-block;">
-  <div id="light" style="display: inline-block; width: 550px;"></div>
-  </div>
-  </div>
-  <script>
-			$(document).ready(function(){
-			
-   			 $("#onLec").load("/project/upload/folder");
 
-			});
-			</script>
 </div>
 
 <div id="Tokyo" class="tabcontent" style="border:none;">
   <h3>칠판</h3>
   <p>Tokyo is the capital of Japan.</p>
 </div>
+
+ <div>
+  <div id="left" style="display: inline-block; width: 550px;"></div>
+  <div id="onLec" style="display: inline-block;">
+  <div id="light" style="display: inline-block; width: 550px;"></div>
+  </div>
+  </div>
 
 <div id="loader" style="display: none;">
 
@@ -219,10 +223,23 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
     console.log(cityName)
     if(cityName === 'Paris'){
-    	
+    	console.log('들어옴');
     		myFunction();
-   			 $('#onLec').load("/project/upload/folder");
+    		$('#onLec').animate({opacity: 0},1000);
+			$('#onLec').load("/project/upload/folder");
+			$('#onLec').animate({opacity: 1},1000);
+    		$('#Paris').css('border-bottom','5px solid black');
+    		$('#Tokyo').css('border-bottom','none');
+    		$('#London').css('border-bottom','none'); 		
    			$('#createFolder1').css('display','block');			
+    }else if(cityName === 'London'){  	
+    	$('#London').css('border-bottom','5px solid black');
+    	$('#Paris').css('border-bottom','none');
+		$('#Tokyo').css('border-bottom','none');
+    }else if(cityName === 'Tokyo'){  	
+    	$('#Tokyo').css('border-bottom','5px solid black');
+    	$('#Paris').css('border-bottom','none');
+		$('#London').css('border-bottom','none');
     }else{
     	$('#createFolder1').css('display','none');
     }

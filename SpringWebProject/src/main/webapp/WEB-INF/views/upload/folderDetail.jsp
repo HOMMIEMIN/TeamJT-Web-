@@ -119,7 +119,7 @@ bottom: 8px;
 <script>
 
 $(()=>{
-	$('#createFolder').css('display','none');
+	$('#createFolder1').css('display','none');
 	$('#addLec').click(()=>{
 		event.preventDefault();
 		var bno = '${bno}';

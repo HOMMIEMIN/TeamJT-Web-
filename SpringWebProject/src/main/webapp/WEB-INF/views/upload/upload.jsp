@@ -22,7 +22,7 @@
 <body>
 
 	<div style="width: 854px; max-width: 854; border: 1px solid lightgrey">
-	<img id="imageUp" style = "margin: 0px;padding:0px; border-right: 1px solid lightgrey"src="${pageContext.request.contextPath}/resources/img/addImage.png">
+	<img id="imageUp" style = "margin: 0px;padding:0px; border-right: 1px solid lightgrey;"src="${pageContext.request.contextPath}/resources/img/addImage.png">
 	<div style ="display:inline-block;">
 	<div>
 	<div id="categoryName" style="color: #04B486; font-weight: bolder; font-size: 18px;margin-left: 10px">
@@ -36,12 +36,13 @@
 	</div>
 	</div>
 	<br/>
+	<div>
 	<video id="video1"  width="854" height="480" style="background-color:#F2F2F2;border:1px solid lightgrey; border-radius: 16px; max-height: 480px; max-width: 854;" >
     <source type="video/mp4">
     <source id = "video2" type="video/ogg"></video>
- <img id="loading" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: absolute; top: 380px; left: 330px;"></img>
+ <img id="loading" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: relative; right: 530px; bottom: 220px"></img>
  <div id= "percent" style="left: 420px; top: 470px;position: absolute; display: none; font-weight: bold;">100%</div>		 
-
+</div>
             <div>
    
                 <div class="demo-section k-content" style="display: none;">
