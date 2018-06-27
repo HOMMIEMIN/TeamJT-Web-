@@ -212,6 +212,7 @@ font-family: hanna;
 
 </div>
 <div id ="notClick" style="display: none"></div>
+<div></div>
 <script>
 
 function openCity(evt, cityName) {

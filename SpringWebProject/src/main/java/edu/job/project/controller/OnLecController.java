@@ -49,7 +49,7 @@ public class OnLecController {
 	
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
 	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
-		System.out.println("bno : " + bno);
+		System.out.println("bnoㅇ : " + bno);
 		System.out.println(lecCategory);
 		List<OnLec>list = service.read(bno);
 		model.addAttribute("onLecList",list);

@@ -22,6 +22,7 @@
 </head>
 
 <body id ="bodyup" style="display: inline-block;">
+<div></div>
 <br/>
 <h4>강의 업로드</h4>
 <br/>

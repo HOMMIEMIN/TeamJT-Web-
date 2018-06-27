@@ -110,6 +110,7 @@ bottom: 8px;
 </div>
 <a href="upload/folderDetail?bno=${group.bno }">
 <div class="overlay"></div>
+<div></div>
 </a>
 </div>
 
