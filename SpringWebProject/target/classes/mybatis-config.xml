@@ -35,6 +35,26 @@
 	<property name="col_leclike" value = "lecLike"/>
 	<property name="col_imagepath" value = "imagePath"/>
 		
+			<!-- UPLOAD_OFFLINE -->
+	
+		<property name="tbl_offlec" value="offlec"/>
+		<property name="col_bno" value="bno"/>
+		<property name="col_userid" value="userid"/>
+		<property name="col_category" value="category"/>
+		<property name="col_title" value="title"/>
+		<property name="col_content" value="content"/>
+		<property name="col_meetingday" value="meetingday"/>
+		<property name="col_maxmember" value="maxmember"/>
+		<property name="col_regdate" value="regdate"/>
+
+		<property name="col_applyId" value="applyid"/>
+		<property name="col_waitingId" value="waitingid"/>	   
+		
+		<property name="col_imgpath" value="imgpath"/>
+		<property name="col_location" value="location"/>
+		
+		
+		
 	</properties>
 	<!-- MyBatis 프레임워크에서 select의 결과를 저장할 Model 클래스(VO)를 찾기 위해서 -->
 	<typeAliases>
