@@ -106,9 +106,9 @@
         	<c:if test="${not empty userId }">      
              	<div class="frame1" id="profile">
              		<div class="dropdown-content">
-   						<a href="#" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
-    					<a href="#" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
-    					<a href="#" style="border-bottom: 1px solid lightgrey;">칠판</a>
+   						<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
     					<a href="" id="btnlogout">하교</a>
   					</div>
             	 </div>
@@ -124,7 +124,7 @@
 				  			<header class="w3-container w3-blue"> 
 							   <span onclick="document.getElementById('id01').style.display='none'" 
 							   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
-							   <h2>님의 쪽지함</h2>
+							   <h2>${userName }님의 쪽지함</h2>
 							</header>
 
 				  	<div id="message" class="w3-bar w3-border-bottom">
@@ -150,8 +150,10 @@
 				  	</div>
 				
 				    <div id="mWrite" class="w3-container city">
-					   <h1>쪽지 작성</h1>
-					   <p>Tokyo is the capital of Japan.</p><br>
+					   <h5>쪽지 작성</h5>
+					   <button>보내기<span style="color: red;"><b>→</b></span></button>
+					   
+					   
 				  	</div>
 				
 				  	<div class="w3-container w3-light-grey w3-padding">

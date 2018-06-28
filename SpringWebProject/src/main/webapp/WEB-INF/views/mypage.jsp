@@ -154,7 +154,7 @@ font-family: hanna;
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
+        <a class="navbar-brand js-scroll-trigger" href="/project">Team Job생각</a>
         <form>
   <div class="input-group" id ="searchBar">
     <input type="text" class="form-control" placeholder="Search">
