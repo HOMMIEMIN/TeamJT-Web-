@@ -21,4 +21,6 @@ public interface OnLecDao {
 	GroupOn selectGroup(GroupOn on);
 	
 	int insertOnLec(OnLec on);
+	
+	int updateGroupImage(OnLec on);
 }

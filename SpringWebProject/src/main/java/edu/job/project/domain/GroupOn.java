@@ -12,6 +12,7 @@ public class GroupOn {
 	private String lecCategory;
 	private int lecLike;
 	private Date regdate;
+	private String imagePath;
 	
 	
 	
@@ -22,7 +23,7 @@ public class GroupOn {
 
 
 	public GroupOn(int bno, int lecBno, String userId, String lecName, String lecType, String lecCategory, int lecLike,
-			Date regdate) {
+			Date regdate, String imagePath) {
 		this.bno = bno;
 		this.lecBno = lecBno;
 		this.userId = userId;
@@ -31,6 +32,7 @@ public class GroupOn {
 		this.lecCategory = lecCategory;
 		this.lecLike = lecLike;
 		this.regdate = regdate;
+		this.imagePath = imagePath;
 	}
 
 
@@ -128,6 +130,26 @@ public class GroupOn {
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
+
+
+	public String getImagePath() {
+		return imagePath;
+	}
+
+
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+
+
+	
+	
+
+
+	
 	
 	
 

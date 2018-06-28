@@ -48,13 +48,14 @@ public class OnLecController {
 	}
 	
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
-	public String folderDetail(int bno, String lecCategory, Model model) {
-		System.out.println("bno : " + bno);
+	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
+		System.out.println("bnoㅇ : " + bno);
 		System.out.println(lecCategory);
 		List<OnLec>list = service.read(bno);
 		model.addAttribute("onLecList",list);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
 		return "/upload/folderDetail";
 	}
 	
@@ -78,8 +79,12 @@ public class OnLecController {
 		int result = service.create(on);
 		String re = null;
 		if(result == 1) {
-			re = "ok";
-		}
+			
+			int update = service.updateGroupImage(on);
+			if(update == 1) {
+				re = "ok";
+			}
+			}
 		
 		return new ResponseEntity<String>(re, HttpStatus.OK);
 	}

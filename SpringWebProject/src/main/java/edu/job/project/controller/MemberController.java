@@ -66,6 +66,7 @@ public class MemberController {
 		String result = null;
 		if(member1 != null) {
 			session.setAttribute("userId", member.getUserId());
+			session.setAttribute("userName", member1.getUserName());
 			result = "ok";
 		}
 		System.out.println(result);

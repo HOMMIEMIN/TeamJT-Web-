@@ -9,52 +9,66 @@
     font-size: 14px; 
     font-family: Arial, Helvetica, sans-serif; 
     }
+ 
      </style>
     <title></title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common-material.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
-    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+    
 	<link href="${pageContext.request.contextPath}/resources/css/upload.css" rel="stylesheet" />
-    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-    <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+   
     
     
     
 
 </head>
-<body>
-		<form id="upload" method="post">
-		<div class="form-group">
-  <label for="usr">제목:</label>
-  <input type="text" class="form-control" id="title"> 
-</div>
+
+<body id ="bodyup" style="display: inline-block;">
+<div></div>
 <br/>
-	<img id="sample" ></img>
-	<video id="video1" width="420" style="display: none;">
-    <source src="" type="video/mp4">
-    <source src="mov_bbb.ogg" type="video/ogg"></video>
- 		 <br/>
- 		 
- 		  <div id="example">
+<h4>강의 업로드</h4>
+<br/>
+	<div>
+	<div style="width: 854px; max-width: 854; border: 1px solid lightgrey">
+	<img id="imageUp" style = "margin: 0px;padding:0px; border-right: 1px solid lightgrey;"src="${pageContext.request.contextPath}/resources/img/addImage.png">
+	<div style ="display:inline-block;">
+	<div>
+	<div id="categoryName" style="color: #04B486; font-weight: bolder; font-size: 18px;margin-left: 10px">
+	ect.
+	</div>
+	<div id="title1" style="font-size: 18px;margin-top: 10px; margin-left: 10px">
+	북극여우
+	</div>
+	<input type="text" class="form-control" style="width: 360px; margin-top: 20px; margin-left: 8px;">
+	</div>
+	</div>
+	</div>
+	<br/>
+	<div>
+	<video id="video1"  width="854" height="480" style="background-color:#F2F2F2;border:1px solid lightgrey; border-radius: 16px; max-height: 480px; max-width: 854;" >
+    <source type="video/mp4">
+    <source id = "video2" type="video/ogg"></video>
+ <img id="loading" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: relative; right: 530px; bottom: 220px"></img>
+ <div id= "percent" style="left: 420px; top: 470px;position: absolute; display: none; font-weight: bold;">100%</div>		 
+</div>
             <div>
-                <div class="demo-section k-content">
-                    <input name="files" id="files" type="file" accept=".jpg,.jpeg.,.gif,.png,.mov,.mp4"/>
+   
+                <div class="demo-section k-content" style="display: none;">
+                    <input name="files" id="files" type="file" accept=".mp4"/>
+                </div>
+                
+                <br/>
+   
+
+                <div class="demo-section k-content" style="display: none;">
+                    <input name="files" id="files2" type="file" accept=".jpg,.jpeg.,.gif,.png"/>
                 </div>
             </div>
-		</div>
 	
-		<br/>
+ 	<textarea class="form-control" style="width:854px; max-width: 854px;" placeholder="내용을 입력해주세요." rows="10" id="content"></textarea>
 
-<div class="form-group">
-  <label for="comment">소개:</label>
-  <textarea class="form-control" rows="5" id="content"></textarea>
-</div>
 		
-       
-		<input type="button" id="creatLec" value="등록"/>
-		</form>
+       <br/>
+		<input type="button" style="width: 854px;height:50px ;hemax-width: 854px; background-color: 3ED0C8; border: 1px solid 3ED0C8" id="creatLec" value=""/>
+</div>
 
 
             <script>
@@ -62,7 +76,8 @@
                 	
                 	
                 	var fileName = '';
-                	
+                	var imageName = '';
+                	var id = '${userId}'
                 	
                     $("#files").kendoUpload({
                         async: {
@@ -72,56 +87,102 @@
                             autoUpload: true
                         },
                         success:onSuccess,
-                        upload:onUpload
+                        progress:onUpload,
+                        select:onSelect
                     
                     });
+                    
+                    $("#files2").kendoUpload({
+                        async: {
+                            chunkSize: 1100,// bytes
+                            saveUrl: "chunkSaveImage",
+                            removeUrl: "remove",
+                            autoUpload: true
+                        },
+                        success:onSuccess2
+                       
+                    
+                    });
+                    
+                    function onSelect(e){
+                    	console.log('들어옴');
+                    	$('#loading').attr('src','${pageContext.request.contextPath}/resources/img/loading.gif');
+                    	$('#percent').css('display','block');
+                    }
+                    
+                    function onSuccess(e){                 
+                    	  var file0Uid = e.files[0].uid;
+                    	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
+                    	  $('#video1').attr('src','${pageContext.request.contextPath}/resources/video/tmpFiles/'+ id + fileName);
+                    	  $('#loading').css('display','none');
+                    	  $('#percent').css('display','none');
+                    	  console.log(id+fileName);
+                      }
+                    
+                    function onSuccess2(e){   	
+                  	  var file0Uid = e.files[0].uid;
+                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	
+                  	$('#imageUp').attr('src','${pageContext.request.contextPath}/resources/image/tmpFiles/'+ id + imageName);
+                  	  console.log(id+imageName);
+                    }
+                      function onUpload(e){
+                    	  $('#percent').text(e.percentComplete+'%');
+                      }
+                    
+                    $('#creatLec').click(()=>{
+                  	  var id = '${userId}';
+                  	  var title = $('#title').val();
+                  	  var content= $('#content').val();
+                  	  var groupBno = '${bno}';
+                  	  var category = '${lecCategory}'
+                  	  
+                  	  
+                  	  $.ajax({
+        					type:'post',
+        					url:'/project/upload/onLeccreate',
+        					headers:{
+        						'Content-Type' : 'application/json; charset=UTF-8',
+        						'X-HTTP-Method-Override' : 'post'
+        					},
+        					data: JSON.stringify({
+        						'userId' : id,
+        						'title' : title,
+        						'content' : content,
+        						'videoPath' : id+fileName,
+        						'groupBno' : groupBno,
+        						'lecCategory' : category,
+        						'imagePath' : id+imageName
+        					}),
+        					success:function(result){
+        						if(result === 'ok'){
+        							$("#onLec").load("/project/upload/folder");
+        							
+        						}else{
+        							alert('등록 실패');
+        						}
+        					}
+        					
+        				});
+                    });
+                    
+                    $('#imageUp').click(()=>{
+                    	$('#files2').click();
+                    	
+                    });
+                    
+                    $('#video1').click(()=>{
+                    	$('#files').click();
+                    });
+                    
+                    $('#loading').click(()=>{
+                    	$('#files').click();
+                    });
+                    
+                    
                 });
                 
-              function onSuccess(e){
-            	  $('#sample').css('display','none');
-            	  $('#video1').css('display','block');
-            	  var file0Uid = e.files[0].uid;
-            	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-            	  $('#video1').attr('src','resources/video/tmpFiles/'+ fileName);
-            	  console.log(name);
-              }
-              function onUpload(e){
-            	  $('#sample').attr('src','${pageContext.request.contextPath}/resources/css/folder.css');
-              }
-              
-              $('#creatLec').click(()=>{
-            	  var id = '${userId}';
-            	  var title = $('#title').val();
-            	  var content= $('#content').val();
-            	  var groupBno = '${bno}';
-            	  var category = '${lecCategory}'
-            	  
-            	  
-            	  $.ajax({
-  					type:'post',
-  					url:'/project/upload/onLeccreate',
-  					headers:{
-  						'Content-Type' : 'application/json; charset=UTF-8',
-  						'X-HTTP-Method-Override' : 'post'
-  					},
-  					data: JSON.stringify({
-  						'userId' : id,
-  						'title' : title,
-  						'content' : content,
-  						'videoPath' : id+fileName,
-  						'groupBno' : groupBno,
-  						'lecCategory' : category
-  					}),
-  					success:function(result){
-  						if(result === 'ok'){
-  							$("#onLec").load("/project/upload/folder");
-  						}else{
-  							alert('등록 실패');
-  						}
-  					}
-  					
-  				});
-              });
+                             
+                
             </script>
         
 
