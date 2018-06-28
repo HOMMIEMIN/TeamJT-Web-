@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  DOCTYPE 필요함 복붙할 것! -->
+<!-- http://www.mybatis.org/mybatis-3/getting-started.html 여기서 복붙 한것. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.job.project.mappers.UploadMapper"><!--  이 접두사는 아이디가 어디에 들어 있는냐 -->
+  <!--  인터페이스와 .xml 을 같이 쓰려고 NAMESPACE 를 일부러 이렇게 만들었다.  -->
+  <!-- UploadMapper 인터페이스 에서 사용하기 위함.  -->
+  
+	<insert id="insert">
+		
+		INSERT INTO ${tbl_offlec} ( ${col_userid} , ${col_category} , ${col_title} , ${col_content} , ${col_meetingday} , ${col_maxmember} , ${col_imgpath} , ${col_location})
+		VALUES ( #{userid} , #{category} , #{title} , #{content} , #{meetingday} , #{maxmember} , #{imgPath} , #{location} )
+		
+	</insert>
+
+	<update id="updateWaitingId" >
+		UPDATE ${tbl_offlec}
+		SET ${col_waitingId} = #{waitingId}
+		WHERE ${col_bno} = #{bno}
+	</update>
+  
+  	<select id="selectWaitingList" resultType="OffLec">
+  	
+  		SELECT ${col_waitingId}
+		FROM ${tbl_offlec}
+		WHERE ${col_bno} = #{bno}
+  	
+  	</select>
+  		
+  	<select id="selectAll" resultType="OffLec">
+  	
+  	SELECT * FROM ${tbl_offlec} ORDER BY ${col_bno} DESC
+  	
+  	</select>	
+  	
+
+  		
+  </mapper>
