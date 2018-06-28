@@ -76,7 +76,8 @@ bottom: 8px;
 </style>
 </head>
 <body>
-
+<br/>
+<br/>
 <br/>
 <h4>${lecName }</h4>
 <br/>
@@ -126,8 +127,9 @@ $(()=>{
 	$('#addLec').click(()=>{
 		event.preventDefault();
 		var bno = '${bno}';
-		var category = '${lecCategory}'
-		 $("#onLec").load("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category);
+		var category = '${lecCategory}';
+		var lecName = '${lecName}';
+		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
 		
 	});
 	
