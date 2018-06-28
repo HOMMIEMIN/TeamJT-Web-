@@ -93,8 +93,10 @@ margin-right: 10px;
 
 </head>
 <body>
-
 <br/>
+<br/>
+<br/>
+<h4 style="font-weight: bold;">온라인 강의 관리</h4>
 <br/>
 
 <div>
@@ -125,7 +127,7 @@ margin-right: 10px;
 <li class="right-list"><p class="views views-info">${group.lecLike} </p></li>
 </ul>
 </div>
-<a href="upload/folderDetail?bno=${group.bno }" class="detail">
+<a href="upload/folderDetail?bno=${group.bno }&lecName=${group.lecName}&lecCategory=${group.lecCategory}" class="detail">
 <div class="overlay">
 </div>
 </a>
@@ -140,19 +142,20 @@ margin-right: 10px;
 </div>
 </div>
 <!-- 폴더 이름입력창 -->
-<div id="id01" class="w3-modal">
-    <div class="w3-modal-content w3-animate-top w3-card-4">
+<div id="id01" class="w3-modal" style="position: absolute; height: 200%;">
+    <div class="w3-modal-content w3-animate-opacity w3-card-4" style="position: relative; left: 300px; top: 200px; width: 20%">
       <header class="w3-container w3-teal"> 
         <span onclick="document.getElementById('id01').style.display='none'" 
         class="w3-button w3-display-topright">&times;</span>
         <h2>강의 폴더 생성</h2>
       </header>
-      <div class="w3-container">      
+      <div class="w3-container" style="padding: 0px">      
       	<div class="form-group">
       	<br/>
-      <label>카테고리 선택:</label>
-      	<form id="createFolder">
-      	<select id = "category" class="form-control" name="category">
+      	<div>
+      <div style="display: inline-block; padding-left: 40px;">카테고리</div>
+      	<form id="createFolder" style="padding-left: 10px; display: inline-block;">
+      	<select id = "category" class="form-control" name="category" style="width: 163%; margin-left: 30px">
   		<option>IT</option>
   		<option>운동</option>
   		<option>요리</option>
@@ -160,12 +163,15 @@ margin-right: 10px;
   		<option>예술</option>
   		<option>기타</option>
 		</select>
-      	<label>폴더 이름:</label>
-        <input type="text" id ="folderName" name="folderName" class="form-control input-lg"/>
+		</div>
+		<div>
+      	<div style="display: inline-block; padding-left: 40px;">강의명</div>
+        <input type="text" id ="folderName" name="folderName" class="form-control input-lg" style="width: 50%; height : 35px; margin-left: 53px; display: inline-block;"/>
         <input type="hidden" name="userId" value=${userId }/>
+        </div>
         </form>
         <br/>
-        <button id ="btnFolder" class="btn btn-default">생성</button>
+        <button id ="btnFolder" class="btn btn-default" style="width: 100%; background-color: #04B486; color: white">v</button>
 
         </div>
        </div>
@@ -208,7 +214,7 @@ $(()=>{
 					success:function(result){
 						if(result != null){
 							console.log(result);
-							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ 0 +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
+							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "0" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
 							  $('#id01').css('display','none');
 							  $('#folderName').val('');  
 						}else{
@@ -229,7 +235,7 @@ $(()=>{
 		myFunction();
 		var location = $(this).attr('href');
 		$('#onLec').animate({opacity: 0},1000);
-		 $("#onLec").load(location);
+		 $("#onLec").load(encodeURI(location));
 		$('#onLec').animate({opacity: 1},1000);		
 		console.log(location)
 	})

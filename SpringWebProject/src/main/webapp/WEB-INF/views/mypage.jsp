@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Team Job</title>
+    <title>You Can Be A Teacher</title>
     
 	
     <!-- Bootstrap core CSS -->
@@ -138,6 +138,12 @@ font-size: 80%;
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+h4{
+font-family: hanna;
+}
+}
    </style>
 
 	
@@ -148,7 +154,7 @@ font-size: 80%;
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">You Can Be A Teacher</a>
         <form>
   <div class="input-group" id ="searchBar">
     <input type="text" class="form-control" placeholder="Search">
@@ -167,7 +173,7 @@ font-size: 80%;
 	
 	
 	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
-    <div class="frame" id="profile"></div>
+    <div class="frame" id="profile" style="z-index: 1;"> </div>
     <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
     <div class="name" style="color: grey">${userId }</div>
     </div>
@@ -196,16 +202,17 @@ font-size: 80%;
 </div>
 
  <div>
-  <div id="left" style="display: inline-block; width: 550px;"></div>
-  <div id="onLec" style="display: inline-block;">
-  <div id="light" style="display: inline-block; width: 550px;"></div>
+
+  <div id="onLec" style="display: inline-block; margin-left: 200px">
+
   </div>
   </div>
 
-<div id="loader" style="display: none;">
+<div id="loader" style="display: none; z-index: 4;">
 
 </div>
-<div id ="notClick" style="display: none"></div>
+<div id ="notClick" style="display: none; z-index: 3;"></div>
+<div></div>
 <script>
 
 function openCity(evt, cityName) {
@@ -222,8 +229,10 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
     console.log(cityName)
+   
     if(cityName === 'Paris'){
     	console.log('들어옴');
+    
     		myFunction();
     		$('#onLec').animate({opacity: 0},1000);
 			$('#onLec').load("/project/upload/folder");
@@ -231,7 +240,9 @@ function openCity(evt, cityName) {
     		$('#Paris').css('border-bottom','5px solid black');
     		$('#Tokyo').css('border-bottom','none');
     		$('#London').css('border-bottom','none'); 		
-   			$('#createFolder1').css('display','block');			
+   			$('#createFolder1').css('display','block');	
+
+    				
     }else if(cityName === 'London'){  	
     	$('#London').css('border-bottom','5px solid black');
     	$('#Paris').css('border-bottom','none');

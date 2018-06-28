@@ -76,8 +76,11 @@ bottom: 8px;
 </style>
 </head>
 <body>
-
-
+<br/>
+<br/>
+<br/>
+<h4>${lecName }</h4>
+<br/>
 <div id = folder>
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec">
 <a id = "addLec">
@@ -108,6 +111,7 @@ bottom: 8px;
 </div>
 <a href="upload/folderDetail?bno=${group.bno }">
 <div class="overlay"></div>
+<div></div>
 </a>
 </div>
 
@@ -123,8 +127,9 @@ $(()=>{
 	$('#addLec').click(()=>{
 		event.preventDefault();
 		var bno = '${bno}';
-		var category = '${lecCategory}'
-		 $("#onLec").load("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category);
+		var category = '${lecCategory}';
+		var lecName = '${lecName}';
+		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
 		
 	});
 	

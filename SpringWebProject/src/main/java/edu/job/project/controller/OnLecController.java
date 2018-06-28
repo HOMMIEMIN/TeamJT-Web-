@@ -31,10 +31,13 @@ public class OnLecController {
 	
 	
 	@RequestMapping(value="/addonlec", method=RequestMethod.GET)
-	public String upload(int bno, String lecCategory, Model model) {
+	public String upload(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("업로드 : " + bno);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
+		System.out.println("lecName : "+lecName);
+		System.out.println("카테고리 : "+lecCategory);
 		return "/upload/upload";
 	}
 	
@@ -48,13 +51,14 @@ public class OnLecController {
 	}
 	
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
-	public String folderDetail(int bno, String lecCategory, Model model) {
+	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("bno : " + bno);
 		System.out.println(lecCategory);
 		List<OnLec>list = service.read(bno);
 		model.addAttribute("onLecList",list);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
 		return "/upload/folderDetail";
 	}
 	
