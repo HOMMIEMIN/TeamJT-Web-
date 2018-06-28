@@ -33,6 +33,14 @@
 	<property name="col_lecname" value = "lecName"/>
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leclike" value = "lecLike"/>
+
+	<!-- 쪽지함 테이블 -->
+	<property name="tbl_message" value="user_message"/>
+	<property name="col_mno" value="mno"/>
+	<property name="col_userid" value="userId"/>
+	<property name="col_yourid" value="yourId"/>
+	<property name="col_mcontent" value="mcontent"/>
+	<property name="col_regdate" value ="regDate"/>
 	<property name="col_imagepath" value = "imagePath"/>
 		
 			<!-- UPLOAD_OFFLINE -->
