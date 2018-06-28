@@ -27,6 +27,7 @@ function showLoginForm(){
         $('.modal-title').html('로그인');
     });       
      $('.error').removeClass('alert alert-danger').html(''); 
+     
 }
 
 function openLoginModal(){
@@ -34,6 +35,7 @@ function openLoginModal(){
     setTimeout(function(){
         $('#loginModal').modal('show');    
     }, 230);
+    
     
 }
 function openRegisterModal(){
