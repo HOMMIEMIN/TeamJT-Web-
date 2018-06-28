@@ -83,76 +83,78 @@
 <body>
 	<h1>강의업로드</h1>
 
-	<div class="container">
+	<div class="container" style="padding-top: 30px;">
 
 		<form method="post" action="register1" enctype="multipart/form-data">
 			<div class="container-fluid">
 				<div class="row" style="height: 250px;">
-					<div class="col-sm-4" style="background-color: lavender;">
-						<img src="/project/resources/img/uploadimage.png" id="imgpreview" style="width: 100%; height: 100%;" />
+					<div class="col-sm-4" >
+						<div class="form-group">
+						<img src="/project/resources/img/uploadimage.png" id="imgpreview" style=" width: 100%; height: 100%;" />
 						<div class="form-group">
 							<input type="file" name="imgPath" onchange="imagepreview(this);" id="hide" style="display:none;"/>
 						</div>
-						<div class="form-group"></div>
+						</div>
 					</div>
-					<div class="col-sm-8" style="background-color: lavenderblush;">
-						<div class="form-group" style="padding-top: 20px;">
-							<label for="category" class="col-sm-2 control-label">카테고리</label>
+					<div class="col-sm-8" >
+						<div class="form-group" style="padding-top: 50px;">
+							<label for="category" class="col-sm-2 control-label" style=" font-size: 30px; color:rgb(22, 160, 133); ">Language</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="category" name="category" placeholder="카테고리"
-									value="">
+							<label for="foldername" class="control-label" style="padding-top: 5px; font-size: 20px;">왕초보 영어회화스터디</label>
 							</div>
 							<div class="form-group">
-								<label for="title" class="col-sm-2 control-label">소제목</label>
-								<div class="col-sm-10">
+								
+								<div class="col-sm-10"style="padding-top: 10px;">
 									<input type="text" class="form-control" id="title" name="title" placeholder="소제목을 입력해주세요."
-										value="">
+										value="" >
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
+	<hr/>
 			<div class="container-fluid">
 
-				<div class="row" style="height: 500px; padding-top: 5px;">
-					<div class="col-sm-8" style="background-color: lavender;">
-
-						<button type="button" name='subject' class='btn btn-success' id='btn-mapchange' value='trans'>장소검색</button>
-						<input type="text" class="form-control form-join" id="location" name="location"
-							placeholder="모임장소를 입력해주세요.">
-						<div id="mapdiv">
-							<div id="map"></div>
+				<div class="row" style="height: 450px; padding-top: 5px;">
+					<div class="col-sm-8" >
+						<div class="row" style="padding-bottom: 10px;">
+							<div class="col-sm-10">
+							<input type="text" class="form-control form-join" id="location" name="location" placeholder="모임장소를 입력해주세요.">
+							</div>
+							<div class="col-sm-2">
+							<button type="button" name='subject' class="btn btn-default" id='btn-mapchange' value='trans' style="background-color:rgb(22, 160, 133); "><span class="glyphicon glyphicon-search"></span> 장소검색</button>    
+							</div>
 						</div>
+						
+							<div id="map"></div>
+						
 
 
 					</div>
-					<div class="col-sm-4" style="background-color: lavenderblush;">
-						<div class="form-group" style="padding-top: 50px;">
-							<label for="meetingday" class="control-label">모임 날짜</label>
+					<div class="col-sm-4" >
+						<div class="form-group" style="padding-top: 90px;">
+							<label for="meetingday" class="control-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 날짜</label>
 							<div class="col-sm-10">
 								<input type='text' class="form-control" id="datepicker1" name="meetingday" />
-
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="meetingtime" class="conrol-label">모임 시간</label>
+						<div class="form-group" style="padding-top: 30px;">
+							<label for="meetingtime" class="conrol-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 시간</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="timepicker1" name="meetingtime" />
 							</div>
 
 
-						</div>
-
-						<div class="form-group">
-							<label for="maxmember" class="control-label">수강인원</label>
-							<div class="row">
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="maxmember" name="maxmember" placeholder="수강인원"
-										onkeydown="onlyNumber(this)">
+						</div>						
+						<div class="form-group" style="padding-top: 30px;">
+							<label for="maxmember" class="control-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">수강인원</label>
+							<div class="row" style="padding-left: 60%;">
+								<div>
+									<input type="text" class="form-control" id="maxmember" name="maxmember" placeholder="0"
+										onkeydown="onlyNumber(this)" style="width:50px;">
 								</div>
-								<div class="col-sm-2">명</div>
+								<div style="padding-top: 8px;">명</div>
 							</div>
 
 						</div>
@@ -160,31 +162,31 @@
 				</div>
 			</div>
 
-
+			<hr/>
 			<div class="container-fluid">
 
-				<div class="row">
-					<div class="col-sm-12" style="background-color: lavender;">
-						<div class="form-group" style="padding-top: 5px;">
-							<label for="content" class="col-sm-2 control-label">강의내용 작성</label>
-							<div class="col-sm-12">
-								<textarea class="form-control" id="content" rows="4" name="content" style="height: 300px;"></textarea>
+				<div class="row" style="padding-top: 5px;">
+					<div class="col-sm-12" >
+						<div class="form-group" style="padding-top: 5px; ">
+							<label for="content" class="control-label"style=" font-size: 20px; color:rgb(22, 160, 133); ">강의내용 작성</label>
+							<div class="col-sm-12" style="padding-top: 10px;">
+								<textarea class="form-control" id="content" rows="4" name="content" style="height: 300px; "></textarea>
 							</div>
 						</div>
 					</div>
 
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-12" style="background-color: lavender;">
+			
+				<div class="col-sm-12" style=" height : 100px;" >
 					<div class="form-group">
-						<div class="col-sm-8">
-							<input type="submit" value="register" class="form-control"> <input type="hidden"
-								name="lat" id="lat"> <input type="hidden" name="long1" id="long">
-						</div>
+						
+							<input type="submit" value="업로드" class="form-control" style="background-color:rgb(22, 160, 133); color: white; "> <input type="hidden"
+								name="lat" id="lat"> <input type="hidden" name="long1" id="long" >
+						
 					</div>
 				</div>
-			</div>
+			
 		</form>
 
 	</div>

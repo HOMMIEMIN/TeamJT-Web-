@@ -63,7 +63,7 @@ public class OffLecController {
 
 	@RequestMapping(value = "/register1", method=RequestMethod.POST)
 	public String upload(Model model, 
-			@RequestParam("category")String category,
+			
 			@RequestParam("title")String title,
 			@RequestParam("content")String content,
 			@RequestParam("meetingday")String meetingday,
@@ -86,7 +86,7 @@ public class OffLecController {
 		String location= lat+","+long1;
 		
 		String meeting = meetingday+""+meetingtime;
-		OffLec offLecture = new OffLec(0,"",category,title,content,meeting ,maxmember, null, url , location);
+		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember, null, url , location);
 		offlecService.create(offLecture);
 		
 		
