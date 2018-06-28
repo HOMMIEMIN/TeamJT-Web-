@@ -2,6 +2,7 @@ package edu.job.project.prisitence;
 
 import edu.job.project.domain.Member;
 
+
 public interface MemberDao {
 	
 	int insert(Member member);
@@ -11,5 +12,8 @@ public interface MemberDao {
 	int checkId(String userId);
 	
 	int checkName(String userName);
+	
+	Member getId(String userId);
 
+	
 }

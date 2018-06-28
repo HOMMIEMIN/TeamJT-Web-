@@ -58,6 +58,18 @@ public class OnLecServiceImple implements OnLecService {
 		return dao.updateGroupImage(on);
 	}
 
+	@Override
+	public List<OnLec> readByGroupBno(int groupBno) {
+		
+		return dao.selectGroupBnoByOnLec(groupBno);
+	}
+
+	@Override
+	public OnLec readByBno(int bno) {
+		// 
+		return dao.selectBnoByOnLec(bno);
+	}
+
 	
 
 }

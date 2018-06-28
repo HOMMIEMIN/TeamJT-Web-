@@ -43,4 +43,10 @@ public class MemberDaoImple implements MemberDao {
 		return session.selectOne(NAMESPACE + ".namecheck", userName);
 	}
 
+	@Override
+	public Member getId(String userId) {
+		
+		return session.selectOne(NAMESPACE + ".getId", userId);
+	}
+
 }

@@ -21,4 +21,8 @@ public interface OnLecService {
 	int create(OnLec on);
 	
 	int updateGroupImage(OnLec on);
+	
+	List<OnLec> readByGroupBno(int groupBno);
+	
+	OnLec readByBno(int bno);
 }

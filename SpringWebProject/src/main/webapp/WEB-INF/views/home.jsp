@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Team Job</title>
     
@@ -23,6 +24,9 @@
     <script src="resources/js/main/bootstrap.js"></script>
      <script src="resources/js/main/login-register.js" type="text/javascript"></script>
      
+    <!-- 쪽지함 모달 -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
 	
     <!-- Custom fonts for this template -->
     <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -41,11 +45,53 @@
     display: inline-block;
     background: url(resources/img/test.png) center center no-repeat;
     border-radius: 50%;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     left:108%;
-    
+	}
+	
+	.dropdown-content { 
+	bottom: -270%; 
+	left: -100%;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 7px 16px 10px rgba(0,0,0,0.2);
+	}
+	
+	.dropdown-content a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+    color: black;
+    text-decoration: none;
+    display: block;
+	}
+	
+	.dropdown-content a:hover {background-color: lightgrey;}
+	
+	.frame1:hover .dropdown-content {
+    display: block;
+	}
+	
+
+	.city {display:none}
+	
+	tr{
+		border-bottom: 2px solid lightpink;
+		
+	}
+	
+	th, td {
+		border-right: 2px solid lightpink;
+	}
+	
+	tr:hover {
+	 background-color: lavender;
 }
+
+
+
     </style>
 	
   </head>
@@ -55,21 +101,81 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
+       <div class="collapse navbar-collapse" id="navbarResponsive">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-        <c:if test="${not empty userId }">      
-             <div class="frame1" id="profile"></div>       
-        </c:if>
-        <c:if test="${empty userId }">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">로그인</a>
-            </li>
-          </ul>
-        </c:if>          
+        	<c:if test="${not empty userId }">      
+             	<div class="frame1" id="profile">
+             		<div class="dropdown-content">
+   						<a href="#" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="#" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="#" style="border-bottom: 1px solid lightgrey;">칠판</a>
+    					<a href="" id="btnlogout">하교</a>
+  					</div>
+            	 </div>
+            	 <input type="text" id="messageUserId" value="${userId}" style="display: none;"   />
+            	 <!-- 로그인시 쪽지함 모달!! -->
+	<div class="w3-container">
+
+			<button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
+					class="w3-button w3-black" style="position: relative; right:-100vh" >쪽지함.</button>
+					
+		<div id="id01" class="w3-modal">
+			<div id="id02" class="w3-modal-content w3-card-4 w3-animate-zoom">
+				  			<header class="w3-container w3-blue"> 
+							   <span onclick="document.getElementById('id01').style.display='none'" 
+							   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+							   <h2>님의 쪽지함</h2>
+							</header>
+
+				  	<div id="message" class="w3-bar w3-border-bottom">
+				   		<button class="tablink w3-bar-item w3-button" 
+				   		onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
+				   		<button class="tablink w3-bar-item w3-button" 
+				   		onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
+				   		<button class="tablink w3-bar-item w3-button" 
+				   		onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
+				  	</div>
+				
+				  	<div id="mGet" class="w3-container city">
+				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
+				  		<table id="messageList">
+						</table>
+				  	</div>
+				  	
+				
+				  	<div id="mSend" class="w3-container city">
+					   <h1>보낸 쪽지</h1>
+					   <p>Paris is the capital of France.</p>
+					   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				  	</div>
+				
+				    <div id="mWrite" class="w3-container city">
+					   <h1>쪽지 작성</h1>
+					   <p>Tokyo is the capital of Japan.</p><br>
+				  	</div>
+				
+				  	<div class="w3-container w3-light-grey w3-padding">
+				   		<button class="w3-button w3-right w3-white w3-border" 
+				   				onclick="document.getElementById('id01').style.display='none'">Close</button>
+				  	</div>
+			</div>
+		</div>
+				
+	</div>
+<!-- end 로그인시 쪽지함 모달 !-->
+            	 
+        	</c:if>
+        	<c:if test="${empty userId }">
+        		<ul class="navbar-nav ml-auto">
+           			 <li class="nav-item">
+              			<a class="nav-link js-scroll-trigger" data-toggle="modal" 
+               				href="javascript:void(0)" onclick= openLoginModal() >로그인</a>
+            		 </li>
+          		</ul>
+        	</c:if>          
         </div>
       </div>
-    </nav>
+     </nav>
 
     <header class="masthead text-center text-white d-flex">
       <div class="container my-auto">
@@ -268,16 +374,19 @@
                                       <span>or</span>
                                     <div class="line r"></div>
                                 </div>
+                                <!-- 로그인 모달 -->
                                 <div class="error"></div>
                                 <div class="form loginBox">
                                     <form method="post" action="/login">
-                                    <input id="userId" class="form-control" type="text" placeholder="Email" name="userId">
-                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                                    <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
                                     <input id="btnLogin" class="btn btn-default btn-login" type="submit" value="로그인">
                                     </form>
                                 </div>
                              </div>
                         </div>
+                        
+                        <!-- 회원가입 모달 -->
                         <div class="box">
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
@@ -314,10 +423,7 @@
 		      </div>
 		  </div>
 	
-    <!-- Bootstrap core JavaScript 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    
-    -->
+    <!-- Bootstrap core JavaScript <script src="vendor/jquery/jquery.min.js"> </script>  -->
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
     <!-- Plugin JavaScript -->
@@ -332,10 +438,18 @@
 	<script>
 	$(()=>{
 		
+		$('#getM').click(()=>{
+			
+			console.log('aaa');
+		
+			
+			});
+		
 		var register = '${registerResult}';
 		console.log(register);
 		if(register != null && register == 'OK'){
 			alert('회원가입 성공!');
+			openLoginModal();
 		}else if(register != null && register == 'fail'){
 			alert('회원가입 실패');
 		}
@@ -460,18 +574,140 @@
 				}),
 				success: function(result){
 						if(result==='ok'){
-							console.log(result);
-							location = '/project';
+							
+ 							console.log(result);
+							//location = document.location;
+							location.reload();
+							
+							var target = document.location;
+				
+							if(target === 'http://localhost:8181/project/'){
+								location = '/project/#portfolio';								
+							} else {
+								location = target;
+							}
+
 						}else{
 							alert('아이디와 비밀번호를 확인해주세요!');
 							$('#password').val('');
 						}	
 				}
-				});
-		});
+				}); // end ajacx
+				
+		}); //end btnLogin.click()
 		
-	});
 	
+		// 로그아웃버튼 클릭시
+		$('#btnlogout').click(function(){
+			event.preventDefault();
+			location = '/project/logout'; //<<--controller로 간다 .
+		}); //end #btnlogout()
+
+		
+		
+		var userId = $('#messageUserId').val();
+		console.log('messageUserId = ' + userId);
+		
+		
+		//모달에서 받은쪽지함
+		$('#getM').click(function(){
+			console.log('getM클릭 메소드 실행전 '+userId);
+			getAllMessege();
+			console.log('getM클릭 메소드 실행후후'+userId);
+			
+		}); // end getM
+		
+		//모달에서 보낸쪽지함
+		$('#sendM').click(function(){
+			
+		}); // end sendM
+		
+		//모달에서 쪽지 작성
+		$('#writeM').click(function(){
+			
+			
+		}); // end writeM
+		
+		 
+		
+		//쪽지함 모달에서 새로고침 
+		$('#resetbtn').click(function(){
+			getAllMessege();
+		}); // end resetbtn
+		
+		
+		// 메인화면에서 쪽지함 클릭시
+		$('#btnmessege').click(function(){
+			getAllMessege();
+		}); // end btnmessege
+		
+		
+	 	
+ 		function getAllMessege() {
+			console.log('===== userId: ' + userId);
+			$.ajax({
+				type: 'get',
+				url: 'message/all',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'get'
+				},
+				data: encodeURI('userId='+userId),
+				success: function(result) {
+					var list1 = '';
+					var list2 = '';
+					list1 +='<tr>'
+						+'<th>쪽지번호</th>'
+						+'<th>보낸 사람</th>'
+						+'<th>내용</th>'
+						+'<th>보낸 시간</th>'
+						+'</tr>';
+					$(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+						console.log(this)
+						var date = new Date(this.regdate);
+						var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+						list2 += '<tr>'
+						+ '<td>'
+						+ this.mno
+						+ '</td>'
+						+ '<td>'
+						+ this.yourId
+						+ '</td>'
+						+ '<td>'
+						+ this.mcontent
+						+ '</td>'
+						+ '<td>'
+						+ dateString
+						+ '</td>'
+						+ '</tr>';
+					}); // end each()
+					$('#messageList').html(list1+list2);
+					//$('#messageList').html(list2);	
+				}
+			});		
+		}// end getAllMessege()
+		
+		
+
+});// end document.reay()		
+
+//쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
+		document.getElementsByClassName("tablink")[0].click();
+		function messageBtn(event, btnName) {
+			  var i, x, tablinks;
+			  x = document.getElementsByClassName("city");
+			  for (i = 0; i < x.length; i++) {
+			    x[i].style.display = "none";
+			  }
+			  tablinks = document.getElementsByClassName("tablink");
+			  for (i = 0; i < x.length; i++) {
+			    tablinks[i].classList.remove("w3-light-grey");
+			  }
+			  document.getElementById(btnName).style.display = "block";
+			  evt.currentTarget.classList.add("w3-light-grey");
+			}// end messageBtn()
+			
+			
 	</script>
 	
 	

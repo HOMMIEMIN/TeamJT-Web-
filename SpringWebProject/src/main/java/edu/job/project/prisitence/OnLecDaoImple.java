@@ -59,4 +59,16 @@ public class OnLecDaoImple implements OnLecDao{
 		return session.update(NAMESPACE + ".gropOnImageUpdate", on);
 	}
 
+	@Override
+	public OnLec selectBnoByOnLec(int bno) {
+		
+		return (OnLec)session.selectOne(NAMESPACE+ ".selectBnoByOnLec",bno);
+	}
+
+	@Override
+	public List<OnLec> selectGroupBnoByOnLec(int groupBno) {
+		// 
+		return session.selectList(NAMESPACE + ".selectGroupBnoByOnLec", groupBno);
+	}
+
 }
