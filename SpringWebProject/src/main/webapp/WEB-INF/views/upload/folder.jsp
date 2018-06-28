@@ -238,7 +238,7 @@ $(()=>{
 		 $("#onLec").load(encodeURI(location));
 		$('#onLec').animate({opacity: 1},1000);		
 		console.log(location)
-	})
+	});
 	
 });
 

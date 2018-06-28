@@ -91,7 +91,7 @@ bottom: 8px;
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 <div class="resent-grid-img recommended-grid-img">
-<a href="upload/folderDetail?bno=${group.bno }" class="detail">
+<a href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" class="detail">
 <c:if test="${not empty group.imagePath }">
 <img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
 </c:if>
@@ -109,7 +109,7 @@ bottom: 8px;
 <li class="right-list"><p class="views views-info"></p></li>
 </ul>
 </div>
-<a href="upload/folderDetail?bno=${group.bno }">
+<a class="detail" href="videoview?videopath=${group.videoPath }&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}">
 <div class="overlay"></div>
 <div></div>
 </a>
@@ -130,6 +130,13 @@ $(()=>{
 		var category = '${lecCategory}';
 		var lecName = '${lecName}';
 		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
+		
+	});
+	
+	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
+		event.preventDefault();		
+		var locations = $(this).attr('href');
+		console.log(encodeURI(locations));
 		
 	});
 	

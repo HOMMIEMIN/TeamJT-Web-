@@ -56,7 +56,7 @@
     top: 0;
 }  
 
-#profile {
+#file {
     position: relative;
     display: inline-block;
     background: url(resources/img/test.png) center center no-repeat;
@@ -64,8 +64,7 @@
     width: 120px;
     height: 120px;  
     top: 160px;
-    left: 230px;
-  
+    left: 230px; 
 }
    
  #loader {
@@ -173,7 +172,7 @@ font-family: hanna;
 	
 	
 	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
-    <div class="frame" id="profile" style="z-index: 1;"> </div>
+    <div class="frame" id="file" style="z-index: 1;"> </div>
     <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
     <div class="name" style="color: grey">${userId }</div>
     </div>
