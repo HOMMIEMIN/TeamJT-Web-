@@ -1,5 +1,7 @@
 package edu.job.project.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,8 +52,16 @@ public class OffLecController {
 	// 글작성 페이지로 이동
 
 	@RequestMapping(value = "/register" , method = RequestMethod.GET)
-	public void register() {
+	public void register(Model model) {
 		logger.info("register 글등록 호출");
+		Date date = new Date();
+		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy년 MM월 dd일 ");
+		SimpleDateFormat sdf2=new SimpleDateFormat("HH시mm분");
+		String formattedDate1 = sdf1.format(date);
+		String formattedDate2 = sdf2.format(date);
+		model.addAttribute("serverTime1", formattedDate1 );
+		model.addAttribute("serverTime2", formattedDate2 );
 		
 	}
 	

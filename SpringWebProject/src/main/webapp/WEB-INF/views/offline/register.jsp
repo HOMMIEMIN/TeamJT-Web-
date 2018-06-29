@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE>
 <html>
 <head>
@@ -42,8 +43,8 @@
 					showMonthAfterYear : true,
 					changeMonth : true,
 					changeYear : true,
-					yearSuffix : '년',
-					defaultTime : '2018년 1월 1일'
+					yearSuffix : '년' 
+					
 
 				});
 
@@ -54,7 +55,7 @@
 			interval : 30,
 			minTime : '30',
 			maxTime : '11:59pm',
-			defaultTime : '08',
+			
 			startTime : '10:00',
 			dynamic : true,
 			dropdown : true,
@@ -136,13 +137,14 @@
 						<div class="form-group" style="padding-top: 90px;">
 							<label for="meetingday" class="control-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 날짜</label>
 							<div class="col-sm-10">
-								<input type='text' class="form-control" id="datepicker1" name="meetingday" />
+							
+								<input type='text' class="form-control" id="datepicker1" name="meetingday" placeholder="${serverTime1}"/>
 							</div>
 						</div>
 						<div class="form-group" style="padding-top: 30px;">
 							<label for="meetingtime" class="conrol-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 시간</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="timepicker1" name="meetingtime" />
+								<input type="text" class="form-control" id="timepicker1" name="meetingtime" placeholder="${serverTime2}" />
 							</div>
 
 
