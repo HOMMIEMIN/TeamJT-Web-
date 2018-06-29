@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   <!-- MyBatis 프레임워크에서 사용될 여러가지 환경 설정 정보들을 설정 -->
 <configuration>
-	<!-- 멤버 테이블 -->
+	<!-- MEMBER -->
 	<properties>
 	<property name="tbl_member" value="member"/>
 	<property name="col_userid" value="userId"/>
@@ -16,7 +16,7 @@
 	<property name="col_offlec" value="offLec"/>
 	<property name="col_offlecwaiting" value = "offLecWaiting"/>
 	
-	<!-- 온라인강의 테이블 -->
+	<!--UPLOAD_ONLINE -->
 	<property name="tbl_onlec" value="onlec"/>
 	<property name="col_bno" value="bno"/>
 	<property name="col_groupbno" value="groupBno"/>
@@ -34,7 +34,7 @@
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leclike" value = "lecLike"/>
 
-	<!-- 쪽지함 테이블 -->
+	<!--MESSAGE -->
 	<property name="tbl_message" value="user_message"/>
 	<property name="col_mno" value="mno"/>
 	<property name="col_userid" value="userId"/>
@@ -43,23 +43,31 @@
 	<property name="col_regdate" value ="regDate"/>
 	<property name="col_imagepath" value = "imagePath"/>
 		
-			<!-- UPLOAD_OFFLINE -->
+	<!-- UPLOAD_OFFLINE -->
 	
-		<property name="tbl_offlec" value="offlec"/>
-		<property name="col_bno" value="bno"/>
-		<property name="col_userid" value="userid"/>
-		<property name="col_category" value="category"/>
-		<property name="col_title" value="title"/>
-		<property name="col_content" value="content"/>
-		<property name="col_meetingday" value="meetingday"/>
-		<property name="col_maxmember" value="maxmember"/>
-		<property name="col_regdate" value="regdate"/>
-
-		<property name="col_applyId" value="applyid"/>
-		<property name="col_waitingId" value="waitingid"/>	   
-		
-		<property name="col_imgpath" value="imgpath"/>
-		<property name="col_location" value="location"/>
+	<property name="tbl_offlec" value="offlec"/>
+	<property name="col_bno" value="bno"/>
+	<property name="col_userid" value="userid"/>
+	<property name="col_category" value="category"/>
+	<property name="col_title" value="title"/>
+	<property name="col_content" value="content"/>
+	<property name="col_meetingday" value="meetingday"/>
+	<property name="col_maxmember" value="maxmember"/>
+	<property name="col_regdate" value="regdate"/>
+	<property name="col_applyId" value="applyid"/>
+	<property name="col_waitingId" value="waitingid"/>	   
+	<property name="col_imgpath" value="imgpath"/>
+	<property name="col_location" value="location"/>
+	
+	<!--  GROUP OFFLINE -->
+	<property name="tbl_groupoff" value = "groupoff"/>	
+	<property name="col_groupbno" value="bno"/>
+	<property name="col_lecbno" value = "lecBno"/>
+	<property name="col_userid" value="userid"/>
+	<property name="col_lecname" value = "lecName"/>
+	<property name="col_lectype" value = "lecType"/>
+	<property name="col_leccategory" value="lecCategory"/>
+	<property name="col_leclike" value = "lecLike"/>
 		
 		
 		

@@ -10,23 +10,27 @@ import edu.job.project.domain.OnLec;
 
 public interface OnLecDao {
 
+	// 소강의 DAO
+	
 	List<OnLec> selectAll(String userId);
 	
 	List<OnLec> selectBno(int bno);
 	
 	OnLec selectBnoByOnLec(int bno);
 	
+	int insertOnLec(OnLec on);
+	
+	
+	
+	// 폴더 DAO
+	int insertGorup(GroupOn on);
+	
 	List<OnLec> selectGroupBnoByOnLec(int groupBno);
 	
 	List<GroupOn> selectAllGroup(String userId);
 	
-	int insertGorup(GroupOn on);
-	
 	GroupOn selectGroup(GroupOn on);
 	
-	int insertOnLec(OnLec on);
-	
 	int updateGroupImage(OnLec on);
-	
 	
 }

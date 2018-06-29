@@ -37,6 +37,21 @@
   	
   	</select>	
   	
-
+  	<!-- 폴더 생성 -->
+  	<insert id="groupInsert">
+   	INSERT INTO ${tbl_groupoff}(${col_userid}, ${col_lecname} , ${col_leccategory} )
+ 	VALUES (#{userId}, #{lecName}, #{lecCategory})
+ 	</insert>
+ 	<!-- 폴더 read -->
+ 	<select id="selectAllGroupOff" resultType="GroupOff">
+ 	SELECT * FROM ${tbl_groupoff} 
+ 	WHERE ${col_userid} = #{userId} 	
+ 	</select>
+ 	
+	<select id="selectOneGroupOff" resultType="GroupOff">
+	SELECT * FROM ${tbl_groupoff}
+	WHERE ${col_userid} = #{userId} 
+	AND ${col_lecname} = #{lecName}
+	</select>
   		
   </mapper>
