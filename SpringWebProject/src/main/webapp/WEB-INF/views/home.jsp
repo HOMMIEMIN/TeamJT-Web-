@@ -113,7 +113,9 @@
   					</div>
             	 </div>
             	 <input type="text" id="messageUserId" value="${userId}" style="display: none;"   />
-            	 <!-- 로그인시 쪽지함 모달!! -->
+            	
+            	
+ <!-- 로그인시 쪽지함 모달!! -->
 	<div class="w3-container">
 
 			<button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
@@ -128,23 +130,23 @@
 							</header>
 
 				  	<div id="message" class="w3-bar w3-border-bottom">
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMget" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMsend" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMwrite" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
 				  	</div>
 				
 				  	<div id="mGet" class="w3-container city">
-				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
+				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn1">새로고침</button>
 				  		<table id="messageGetList">
 						</table>
 				  	</div>
 				  	
 				
 				  	<div id="mSend" class="w3-container city">
-				  		보낸 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
+				  		보낸 쪽지함 0/7 <button style="left: -50%;" id="resetbtn2">새로고침</button>
 				  		<table id="messageSendList">
 						</table>
 				  	</div>
@@ -153,15 +155,16 @@
 					   <h5>쪽지 작성</h5>
 					   <label>받는 사람</label>
 					   
-					   <input id="toId" class="w3-input w3-border w3-margin-bottom" type="text" 
-					   		  placeholder="ex) 아무게@itwill.com" name="yourId" required >
-					   <textarea id="writeContent" style="margin-bottom: 20px;" 
-					   			 rows="7" cols="106" name="mcontent"placeholder="내용 작성" required></textarea>
-					   <label>보내는 사람</label>
-					   <input id="fromId" class="w3-input w3-border w3-margin-bottom" type="text" 
-					          value="${userId}" name="userId" readonly >
-					   <button id="writeSendBtn" class="w3-button w3-green w3-large" > 보내기 </button>
-					   
+					   <div id="resetwriteMessage">
+						   <input id="toId" class="w3-input w3-border w3-margin-bottom" type="text" 
+						   		  placeholder="ex) 아무게@itwill.com" name="yourId" required >
+						   <textarea id="writeContent" style="margin-bottom: 20px;" class="w3-input w3-border w3-margin-bottom"
+						   			 rows="7" cols="106" name="mcontent"placeholder="내용 작성" required></textarea>
+						   <label>보내는 사람</label>
+						   <input id="fromId" class="w3-input w3-border w3-margin-bottom" type="text" 
+						          value="${userId}" name="userId" readonly >
+						   <button id="writeSendBtn" class="w3-button w3-green w3-large" > 보내기 </button>
+					   </div>
 				  	</div>
 				
 				  	<div class="w3-container w3-light-grey w3-padding">
@@ -499,7 +502,7 @@
 			
 		});
 		
-		$('#createUser').click(()=>{
+		$('#createUser').click((event)=>{
 			event.preventDefault();
 			var pwd1 = $('#password1').val();
 			var pwd2 = $('#password_confirmation').val();
@@ -565,7 +568,7 @@
 			});
 		});
 		
-		$('#btnLogin').click(()=>{
+		$('#btnLogin').click((event)=>{
 			event.preventDefault();
 			var id = $('#userId').val();
 			var pwd = $('#password').val();
@@ -608,7 +611,7 @@
 		
 	
 		// 로그아웃버튼 클릭시
-		$('#btnlogout').click(function(){
+		$('#btnlogout').click(function(event){
 			event.preventDefault();
 			location = '/project/logout'; //<<--controller로 간다 .
 		}); //end #btnlogout()
@@ -631,18 +634,19 @@
 		$('#sendM').click(function(){
 			sendAllMessege();
 		}); // end sendM
-		
-		//모달에서 쪽지 작성
-		$('#writeM').click(function(){
-			
-			
-		}); // end writeM
-		
+
+	
 		 
 		
-		//쪽지함 모달에서 새로고침 
-		$('#resetbtn').click(function(){
+		//쪽지함 모달에서 받은쪽지 새로고침버튼 
+		$('#resetbtn1').click(function(){
+			console.log("resetbtn111111111");
 			getAllMessege();
+		}); // end resetbtn
+		
+		//쪽지함 모달에서 보낸쪽지 새로고침버튼 
+		$('#resetbtn2').click(function(){
+			console.log("resetbtn22222222222");
 			sendAllMessege();
 		}); // end resetbtn
 		
@@ -655,7 +659,7 @@
 		
 		
 		// 쪽지함 모달에서 쪽지 작성중 (보내기)버튼 
-		$('#writeSendBtn').click(function(){
+		$('#writeSendBtn').click(function(event){
 			event.preventDefault();
 			console.log("들어옴");
 			var myid = $('#fromId').val();
@@ -681,14 +685,27 @@
 				}),
 				success: function (result) { 
 					if(result ===1){
+						resetWriteMessage();
+						console.log("1111111111");
 						alert('성공적으로 보냈습니다.');
+						console.log("22222222222");
+						sendAllMessege();
+						console.log("33333333333");
+						setTimeout(function() {
+						console.log("4444444444");
+						messageBtn(event, 'mSend');
+						getAllMessege();
+						console.log("5555555555");
+						}, 1000);
+											
+						
 					} 
 				}
 			}); // end ajax()
 		});// end #writeSendBtn()
 		   
 		
-	 	
+	 	// 받은쪽지함에서 리스트로 보이게 하기 위한 코드
  		function getAllMessege() {
 			console.log('===== userId: ' + userId);
 			$.ajax({
@@ -733,7 +750,7 @@
 			});		
 		}// end getAllMessege()
 		
-		
+		// 보낸쪽지함에서 보낸쪽지를 리스트로 보이게 하기 위한 코드
 		function sendAllMessege() {
 			console.log('===== userId: ' + userId);
 			$.ajax({
@@ -742,7 +759,7 @@
 				headers: {
 					'Content-Type': 'application/json',
 					'X-HTTP-Method-Override': 'get'
-				},
+				}, 
 				data: encodeURI('userId='+userId),
 				success: function(result) {
 					var list1 = '';
@@ -780,7 +797,14 @@
 		
 		
 
-});// end document.reay()		
+});// end document.reay()	
+
+	//쪽지작성 후 보내기 하면 그칸이 다시 리셋되게 하기 위한 함수
+	function resetWriteMessage(){
+		$('#toId').val('');
+		$('#writeContent').val('');
+	}// end resetWriteMessage()
+	
 
 //쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
 		document.getElementsByClassName("tablink")[0].click();
