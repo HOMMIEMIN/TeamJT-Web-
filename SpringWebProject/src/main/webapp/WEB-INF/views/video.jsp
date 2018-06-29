@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html>
 <head>
@@ -41,11 +43,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
    <style type="text/css">
+   
+   .vjs-default-skin .vjs-control-bar { font-size: 60% }
+  a:link {text-decoration: none; color: black;}
+  .item:hover{background-color: white};
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
    body{
    font-family: 'Nanum Gothic', serif;
    }
-  .vjs-default-skin .vjs-control-bar { font-size: 60% }
+  
 </style> 
   
 	
@@ -81,65 +87,44 @@
 	</video>
 	</div>
 	<div style="display: inline-block;width: 400px;bottom: 380px; margin-bottom: 10px; bottom: 0px;position: relative;">
-	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">뮤직비디오 촬영 스킬</div>
-	<div style="overflow:auto; width:400px; height:410px;">
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
+	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
+	<div style="width:400px; height:410px;overflow:scroll;">
+	<c:if test="${not empty GroupbnoList }">
+	<c:forEach var="group" items="${GroupbnoList }">
+	<a href="">
+	<div class="item" style="padding: 10px; background-color: lightgrey">
+	<img src="/project/resources/image/tmpFiles/${group.imagePath }" width="90px" height="50px">
+	<div style="display: inline-block; margin-bottom: 10px">${group.title }</div>
 	</div>
-	
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
+	</a>	
+	</c:forEach>
+	</c:if>
 	</div>
-	
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
-	</div>
-	
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
-	</div>
-	
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
-	</div>
-	
-	<div style="padding: 10px;">
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
-	</div>
-	</div>
-	
 	</div>
 	</div>
 	
 	<div style="margin-left: 240px; width: 1260px; height: 130px; border-bottom: 1px solid lightgrey">
 	<div style="display: inline-block; margin-left: 10px">
-	<h4 style="color:#04B486;display: inline-block;">Etc.</h4>
-	<div style="color: #424242; font-size: 130%;">뮤직 비디오 촬영 스킬     </div> 
-	<img style="display: inline-block;"><div style="display: inline-block; margin-left: 30px; font-size: 140%;margin-top: 10px; font-weight: bold;">호날두 무회전 프리킥</div>
+	<h4 style="color:#04B486;display: inline-block;">${bnoList.lecCategory }.</h4>
+	<div style="color: #424242; font-size: 130%;">${lecName }     </div> 
+	<img style="display: inline-block;"><div style="display: inline-block; margin-left: 30px; font-size: 140%;margin-top: 10px; font-weight: bold;">${bnoList.title }</div>
 	</div>
 	<div style="display: inline-block; position: relative; margin-left: 1130px; bottom: 50px">
 	<div style="border: 1px solid white; background-color: #04B486; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
-	<div style="color: grey;width: 300px; margin-top: 5px">게시일 : 2018.06.28</div>
+
+	<div style="color: grey;width: 300px; margin-top: 5px"><fmt:formatDate value="${bnoList.regDate}" pattern="yyyy.MM.dd" /></div>
 	</div>
 	</div>
 	
 	<div style="margin-left: 240px; width: 1260px; height: 130px; border-bottom: 1px solid lightgrey">
 	<div style="font-size: 130%;padding-top: 40px">
-	호날두 
-	
-	짱짱짱
+	${bnoList.content }
 	</div>
 	<div style="margin-left: 240px; width: 1260px; height: 230px; border-bottom: 1px solid lightgrey">
-	 <div style="background: url(resources/img/test1.png) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
+	 <div id="clickLike" style="background: url(resources/img/test1.png) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
 	 <div style="position: relative; top: 30px; right: 165px">
-	 <div style="font-weight: bold; font-size: 120%">호민</div>
-	 <div style="color: grey; font-size: 90%">rlaghals999@naver.com</div>
+	 <div style="font-weight: bold; font-size: 120%">${userName }</div>
+	 <div style="color: grey; font-size: 90%">${bnoList.userId }</div>
 	 </div>
 	</div>
 	</div>

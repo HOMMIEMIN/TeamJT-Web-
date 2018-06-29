@@ -96,7 +96,7 @@
                     
                     $("#files2").kendoUpload({
                         async: {
-                            chunkSize: 1100,// bytes
+                            chunkSize: 900,// bytes
                             saveUrl: "chunkSaveImage",
                             removeUrl: "remove",
                             autoUpload: true
