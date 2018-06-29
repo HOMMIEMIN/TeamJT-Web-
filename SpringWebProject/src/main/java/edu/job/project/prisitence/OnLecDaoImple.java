@@ -28,7 +28,8 @@ public class OnLecDaoImple implements OnLecDao{
 		// TODO Auto-generated method stub
 		return session.selectList(NAMESPACE + ".selectAllGroupOn", userId);
 	}
-
+	
+	//폴더 만들기 
 	@Override
 	public int insertGorup(GroupOn on) {
 		System.out.println(on.getLecName());

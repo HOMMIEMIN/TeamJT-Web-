@@ -152,7 +152,7 @@ p.views.views-info {
 			<header class="w3-container w3-teal">
 				<span onclick="document.getElementById('id01').style.display='none'"
 					class="w3-button w3-display-topright">&times;</span>
-				<h2>강의 폴더 생성</h2>
+				<h2>온라인 폴더 생성</h2>
 			</header>
 			<div class="w3-container" style="padding: 0px">
 				<div class="form-group">
@@ -178,7 +178,7 @@ p.views.views-info {
 					</div>
 					</form>
 					<br />
-					<button id="btnFolder" class="btn btn-default"
+					<button id="btnFolder1" class="btn btn-default"
 						style="width: 100%; background-color: #04B486; color: white">v</button>
 					</div>
 				</div>
@@ -191,10 +191,10 @@ p.views.views-info {
 
 	<script>
 
-$(()=>{
+$(function(){
 	
-	$("#btnFolder").click(function () {
-			
+	$("#btnFolder1").click(function () {
+		
 		  var folderName = $('#folderName').val();
 		  var category = $('#category option:selected').val();
 		  var id = '${userId}';
@@ -205,7 +205,7 @@ $(()=>{
 		  console.log(id)
 		  
 		  if($('#folderName').val() == ''){
-			  alert('이름을 입력하세요!');
+			  alert('폴더명을 입력하세요!');
 		  }else{
 			  $.ajax({
 					type:'post',
@@ -239,7 +239,7 @@ $(()=>{
 	
 	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
 		event.preventDefault();
-		console.log('들어옴');
+		console.log(' onLec folder 들어옴');
 		myFunction();
 		var location = $(this).attr('href');
 		$('#onLec').animate({opacity: 0},1000);

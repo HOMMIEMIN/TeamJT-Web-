@@ -106,9 +106,9 @@
         	<c:if test="${not empty userId }">      
              	<div class="frame1" id="profile">
              		<div class="dropdown-content">
-   						<a href="#" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
-    					<a href="#" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
-    					<a href="#" style="border-bottom: 1px solid lightgrey;">칠판</a>
+   						<a href="mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
     					<a href="" id="btnlogout">하교</a>
   					</div>
             	 </div>

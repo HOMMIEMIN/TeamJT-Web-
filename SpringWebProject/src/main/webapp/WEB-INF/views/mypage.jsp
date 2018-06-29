@@ -217,7 +217,7 @@ h4 {
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">You Can Be A Teacher</a>
+			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
 			<form>
 				<div class="input-group" id="searchBar">
 					<input type="text" class="form-control" placeholder="Search">
@@ -246,7 +246,7 @@ h4 {
 		<button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
 		<button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"
 			style="display: none">online</button>
-		<button id="createFolder2" onclick="document.getElementById('id01').style.display='block'"
+		<button id="createFolder2" onclick="document.getElementById('id02').style.display='block'"
 			style="display: none">offline</button>
 
 	</div>

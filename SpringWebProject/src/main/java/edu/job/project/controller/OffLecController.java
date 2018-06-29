@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,15 +71,6 @@ public class OffLecController {
 		
 	}
 	
-	@RequestMapping(value="/offFolder", method=RequestMethod.GET)
-	public String folder(HttpSession session, Model model) {
-		logger.info("컨트롤러 오프라인 수강관리");
-//		String userId = (String) session.getAttribute("userId");
-//		List<GroupOff> list = offlecservice.readGroup(userId);
-//		model.addAttribute("groupList",list);
-		return "/offline/offFolder";
-	}
-	
 	// 글등록
 	@RequestMapping(value = "/register1", method=RequestMethod.POST)
 	public String upload(Model model, 
@@ -129,5 +122,52 @@ public class OffLecController {
 		return retVal;
 	}
 	
-
+	// 마이페이지의 오프라인 수강관리 볼더 보이기. 
+	@RequestMapping(value="/offFolder", method=RequestMethod.GET)
+	public String folder(HttpSession session, Model model) {
+		logger.info("컨트롤러 오프라인 수강관리");
+		String userId = (String) session.getAttribute("userId");
+		List<GroupOff> list = offlecService.readGroup(userId);
+		model.addAttribute("groupList",list);
+		return "/offline/offFolder";
+	}
+	
+	//TODO: 폴더 만들기 완료 
+	@RequestMapping(value="createOffFolder", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<Integer> createOffFolder(@RequestBody GroupOff groupOff){
+		
+		int createResult = offlecService.create(groupOff);
+		GroupOff offBno=null;
+		if(createResult == 1) {
+			offBno = offlecService.readGroup(groupOff);
+		}
+		
+		return new ResponseEntity<Integer>(offBno.getBno(), HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }// end Controller
