@@ -71,9 +71,11 @@
 	animation: spin 2s linear infinite;
 }
    
-   .vjs-default-skin .vjs-control-bar { font-size: 60% }
-  a:link {text-decoration: none; color: black;}
-  .item:hover{background-color: white};
+  a:link {
+  text-decoration: none; 
+  color: black;
+  }
+
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
    body{
    font-family: 'Nanum Gothic', serif;
@@ -85,7 +87,6 @@
   </head>
 
   <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -113,17 +114,27 @@
  	<source src="movie.ogg" type="video/ogg">
 	</video>
 	</div>
+	<%int a= 1; %>
 	<div style="display: inline-block;width: 400px;bottom: 380px; margin-bottom: 10px; bottom: 0px;position: relative;">
 	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
 	<div style="width:400px; height:410px;overflow:scroll;">
 	<c:if test="${not empty GroupbnoList }">
 	<c:forEach var="group" items="${GroupbnoList }">
-	<a href="">
+	<c:if test="${group.title != bnoList.title }">
+	<a href="videoview?groupBno=${groupBno}&bno=${group.bno}&lecName=${lecName}" style="color: black">
 	<div class="item" style="padding: 10px; background-color: lightgrey">
-	<img src="/project/resources/image/tmpFiles/${group.imagePath }" width="90px" height="50px">
+	<%=a %>      <img src="/project/resources/image/tmpFiles/${group.imagePath }" width="90px" height="50px">
 	<div style="display: inline-block; margin-bottom: 10px">${group.title }</div>
 	</div>
-	</a>	
+	</a>		
+	</c:if>
+	<c:if test="${group.title == bnoList.title }">	
+	<div  style="padding: 10px; background-color: #E6E6E6">
+	<img src="/project/resources/img/this.png" width="" height="">      <img src="/project/resources/image/tmpFiles/${group.imagePath }" width="90px" height="50px">
+	<div style="display: inline-block; margin-bottom: 10px; font-weight: bold;">${group.title }</div>
+	</div>
+	</c:if>
+	<%a++; %>
 	</c:forEach>
 	</c:if>
 	</div>
@@ -191,6 +202,12 @@
 				}
 				}); // end ajacx
 			
+		});
+		
+		$('.item').hover(function(){
+			$(this).css('background-color','#6E6E6E');
+		}, function(){
+			$(this).css('background-color','lightgrey');
 		});
 		
 	});

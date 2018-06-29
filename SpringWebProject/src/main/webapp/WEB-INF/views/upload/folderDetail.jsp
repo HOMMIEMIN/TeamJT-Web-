@@ -109,7 +109,7 @@ bottom: 8px;
 <li class="right-list"><p class="views views-info"></p></li>
 </ul>
 </div>
-<a class="detail" href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}&groupBno=${bno}">
+<a class="detail" href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
 <div class="overlay"></div>
 <div></div>
 </a>

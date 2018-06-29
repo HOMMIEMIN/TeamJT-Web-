@@ -67,17 +67,6 @@
 	top: 0;
 }
 
-#file {
-	position: relative;
-	display: inline-block;
-	background: url(resources/img/test.png) center center no-repeat;
-	border-radius: 50%;
-	width: 120px;
-	height: 120px;
-	top: 160px;
-	left: 230px;
-}
-
 #loader {
 	position: absolute;
 	left: 50%;
@@ -95,6 +84,19 @@
 	-webkit-animation: spin 2s linear infinite;
 	animation: spin 2s linear infinite;
 }
+
+#file {
+	position: relative;
+	display: inline-block;
+	background: url(resources/img/test.png) center center no-repeat;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	top: 160px;
+	left: 230px;
+}
+
+
 
 .tab {
 	position: relative;

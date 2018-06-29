@@ -96,11 +96,9 @@
                     
                     $("#files2").kendoUpload({
                         async: {
-<<<<<<< HEAD
-                            chunkSize: 4400,// bytes
-=======
+
                             chunkSize: 900,// bytes
->>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+
                             saveUrl: "chunkSaveImage",
                             removeUrl: "remove",
                             autoUpload: true

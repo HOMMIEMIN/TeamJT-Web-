@@ -34,7 +34,8 @@ public class VideoController {
 	
 	@RequestMapping(value="/videoview", method=RequestMethod.GET)
 	public String videoview(int bno, int groupBno, String lecName, Model model) {
-		
+		System.out.println("들어옴");
+		System.out.println(groupBno);
 		OnLec bnoList = service.readByBno(bno);
 		List<OnLec> GroupbnoList = service.readByGroupBno(groupBno);
 		Member m = mService.readId(bnoList.getUserId());
@@ -43,6 +44,7 @@ public class VideoController {
 		model.addAttribute("userName", m.getUserName());
 		model.addAttribute("lecName", lecName);
 		model.addAttribute("groupBno", groupBno);
+		System.out.println("리턴");
 		return "video";
 	}
 	
