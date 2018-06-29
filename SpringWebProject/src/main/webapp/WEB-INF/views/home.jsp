@@ -810,7 +810,6 @@
 		$('#toId').val('');
 		$('#writeContent').val('');
 	}// end resetWriteMessage()
-	
 
 //쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
 		document.getElementsByClassName("tablink")[0].click();
