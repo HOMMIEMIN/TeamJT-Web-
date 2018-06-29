@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -41,7 +43,15 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
    <style type="text/css">
-  .vjs-default-skin .vjs-control-bar { font-size: 60% }
+   
+   .vjs-default-skin .vjs-control-bar { font-size: 60% }
+  a:link {text-decoration: none; color: black;}
+  .item:hover{background-color: white};
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+   body{
+   font-family: 'Nanum Gothic', serif;
+   }
+  
 </style> 
   
 	
@@ -69,85 +79,58 @@
       </div>
     </nav>
     <br/>
-	<div style="position: fixed; margin-left: ">
+	<div style="margin-left:240px ">
 	<div style="display: inline-block;">
-	<video id="MY_VIDEO_1" class="video-js vjs-default-skin" controls preload="auto" width="854" height="480" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+	<video width="854" height="480" controls>
  	<source src="/project/resources/video/tmpFiles/rlaghals999@naver.com123.mp4" type='video/mp4'>
- 	<source src="MY_VIDEO.webm" type='video/webm'>
+ 	<source src="movie.ogg" type="video/ogg">
 	</video>
 	</div>
-	<div style="display: inline-block;width: 400px;position: relative;bottom: 380px; margin-bottom: 10px">
-	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 160%; padding: 20px">뮤직비디오 촬영 스킬</div>
-	<div>
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
+	<div style="display: inline-block;width: 400px;bottom: 380px; margin-bottom: 10px; bottom: 0px;position: relative;">
+	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
+	<div style="width:400px; height:410px;overflow:scroll;">
+	<c:if test="${not empty GroupbnoList }">
+	<c:forEach var="group" items="${GroupbnoList }">
+	<a href="">
+	<div class="item" style="padding: 10px; background-color: lightgrey">
+	<img src="/project/resources/image/tmpFiles/${group.imagePath }" width="90px" height="50px">
+	<div style="display: inline-block; margin-bottom: 10px">${group.title }</div>
 	</div>
-	<div>
-	<img src="/project/resources/image/tmpFiles/rlaghals999@naver.com1.jpg" width="90px" height="50px">
-	<div style="display: inline-block; margin-bottom: 10px">호날두 무회전 프리킥</div>
+	</a>	
+	</c:forEach>
+	</c:if>
 	</div>
 	</div>
 	</div>
 	
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
+	<div style="margin-left: 240px; width: 1260px; height: 130px; border-bottom: 1px solid lightgrey">
+	<div style="display: inline-block; margin-left: 10px">
+	<h4 style="color:#04B486;display: inline-block;">${bnoList.lecCategory }.</h4>
+	<div style="color: #424242; font-size: 130%;">${lecName }     </div> 
+	<img style="display: inline-block;"><div style="display: inline-block; margin-left: 30px; font-size: 140%;margin-top: 10px; font-weight: bold;">${bnoList.title }</div>
+	</div>
+	<div style="display: inline-block; position: relative; margin-left: 1130px; bottom: 50px">
+	<div style="border: 1px solid white; background-color: #04B486; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
+
+	<div style="color: grey;width: 300px; margin-top: 5px"><fmt:formatDate value="${bnoList.regDate}" pattern="yyyy.MM.dd" /></div>
+	</div>
+	</div>
 	
-	dd
+	<div style="margin-left: 240px; width: 1260px; height: 130px; border-bottom: 1px solid lightgrey">
+	<div style="font-size: 130%;padding-top: 40px">
+	${bnoList.content }
+	</div>
+	<div style="margin-left: 240px; width: 1260px; height: 230px; border-bottom: 1px solid lightgrey">
+	 <div id="clickLike" style="background: url(resources/img/test1.png) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
+	 <div style="position: relative; top: 30px; right: 165px">
+	 <div style="font-weight: bold; font-size: 120%">${userName }</div>
+	 <div style="color: grey; font-size: 90%">${bnoList.userId }</div>
+	 </div>
+	</div>
+	</div>
+	
+	
+
 	
 	
     

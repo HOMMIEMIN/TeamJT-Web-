@@ -12,6 +12,8 @@ public interface MemberDao {
 	int checkId(String userId);
 	
 	int checkName(String userName);
+	
+	Member getId(String userId);
 
 	
 }

@@ -41,12 +41,13 @@ public class OnLecController {
 		return "/upload/upload";
 	}
 	
+	// 마이페이지에서 온라인 수강관리 파트 보이기. 
 	@RequestMapping(value="/folder", method=RequestMethod.GET)
 	public String folder(HttpSession session, Model model) {
-		logger.info("컨트롤러");
+		logger.info("컨트롤러 온라인 수강관리");
 		String userId = (String) session.getAttribute("userId");
 		List<GroupOn> list = service.readGroup(userId);
-		model.addAttribute("groupList",list);
+		model.addAttribute("groupL4ist",list);
 		return "/upload/folder";
 	}
 	

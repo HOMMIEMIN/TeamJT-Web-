@@ -14,6 +14,10 @@ public interface OnLecDao {
 	
 	List<OnLec> selectBno(int bno);
 	
+	OnLec selectBnoByOnLec(int bno);
+	
+	List<OnLec> selectGroupBnoByOnLec(int groupBno);
+	
 	List<GroupOn> selectAllGroup(String userId);
 	
 	int insertGorup(GroupOn on);
@@ -23,4 +27,6 @@ public interface OnLecDao {
 	int insertOnLec(OnLec on);
 	
 	int updateGroupImage(OnLec on);
+	
+	
 }

@@ -15,6 +15,10 @@ values(#{userId}, #{password}, #{userName}, #{phone})
 select * from ${tbl_member} where ${col_userid} = #{userId} and ${col_password} = #{password}
 </select>
 
+<select id="getId" resultType="Member">
+select * from ${tbl_member} where ${col_userid} = #{userId}
+</select>
+
 <select id="checkid" resultType="Integer">
 select count(${col_userid}) from ${tbl_member} where ${col_userid} = #{userId} 
 </select>
