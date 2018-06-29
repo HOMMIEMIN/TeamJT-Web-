@@ -138,21 +138,29 @@
 				
 				  	<div id="mGet" class="w3-container city">
 				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
-				  		<table id="messageList">
+				  		<table id="messageGetList">
 						</table>
 				  	</div>
 				  	
 				
 				  	<div id="mSend" class="w3-container city">
-					   <h1>보낸 쪽지</h1>
-					   <p>Paris is the capital of France.</p>
-					   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				  		보낸 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
+				  		<table id="messageSendList">
+						</table>
 				  	</div>
 				
 				    <div id="mWrite" class="w3-container city">
 					   <h5>쪽지 작성</h5>
-					   <button>보내기<span style="color: red;"><b>→</b></span></button>
+					   <label>받는 사람</label>
 					   
+					   <input id="toId" class="w3-input w3-border w3-margin-bottom" type="text" 
+					   		  placeholder="ex) 아무게@itwill.com" name="yourId" required >
+					   <textarea id="writeContent" style="margin-bottom: 20px;" 
+					   			 rows="7" cols="106" name="mcontent"placeholder="내용 작성" required></textarea>
+					   <label>보내는 사람</label>
+					   <input id="fromId" class="w3-input w3-border w3-margin-bottom" type="text" 
+					          value="${userId}" name="userId" readonly >
+					   <button id="writeSendBtn" class="w3-button w3-green w3-large" > 보내기 </button>
 					   
 				  	</div>
 				
@@ -621,7 +629,7 @@
 		
 		//모달에서 보낸쪽지함
 		$('#sendM').click(function(){
-			
+			sendAllMessege();
 		}); // end sendM
 		
 		//모달에서 쪽지 작성
@@ -635,14 +643,50 @@
 		//쪽지함 모달에서 새로고침 
 		$('#resetbtn').click(function(){
 			getAllMessege();
+			sendAllMessege();
 		}); // end resetbtn
 		
 		
 		// 메인화면에서 쪽지함 클릭시
 		$('#btnmessege').click(function(){
 			getAllMessege();
+			sendAllMessege();
 		}); // end btnmessege
 		
+		
+		// 쪽지함 모달에서 쪽지 작성중 (보내기)버튼 
+		$('#writeSendBtn').click(function(){
+			event.preventDefault();
+			console.log("들어옴");
+			var myid = $('#fromId').val();
+			var youid = $('#toId').val();
+			myid = encodeURI(myid);
+			youid = encodeURI(youid);
+			var writeContent = $('#writeContent').val();
+			console.log(myid);
+			console.log(youid);
+			console.log(writeContent);
+
+			$.ajax({
+				type: 'post',
+				url: 'message/sendMassage',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'post'
+				},
+				data: JSON.stringify({
+					'userId': myid,
+					'yourId': youid,
+					'mcontent': writeContent
+				}),
+				success: function (result) { 
+					if(result ===1){
+						alert('성공적으로 보냈습니다.');
+					} 
+				}
+			}); // end ajax()
+		});// end #writeSendBtn()
+		   
 		
 	 	
  		function getAllMessege() {
@@ -683,11 +727,56 @@
 						+ '</td>'
 						+ '</tr>';
 					}); // end each()
-					$('#messageList').html(list1+list2);
+					$('#messageGetList').html(list1+list2);
 					//$('#messageList').html(list2);	
 				}
 			});		
 		}// end getAllMessege()
+		
+		
+		function sendAllMessege() {
+			console.log('===== userId: ' + userId);
+			$.ajax({
+				type: 'get',
+				url: 'message/sendmessage',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'get'
+				},
+				data: encodeURI('userId='+userId),
+				success: function(result) {
+					var list1 = '';
+					var list2 = '';
+					list1 +='<tr>'
+						+'<th>쪽지번호</th>'
+						+'<th>받은 사람</th>'
+						+'<th>내용</th>'
+						+'<th>보낸 시간</th>'
+						+'</tr>';
+					$(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+						console.log(this)
+						var date = new Date(this.regdate);
+						var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+						list2 += '<tr>'
+						+ '<td>'
+						+ this.mno
+						+ '</td>'
+						+ '<td>'
+						+ this.yourId
+						+ '</td>'
+						+ '<td>'
+						+ this.mcontent
+						+ '</td>'
+						+ '<td>'
+						+ dateString
+						+ '</td>'
+						+ '</tr>';
+					}); // end each()
+					$('#messageSendList').html(list1+list2);
+					//$('#messageList').html(list2);	
+				}
+			});		
+		}// end sendAllMessege()
 		
 		
 
@@ -706,7 +795,7 @@
 			    tablinks[i].classList.remove("w3-light-grey");
 			  }
 			  document.getElementById(btnName).style.display = "block";
-			  evt.currentTarget.classList.add("w3-light-grey");
+			  event.currentTarget.classList.add("w3-light-grey");
 			}// end messageBtn()
 			
 			
