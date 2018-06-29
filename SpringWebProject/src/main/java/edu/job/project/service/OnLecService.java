@@ -25,4 +25,8 @@ public interface OnLecService {
 	List<OnLec> readByGroupBno(int groupBno);
 	
 	OnLec readByBno(int bno);
+	
+	String like(OnLec on);
+	
+	int likeUp(int Bno);
 }

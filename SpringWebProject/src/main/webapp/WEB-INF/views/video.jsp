@@ -44,6 +44,33 @@
 
    <style type="text/css">
    
+   #notClick {
+	background-color: rgba(1, 1, 1, 0.7);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+#loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	top: 500px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
+   
    .vjs-default-skin .vjs-control-bar { font-size: 60% }
   a:link {text-decoration: none; color: black;}
   .item:hover{background-color: white};
@@ -110,9 +137,9 @@
 	<img style="display: inline-block;"><div style="display: inline-block; margin-left: 30px; font-size: 140%;margin-top: 10px; font-weight: bold;">${bnoList.title }</div>
 	</div>
 	<div style="display: inline-block; position: relative; margin-left: 1130px; bottom: 50px">
-	<div style="border: 1px solid white; background-color: #04B486; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
+	<div id="like" style="border: 1px solid white; background-color: #04B486; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
 
-	<div style="color: grey;width: 300px; margin-top: 5px"><fmt:formatDate value="${bnoList.regDate}" pattern="yyyy.MM.dd" /></div>
+	<div style="color: grey;width: 300px; margin-top: 5px">게시일 : <fmt:formatDate value="${bnoList.regDate}" pattern="yyyy.MM.dd" /></div>
 	</div>
 	</div>
 	
@@ -129,8 +156,46 @@
 	</div>
 	</div>
 	
+	<div id="loader" style="display: none; z-index: 4;"></div>
+	<div id="notClick" style="display: none; z-index: 3;"></div>	
 	
-
+	<script>
+	$(()=>{
+		$("#like").click(()=>{
+			$("#loader").css('display','block');
+			$("#notClick").css('display','block');
+			var userId = '${userId}';
+			var groupBno = '${groupBno}';
+			var bno = '${bno}';
+			$.ajax({
+				type: 'post', 
+				url: '/project/like', 
+				headers: {'Content-Type' : 'application/json; charset=UTF-8', 
+							'X-HTTP-Method-Override' : 'post'
+							}, 
+				data: JSON.stringify({
+					'groupBno' : groupBno,
+					'userId' : userId,
+					'bno' : bno
+					
+				}),
+				success: function(result){
+					$("#loader").css('display','none');
+					$("#notClick").css('display','none');
+						if(result === 'ok'){
+							alert('구독 완료');
+						}else{
+							alert('이미 구독 중입니다');
+						}
+						
+				}
+				}); // end ajacx
+			
+		});
+		
+	});
+	
+	</script>
 	
 	
     

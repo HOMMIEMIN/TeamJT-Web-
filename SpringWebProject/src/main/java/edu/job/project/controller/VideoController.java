@@ -3,10 +3,15 @@ package edu.job.project.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.job.project.domain.Member;
 import edu.job.project.domain.OnLec;
@@ -37,7 +42,20 @@ public class VideoController {
 		model.addAttribute("GroupbnoList", GroupbnoList);
 		model.addAttribute("userName", m.getUserName());
 		model.addAttribute("lecName", lecName);
+		model.addAttribute("groupBno", groupBno);
 		return "video";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/like", method=RequestMethod.POST)
+	public ResponseEntity<String> like(@RequestBody OnLec on){
+		System.out.println(on.getGroupBno());
+		System.out.println(on.getUserId());
+		String result = service.like(on);
+		if(result.equals("ok")) {
+		int result2 = service.likeUp(on.getGroupBno());
+		}
+		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
 
 }

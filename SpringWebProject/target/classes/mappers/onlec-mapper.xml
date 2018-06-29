@@ -11,7 +11,7 @@ select * from ${tbl_onlec} where ${col_bno} = #{bno}
 </select>
 
 <select id="selectGroupBnoByOnLec" resultType="OnLec">
-select * from ${tbl_onlec} where ${col_groupbno} = #{groupBno}
+select * from ${tbl_onlec} where ${col_groupbno1} = #{groupBno}
 </select>
 
 <select id="selectAllOnLec" resultType="OnLec">
@@ -19,7 +19,7 @@ select * from ${tbl_onlec} where ${col_userid} = #{userId}
 </select>
 
 <select id="selectBnoOnLec" resultType="OnLec">
-select * from ${tbl_onlec} where ${col_groupbno} = #{bno}
+select * from ${tbl_onlec} where ${col_groupbno1} = #{bno}
 </select>
 
 <select id="selectAllGroupOn" resultType="GroupOn">
@@ -42,6 +42,10 @@ values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId
 
 <update id="gropOnImageUpdate">
 update ${tbl_groupon} set ${col_imagepath} = #{imagePath} where ${col_bno} = #{groupBno}
+</update>
+
+<update id="groupOnLike">
+update ${tbl_groupon} set ${col_leclike} = ${col_leclike} + 1 where ${col_bno} = #{bno}
 </update>
 
 </mapper>

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.job.project.domain.GroupOff;
 import edu.job.project.domain.OffLec;
 
 
@@ -37,5 +38,24 @@ public class OffLecServiceImple implements OffLecService {
 		// 강의 신청
 		return dao.update(offLecture);
 	}
+	
+	// 폴더 만들기 
+	@Override
+	public int create(GroupOff groupOff) {
+		
+		return dao.insertGroup(groupOff);
+	}
 
+	// 폴더 전체 검색 
+	@Override
+	public List<GroupOff> readGroup(String userId) {
+	
+		return dao.selectAllGroup(userId);
+	}
+	
+	@Override
+	public GroupOff readGroup(GroupOff off) {
+	
+		return dao.selectGroup(off);
+	}
 }
