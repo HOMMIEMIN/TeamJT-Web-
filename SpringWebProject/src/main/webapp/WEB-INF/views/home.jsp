@@ -820,7 +820,7 @@
 			  }
 			  document.getElementById(btnName).style.display = "block";
 			  event.currentTarget.classList.add("w3-light-grey");
-			}// end messageBtn()
+			}// end messageBtn() 
 			
 			
 	</script>
