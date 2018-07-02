@@ -83,8 +83,9 @@ height:280px;
 max-width: 200px;
 max-height: 280px;
 padding: 0px;
-margin-right: 20px;
+margin-right: 60px;
 margin-bottom: 20px;
+
 }
 
 
@@ -201,7 +202,7 @@ bottom: 8px;
 <div class="categoryType"><a id="offline" class="cateType" href="" style="color: black">Offline</a></div>
 </div>
 
-<div style="display: inline-block;width: 1000px; height: auto;position: relative;bottom:450px">
+<div style="display: inline-block;width: 1200px; height: auto;position: relative;bottom:450px">
 <div style="margin-bottom: 30px; font-size: 150%; color: grey">${category }   >   ${lecType }  </div>
 
 
