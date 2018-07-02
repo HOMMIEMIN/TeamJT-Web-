@@ -163,11 +163,11 @@ p.views.views-info {
 							<select id="category" class="form-control" name="category"
 								style="width: 163%; margin-left: 30px">
 								<option>IT</option>
-								<option>운동</option>
-								<option>요리</option>
-								<option>생활</option>
-								<option>예술</option>
-								<option>기타</option>
+								<option>Health</option>
+								<option>Food</option>
+								<option>Life</option>
+								<option>Language</option>
+								<option>Ect</option>
 							</select>
 					
 					<div>

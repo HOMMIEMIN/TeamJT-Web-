@@ -88,7 +88,7 @@ public class OnLecServiceImple implements OnLecService {
 			
 			List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
 			
-			if(items.indexOf(String.valueOf(on.getGroupBno())) == -1) {	
+			if(!(items.contains(String.valueOf(on.getGroupBno())))) {	
 				b.append(m.getOnLec()).append(",").append(on.getGroupBno());
 				m.setOnLec(b.toString());
 				System.out.println("들어옴1");
@@ -117,6 +117,24 @@ public class OnLecServiceImple implements OnLecService {
 	public int likeUp(int Bno) {
 		
 		return dao.updateLike(Bno);
+	}
+
+	@Override
+	public List<OnLec> readByCategory(String category) {
+	
+		return dao.selectByCategory(category);
+	}
+
+	@Override
+	public String readByLecName(int groupBno) {
+
+		return dao.selectGroupBnoByLecName(groupBno);
+	}
+
+	@Override
+	public List<OnLec> readByCategoryAll() {
+
+		return dao.selectByCategoryAll();
 	}
 
 	

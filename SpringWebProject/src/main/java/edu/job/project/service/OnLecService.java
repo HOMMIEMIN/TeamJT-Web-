@@ -29,4 +29,10 @@ public interface OnLecService {
 	String like(OnLec on);
 	
 	int likeUp(int Bno);
+	
+	List<OnLec> readByCategory(String category);
+	
+	String readByLecName(int groupBno);
+	
+	List<OnLec> readByCategoryAll();
 }

@@ -139,6 +139,7 @@
                   	  var content= $('#content').val();
                   	  var groupBno = '${bno}';
                   	  var category = '${lecCategory}';
+                  	  var userName = '${userName}';
                   	  
                   	  
                   	  $.ajax({
@@ -155,7 +156,8 @@
         						'videoPath' : id+fileName,
         						'groupBno' : groupBno,
         						'lecCategory' : category,
-        						'imagePath' : id+imageName
+        						'imagePath' : id+imageName,
+        						'userName' : userName
         					}),
         					success:function(result){
         						if(result === 'ok'){

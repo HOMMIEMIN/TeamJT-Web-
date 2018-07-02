@@ -78,4 +78,23 @@ public class OnLecDaoImple implements OnLecDao{
 		return session.update(NAMESPACE+".groupOnLike",bno);
 	}
 
+	@Override
+	public List<OnLec> selectByCategory(String category) {
+
+		return session.selectList(NAMESPACE +".selectByCategory", category);
+	}
+
+	@Override
+	public String selectGroupBnoByLecName(int groupBno) {
+
+		return session.selectOne(NAMESPACE + ".selectGroupBnoByLecName", groupBno);
+	}
+
+	@Override
+	public List<OnLec> selectByCategoryAll() {
+	
+		return session.selectList(NAMESPACE +".selectByCategoryAll");
+	}
+	
+
 }

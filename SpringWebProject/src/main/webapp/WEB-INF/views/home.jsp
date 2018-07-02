@@ -242,7 +242,7 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/1.jpg">
+            <a class="portfolio-box" href="searchClick?category=IT&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/1.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -250,14 +250,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    운동
+                     IT
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/2.jpg">
+            <a class="portfolio-box" href="searchClick?category=Language&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/2.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -265,14 +265,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    요리
+                    Language
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/3.jpg">
+            <a class="portfolio-box" href="searchClick?category=Food&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/3.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -280,14 +280,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    생활
+                    Food
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/4.jpg">
+            <a class="portfolio-box" href="searchClick?category=Health&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -295,14 +295,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Health
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/5.jpg">
+            <a class="portfolio-box" href="searchClick?category=Life&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/5.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -310,14 +310,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Life
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/6.jpg">
+            <a class="portfolio-box" href="searchClick?category=Etc&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/6.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -325,7 +325,7 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Etc.
                   </div>
                 </div>
               </div>
@@ -444,7 +444,7 @@
     <!-- Plugin JavaScript -->
     <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    
 	
     <!-- Custom scripts for this template -->
     <script src="resources/js/main/creative.js"></script>
@@ -797,6 +797,11 @@
 			});
 		}// end sendAllMessege()
 		
+		$('.col-lg-4 col-sm-6').click(function(){
+			console.log('gfgg');
+			
+		});
+		
 		
 
 });// end document.reay()	
@@ -822,6 +827,8 @@
 			  document.getElementById(btnName).style.display = "block";
 			  event.currentTarget.classList.add("w3-light-grey");
 			}// end messageBtn()  
+			
+			
 			
 			
 	</script>

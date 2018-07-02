@@ -81,9 +81,10 @@ public class OnLecController {
 	@RequestMapping(value="onLeccreate", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> onLeccreate(@RequestBody OnLec on){
-		
+		System.out.println("그룹 : " + on.getGroupBno());
 		int result = service.create(on);
 		String re = null;
+
 		if(result == 1) {
 			
 			int update = service.updateGroupImage(on);

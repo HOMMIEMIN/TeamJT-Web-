@@ -43,6 +43,10 @@ public class VideoController {
 		model.addAttribute("GroupbnoList", GroupbnoList);
 		model.addAttribute("userName", m.getUserName());
 		model.addAttribute("lecName", lecName);
+		System.out.println(lecName);
+		if(lecName.equals("")) {
+			model.addAttribute("lecName", service.readByLecName(groupBno));
+		}
 		model.addAttribute("groupBno", groupBno);
 		System.out.println("리턴");
 		return "video";

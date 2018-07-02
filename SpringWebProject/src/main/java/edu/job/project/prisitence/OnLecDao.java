@@ -35,4 +35,10 @@ public interface OnLecDao {
 	
 	int updateLike(int bno);
 	
+	List<OnLec> selectByCategory(String category);
+	
+	String selectGroupBnoByLecName(int groupBno);
+	
+	List<OnLec> selectByCategoryAll();
+	
 }
