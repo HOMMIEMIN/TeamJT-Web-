@@ -35,4 +35,6 @@ public interface OnLecService {
 	String readByLecName(int groupBno);
 	
 	List<OnLec> readByCategoryAll();
+	
+	List<OnLec> readByKeyword(String keyword);
 }

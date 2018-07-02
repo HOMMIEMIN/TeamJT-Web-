@@ -137,6 +137,12 @@ public class OnLecServiceImple implements OnLecService {
 		return dao.selectByCategoryAll();
 	}
 
+	@Override
+	public List<OnLec> readByKeyword(String keyword) {
+		
+		return dao.selectByKeyword(keyword);
+	}
+
 	
 
 }

@@ -41,4 +41,6 @@ public interface OnLecDao {
 	
 	List<OnLec> selectByCategoryAll();
 	
+	List<OnLec> selectByKeyword(String keyword);
+	
 }

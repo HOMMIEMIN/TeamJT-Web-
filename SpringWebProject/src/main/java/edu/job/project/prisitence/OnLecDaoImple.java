@@ -1,6 +1,8 @@
 package edu.job.project.prisitence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,6 +96,14 @@ public class OnLecDaoImple implements OnLecDao{
 	public List<OnLec> selectByCategoryAll() {
 	
 		return session.selectList(NAMESPACE +".selectByCategoryAll");
+	}
+
+	@Override
+	public List<OnLec> selectByKeyword(String keyword) {
+		Map<String, String> m = new HashMap<>();
+		String key = "%" + keyword + "%";
+		m.put("keyword", key);
+		return session.selectList(NAMESPACE + ".selectByText",m);
 	}
 	
 

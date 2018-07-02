@@ -34,5 +34,17 @@ public class SearchContoller {
 		model.addAttribute("lecType",lecType);	
 		return "search";
 	}
-
+	
+	@RequestMapping(value="searchBtn", method=RequestMethod.GET)
+	public String searchButton(String category, String lecType, String searchText, Model model) {
+		model.addAttribute("category",category);
+		model.addAttribute("lecType",lecType);	
+		List<OnLec> list = service.readByKeyword(searchText);
+		model.addAttribute("list",list);
+		model.addAttribute("searchText",searchText);
+		return "search";	
+	}
+	
+	
+	
 }

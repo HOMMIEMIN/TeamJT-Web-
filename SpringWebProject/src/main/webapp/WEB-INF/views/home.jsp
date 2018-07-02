@@ -802,7 +802,12 @@
 			
 		});
 		
+	
 		
+		$('#btnSearch').click(function(){
+			event.preventDefault();
+			console.log('aa');
+		});
 
 });// end document.reay()	
 

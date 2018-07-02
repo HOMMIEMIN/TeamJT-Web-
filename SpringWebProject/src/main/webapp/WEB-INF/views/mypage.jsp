@@ -220,11 +220,13 @@ h4 {
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
-			<form>
+			<form id="searchForm" action="searchBtn">
 				<div class="input-group" id="searchBar">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" class="form-control" name = "searchText" placeholder="Search">
+					<input type="hidden" name="category" value="All Category">
+					<input type="hidden" name="lecType" value="online">
 					<div class="input-group-btn">
-						<button class="btn btn-default" id="btnSearchBar" type="submit">
+						<button class="btn btn-default" id="btnSearchBar" type="button">
 							<i class="glyphicon glyphicon-search"></i>
 						</button>
 					</div>
@@ -299,6 +301,14 @@ h4 {
 
 
 	<script>
+		
+
+			
+			$('#btnSearchBar').click(()=>{
+				$('#searchForm').submit();
+			});
+		
+	
 		function openCity(evt, cityName) {
 
 			var i, tabcontent, tablinks;

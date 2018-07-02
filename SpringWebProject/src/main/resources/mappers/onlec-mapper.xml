@@ -14,6 +14,10 @@ select * from ${tbl_onlec} where ${col_bno} = #{bno}
 select * from ${tbl_onlec} where ${col_leccategory} = #{category} order by ${col_regdate} asc
 </select>
 
+<select id="selectByText" resultType="OnLec">
+select * from ${tbl_onlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) order by ${col_regdate} asc
+</select>
+
 <select id="selectByCategoryAll" resultType="OnLec">
 select * from ${tbl_onlec} order by ${col_regdate} asc
 </select>

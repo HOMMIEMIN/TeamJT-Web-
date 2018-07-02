@@ -167,7 +167,7 @@ bottom: 8px;
 			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
 			<form>
 				<div class="input-group" id="searchBar">
-					<input type="text" class="form-control" placeholder="Search">
+					<input type="text" id="searchText" class="form-control" placeholder="Search" style="width: 800px">
 					<div class="input-group-btn">
 						<button class="btn btn-default" id="btnSearchBar" type="submit">
 							<i class="glyphicon glyphicon-search"></i>
@@ -182,8 +182,8 @@ bottom: 8px;
 
 
 
-	<div style="width: auto; height: auto;">
-<div id="filter" style="display: inline-block; margin: 50px;  width: 400px; height: 600px;">
+<div style="width: 2000px; height: auto;">
+<div id="filter" style="display: inline-block; margin: 40px;  width: 400px; height: 600px;">
 <div style="margin-bottom: 30px; font-weight: bold; font-size: 190%; ">Search Filter</div>
 
 <div class="categoryMenu">Category</div>
@@ -202,7 +202,7 @@ bottom: 8px;
 <div class="categoryType"><a id="offline" class="cateType" href="" style="color: black">Offline</a></div>
 </div>
 
-<div style="display: inline-block;width: 1200px; height: auto;position: relative;bottom:450px">
+<div style="display: inline-block;width: 1200px; height: auto;position: relative;bottom:450px;">
 <div style="margin-bottom: 30px; font-size: 150%; color: grey">${category }   >   ${lecType }  </div>
 
 
@@ -295,6 +295,10 @@ $(()=>{
 		$('.cate').css('color','black');
 	}
 	
+	var search = '${searchText}';
+	if(search != null){
+		$('#searchText').val(search);
+	}
 });
 
 
