@@ -105,6 +105,24 @@ public class OnLecDaoImple implements OnLecDao{
 		m.put("keyword", key);
 		return session.selectList(NAMESPACE + ".selectByText",m);
 	}
+
+	@Override
+	public int updateLikeDelete(int bno) {
+	
+		return session.update(NAMESPACE+".groupOnLikeDelete",bno);
+	}
+
+	@Override
+	public GroupOn selectByMyLec(int groupBno) {
+		
+		return session.selectOne(NAMESPACE + ".selectByMyLec", groupBno);
+	}
+
+	@Override
+	public int cntUpdate(int bno) {
+		
+		return session.update(NAMESPACE + ".updateCnt",bno);
+	}
 	
 
 }

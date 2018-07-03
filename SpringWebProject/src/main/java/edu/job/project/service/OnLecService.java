@@ -3,6 +3,7 @@ package edu.job.project.service;
 import java.util.List;
 
 import edu.job.project.domain.GroupOn;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OnLec;
 
 public interface OnLecService {
@@ -28,6 +29,8 @@ public interface OnLecService {
 	
 	String like(OnLec on);
 	
+	String likeDelete(OnLec on);
+	
 	int likeUp(int Bno);
 	
 	List<OnLec> readByCategory(String category);
@@ -37,4 +40,8 @@ public interface OnLecService {
 	List<OnLec> readByCategoryAll();
 	
 	List<OnLec> readByKeyword(String keyword);
+	
+	List<GroupOn> readByMyLec(Member m);
+	
+	int updateCnt(int bno);
 }

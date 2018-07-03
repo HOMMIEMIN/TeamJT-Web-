@@ -105,7 +105,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value= "/logout", method = RequestMethod.GET)
+	@RequestMapping(value= "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		logger.info("logout() 호출");	
 		session.removeAttribute("userId");

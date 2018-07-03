@@ -56,4 +56,6 @@ public class MemberDaoImple implements MemberDao {
 		return session.update(NAMESPACE +".updateOnlec", m);
 	}
 
+	
+
 }

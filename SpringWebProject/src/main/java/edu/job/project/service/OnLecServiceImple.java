@@ -143,6 +143,56 @@ public class OnLecServiceImple implements OnLecService {
 		return dao.selectByKeyword(keyword);
 	}
 
+	@Override
+	public String likeDelete(OnLec on) {
+		String realResult = null;
+		StringBuffer b = new StringBuffer();
+		Member m = mDao.getId(on.getUserId());
+		List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
+		
+			items.remove(String.valueOf(on.getGroupBno()));
+			System.out.println("bno");
+			for(int a = 0 ; a < items.size() ; a++) {
+				System.out.println(items.size());
+				System.out.println(a);
+				if(a == (items.size()-1)) {
+					b.append(items.get(a));
+				}else {
+					b.append(items.get(a)).append(",");	
+				}
+				
+			}
+			m.setOnLec(b.toString());
+			int result = mDao.updateOnlec(m);
+			if(result == 1) {
+				realResult = "ok";
+				dao.updateLikeDelete(on.getGroupBno());
+			}
+		return realResult;
+	}
+
+	@Override
+	public List<GroupOn> readByMyLec(Member m) {
+		List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
+		List<GroupOn> list = new ArrayList<>();
+		if(items.size() != 0) {
+		for(int a=0; a < items.size() ; a++) {
+			GroupOn on = dao.selectByMyLec(Integer.parseInt(items.get(a)));
+			Member mm = mDao.getId(on.getUserId());
+			on.setUserId(mm.getUserName());
+			list.add(on);
+			
+		}
+		}
+		return list;
+	}
+
+	@Override
+	public int updateCnt(int bno) {
+
+		return dao.cntUpdate(bno);
+	}
+
 	
 
 }

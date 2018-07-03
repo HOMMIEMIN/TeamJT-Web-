@@ -103,14 +103,14 @@
       <div class="container">
        <div class="collapse navbar-collapse" id="navbarResponsive">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
+        
         	<c:if test="${not empty userId }">      
              	<div class="frame1" id="profile">
              		<div class="dropdown-content">
 
-   						<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
-    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
-    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
-
+   						<a href="/project/mypage?type=a" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="/project/mypage?type=b" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="/project/mypage?type=c" style="border-bottom: 1px solid lightgrey;">칠판</a>
     					<a href="" id="btnlogout">하교</a>
   					</div>
             	 </div>
@@ -392,11 +392,23 @@
                                 <!-- 로그인 모달 -->
                                 <div class="error"></div>
                                 <div class="form loginBox">
-                                    <form method="post" action="/login">
+                                    <!--<form method="post" action="/project/login">
                                     <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
                                     <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
                                     <input id="btnLogin" class="btn btn-default btn-login" type="submit" value="로그인">
-                                    </form>
+                                    </form>-->
+                                    
+                                    <!-- <form method="post" action="/project/login"> -->
+                                    <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
+                                    <button type="button" id="btnLogin" class="btn btn-default btn-login">로그인</button>
+                                    <!-- </form>-->
+                                        	                          
+                                    <!-- <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
+                                    
+                                    <button id="btnLogin" class="btn btn-default btn-login">로그인</button>
+                                    -->
                                 </div>
                              </div>
                         </div>
@@ -619,7 +631,6 @@
 		}); //end #btnlogout()
 
 		
-		
 		var userId = $('#messageUserId').val();
 		console.log('messageUserId = ' + userId);
 		
@@ -816,6 +827,11 @@
 		$('#toId').val('');
 		$('#writeContent').val('');
 	}// end resetWriteMessage()
+
+function btnlogout(event){
+	event.preventDefault();
+    location = '/project/logout';
+ }
 
 //쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
 		document.getElementsByClassName("tablink")[0].click();

@@ -9,7 +9,7 @@ public interface MemberDao {
 	int insert(Member member);
 	
 	Member checkId(Member member);
-	
+
 	int checkId(String userId);
 	
 	int checkName(String userName);
