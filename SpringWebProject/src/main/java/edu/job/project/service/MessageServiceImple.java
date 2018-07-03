@@ -14,9 +14,20 @@ public class MessageServiceImple implements MessageService {
 	@Autowired MessageDao messageDao;
 	
 	@Override
-	public List<Message> read(String userId) {
+	public List<Message> getRead(String userId) {
 		
-		return messageDao.select(userId);
+		return messageDao.getSelect(userId);
+	}
+	
+	@Override
+	public List<Message> sendRead(String userId) {
+		
+		return messageDao.sendSelect(userId);
 	}
 
+	@Override
+	public int create(Message message) {
+		// TODO Auto-generated method stub
+		return messageDao.insert(message);
+	}
 }

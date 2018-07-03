@@ -107,14 +107,24 @@
         	<c:if test="${not empty userId }">      
              	<div class="frame1" id="profile">
              		<div class="dropdown-content">
+<<<<<<< HEAD
    						<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
     					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
     					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
+=======
+
+   						<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
     					<a href="" id="btnlogout">하교</a>
   					</div>
             	 </div>
             	 <input type="text" id="messageUserId" value="${userId}" style="display: none;"   />
-            	 <!-- 로그인시 쪽지함 모달!! -->
+            	
+            	
+ <!-- 로그인시 쪽지함 모달!! -->
 	<div class="w3-container">
 
 			<button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
@@ -125,34 +135,45 @@
 				  			<header class="w3-container w3-blue"> 
 							   <span onclick="document.getElementById('id01').style.display='none'" 
 							   class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
-							   <h2>님의 쪽지함</h2>
+							   <h2>${userName }님의 쪽지함</h2>
 							</header>
 
 				  	<div id="message" class="w3-bar w3-border-bottom">
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMget" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMsend" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
-				   		<button class="tablink w3-bar-item w3-button" 
+				   		<button id="resetMwrite" class="tablink w3-bar-item w3-button" 
 				   		onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
 				  	</div>
 				
 				  	<div id="mGet" class="w3-container city">
-				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn">새로고침</button>
-				  		<table id="messageList">
+				  		받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn1">새로고침</button>
+				  		<table id="messageGetList">
 						</table>
 				  	</div>
 				  	
 				
 				  	<div id="mSend" class="w3-container city">
-					   <h1>보낸 쪽지</h1>
-					   <p>Paris is the capital of France.</p>
-					   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+				  		보낸 쪽지함 0/7 <button style="left: -50%;" id="resetbtn2">새로고침</button>
+				  		<table id="messageSendList">
+						</table>
 				  	</div>
 				
 				    <div id="mWrite" class="w3-container city">
-					   <h1>쪽지 작성</h1>
-					   <p>Tokyo is the capital of Japan.</p><br>
+					   <h5>쪽지 작성</h5>
+					   <label>받는 사람</label>
+					   
+					   <div id="resetwriteMessage">
+						   <input id="toId" class="w3-input w3-border w3-margin-bottom" type="text" 
+						   		  placeholder="ex) 아무게@itwill.com" name="yourId" required >
+						   <textarea id="writeContent" style="margin-bottom: 20px;" class="w3-input w3-border w3-margin-bottom"
+						   			 rows="7" cols="106" name="mcontent"placeholder="내용 작성" required></textarea>
+						   <label>보내는 사람</label>
+						   <input id="fromId" class="w3-input w3-border w3-margin-bottom" type="text" 
+						          value="${userId}" name="userId" readonly >
+						   <button id="writeSendBtn" class="w3-button w3-green w3-large" > 보내기 </button>
+					   </div>
 				  	</div>
 				
 				  	<div class="w3-container w3-light-grey w3-padding">
@@ -228,7 +249,7 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/1.jpg">
+            <a class="portfolio-box" href="searchClick?category=IT&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/1.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -236,14 +257,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    운동
+                     IT
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/2.jpg">
+            <a class="portfolio-box" href="searchClick?category=Language&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/2.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -251,14 +272,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    요리
+                    Language
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/3.jpg">
+            <a class="portfolio-box" href="searchClick?category=Food&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/3.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -266,14 +287,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    생활
+                    Food
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/4.jpg">
+            <a class="portfolio-box" href="searchClick?category=Health&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -281,14 +302,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Health
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/5.jpg">
+            <a class="portfolio-box" href="searchClick?category=Life&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/5.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -296,14 +317,14 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Life
                   </div>
                 </div>
               </div>
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="resources/img/portfolio/fullsize/6.jpg">
+            <a class="portfolio-box" href="searchClick?category=Etc&lecType=online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/6.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -311,7 +332,7 @@
                     Category
                   </div>
                   <div class="project-name">
-                    미정
+                    Etc.
                   </div>
                 </div>
               </div>
@@ -442,7 +463,7 @@
     <!-- Plugin JavaScript -->
     <script src="resources/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    
 	
     <!-- Custom scripts for this template -->
     <script src="resources/js/main/creative.js"></script>
@@ -502,7 +523,7 @@
 			
 		});
 		
-		$('#createUser').click(()=>{
+		$('#createUser').click((event)=>{
 			event.preventDefault();
 			var pwd1 = $('#password1').val();
 			var pwd2 = $('#password_confirmation').val();
@@ -631,30 +652,80 @@
 		
 		//모달에서 보낸쪽지함
 		$('#sendM').click(function(){
-			
+			sendAllMessege();
 		}); // end sendM
-		
-		//모달에서 쪽지 작성
-		$('#writeM').click(function(){
-			
-			
-		}); // end writeM
-		
+
+	
 		 
 		
-		//쪽지함 모달에서 새로고침 
-		$('#resetbtn').click(function(){
+		//쪽지함 모달에서 받은쪽지 새로고침버튼 
+		$('#resetbtn1').click(function(){
+			console.log("resetbtn111111111");
 			getAllMessege();
+		}); // end resetbtn
+		
+		//쪽지함 모달에서 보낸쪽지 새로고침버튼 
+		$('#resetbtn2').click(function(){
+			console.log("resetbtn22222222222");
+			sendAllMessege();
 		}); // end resetbtn
 		
 		
 		// 메인화면에서 쪽지함 클릭시
 		$('#btnmessege').click(function(){
 			getAllMessege();
+			sendAllMessege();
 		}); // end btnmessege
 		
 		
-	 	
+		// 쪽지함 모달에서 쪽지 작성중 (보내기)버튼 
+		$('#writeSendBtn').click(function(event){
+			event.preventDefault();
+			console.log("들어옴");
+			var myid = $('#fromId').val();
+			var youid = $('#toId').val();
+			myid = encodeURI(myid);
+			youid = encodeURI(youid);
+			var writeContent = $('#writeContent').val();
+			console.log(myid);
+			console.log(youid);
+			console.log(writeContent);
+
+			$.ajax({
+				type: 'post',
+				url: 'message/sendMassage',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'post'
+				},
+				data: JSON.stringify({
+					'userId': myid,
+					'yourId': youid,
+					'mcontent': writeContent
+				}),
+				success: function (result) { 
+					if(result ===1){
+						resetWriteMessage();
+						console.log("1111111111");
+						alert('성공적으로 보냈습니다.');
+						console.log("22222222222");
+						sendAllMessege();
+						console.log("33333333333");
+						setTimeout(function() {
+						console.log("4444444444");
+						messageBtn(event, 'mSend');
+						getAllMessege();
+						console.log("5555555555");
+						}, 1000);
+											
+						
+					} 
+				}
+			}); // end ajax()
+		});// end #writeSendBtn()
+		   
+		
+	 	// 받은쪽지함에서 리스트로 보이게 하기 위한 코드
  		function getAllMessege() {
 			console.log('===== userId: ' + userId);
 			$.ajax({
@@ -693,15 +764,76 @@
 						+ '</td>'
 						+ '</tr>';
 					}); // end each()
-					$('#messageList').html(list1+list2);
+					$('#messageGetList').html(list1+list2);
 					//$('#messageList').html(list2);	
 				}
 			});		
 		}// end getAllMessege()
 		
+		// 보낸쪽지함에서 보낸쪽지를 리스트로 보이게 하기 위한 코드
+		function sendAllMessege() {
+			console.log('===== userId: ' + userId);
+			$.ajax({
+				type: 'get',
+				url: 'message/sendmessage',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-HTTP-Method-Override': 'get'
+				}, 
+				data: encodeURI('userId='+userId),
+				success: function(result) {
+					var list1 = '';
+					var list2 = '';
+					list1 +='<tr>'
+						+'<th>쪽지번호</th>'
+						+'<th>받은 사람</th>'
+						+'<th>내용</th>'
+						+'<th>보낸 시간</th>'
+						+'</tr>';
+					$(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+						console.log(this)
+						var date = new Date(this.regdate);
+						var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+						list2 += '<tr>'
+						+ '<td>'
+						+ this.mno
+						+ '</td>'
+						+ '<td>'
+						+ this.yourId
+						+ '</td>'
+						+ '<td>'
+						+ this.mcontent
+						+ '</td>'
+						+ '<td>'
+						+ dateString
+						+ '</td>'
+						+ '</tr>';
+					}); // end each()
+					$('#messageSendList').html(list1+list2);
+					//$('#messageList').html(list2);	
+				}
+			});
+		}// end sendAllMessege()
 		
+		$('.col-lg-4 col-sm-6').click(function(){
+			console.log('gfgg');
+			
+		});
+		
+	
+		
+		$('#btnSearch').click(function(){
+			event.preventDefault();
+			console.log('aa');
+		});
 
-});// end document.reay()		
+});// end document.reay()	
+
+	//쪽지작성 후 보내기 하면 그칸이 다시 리셋되게 하기 위한 함수
+	function resetWriteMessage(){
+		$('#toId').val('');
+		$('#writeContent').val('');
+	}// end resetWriteMessage()
 
 function btnlogout(event){
 	event.preventDefault();
@@ -721,8 +853,10 @@ function btnlogout(event){
 			    tablinks[i].classList.remove("w3-light-grey");
 			  }
 			  document.getElementById(btnName).style.display = "block";
-			  evt.currentTarget.classList.add("w3-light-grey");
-			}// end messageBtn()
+			  event.currentTarget.classList.add("w3-light-grey");
+			}// end messageBtn()  
+			
+			
 			
 			
 	</script>

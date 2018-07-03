@@ -8,8 +8,19 @@
 
 <select id="messageAll" resultType="Message">
 		select * from ${tbl_message}
+		where ${col_yourid} = #{yourId}
+		order by ${col_mno} desc
+</select>
+
+<select id="sendMessageAll" resultType="Message">
+		select * from ${tbl_message}
 		where ${col_userid} = #{userId}
 		order by ${col_mno} desc
 </select>
+
+<insert id="messageSend">
+		insert into ${tbl_message} (${col_userid}, ${col_yourid}, ${col_mcontent})
+  		values (#{userId}, #{yourId}, #{mcontent})
+</insert>
 
 </mapper>

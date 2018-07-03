@@ -6,12 +6,36 @@
   <!-- MyBatis 프레임워크가 사용할 SQL 문장들을 정의 -->
 <mapper namespace="edu.job.project.mappers.OnLecMapper">
 
+<select id="selectBnoByOnLec" resultType="OnLec">
+select * from ${tbl_onlec} where ${col_bno} = #{bno}
+</select>
+
+<select id="selectByCategory" resultType="OnLec">
+select * from ${tbl_onlec} where ${col_leccategory} = #{category} order by ${col_regdate} asc
+</select>
+
+<select id="selectByText" resultType="OnLec">
+select * from ${tbl_onlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) order by ${col_regdate} asc
+</select>
+
+<select id="selectByCategoryAll" resultType="OnLec">
+select * from ${tbl_onlec} order by ${col_regdate} asc
+</select>
+
+<select id="selectGroupBnoByOnLec" resultType="OnLec">
+select * from ${tbl_onlec} where ${col_groupbno1} = #{groupBno}
+</select>
+
+<select id="selectGroupBnoByLecName" resultType="String">
+select ${col_lecname} from ${tbl_groupon} where ${col_bno} = #{groupBno}
+</select>
+
 <select id="selectAllOnLec" resultType="OnLec">
 select * from ${tbl_onlec} where ${col_userid} = #{userId}
 </select>
 
 <select id="selectBnoOnLec" resultType="OnLec">
-select * from ${tbl_onlec} where ${col_groupbno} = #{bno}
+select * from ${tbl_onlec} where ${col_groupbno1} = #{bno}
 </select>
 
 <select id="selectAllGroupOn" resultType="GroupOn">
@@ -28,12 +52,16 @@ values(#{userId}, #{lecName}, #{lecCategory})
 </insert>
 
 <insert id="insertOnLec">
-insert into ${tbl_onlec}(${col_groupbno}, ${col_leccategory}, ${col_title}, ${col_content}, ${col_videopath}, ${col_userid}, ${col_imagepath})
-values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId}, #{imagePath})
+insert into ${tbl_onlec}(${col_groupbno1}, ${col_leccategory}, ${col_title}, ${col_content}, ${col_videopath}, ${col_userid}, ${col_imagepath}, ${col_username})
+values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId}, #{imagePath}, #{userName})
 </insert>
 
 <update id="gropOnImageUpdate">
 update ${tbl_groupon} set ${col_imagepath} = #{imagePath} where ${col_bno} = #{groupBno}
+</update>
+
+<update id="groupOnLike">
+update ${tbl_groupon} set ${col_leclike} = ${col_leclike} + 1 where ${col_bno} = #{bno}
 </update>
 
 </mapper>

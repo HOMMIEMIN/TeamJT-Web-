@@ -18,9 +18,25 @@ public class MessageDaoImple implements MessageDao {
 	
 	// userId에 받은 메세지.
 	@Override
-	public List<Message> select(String userId) {
+	public List<Message> getSelect(String userId) {
+		String yourId = userId;
 		
-		return sqlSession.selectList(NAMESPACE + ".messageAll", userId);
+		return sqlSession.selectList(NAMESPACE + ".messageAll", yourId);
 	}//end select()
+	
+	// userId에 받은 메세지.
+	@Override
+	public List<Message> sendSelect(String userId) {
+		
+		return sqlSession.selectList(NAMESPACE + ".sendMessageAll", userId);
+	}//end select()
+
+	
+	@Override
+	public int insert(Message message) {
+		//TODO: 이거 멤퍼에 정의하고 해야함!!!
+		
+		return sqlSession.insert(NAMESPACE+ ".messageSend" , message);
+	}// end insert()
 
 }//end class MessegeDaoImple

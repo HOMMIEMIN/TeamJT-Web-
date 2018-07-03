@@ -21,4 +21,20 @@ public interface OnLecService {
 	int create(OnLec on);
 	
 	int updateGroupImage(OnLec on);
+	
+	List<OnLec> readByGroupBno(int groupBno);
+	
+	OnLec readByBno(int bno);
+	
+	String like(OnLec on);
+	
+	int likeUp(int Bno);
+	
+	List<OnLec> readByCategory(String category);
+	
+	String readByLecName(int groupBno);
+	
+	List<OnLec> readByCategoryAll();
+	
+	List<OnLec> readByKeyword(String keyword);
 }
