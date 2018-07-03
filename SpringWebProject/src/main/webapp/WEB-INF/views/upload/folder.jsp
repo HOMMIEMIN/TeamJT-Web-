@@ -250,7 +250,11 @@ $(function(){
 	
 });
 
-
+$(()=>{
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
+	
+});
 
 </script>
 

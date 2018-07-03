@@ -146,7 +146,13 @@ right:500px;
 		</div>
 	</div>
 
+	<script>
+	$(()=>{
+		$('#loader').css('display', 'none');
+		$('#notClick').css('display', 'none');
+	});
 	
+	</script>
 
 
 </body>

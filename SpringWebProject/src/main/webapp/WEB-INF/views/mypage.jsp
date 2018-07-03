@@ -271,7 +271,7 @@ h4 {
 
 	<div>
 
-		<div id="onLec" style="display: inline-block; margin-left: 200px"></div>
+		<div id="onLec" style="display: inline-block; margin-left: 200px;width: 1200px;max-width: 1200px"></div>
 	</div>
 
 		<div>
@@ -282,21 +282,6 @@ h4 {
 	<div id="loader" style="display: none; z-index: 4;"></div>
 	<div id="notClick" style="display: none; z-index: 3;"></div>
 	
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -327,7 +312,7 @@ h4 {
 
 			if (cityName === 'Paris') {
 				console.log('들어옴');
-
+				
 				myFunction();
 				$('#onLec').animate({
 					opacity : 0
@@ -366,6 +351,9 @@ h4 {
 				$('#onLec').animate({
 					opacity : 1
 				}, 1000);
+				
+				$('#loader').css('display', 'block');
+				$('#notClick').css('display', 'block');
 			} else if (cityName === 'Tokyo') {
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
@@ -380,13 +368,31 @@ h4 {
 			console.log('들어옴')
 			$('#loader').css('display', 'block');
 			$('#notClick').css('display', 'block');
-			var a = setTimeout(showPage, 1000);
+			
 		}
 
 		function showPage() {
 			$('#notClick').css('display', 'none');
 			$('#loader').css('display', 'none');
 		}
+		$(()=>{
+			var type='${type}';
+			console.log('타입 : ' + type);
+			if(type != null){
+				switch(type){
+				case 'a':
+				openCity(event, 'London');
+				break;
+				case 'b':
+				openCity(event, 'Paris');
+				break;
+				case 'c':
+				openCity(event, 'Tokyo');
+				break;
+				}
+			}
+		});
+		
 	</script>
 
 
