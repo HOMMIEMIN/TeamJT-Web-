@@ -14,8 +14,8 @@
     <title>Team Job</title>
     
 	
-    <!-- Bootstrap core CSS -->
-    
+    <!-- 웹소켓 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <!-- 로그인창 -->
 	<link href="resources/css/login-register.css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -463,14 +463,47 @@
 	
 	
 	<script>
+	
+	var url = 'ws://localhost:8181/project/echo';
+	var ws = new WebSocket(url);
+	
+	ws.onmessage = function(event){
+		console.log(event.data);
+	}
+	
+	
+
+	
+	
 	$(()=>{
 		
+		var state1 = '${userId}';
+		console.log('아이디 : '+state1);
+		
+		if(state1 != ''){
+			ws.send('login,'+state1);
+			
+		}
+		window.onbeforeunload = function() {
+		    websocket.onclose = function () {
+		    	var userId = '${userId}'
+		   			alert('dd');
+		    		ws.send('pageOut,' + userId);
+		    	
+		    }; 
+		   ws.close();
+		};
+		
+			
+		
+	
 		$('#getM').click(()=>{
 			
 			console.log('aaa');
 		
 			
 			});
+		
 		
 		var register = '${registerResult}';
 		console.log(register);
@@ -601,6 +634,8 @@
 				}),
 				success: function(result){
 						if(result==='ok'){
+																			
+								
 							
  							console.log(result);
 							//location = document.location;
@@ -627,6 +662,8 @@
 		// 로그아웃버튼 클릭시
 		$('#btnlogout').click(function(event){
 			event.preventDefault();
+			var re = '${userId}'
+			ws.send('pageOut,'+ re);
 			location = '/project/logout'; //<<--controller로 간다 .
 		}); //end #btnlogout()
 
@@ -849,7 +886,7 @@ function btnlogout(event){
 			  event.currentTarget.classList.add("w3-light-grey");
 			}// end messageBtn()  
 			
-			
+	
 			
 			
 	</script>
