@@ -35,6 +35,8 @@ public interface OnLecDao {
 	
 	int updateLike(int bno);
 	
+	int updateLikeDelete(int bno);
+	
 	List<OnLec> selectByCategory(String category);
 	
 	String selectGroupBnoByLecName(int groupBno);

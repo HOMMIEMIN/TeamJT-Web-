@@ -148,8 +148,14 @@
 	<img style="display: inline-block;"><div style="display: inline-block; margin-left: 30px; font-size: 140%;margin-top: 10px; font-weight: bold;">${bnoList.title }</div>
 	</div>
 	<div style="display: inline-block; position: relative; margin-left: 1130px; bottom: 50px">
-	<div id="like" style="border: 1px solid white; background-color: #04B486; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
-
+	<c:if test="${not empty userId }">
+	<c:if test="${empty deleResult }">
+	<div id="like" style="border: 1px solid white; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/like.png'); background-size: cover;"></div>
+	</c:if>
+	<c:if test="${not empty deleResult }">
+	<div id="likeDe" style="border: 1px solid white; border-radius: 4px; width: 120px; color: white;font-weight: bolder;text-align: center; height: 40px; background-image: url('/project/resources/img/likeDe.png'); background-size: cover;"></div>
+	</c:if>
+	</c:if>
 	<div style="color: grey;width: 300px; margin-top: 5px">게시일 : <fmt:formatDate value="${bnoList.regDate}" pattern="yyyy.MM.dd" /></div>
 	</div>
 	</div>
@@ -172,6 +178,9 @@
 	
 	<script>
 	$(()=>{
+		var deleResult = '${deleResult}'
+		console.log(typeof deleResult);
+		if(deleResult == ''){
 		$("#like").click(()=>{
 			$("#loader").css('display','block');
 			$("#notClick").css('display','block');
@@ -194,16 +203,50 @@
 					$("#loader").css('display','none');
 					$("#notClick").css('display','none');
 						if(result === 'ok'){
-							alert('구독 완료');
+							alert('수강 완료');
+							location = document.location;
 						}else{
-							alert('이미 구독 중입니다');
+							alert('이미 수강 중입니다');
 						}
 						
 				}
 				}); // end ajacx
 			
 		});
-		
+		}else{
+			$("#likeDe").click(()=>{
+				$("#loader").css('display','block');
+				$("#notClick").css('display','block');
+				var userId = '${userId}';
+				var groupBno = '${groupBno}';
+				var bno = '${bno}';
+				$.ajax({
+					type: 'post', 
+					url: '/project/likeDelete', 
+					headers: {'Content-Type' : 'application/json; charset=UTF-8', 
+								'X-HTTP-Method-Override' : 'post'
+								}, 
+					data: JSON.stringify({
+						'groupBno' : groupBno,
+						'userId' : userId,
+						'bno' : bno
+						
+					}),
+					success: function(result){
+						$("#loader").css('display','none');
+						$("#notClick").css('display','none');
+							if(result === 'ok'){
+								alert('수강 취소 완료');
+								location = document.location;
+							}else{
+								alert('수강 취소 실패');
+							}
+							
+					}
+					}); // end ajacx
+				
+			});
+		}
 		$('.item').hover(function(){
 			$(this).css('background-color','#6E6E6E');
 		}, function(){

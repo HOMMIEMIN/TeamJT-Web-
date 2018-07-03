@@ -1,6 +1,10 @@
 package edu.job.project.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,12 +37,24 @@ public class VideoController {
 	}
 	
 	@RequestMapping(value="/videoview", method=RequestMethod.GET)
-	public String videoview(int bno, int groupBno, String lecName, Model model) {
+	public String videoview(int bno, int groupBno, String lecName, Model model, HttpSession session) {
 		System.out.println("들어옴");
 		System.out.println(groupBno);
 		OnLec bnoList = service.readByBno(bno);
 		List<OnLec> GroupbnoList = service.readByGroupBno(groupBno);
 		Member m = mService.readId(bnoList.getUserId());
+		Member myM = mService.readId((String)session.getAttribute("userId"));
+		System.out.println("OnLec : "+ m.getOnLec());
+		if(myM.getOnLec() != null) {
+			List<String> items = new ArrayList<>(Arrays.asList(myM.getOnLec().split("\\s*,\\s*")));
+			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
+			if(items.contains(String.valueOf(groupBno))) {
+				model.addAttribute("deleResult", "ok");
+				System.out.println("deleResult 넣음");
+			}
+			
+			
+		}
 		model.addAttribute("bnoList", bnoList);
 		model.addAttribute("GroupbnoList", GroupbnoList);
 		model.addAttribute("userName", m.getUserName());
@@ -63,5 +79,16 @@ public class VideoController {
 		}
 		return new ResponseEntity<String>(result, HttpStatus.OK);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value="/likeDelete", method=RequestMethod.POST)
+	public ResponseEntity<String> likeDelete(@RequestBody OnLec on){
+		System.out.println(on.getGroupBno());
+		System.out.println(on.getUserId());
+		String result = service.likeDelete(on);
+	
+		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
 
 }
