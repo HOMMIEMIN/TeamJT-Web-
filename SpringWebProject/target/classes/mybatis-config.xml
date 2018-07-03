@@ -33,6 +33,7 @@
 	<property name="col_lecname" value = "lecName"/>
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leclike" value = "lecLike"/>
+	<property name="col_cnt" value = "cnt"/>
 
 	<!--MESSAGE -->
 	<property name="tbl_message" value="user_message"/>

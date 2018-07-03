@@ -9,6 +9,32 @@
     font-size: 14px; 
     font-family: Arial, Helvetica, sans-serif; 
     }
+       #notClick {
+	background-color: rgba(1, 1, 1, 0.7);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+#loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	top: 500px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+}
  
      </style>
     <title></title>
@@ -72,6 +98,8 @@
 		<input type="button" style="width: 854px;height:50px ;hemax-width: 854px; background-color: 3ED0C8; border: 1px solid 3ED0C8" id="creatLec" value=""/>
 </div>
 
+<div id="loader" style="display: none; z-index: 4;"></div>
+	<div id="notClick" style="display: none; z-index: 3;"></div>
 
             <script>
                 $(document).ready(function() {
@@ -97,7 +125,7 @@
                     $("#files2").kendoUpload({
                         async: {
 
-                            chunkSize: 900,// bytes
+                            chunkSize: 300,// bytes
 
                             saveUrl: "chunkSaveImage",
                             removeUrl: "remove",
@@ -140,7 +168,8 @@
                   	  var groupBno = '${bno}';
                   	  var category = '${lecCategory}';
                   	  var userName = '${userName}';
-                  	  
+                  	$("#loader").css('display','block');
+        			$("#notClick").css('display','block');
                   	  
                   	  $.ajax({
         					type:'post',
@@ -161,11 +190,19 @@
         					}),
         					success:function(result){
         						if(result === 'ok'){
+        							$("#loader").css('display','none');
+        							$("#notClick").css('display','none');
         							$("#onLec").load("/project/upload/folder");
         							
         						}else{
+        							$("#loader").css('display','none');
+        							$("#notClick").css('display','none');
         							alert('등록 실패');
         						}
+        					},
+        					error:function(result){
+        						$("#loader").css('display','none');
+    							$("#notClick").css('display','none');
         					}
         					
         				});

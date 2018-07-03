@@ -6,6 +6,10 @@
   <!-- MyBatis 프레임워크가 사용할 SQL 문장들을 정의 -->
 <mapper namespace="edu.job.project.mappers.OnLecMapper">
 
+<select id="selectByMyLec" resultType="GroupOn">
+select * from ${tbl_groupon} where ${col_bno} = #{bno}
+</select>
+
 <select id="selectBnoByOnLec" resultType="OnLec">
 select * from ${tbl_onlec} where ${col_bno} = #{bno}
 </select>
@@ -62,6 +66,10 @@ update ${tbl_groupon} set ${col_imagepath} = #{imagePath} where ${col_bno} = #{g
 
 <update id="groupOnLike">
 update ${tbl_groupon} set ${col_leclike} = ${col_leclike} + 1 where ${col_bno} = #{bno}
+</update>
+
+<update id="updateCnt">
+update ${tbl_onlec} set ${col_cnt} = ${col_cnt} + 1 where ${col_bno} = #{bno}
 </update>
 
 <update id="groupOnLikeDelete">

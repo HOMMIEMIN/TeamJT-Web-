@@ -359,6 +359,13 @@ h4 {
 				$('#London').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#Tokyo').css('border-bottom', 'none');
+				$('#onLec').animate({
+					opacity : 0
+				}, 1000);
+				$('#onLec').load("/project/upload/myLec");
+				$('#onLec').animate({
+					opacity : 1
+				}, 1000);
 			} else if (cityName === 'Tokyo') {
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
