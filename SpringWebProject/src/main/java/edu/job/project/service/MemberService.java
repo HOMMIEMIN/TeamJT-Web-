@@ -14,4 +14,6 @@ public interface MemberService {
 	int read(String userId);
 	
 	int readName(String userName);
+	
+	Member readId(String userId);
 }

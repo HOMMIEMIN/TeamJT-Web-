@@ -1,6 +1,7 @@
 package edu.job.project.prisitence;
 
 import edu.job.project.domain.Member;
+import edu.job.project.domain.OnLec;
 
 
 public interface MemberDao {
@@ -12,6 +13,10 @@ public interface MemberDao {
 	int checkId(String userId);
 	
 	int checkName(String userName);
+	
+	Member getId(String userId);
+	
+	int updateOnlec(Member m);
 
 	
 }

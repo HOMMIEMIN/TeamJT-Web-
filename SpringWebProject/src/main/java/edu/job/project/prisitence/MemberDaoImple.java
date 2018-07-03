@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.job.project.domain.Member;
+import edu.job.project.domain.OnLec;
 
 @Repository
 public class MemberDaoImple implements MemberDao {
@@ -41,6 +42,18 @@ public class MemberDaoImple implements MemberDao {
 	public int checkName(String userName) {
 		
 		return session.selectOne(NAMESPACE + ".namecheck", userName);
+	}
+
+	@Override
+	public Member getId(String userId) {
+		
+		return session.selectOne(NAMESPACE + ".getId", userId);
+	}
+
+	@Override
+	public int updateOnlec(Member m) {
+		
+		return session.update(NAMESPACE +".updateOnlec", m);
 	}
 
 }

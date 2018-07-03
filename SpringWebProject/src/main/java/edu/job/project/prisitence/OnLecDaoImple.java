@@ -1,6 +1,8 @@
 package edu.job.project.prisitence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,8 @@ public class OnLecDaoImple implements OnLecDao{
 		// TODO Auto-generated method stub
 		return session.selectList(NAMESPACE + ".selectAllGroupOn", userId);
 	}
-
+	
+	//폴더 만들기 
 	@Override
 	public int insertGorup(GroupOn on) {
 		System.out.println(on.getLecName());
@@ -58,5 +61,56 @@ public class OnLecDaoImple implements OnLecDao{
 
 		return session.update(NAMESPACE + ".gropOnImageUpdate", on);
 	}
+
+	@Override
+	public OnLec selectBnoByOnLec(int bno) {
+		
+		return (OnLec)session.selectOne(NAMESPACE+ ".selectBnoByOnLec",bno);
+	}
+
+	@Override
+	public List<OnLec> selectGroupBnoByOnLec(int groupBno) {
+		// 
+		return session.selectList(NAMESPACE + ".selectGroupBnoByOnLec", groupBno);
+	}
+
+	@Override
+	public int updateLike(int bno) {
+		
+		return session.update(NAMESPACE+".groupOnLike",bno);
+	}
+
+	@Override
+	public List<OnLec> selectByCategory(String category) {
+
+		return session.selectList(NAMESPACE +".selectByCategory", category);
+	}
+
+	@Override
+	public String selectGroupBnoByLecName(int groupBno) {
+
+		return session.selectOne(NAMESPACE + ".selectGroupBnoByLecName", groupBno);
+	}
+
+	@Override
+	public List<OnLec> selectByCategoryAll() {
+	
+		return session.selectList(NAMESPACE +".selectByCategoryAll");
+	}
+
+	@Override
+	public List<OnLec> selectByKeyword(String keyword) {
+		Map<String, String> m = new HashMap<>();
+		String key = "%" + keyword + "%";
+		m.put("keyword", key);
+		return session.selectList(NAMESPACE + ".selectByText",m);
+	}
+
+	@Override
+	public int updateLikeDelete(int bno) {
+	
+		return session.update(NAMESPACE+".groupOnLikeDelete",bno);
+	}
+	
 
 }
