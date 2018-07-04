@@ -58,4 +58,31 @@ public class OffLecServiceImple implements OffLecService {
 	
 		return dao.selectGroup(off);
 	}
+	
+	// 디테일들어가기 
+	@Override
+	public List<OffLec> read(int bno) {
+		
+		return dao.selectBno(bno);
+	}
+	
+	@Override
+	public int updateFolderImage(OffLec off) {
+	
+		return dao.updateFolderImage(off);
+	}
+	
+	@Override
+	public OffLec readByBno(int bno) {
+	
+		return dao.selectBnoByOffLec(bno);
+	}
+	
+	@Override
+	public List<OffLec> readByGroupBno(int groupBno) {
+	
+		return dao.selectGroupBnoByOffLec(groupBno);
+	}
+	
+	
 }

@@ -100,16 +100,17 @@ p.views.views-info {
 
 
 	<div>
+	<div style="display: inline-block; width: 550px;"></div>
 		<div id=offFolder style="display: inline-block;">
 			<c:forEach var="group" items="${groupList }">
 				<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 					<div class="resent-grid-img recommended-grid-img">
-						<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}">
-						 	<c:if test="${not empty group.imagePath}">
+						<a href="offline/offFolderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}">
+						 	<c:if test="${not empty group.imgPath}">
 								<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}"
 									alt="">
 							</c:if> 
-							<c:if test="${empty group.imagePath }">
+							<c:if test="${empty group.imgPath }">
 								<img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt="">
 							</c:if>
 						</a>
@@ -128,8 +129,7 @@ p.views.views-info {
 							<li class="right-list"><p class="views views-info">${group.lecLike}</p></li>
 						</ul>
 					</div>
-					<a
-						href="upload/folderDetail?bno=${group.bno }&lecName=${group.lecName}&lecCategory=${group.lecCategory}"
+					<a href="offline/offFolderDetail?bno=${group.bno }&lecName=${group.lecName}&lecCategory=${group.lecCategory}"
 						class="detail">
 						<div class="overlay"></div>
 					</a>
@@ -222,9 +222,9 @@ $(function(){
 					success:function(result){
 						if(result != null){
 							console.log(result);
-							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "0" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
+							 $("#offFolder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="offline/offFolderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "0" +' </p></li></ul></div><a href="offline/offFolderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
 							  $('#id02').css('display','none');
-							  $('#folderName').val('');  
+							  $('#folderName1').val('');  
 						}else{
 							alert('등록 실패');
 						}
@@ -236,9 +236,9 @@ $(function(){
 		  
 		});
 	
-	$("#folder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
+	$("#offFolder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
 		event.preventDefault();
-		console.log(' offLec folder 들어옴');
+		console.log('offLec folder 들어옴 ( 해당 강좌의 세부강의목록 )');
 		myFunction();
 		var location = $(this).attr('href');
 		$('#offLec').animate({opacity: 0},1000);

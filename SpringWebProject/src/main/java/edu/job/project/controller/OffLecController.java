@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,19 +47,14 @@ public class OffLecController {
 	// 글목록 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public void list(Model model) {
-
 		logger.info(" [list] 호출 ");
-
 		List<OffLec> list = offlecService.read();
-
 		model.addAttribute("offlecList", list);
-
 	}
 
 	// 글작성 페이지로 이동
-
 	@RequestMapping(value = "/register" , method = RequestMethod.GET)
-	public void register(Model model) {
+	public void register(Model model , int bno, String lecCategory, String lecName) {
 		logger.info("register 글등록 호출");
 		Date date = new Date();
 		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -68,12 +64,18 @@ public class OffLecController {
 		String formattedDate2 = sdf2.format(date);
 		model.addAttribute("serverTime1", formattedDate1 );
 		model.addAttribute("serverTime2", formattedDate2 );
+		System.out.println("upLoad groupBno : " + bno);
+		model.addAttribute("bno",bno);
+		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
+		System.out.println("lecName 폴더이름 : "+lecName);
+		System.out.println("cateGory 카테고리 : "+lecCategory);
 		
 	}
 	
-	// 글등록
+	// 글등록 ( oncreate )
 	@RequestMapping(value = "/register1", method=RequestMethod.POST)
-	public String upload(Model model, 
+	public String upload(Model model,
 			@RequestParam("title")String title,
 			@RequestParam("content")String content,
 			@RequestParam("meetingday")String meetingday,
@@ -81,7 +83,8 @@ public class OffLecController {
 			@RequestParam("imgPath") MultipartFile file,
 			@RequestParam("lat") String lat,
 			@RequestParam("long1") String long1,
-			@RequestParam("meetingtime")String meetingtime
+			@RequestParam("meetingtime")String meetingtime,
+			@RequestParam("groupBno")int groupBno
 			 ){
 
 		logger.info("upload 호출:  {}",  file);
@@ -95,12 +98,16 @@ public class OffLecController {
 		String location= lat+","+long1;
 		
 		String meeting = meetingday+""+meetingtime;
-		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember, null, url , location);
-		offlecService.create(offLecture);
+		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember, null, url , location , groupBno);
+		int result = offlecService.create(offLecture);
 		
+		if(result ==1 ) {
+			offlecService.updateFolderImage(offLecture);
+		}
+		return "redirect:/mypage";
 		
-		return "redirect:/offline/list";
 	}
+	
 	
 	// 지도 위치 받기 
 	@RequestMapping(value="/register" , method = RequestMethod.POST , produces= {"application/json"})
@@ -147,7 +154,21 @@ public class OffLecController {
 	}
 	
 	
+	// 한개의 강좌 들어갔을때 그 강좌의 강의목록 보이기 
+	@RequestMapping(value="/offFolderDetail",method=RequestMethod.GET)
+	public String offFolderDetail(int bno , String lecCategory, String lecName, Model model) {
+		logger.info("bno : {}" , bno);
+		logger.info(lecCategory);
+		List<OffLec> list = offlecService.read(bno);
+		model.addAttribute("offLecList",list);
+		model.addAttribute("bno",bno);
+		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
+				
+		return "/offline/offFolderDetail";
+	}
 	
+
 	
 	
 	

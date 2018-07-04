@@ -24,4 +24,15 @@ public interface OffLecService {
 	
 	GroupOff readGroup(GroupOff off);
 	
+	List<OffLec> read(int bno);
+	
+	int updateFolderImage(OffLec off);
+	
+	//하나의 강의 보이게 하는 detail 강의
+	OffLec readByBno(int bno);
+	
+	// 하나의 강의에서 그 강의의 강좌 ( 폴더 ) 리스트를 읽는것. 
+	List<OffLec> readByGroupBno(int groupBno);
+	
+	
 }

@@ -16,6 +16,16 @@
 	<property name="col_offlec" value="offLec"/>
 	<property name="col_offlecwaiting" value = "offLecWaiting"/>
 	
+	<!--MESSAGE -->
+	<property name="tbl_message" value="user_message"/>
+	<property name="col_mno" value="mno"/>
+	<property name="col_userid" value="userId"/>
+	<property name="col_yourid" value="yourId"/>
+	<property name="col_mcontent" value="mcontent"/>
+	<property name="col_regdate" value ="regDate"/>
+	<property name="col_imagepath" value = "imagePath"/>
+	
+	
 	<!--UPLOAD_ONLINE -->
 	<property name="tbl_onlec" value="onlec"/>
 	<property name="col_bno" value="bno"/>
@@ -34,17 +44,7 @@
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leclike" value = "lecLike"/>
 
-	<!--MESSAGE -->
-	<property name="tbl_message" value="user_message"/>
-	<property name="col_mno" value="mno"/>
-	<property name="col_userid" value="userId"/>
-	<property name="col_yourid" value="yourId"/>
-	<property name="col_mcontent" value="mcontent"/>
-	<property name="col_regdate" value ="regDate"/>
-	<property name="col_imagepath" value = "imagePath"/>
-		
 	<!-- UPLOAD_OFFLINE -->
-	
 	<property name="tbl_offlec" value="offlec"/>
 	<property name="col_bno" value="bno"/>
 	<property name="col_userid" value="userid"/>
@@ -58,6 +58,7 @@
 	<property name="col_waitingId" value="waitingid"/>	   
 	<property name="col_imgpath" value="imgpath"/>
 	<property name="col_location" value="location"/>
+	<property name="col_groupbno2" value="groupbno"/>
 	
 	<!--  GROUP OFFLINE -->
 	<property name="tbl_groupoff" value = "groupoff"/>	

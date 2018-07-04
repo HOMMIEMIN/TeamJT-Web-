@@ -9,7 +9,7 @@ import edu.job.project.domain.OffLec;
 public interface UploadMapper {
 
 	
-	int insert(OffLec offLecture);
+//	int insert(OffLec offLecture);
 	
 	int updateWaitingId(OffLec offLecture);
 	

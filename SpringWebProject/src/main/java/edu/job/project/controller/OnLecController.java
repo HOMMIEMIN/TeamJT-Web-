@@ -29,7 +29,7 @@ public class OnLecController {
 	@Autowired
 	private OnLecService service;
 	
-	
+	// 글작성 페이지로 이동 
 	@RequestMapping(value="/addonlec", method=RequestMethod.GET)
 	public String upload(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("업로드 : " + bno);
@@ -51,7 +51,7 @@ public class OnLecController {
 		return "/upload/folder";
 	}
 	
-	
+	// 루팡완료 
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
 	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("bno : " + bno);
@@ -78,6 +78,7 @@ public class OnLecController {
 		return new ResponseEntity<Integer>(onBno.getBno(), HttpStatus.OK);
 	}
 	
+	// 글등록
 	@RequestMapping(value="onLeccreate", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> onLeccreate(@RequestBody OnLec on){

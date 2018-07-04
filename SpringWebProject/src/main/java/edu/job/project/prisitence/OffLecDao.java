@@ -23,4 +23,12 @@ public interface OffLecDao {
 		
 	GroupOff selectGroup(GroupOff off);
 	
+	List<OffLec> selectBno(int bno);
+	
+	int updateFolderImage(OffLec off);
+	
+	// 하나의 강의 검색
+	OffLec selectBnoByOffLec(int bno);
+	
+	List<OffLec> selectGroupBnoByOffLec(int groupBno);
 }

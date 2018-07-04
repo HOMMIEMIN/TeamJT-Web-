@@ -28,7 +28,9 @@ select count(${col_username}) from ${tbl_member} where ${col_username} = #{userN
 </select>
 
 <update id="updateOnlec">
-update ${tbl_member} set ${col_onlec} = #{onLec} where ${col_userid} = #{userId}
+update ${tbl_member}
+set ${col_onlec} = #{onLec} 
+where ${col_userid} = #{userId}
 </update>
 
 </mapper>

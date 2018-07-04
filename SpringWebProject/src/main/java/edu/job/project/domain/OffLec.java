@@ -20,6 +20,7 @@ public class OffLec {
 	
 	private String location;
 	
+	private int groupBno;
 	// 그룹 폴더 이름??? 
 	
 	// 기본 생성자 
@@ -29,7 +30,7 @@ public class OffLec {
 
 
 	public OffLec(int bno, String userid, String category, String title, String content, String meetingday,
-			int maxmember, Date regdate ,String imgPath , String location) {
+			int maxmember, Date regdate ,String imgPath , String location , int groupBno) {
 		this.bno = bno;
 		this.userid = userid;
 		this.category = category;
@@ -40,6 +41,7 @@ public class OffLec {
 		this.regdate = regdate;
 		this.imgPath = imgPath;
 		this.location=location;
+		this.groupBno=groupBno;
 		
 	}
 	
@@ -150,6 +152,16 @@ public class OffLec {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+
+	public int getGroupBno() {
+		return groupBno;
+	}
+
+
+	public void setGroupBno(int groupBno) {
+		this.groupBno = groupBno;
 	}
 	
 	

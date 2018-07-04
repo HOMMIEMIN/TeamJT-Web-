@@ -40,7 +40,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 
+
+
 <style>
+
 #createFolder1 {
 	position: relative;
 	left: 850px;
@@ -283,21 +286,6 @@ h4 {
 	<div id="notClick" style="display: none; z-index: 3;"></div>
 	
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	<script>
@@ -323,10 +311,10 @@ h4 {
 			}
 			document.getElementById(cityName).style.display = "block";
 			evt.currentTarget.className += " active";
-			console.log(cityName)
-
+			console.log('탭 : '+ cityName +' 페이지 들어옴        설명 -London:나는학생 , Paris:나는선생님 , Tokyo:칠판')
+ 
 			if (cityName === 'Paris') {
-				console.log('들어옴');
+				console.log(' 선생님 페이지 들어옴');
 
 				myFunction();
 				$('#onLec').animate({
@@ -370,7 +358,7 @@ h4 {
 		}
 
 		function myFunction() {
-			console.log('들어옴')
+			console.log(' myFunction 들어옴')
 			$('#loader').css('display', 'block');
 			$('#notClick').css('display', 'block');
 			var a = setTimeout(showPage, 1000);
@@ -380,9 +368,21 @@ h4 {
 			$('#notClick').css('display', 'none');
 			$('#loader').css('display', 'none');
 		}
+		$(()=>{
+			jQuery.browser = {};
+			(function () {
+			    jQuery.browser.msie = false;
+			    jQuery.browser.version = 0;
+			    if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+			        jQuery.browser.msie = true;
+			        jQuery.browser.version = RegExp.$1;
+			    }
+			})();
+		});
+		
 	</script>
 
-
+	
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Plugin JavaScript -->
@@ -404,6 +404,17 @@ h4 {
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
 	<link rel="stylesheet"
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<br />
 	<br />
 	<br />
