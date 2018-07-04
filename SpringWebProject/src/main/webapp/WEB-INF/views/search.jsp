@@ -16,6 +16,7 @@
 
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="resources/js/main/bootstrap.js"></script>
 
 
@@ -28,16 +29,16 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
-<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- Plugin CSS -->
 <link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <link href="resources/css/folder2.css" rel="stylesheet" />
+
+
+
 
 <Style>
 
@@ -160,8 +161,8 @@ bottom: 8px;
 </head>
 
 <body>
-
-<!-- Navigation -->
+<jsp:include page="header.jsp"></jsp:include>
+<!-- Navigation 
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
@@ -178,12 +179,15 @@ bottom: 8px;
 			<div class="collapse navbar-collapse" id="navbarResponsive"></div>
 		</div>
 	</nav>
+-->
 
 
 
 
-<div style="width: 2000px; height: auto;">
-<div id="filter" style="display: inline-block; margin: 40px;  width: 400px; height: 600px;">
+
+<div style="width: 2000px; height: auto; display:inline-block;">
+
+<div id="filter" style="display: inline-block;position:relative;bottom:274px ;margin: 40px;  width: 400px; height: 600px; border : 1px solid black">
 <div style="margin-bottom: 30px; font-weight: bold; font-size: 190%; ">Search Filter</div>
 
 <div class="categoryMenu">Category</div>
@@ -202,17 +206,15 @@ bottom: 8px;
 <div class="categoryType"><a id="offline" class="cateType" href="" style="color: black">Offline</a></div>
 </div>
 
-<div style="display: inline-block;width: 1200px; height: auto;position: relative;bottom:450px;">
+
+
+
+<div id="" style="position: relative;display:inline-block; border: 1px solid black; width: 1200px">
 <div style="margin-bottom: 30px; font-size: 150%; color: grey">${category }   >   ${lecType }  </div>
-
-
-
-<div id="" style="">
-
 
 <c:forEach var="group" items="${list }">
 
-<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 <div class="resent-grid-img recommended-grid-img">
 <a href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" class="detail">
 <c:if test="${not empty group.imagePath }">
@@ -241,7 +243,7 @@ bottom: 8px;
 </c:forEach>
 
 </div>
-</div>
+
 
 </div>
 
@@ -305,15 +307,7 @@ $(()=>{
 </script>
 
 
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-
-	<script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-	<!-- Custom scripts for this template -->
-	<script src="resources/js/main/creative.js"></script>
+	
 
 
 </body>

@@ -82,14 +82,14 @@ bottom: 8px;
 <h4>${lecName }</h4>
 <br/>
 <div id = folder>
-<div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec">
-<a id = "addLec">
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec" style="display: inline-block; margin-left: 170px;">
+<a id = "addLec" style="display: inline-block; position: relative; bottom: 150px;">
 <img alt="" src="${pageContext.request.contextPath}/resources/img/addlec.png" id="add">
 </a>
 </div>
 <c:forEach var="group" items="${onLecList }">
 
-<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 <div class="resent-grid-img recommended-grid-img">
 <a href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" class="detail">
 <c:if test="${not empty group.imagePath }">

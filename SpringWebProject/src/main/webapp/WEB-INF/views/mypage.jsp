@@ -14,30 +14,16 @@
 <!-- Bootstrap core CSS -->
 
 <!-- 로그인창 -->
-<link href="resources/css/login-register.css" rel="stylesheet" />
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<script src="resources/js/main/bootstrap.js"></script>
-<script src="resources/js/main/login-register.js" type="text/javascript"></script>
 
 
-<!-- Custom fonts for this template -->
-<link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-	rel='stylesheet' type='text/css'>
-<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<!-- Plugin CSS -->
-<link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 
 
 <style>
@@ -215,26 +201,11 @@ h4 {
 </head>
 
 <body id="page-top">
+<div id="top"> </div>
+	<script>
+	$('#top').load('header');
+	</script>
 
-	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
-			<form id="searchForm" action="searchBtn">
-				<div class="input-group" id="searchBar">
-					<input type="text" class="form-control" name = "searchText" placeholder="Search">
-					<input type="hidden" name="category" value="All Category">
-					<input type="hidden" name="lecType" value="online">
-					<div class="input-group-btn">
-						<button class="btn btn-default" id="btnSearchBar" type="button">
-							<i class="glyphicon glyphicon-search"></i>
-						</button>
-					</div>
-				</div>
-			</form>
-			<div class="collapse navbar-collapse" id="navbarResponsive"></div>
-		</div>
-	</nav>
 
 
 	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
@@ -394,17 +365,6 @@ h4 {
 		});
 		
 	</script>
-
-
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-
-	<script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-	<!-- Custom scripts for this template -->
-	<script src="resources/js/main/creative.js"></script>
 
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
