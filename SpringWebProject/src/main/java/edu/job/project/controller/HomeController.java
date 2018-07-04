@@ -38,8 +38,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model) {
-
+	public String mypage(Locale locale, Model model, String type) {
+		
+		model.addAttribute("type", type);
 		
 		return "mypage";
 	}

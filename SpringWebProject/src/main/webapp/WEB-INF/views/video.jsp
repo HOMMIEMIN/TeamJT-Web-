@@ -255,6 +255,19 @@
 		
 	});
 	
+	$('#like').hover(function(){
+		$(this).css('border','2px solid green');
+	},function(){
+		$(this).css('border','none');
+	});
+	
+	$('#likeDe').hover(function(){
+		$(this).css('border','2px solid black');
+		$(this).css('background-color','grey');
+	},function(){
+		$(this).css('border','none');
+	});
+	
 	</script>
 	
 	

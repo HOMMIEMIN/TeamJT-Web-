@@ -99,7 +99,7 @@ p.views.views-info {
 	<br />
 
 	<div>
-		<div style="display: inline-block; width: 550px;"></div>
+	
 		<div id=folder style="display: inline-block;">
 			<c:forEach var="group" items="${groupList }">
 
@@ -250,7 +250,11 @@ $(function(){
 	
 });
 
-
+$(()=>{
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
+	
+});
 
 </script>
 

@@ -20,6 +20,14 @@
     <artifactId>commons-lang3</artifactId>
     <version>3.4</version>
 </dependency> 
+
+		<!-- Spring websocket -->
+
+	<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-websocket</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
 		
 		<!-- Java Object를 JSON 문자열로 변환 -->
 		<dependency>

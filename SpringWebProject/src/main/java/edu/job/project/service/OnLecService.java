@@ -40,4 +40,8 @@ public interface OnLecService {
 	List<OnLec> readByCategoryAll();
 	
 	List<OnLec> readByKeyword(String keyword);
+	
+	List<GroupOn> readByMyLec(Member m);
+	
+	int updateCnt(int bno);
 }
