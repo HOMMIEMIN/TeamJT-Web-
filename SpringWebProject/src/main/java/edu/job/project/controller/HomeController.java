@@ -44,6 +44,11 @@ public class HomeController {
 		return "mypage";
 	}
 	
+	@RequestMapping(value="/header", method=RequestMethod.GET)
+	public void header() {
+		
+	}
+	
 	
 	
 }

@@ -16,6 +16,7 @@
 
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="resources/js/main/bootstrap.js"></script>
 
 
@@ -28,16 +29,16 @@
 <link
 	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
-<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- Plugin CSS -->
 <link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="resources/css/folder2.css" rel="stylesheet" />
+
+
+
 
 <Style>
 
@@ -161,7 +162,7 @@ bottom: 8px;
 
 <body>
 
-<!-- Navigation -->
+<!-- Navigation 
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
@@ -178,7 +179,9 @@ bottom: 8px;
 			<div class="collapse navbar-collapse" id="navbarResponsive"></div>
 		</div>
 	</nav>
+-->
 
+<jsp:include page="header.jsp"></jsp:include>
 
 
 
@@ -305,15 +308,7 @@ $(()=>{
 </script>
 
 
-	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Plugin JavaScript -->
-
-	<script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-
-	<!-- Custom scripts for this template -->
-	<script src="resources/js/main/creative.js"></script>
+	
 
 
 </body>
