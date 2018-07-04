@@ -14,8 +14,8 @@
     <title>Team Job</title>
     
 	
-    <!-- Bootstrap core CSS -->
-    
+    <!-- 웹소켓 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <!-- 로그인창 -->
 	<link href="resources/css/login-register.css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -119,7 +119,7 @@
             	
  <!-- 로그인시 쪽지함 모달!! -->
 	<div class="w3-container">
-
+			<div id = "messageCount" style = "left:850px ;position: relative; color : red;">0</div>
 			<button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
 					class="w3-button w3-black" style="position: relative; right:-100vh" >쪽지함.</button>
 					
@@ -463,14 +463,51 @@
 	
 	
 	<script>
+	
+	// 웹소켓
+	var url = 'ws://localhost:8181/project/echo';
+	var ws = new WebSocket(url);
+	
+	ws.onmessage = function(event){
+		console.log(event.data);
+	}
+	
+	window.onbeforeunload = function() {
+	  		var out = '${userId}';
+	  		if(out != ''){
+	    	 ws.send('pageOut,'+ out);
+			    websocket.close()
+	  		}
+	   return null;
+	};
+	
+	
+	
 	$(()=>{
 		
+		
+		
+		
+		var state1 = '${userId}';
+		console.log('아이디 : '+state1);
+		
+		if(state1 != ''){
+			ws.send('login,'+state1);
+			
+		}
+		
+		
+		
+			
+		
+	
 		$('#getM').click(()=>{
 			
 			console.log('aaa');
 		
 			
 			});
+		
 		
 		var register = '${registerResult}';
 		console.log(register);
@@ -601,6 +638,8 @@
 				}),
 				success: function(result){
 						if(result==='ok'){
+																			
+								
 							
  							console.log(result);
 							//location = document.location;
@@ -627,6 +666,9 @@
 		// 로그아웃버튼 클릭시
 		$('#btnlogout').click(function(event){
 			event.preventDefault();
+			var re = '${userId}'
+			ws.send('pageOut,'+ re);
+	
 			location = '/project/logout'; //<<--controller로 간다 .
 		}); //end #btnlogout()
 
@@ -698,6 +740,7 @@
 				}),
 				success: function (result) { 
 					if(result ===1){
+						ws.send('message,'+youid);
 						resetWriteMessage();
 						console.log("1111111111");
 						alert('성공적으로 보냈습니다.');
@@ -849,7 +892,7 @@ function btnlogout(event){
 			  event.currentTarget.classList.add("w3-light-grey");
 			}// end messageBtn()  
 			
-			
+	
 			
 			
 	</script>
