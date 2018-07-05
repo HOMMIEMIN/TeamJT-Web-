@@ -122,6 +122,10 @@ bottom: 8px;
 <script>
 
 $(()=>{
+	
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
+	
 	$('#createFolder2').css('display','none');
 	$('#addLec').click(()=>{
 		event.preventDefault();

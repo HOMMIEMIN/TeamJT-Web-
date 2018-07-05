@@ -20,7 +20,7 @@ public interface OnLecDao {
 	
 	int insertOnLec(OnLec on);
 	
-	
+	int cntUpdate(int bno);
 	
 	// 폴더 DAO
 	int insertGorup(GroupOn on);
@@ -35,6 +35,8 @@ public interface OnLecDao {
 	
 	int updateLike(int bno);
 	
+	int updateLikeDelete(int bno);
+	
 	List<OnLec> selectByCategory(String category);
 	
 	String selectGroupBnoByLecName(int groupBno);
@@ -42,5 +44,7 @@ public interface OnLecDao {
 	List<OnLec> selectByCategoryAll();
 	
 	List<OnLec> selectByKeyword(String keyword);
+	
+	GroupOn selectByMyLec(int groupBno);
 	
 }

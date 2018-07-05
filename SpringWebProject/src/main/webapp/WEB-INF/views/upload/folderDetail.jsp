@@ -132,6 +132,8 @@ $(()=>{
 		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
 		
 	});
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
 
 });
 

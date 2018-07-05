@@ -40,6 +40,7 @@ public class OffLecDaoImple implements OffLecDao {
 		return uploadMapper.updateWaitingId(offLecture);
 	}
 	
+	// 대기자 넣을 글번호 찾기 
 	@Override
 	public OffLec select(int bno) {
 	

@@ -190,8 +190,15 @@ p.views.views-info {
 	<br />
 
 	<script>
-
+	
+	$(()=>{
+		$('#loader').css('display', 'none');
+		$('#notClick').css('display', 'none');
+	});
+	
 $(function(){
+	
+	
 	
 	$("#btnFolder2").click(function () {
 		

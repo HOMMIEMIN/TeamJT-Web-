@@ -85,4 +85,18 @@ public class OffLecServiceImple implements OffLecService {
 	}
 	
 	
+	@Override
+	public int updateWaiting(OffLec offLec) {
+
+		return dao.update(offLec); 
+	}
+	
+	// 대기자 넣을 글번호 찾기 
+	@Override
+	public OffLec readForWaiting(int bno) {
+		return dao.select(bno);
+	}
+	
+	
+	
 }

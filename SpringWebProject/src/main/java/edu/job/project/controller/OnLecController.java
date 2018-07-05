@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.job.project.domain.GroupOn;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OnLec;
+import edu.job.project.prisitence.MemberDao;
+import edu.job.project.service.MemberService;
 import edu.job.project.service.OnLecService;
 
 @Controller
@@ -29,7 +32,14 @@ public class OnLecController {
 	@Autowired
 	private OnLecService service;
 	
+
 	// 글작성 페이지로 이동 
+
+	@Autowired
+	private MemberService mService;
+	
+	
+
 	@RequestMapping(value="/addonlec", method=RequestMethod.GET)
 	public String upload(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("업로드 : " + bno);
@@ -96,5 +106,18 @@ public class OnLecController {
 		
 		return new ResponseEntity<String>(re, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/myLec", method=RequestMethod.GET)
+	public String myLec(HttpSession session, Model model) {
+		String myID = (String)session.getAttribute("userId");
+		Member m = mService.readId(myID);
+		List<GroupOn> list = service.readByMyLec(m);
+		if(list.size() != 0 || list != null) {
+			model.addAttribute("list", list);
+		}
+		return "/upload/myLec";
+	}
+	
+	
 	
 }

@@ -16,28 +16,20 @@
 <script>
 	$(function() {
 
-		$("#datepicker1").datepicker(
-				{
-					inline : true,
-					sidebySide : true,
-					dateFormat : 'yy년 mm월 dd일 ',
-					prevText : '이전 달',
-					nextText : '다음 달',
-					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
-							'8월', '9월', '10월', '11월', '12월' ],
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-					showMonthAfterYear : true,
-					changeMonth : true,
-					changeYear : true,
-					yearSuffix : '년' 
-					
-
-				});
-
+		 $('#datepicker').datepicker({
+	       		altField : '#datepicker1',			
+				dateFormat : 'yy년 mm월 dd일 ',
+				prevText : '이전 달',
+				nextText : '다음 달',
+				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',	'8월', '9월', '10월', '11월', '12월' ],
+				monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+				dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+				dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+				showMonthAfterYear : true,
+				minDate : 0,
+				yearSuffix : '년' 
+	    });
 	});
 	$(function() {
 		$("#timepicker1").timepicker({
@@ -45,7 +37,6 @@
 			interval : 30,
 			minTime : '30',
 			maxTime : '11:59pm',
-			
 			startTime : '10:00',
 			dynamic : true,
 			dropdown : true,
@@ -64,8 +55,12 @@
 			filerd.readAsDataURL(input.files[0]);
 		}
 	}
-
 	// i mention $ symbol before function so its not identified by onchange;
+	
+
+
+
+
 </script>
 
 </head>
@@ -124,10 +119,10 @@
 
 					</div>
 					<div class="col-sm-4" >
-						<div class="form-group" style="padding-top: 90px;">
+						<div class="form-group" style="padding-top: 30px;">
 							<label for="meetingday" class="control-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 날짜</label>
 							<div class="col-sm-10">
-							
+								<div id="datepicker"></div>
 								<input type='text' class="form-control" id="datepicker1" name="meetingday" placeholder="${serverTime1}"/>
 							</div>
 						</div>

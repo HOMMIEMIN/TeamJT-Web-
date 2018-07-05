@@ -13,17 +13,17 @@ public class GroupOn {
 	private int lecLike;
 	private Date regdate;
 	private String imagePath;
-	
+	private int cnt;
 	
 	
 	public GroupOn() {
-	
+
 	}
 
 
-
 	public GroupOn(int bno, int lecBno, String userId, String lecName, String lecType, String lecCategory, int lecLike,
-			Date regdate, String imagePath) {
+			Date regdate, String imagePath, int cnt) {
+
 		this.bno = bno;
 		this.lecBno = lecBno;
 		this.userId = userId;
@@ -33,8 +33,8 @@ public class GroupOn {
 		this.lecLike = lecLike;
 		this.regdate = regdate;
 		this.imagePath = imagePath;
+		this.cnt = cnt;
 	}
-
 
 
 	public int getBno() {
@@ -42,11 +42,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setBno(int bno) {
 		this.bno = bno;
 	}
-
 
 
 	public int getLecBno() {
@@ -54,11 +52,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setLecBno(int lecBno) {
 		this.lecBno = lecBno;
 	}
-
 
 
 	public String getUserId() {
@@ -66,11 +62,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 
 	public String getLecName() {
@@ -78,11 +72,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setLecName(String lecName) {
 		this.lecName = lecName;
 	}
-
 
 
 	public String getLecType() {
@@ -90,11 +82,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setLecType(String lecType) {
 		this.lecType = lecType;
 	}
-
 
 
 	public String getLecCategory() {
@@ -102,11 +92,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setLecCategory(String lecCategory) {
 		this.lecCategory = lecCategory;
 	}
-
 
 
 	public int getLecLike() {
@@ -114,11 +102,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setLecLike(int lecLike) {
 		this.lecLike = lecLike;
 	}
-
 
 
 	public Date getRegdate() {
@@ -126,11 +112,9 @@ public class GroupOn {
 	}
 
 
-
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
-
 
 
 	public String getImagePath() {
@@ -138,10 +122,23 @@ public class GroupOn {
 	}
 
 
-
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
+
+	public int getCnt() {
+		return cnt;
+	}
+
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
+	
+	
 
 
 

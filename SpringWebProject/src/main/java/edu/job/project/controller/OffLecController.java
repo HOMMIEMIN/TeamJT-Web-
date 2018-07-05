@@ -97,8 +97,8 @@ public class OffLecController {
 		
 		String location= lat+","+long1;
 		
-		String meeting = meetingday+""+meetingtime;
-		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember, null, url , location , groupBno);
+		String meeting = meetingday+","+meetingtime;
+		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember,0, null, url , location , groupBno);
 		int result = offlecService.create(offLecture);
 		
 		if(result ==1 ) {

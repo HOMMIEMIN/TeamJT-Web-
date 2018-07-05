@@ -33,4 +33,12 @@ set ${col_onlec} = #{onLec}
 where ${col_userid} = #{userId}
 </update>
 
+<!-- 수강신청 ( 대기 ) -->
+<update id="updateOffLec">
+UPDATE ${tbl_member}
+SET ${col_offlecwaiting} = #{bno}
+WHERE ${col_userid} = #{userid}
+</update>
+
+
 </mapper>

@@ -12,10 +12,11 @@
   
 	<insert id="insert">
 		
-		INSERT INTO ${tbl_offlec} ( ${col_userid} , ${col_category} , ${col_title} , ${col_content} , ${col_meetingday} , ${col_maxmember} , ${col_imgpath} , ${col_location} , ${col_groupbno2} )
-		VALUES ( #{userid} , #{category} , #{title} , #{content} , #{meetingday} , #{maxmember} , #{imgPath} , #{location} , #{groupBno} )
+		INSERT INTO ${tbl_offlec} ( ${col_userid} , ${col_category} , ${col_title} , ${col_content} , ${col_meetingday} , ${col_maxmember} ,${col_curmember}, ${col_imgpath} , ${col_location} , ${col_groupbno2} )
+		VALUES ( #{userid} , #{category} , #{title} , #{content} , #{meetingday} , #{maxmember}, #{curmember} , #{imgPath} , #{location} , #{groupBno} )
 		
 	</insert>
+	
 	<!--  오프라인 대기자 신청  -->
 	<update id="updateWaitingId" >
 		UPDATE ${tbl_offlec}
@@ -23,12 +24,11 @@
 		WHERE ${col_bno} = #{bno}
 	</update>
   
+  	<!-- 멤버테이블에 넣을것.  -->
   	<select id="selectWaitingList" resultType="OffLec">
-  	
-  		SELECT ${col_waitingId}
+  		SELECT *
 		FROM ${tbl_offlec}
 		WHERE ${col_bno} = #{bno}
-  	
   	</select>
   		
   	<select id="selectAll" resultType="OffLec">

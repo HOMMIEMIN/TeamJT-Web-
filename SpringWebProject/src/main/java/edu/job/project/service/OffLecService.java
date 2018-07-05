@@ -34,5 +34,9 @@ public interface OffLecService {
 	// 하나의 강의에서 그 강의의 강좌 ( 폴더 ) 리스트를 읽는것. 
 	List<OffLec> readByGroupBno(int groupBno);
 	
+	int updateWaiting(OffLec offLec);
+	
+	OffLec readForWaiting(int bno);
+	
 	
 }

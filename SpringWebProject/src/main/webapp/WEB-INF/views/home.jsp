@@ -14,8 +14,8 @@
     <title>Team Job</title>
     
 	
-    <!-- Bootstrap core CSS -->
-    
+    <!-- 웹소켓 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <!-- 로그인창 -->
 	<link href="resources/css/login-register.css" rel="stylesheet" />
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
@@ -103,14 +103,14 @@
       <div class="container">
        <div class="collapse navbar-collapse" id="navbarResponsive">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
+        
         	<c:if test="${not empty userId }">      
              	<div class="frame1" id="profile">
              		<div class="dropdown-content">
 
-   						<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
-    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
-    					<a href="/project/mypage" style="border-bottom: 1px solid lightgrey;">칠판</a>
-
+   						<a href="/project/mypage?type=a" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
+    					<a href="/project/mypage?type=b" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
+    					<a href="/project/mypage?type=c" style="border-bottom: 1px solid lightgrey;">칠판</a>
     					<a href="" id="btnlogout">하교</a>
   					</div>
             	 </div>
@@ -392,11 +392,23 @@
                                 <!-- 로그인 모달 -->
                                 <div class="error"></div>
                                 <div class="form loginBox">
-                                    <form method="post" action="/login">
+                                    <!--<form method="post" action="/project/login">
                                     <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
                                     <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
                                     <input id="btnLogin" class="btn btn-default btn-login" type="submit" value="로그인">
-                                    </form>
+                                    </form>-->
+                                    
+                                    <!-- <form method="post" action="/project/login"> -->
+                                    <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
+                                    <button type="button" id="btnLogin" class="btn btn-default btn-login">로그인</button>
+                                    <!-- </form>-->
+                                        	                          
+                                    <!-- <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
+                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
+                                    
+                                    <button id="btnLogin" class="btn btn-default btn-login">로그인</button>
+                                    -->
                                 </div>
                              </div>
                         </div>
@@ -451,14 +463,47 @@
 	
 	
 	<script>
+	
+	var url = 'ws://localhost:8181/project/echo';
+	var ws = new WebSocket(url);
+	
+	ws.onmessage = function(event){
+		console.log(event.data);
+	}
+	
+	
+
+	
+	
 	$(()=>{
 		
+		var state1 = '${userId}';
+		console.log('아이디 : '+state1);
+		
+		if(state1 != ''){
+			ws.send('login,'+state1);
+			
+		}
+		window.onbeforeunload = function() {
+		    websocket.onclose = function () {
+		    	var userId = '${userId}'
+		   			alert('dd');
+		    		ws.send('pageOut,' + userId);
+		    	
+		    }; 
+		   ws.close();
+		};
+		
+			
+		
+	
 		$('#getM').click(()=>{
 			
 			console.log('aaa');
 		
 			
 			});
+		
 		
 		var register = '${registerResult}';
 		console.log(register);
@@ -589,6 +634,8 @@
 				}),
 				success: function(result){
 						if(result==='ok'){
+																			
+								
 							
  							console.log(result);
 							//location = document.location;
@@ -615,10 +662,11 @@
 		// 로그아웃버튼 클릭시
 		$('#btnlogout').click(function(event){
 			event.preventDefault();
+			var re = '${userId}'
+			ws.send('pageOut,'+ re);
 			location = '/project/logout'; //<<--controller로 간다 .
 		}); //end #btnlogout()
 
-		
 		
 		var userId = $('#messageUserId').val();
 		console.log('messageUserId = ' + userId);
@@ -817,6 +865,11 @@
 		$('#writeContent').val('');
 	}// end resetWriteMessage()
 
+function btnlogout(event){
+	event.preventDefault();
+    location = '/project/logout';
+ }
+
 //쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
 		document.getElementsByClassName("tablink")[0].click();
 		function messageBtn(event, btnName) {
@@ -833,7 +886,7 @@
 			  event.currentTarget.classList.add("w3-light-grey");
 			}// end messageBtn()  
 			
-			
+	
 			
 			
 	</script>

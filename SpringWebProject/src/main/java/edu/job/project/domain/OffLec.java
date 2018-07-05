@@ -12,6 +12,7 @@ public class OffLec {
 	private String meetingday;	// 모일날짜
 	
 	private int maxmember;
+	private int curmember;
 	private Date regdate;
 	private String applyId; 	// 신청자 아이디 
 	private String waitingId; 	// 수락대기중인 아이디들
@@ -30,18 +31,19 @@ public class OffLec {
 
 
 	public OffLec(int bno, String userid, String category, String title, String content, String meetingday,
-			int maxmember, Date regdate ,String imgPath , String location , int groupBno) {
-		this.bno = bno;
-		this.userid = userid;
-		this.category = category;
-		this.title = title;
-		this.content = content;
-		this.meetingday = meetingday;
-		this.maxmember = maxmember;
-		this.regdate = regdate;
-		this.imgPath = imgPath;
-		this.location=location;
-		this.groupBno=groupBno;
+			int maxmember,int curmember, Date regdate ,String imgPath , String location , int groupBno) {
+		this.bno = bno;					// 글번호 1
+		this.userid = userid;			// 아이디 2
+		this.category = category;		// 카테고리 3
+		this.title = title;				// 글제목 4
+		this.content = content;			// 글내용 5
+		this.meetingday = meetingday;	// 모임날짜 6
+		this.maxmember = maxmember;		// 최대수강인원 7
+		this.curmember = curmember;		// 현재신청자 8
+		this.regdate = regdate;			// 작성시간 9
+		this.imgPath = imgPath;			// 이미지경로 10
+		this.location=location;			// 모임위치 11
+		this.groupBno=groupBno;			// 폴더 번호  12
 		
 	}
 	
@@ -108,7 +110,12 @@ public class OffLec {
 	public void setMaxmember(int maxmember) {
 		this.maxmember = maxmember;
 	}
-
+	public int getCurmember() {
+		return curmember;
+	}
+	public void setCurmember(int curmember) {
+		this.curmember = curmember;
+	}
 	public Date getRegdate() {
 		return regdate;
 	}

@@ -274,7 +274,7 @@ h4 {
 
 	<div>
 
-		<div id="onLec" style="display: inline-block; margin-left: 200px"></div>
+		<div id="onLec" style="display: inline-block; margin-left: 200px;width: 1200px;max-width: 1200px"></div>
 	</div>
 
 		<div>
@@ -315,8 +315,9 @@ h4 {
  
 			if (cityName === 'Paris') {
 				console.log(' 선생님 페이지 들어옴');
-
+				
 				myFunction();
+				
 				$('#onLec').animate({
 					opacity : 0
 				}, 1000);
@@ -347,7 +348,18 @@ h4 {
 				$('#London').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#Tokyo').css('border-bottom', 'none');
+				$('#onLec').animate({
+					opacity : 0
+				}, 1000);
+				$('#onLec').load("/project/upload/myLec");
+				$('#onLec').animate({
+					opacity : 1
+				}, 1000);
+				
+				$('#loader').css('display', 'block');
+				$('#notClick').css('display', 'block');
 			} else if (cityName === 'Tokyo') {
+				
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
@@ -361,7 +373,7 @@ h4 {
 			console.log(' myFunction 들어옴')
 			$('#loader').css('display', 'block');
 			$('#notClick').css('display', 'block');
-			var a = setTimeout(showPage, 1000);
+			
 		}
 
 		function showPage() {
@@ -369,6 +381,7 @@ h4 {
 			$('#loader').css('display', 'none');
 		}
 		$(()=>{
+
 			jQuery.browser = {};
 			(function () {
 			    jQuery.browser.msie = false;
@@ -378,6 +391,23 @@ h4 {
 			        jQuery.browser.version = RegExp.$1;
 			    }
 			})();
+
+			var type='${type}';
+			console.log('타입 : ' + type);
+			if(type != null){
+				switch(type){
+				case 'a':
+				openCity(event, 'London');
+				break;
+				case 'b':
+				openCity(event, 'Paris');
+				break;
+				case 'c':
+				openCity(event, 'Tokyo');
+				break;
+				}
+			}
+
 		});
 		
 	</script>

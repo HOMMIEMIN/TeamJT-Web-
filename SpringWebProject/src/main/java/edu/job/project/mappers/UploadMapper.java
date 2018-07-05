@@ -16,7 +16,9 @@ public interface UploadMapper {
 	// 특정 컬럼검색
 	OffLec selectWaitingList(int bno);
 	
+	
 	List<OffLec> selectAll ();
+	
 	
 	
 }
