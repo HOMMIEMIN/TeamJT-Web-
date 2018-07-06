@@ -122,7 +122,7 @@ bottom: 8px;
 <script>
 
 $(()=>{
-	
+	$('#onLec').css('display','none');
 	$('#loader').css('display', 'none');
 	$('#notClick').css('display', 'none');
 	
