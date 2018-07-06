@@ -13,7 +13,9 @@
 	href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-
+	
+<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
 
 <script src="resources/js/main/login-register.js" type="text/javascript"></script>
 
@@ -21,13 +23,19 @@
 <link href="resources/vendor/magnific-popup/magnific-popup.css"
 	rel="stylesheet">
 
+<!-- 쪽지함 모달 -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!-- Custom styles for this template -->
 <link href="resources/css/creative.min.css" rel="stylesheet">
 
 <style type="text/css">
 .navigation {
-	height: 60px;
+	position: fixed;
+	top: 0; width : 100%; height : 60px;
 	background-color: #404040;
+	height: 60px;
+	width: 100%;
 }
 
 .container {
@@ -37,6 +45,7 @@
 	min-width: 670px;
 	margin: auto;
 	height: 60px;
+	padding: 0px;
 }
 
 .navleft {
@@ -45,6 +54,7 @@
 	width: 300px;
 	height: 60px;
 	margin-top: 15px;
+	margin-left: 0px;
 }
 
 .navright {
@@ -53,6 +63,22 @@
 	align-items: center;
 	width: 300px;
 	height: 60px;
+}
+
+
+.iflogin {
+	display: flex;
+	/*justify-content: space-between;*/
+	flex-direction: row-reverse;
+	align-items: center;
+	width: 300px;
+}
+
+.nav-messege {
+	display: flex;
+	width: 50px;
+	height: 50px;
+	align-items: center;
 }
 
 .navcenter {
@@ -66,9 +92,9 @@
 	margin-top: 10px;
 }
 
-.navcenter .inputsearch {
+.navcenter #inputsearch {
 	position: absolute;
-	margin-top: 16px;
+	margin-top: 17px;
 	margin-left: 5px;
 	background-color: #404040;
 	outline: none;
@@ -79,8 +105,8 @@
 	text-align: left;
 	border: 0px;
 	color: #ffffff;
-	font-size: 14pt;
-	font-family: 돋움, dotum, sans-serif;
+	font-size: 13pt;
+	font-family: 'Nanum Gothic', serif;
 	font-weight: bold;
 }
 
@@ -90,8 +116,7 @@
 	margin-left: 270px;
 }
 
-.btnlogin, 
-.btnregister {
+.btnlogin, .btnregister {
 	width: 100%;
 	height: 60px;
 	border: none;
@@ -99,25 +124,73 @@
 	color: #ffffff;
 	font-weight: bold;
 	outline: none;
-	
 }
 
-.btnlogin:focus, 
-.btnregister:focus {
+.btnlogin:focus, .btnregister:focus {
 	outline: 0;
-	
 }
 
-.btnlogin:active,
-.btnregister:active {
+.btnlogin:active, .btnregister:active {
 	background-color: #44c7aa;
-	
 }
 
+/* 로그인 후 아이콘 UI */
+.nav-profile {
+	/*position: relative;*/
+	
+	display: inline-block;
+	background: url(/project/resources/img/test.png) center center no-repeat;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	/*left:108%;*/
+}
 
+.dropdown-content {
+	/*bottom: -270%;*/
+	/*left: -100%;*/
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 90px;
+	box-shadow: 0px 7px 16px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: black;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: lightgrey;
+}
+
+.nav-profile:hover .dropdown-content {
+	display: block;
+}
+
+.city {
+	display: none
+}
+
+tr {
+	border-bottom: 2px solid lightpink;
+}
+
+th, td {
+	border-right: 2px solid lightpink;
+}
+
+tr:hover {
+	background-color: lavender;
+}
 </style>
 </head>
-<body style="margin: 0px">
+<body style="margin: 0px; height: 2400px;">
+
 	<nav class="navigation">
 		<div class="container">
 			<!-- 로고(메인페이지 링크) -->
@@ -127,25 +200,52 @@
 			<!-- 검색창 -->
 			<div class="navcenter">
 				<img style="height: 38px; width: 301px" src="/project/resources/img/search_bg.png">
-				<input class="inputsearch" type="text" name="search">
+				<input id="inputsearch" type="text" name="search" value="${searchText }">
 				<img style="height: 20px; width: 20px" id="searchicon" src="/project/resources/img/search_icon.png">
 			</div>
 			<div class="navright">
-			<!-- 로그인 (등교하기) 버튼 -->
+				<!-- 로그인 안한 상태 -->
 				<c:if test="${empty userId}">
-					<a style="outline: none" class="nav-link js-scroll-trigger" data-toggle="modal"
+				<div class="iflogout">
+					<a style="outline: none; padding: 0px;" class="nav-link js-scroll-trigger" data-toggle="modal"
 						href="javascript:void(0)" onclick=openLoginModal()>
 						<img style="height: 40px; width: 100px" src="/project/resources/img/login_bg.png" alt="로그인"></a>
+				</div>
+				</c:if>
+				<!-- 로그인한 후 -->
+				<c:if test="${not empty userId }">
+					<div class="iflogin">
+						<div class="nav-profile" id="profile">
+							<div class="dropdown-content">
+								<a href="/project/mypage?type=a"
+									style="border-bottom: 1px solid lightgrey;">나는 학생</a> <a
+									href="/project/mypage?type=b"
+									style="border-bottom: 1px solid lightgrey;">나는 선생님</a> <a
+									href="/project/mypage?type=c"
+									style="border-bottom: 1px solid lightgrey;">칠판</a> <a href=""
+									id="btnlogout">하교</a>
+							</div>
+						</div>
+						<div class="nav-messege">
+							<button id="btnmessege"
+								onclick="document.getElementById('id01').style.display='block'"
+								class="w3-button w3-black" style="position: absolute;">쪽지함.</button>
+							<div id="messageCount"
+								style="left: 850px; position: relative; color: red;">0</div>
+						</div>
+
+					</div>
 				</c:if>
 			</div>
 		</div>
 	</nav>
-
+	
+	<!-- input type="text" id="messageUserId" value="${userId}"	style="display: none;" /-->
+	
 	<!-- 로그인  -->
 	<div class="modal fade login" id="loginModal">
 		<div class="modal-dialog login animated">
 			<div class="modal-content">
-			
 				<div class="modal-header">
 					<h4 class="modal-title"></h4>
 					<button type="button" class="close" data-dismiss="modal"
@@ -231,12 +331,89 @@
 		</div>
 	</div>
 
-<!-- Bootstrap core JavaScript <script src="vendor/jquery/jquery.min.js"> </script>  -->
+	<!-- 로그인시 쪽지함 모달!! -->
+	<div class="w3-container">
+
+		<div id="id01" class="w3-modal">
+			<div id="id02" class="w3-modal-content w3-card-4 w3-animate-zoom">
+				<header class="w3-container w3-blue">
+					<span
+						onclick="document.getElementById('id01').style.display='none'"
+						class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+					<h2>${userName }님의쪽지함</h2>
+				</header>
+
+				<div id="message" class="w3-bar w3-border-bottom">
+					<button id="resetMget" class="tablink w3-bar-item w3-button"
+						onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
+					<button id="resetMsend" class="tablink w3-bar-item w3-button"
+						onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
+					<button id="resetMwrite" class="tablink w3-bar-item w3-button"
+						onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
+				</div>
+
+				<div id="mGet" class="w3-container city">
+					받은 쪽지함 0/7
+					<button style="left: -50%;" id="resetbtn1">새로고침</button>
+					<table id="messageGetList">
+					</table>
+				</div>
+
+
+				<div id="mSend" class="w3-container city">
+					보낸 쪽지함 0/7
+					<button style="left: -50%;" id="resetbtn2">새로고침</button>
+					<table id="messageSendList">
+					</table>
+				</div>
+
+				<div id="mWrite" class="w3-container city">
+					<h5>쪽지 작성</h5>
+					<label>받는 사람</label>
+
+					<div id="resetwriteMessage">
+						<input id="toId" class="w3-input w3-border w3-margin-bottom"
+							type="text" placeholder="ex) 아무게@itwill.com" name="yourId"
+							required>
+						<textarea id="writeContent" style="margin-bottom: 20px;"
+							class="w3-input w3-border w3-margin-bottom" rows="7" cols="106"
+							name="mcontent" placeholder="내용 작성" required></textarea>
+						<label>보내는 사람</label> <input id="fromId"
+							class="w3-input w3-border w3-margin-bottom" type="text"
+							value="${userId}" name="userId" readonly>
+						<button id="writeSendBtn" class="w3-button w3-green w3-large">
+							보내기</button>
+					</div>
+				</div>
+
+				<div class="w3-container w3-light-grey w3-padding">
+					<button class="w3-button w3-right w3-white w3-border"
+						onclick="document.getElementById('id01').style.display='none'">Close</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- end 로그인시 쪽지함 모달 !-->
+
+	<!-- Bootstrap core JavaScript--> 
+	<script src="resources/vendor/jquery/jquery.min.js"> </script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 <script>
+
 $('document').ready(function(){
+	
+	// 스크롤 내리면 header 색상 변경
+	$(window).scroll(function() {
+		  if($(this).scrollTop() >= 400) {
+			  $('.navigation').css('background-color', '#bdbdbd');
+		  }
+		  else {
+			  $('.navigation').css('background-color', '#404040');
+		  }
+		});
 	
 	// 회원 가입
 	var register = '${registerResult}';
@@ -392,20 +569,252 @@ $('document').ready(function(){
 
 	}); //end btnLogin.click()
 
+	//모달에서 받은쪽지함
+    $('#getM').click(function(){
+       console.log('getM클릭 메소드 실행전 '+userId);
+       getAllMessege();
+       console.log('getM클릭 메소드 실행후후'+userId);
+       
+    }); // end getM
+    
+    //모달에서 보낸쪽지함
+    $('#sendM').click(function(){
+       sendAllMessege();
+    }); // end sendM
+
+ 
+     
+    
+    //쪽지함 모달에서 받은쪽지 새로고침버튼 
+    $('#resetbtn1').click(function(){
+       console.log("resetbtn111111111");
+       getAllMessege();
+    }); // end resetbtn
+    
+    //쪽지함 모달에서 보낸쪽지 새로고침버튼 
+    $('#resetbtn2').click(function(){
+       console.log("resetbtn22222222222");
+       sendAllMessege();
+    }); // end resetbtn
+    
+    
+    // 메인화면에서 쪽지함 클릭시
+    $('#btnmessege').click(function(){
+       getAllMessege();
+       sendAllMessege();
+    }); // end btnmessege
+    
+    
+    // 쪽지함 모달에서 쪽지 작성중 (보내기)버튼 
+    $('#writeSendBtn').click(function(event){
+       event.preventDefault();
+       console.log("들어옴");
+       var myid = $('#fromId').val();
+       var youid = $('#toId').val();
+       myid = encodeURI(myid);
+       youid = encodeURI(youid);
+       var writeContent = $('#writeContent').val();
+       console.log(myid);
+       console.log(youid);
+       console.log(writeContent);
+
+       $.ajax({
+          type: 'post',
+          url: 'message/sendMassage',
+          headers: {
+             'Content-Type': 'application/json',
+             'X-HTTP-Method-Override': 'post'
+          },
+          data: JSON.stringify({
+             'userId': myid,
+             'yourId': youid,
+             'mcontent': writeContent
+          }),
+          success: function (result) { 
+             if(result ===1){
+               // ws.send('message,'+youid);
+                resetWriteMessage();
+                console.log("1111111111");
+                alert('성공적으로 보냈습니다.');
+                console.log("22222222222");
+                sendAllMessege();
+                console.log("33333333333");
+                setTimeout(function() {
+                console.log("4444444444");
+                messageBtn(event, 'mSend');
+                getAllMessege();
+                console.log("5555555555");
+                }, 1000);
+                               
+                
+             } 
+          }
+       }); // end ajax()
+    });// end #writeSendBtn()
+       
+    
+     // 받은쪽지함에서 리스트로 보이게 하기 위한 코드
+     function getAllMessege() {
+       console.log('===== userId: ' + userId);
+       $.ajax({
+          type: 'get',
+          url: 'message/all',
+          headers: {
+             'Content-Type': 'application/json',
+             'X-HTTP-Method-Override': 'get'
+          },
+          data: encodeURI('userId='+userId),
+          success: function(result) {
+             var list1 = '';
+             var list2 = '';
+             list1 +='<tr>'
+                +'<th>쪽지번호</th>'
+                +'<th>보낸 사람</th>'
+                +'<th>내용</th>'
+                +'<th>보낸 시간</th>'
+                +'</tr>';
+             $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+                console.log(this)
+                var date = new Date(this.regdate);
+                var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                list2 += '<tr>'
+                + '<td>'
+                + this.mno
+                + '</td>'
+                + '<td>'
+                + this.yourId
+                + '</td>'
+                + '<td>'
+                + this.mcontent
+                + '</td>'
+                + '<td>'
+                + dateString
+                + '</td>'
+                + '</tr>';
+             }); // end each()
+             $('#messageGetList').html(list1+list2);
+             //$('#messageList').html(list2);   
+          }
+       });      
+    }// end getAllMessege()
+    
+    // 보낸쪽지함에서 보낸쪽지를 리스트로 보이게 하기 위한 코드
+    function sendAllMessege() {
+       console.log('===== userId: ' + userId);
+       $.ajax({
+          type: 'get',
+          url: 'message/sendmessage',
+          headers: {
+             'Content-Type': 'application/json',
+             'X-HTTP-Method-Override': 'get'
+          }, 
+          data: encodeURI('userId='+userId),
+          success: function(result) {
+             var list1 = '';
+             var list2 = '';
+             list1 +='<tr>'
+                +'<th>쪽지번호</th>'
+                +'<th>받은 사람</th>'
+                +'<th>내용</th>'
+                +'<th>보낸 시간</th>'
+                +'</tr>';
+             $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+                console.log(this)
+                var date = new Date(this.regdate);
+                var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                list2 += '<tr>'
+                + '<td>'
+                + this.mno
+                + '</td>'
+                + '<td>'
+                + this.yourId
+                + '</td>'
+                + '<td>'
+                + this.mcontent
+                + '</td>'
+                + '<td>'
+                + dateString
+                + '</td>'
+                + '</tr>';
+             }); // end each()
+             $('#messageSendList').html(list1+list2);
+             //$('#messageList').html(list2);   
+          }
+       });
+    }// end sendAllMessege()
+    
+  //쪽지작성 후 보내기 하면 그칸이 다시 리셋되게 하기 위한 함수(새로고침 버튼 처리)
+    function resetWriteMessage(){
+       $('#toId').val('');
+       $('#writeContent').val('');
+    }// end resetWriteMessage()
+  
+	// 로그아웃버튼 클릭시
+//	$('#btnlogout').click(function(event) {
+//		event.preventDefault();
+//		location = '/project/logout'; //<<--controller로 간다 .
+//	}); //end #btnlogout()
 
 	// 로그아웃버튼 클릭시
-	$('#btnlogout').click(function(event) {
-		event.preventDefault();
-		location = '/project/logout'; //<<--controller로 간다 .
-	}); //end #btnlogout()
+      $('#btnlogout').click(function(event){
+         event.preventDefault();
+         var re = '${userId}'
+//         ws.send('pageOut,'+ re);
+		var target = document.location;
+		$.ajax({
+   				type : 'post',
+   				url : '/project/logout',
+   				headers : {
+   					'Content-Type' : 'application/json; charset=UTF-8',
+   					'X-HTTP-Method-Override' : 'post'
+   				},
+   				data : JSON.stringify({
+   					'userId' : re
+   				}),
+   				success : function(result) {
+   					if (result === 'ok') {
+   						
+   						location.reload();
+   
+   						var target = document.location;
+   						
+   						location = target;
+   
+   					} else {
+   						alert('로그아웃 실패');
+   					}
+   				}
+   			}); // end ajacx
+   
+      }); //end #btnlogout()	
 	
 }); // end document.ready()
 
+	//쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
+	document.getElementsByClassName("tablink")[0].click();
+	function messageBtn(event, btnName) {
+		var i,
+			x,
+			tablinks;
+		x = document.getElementsByClassName("city");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		tablinks = document.getElementsByClassName("tablink");
+		for (i = 0; i < x.length; i++) {
+			tablinks[i].classList.remove("w3-light-grey");
+		}
+		document.getElementById(btnName).style.display = "block";
+		event.currentTarget.classList.add("w3-light-grey");
+	} // end messageBtn()  
+
 	// 로그아웃 처리
-	function btnlogout(event) {
-		event.preventDefault();
-		location = '/project/logout';
-	}
+//	function btnlogout(event) {
+//		event.preventDefault();
+//		location = '/project/logout';
+//	}
+	
 </script>
+</div>
 </body>
 </html>

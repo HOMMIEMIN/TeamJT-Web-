@@ -21,24 +21,14 @@
 
 
 
-<!-- Custom fonts for this template
+<!-- Custom fonts for this template -->
 <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
 <link
 	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-	rel='stylesheet' type='text/css'> -->
-
-<!-- link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet" type="text/css" -->
-<link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
-<!-- 
-font-family: 'Jeju Gothic', serif;
-font-family: 'Noto Sans KR', sans-serif; 
-font-family: 'Nanum Gothic', serif;
--->
-
+	rel='stylesheet' type='text/css'>
 <!-- Plugin CSS
 <link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">-->
 
@@ -51,144 +41,95 @@ font-family: 'Nanum Gothic', serif;
 
 
 <Style>
-.search-container {
-	max-width: 1200px;
-	margin: auto;
-	padding-top: 40px;
-	font-family: 'Noto Sans KR', sans-serif;
+
+ a:link {
+  text-decoration: none; 
+  color: black;
+  }
+
+.category{
+padding-left: 25px;
+margin-bottom: 15px;
+color:black;
 }
 
-.search-filters {
-	/*display: flex;
-	justify-content: flex-start;*/
-	float: left;
-	width: 300px;
+.categoryType{
+padding-left: 25px;
+margin-bottom: 15px;
+color:black;
 }
 
-.filter-title {
-	padding-bottom: 12px; 
-	color: #9c9c9c;
-	font-size: 12pt;
+.categoryMenu{
+font-size: 180%;
+color: grey;
+margin-bottom: 15px;
 }
 
-.filter {
-	padding-bottom: 14px;
-	padding-left: 20px;
-	margin-bottom: 10px;
-	color: #9c9c9c;
-	font-size: 11pt;
+.cate{
+font-size:150%;
+}
+.cateType{
+font-size:150%;
 }
 
-.nav-category, .nav-lectype {
-	margin-bottom: 30px;
+img{
+height: 68%;
 }
 
-.filter-title {
-	color: grey;
-	margin-bottom: 15px;
+
+
+div .col-md-3.resent-grid.recommended-grid.movie-video-grid{
+width:200px;
+height:280px;
+max-width: 200px;
+max-height: 280px;
+padding: 0px;
+margin-right: 60px;
+margin-bottom: 20px;
+
 }
 
-.category, .lectype {
-	
-}
-
-.result-box {
-	float: right;
-	width: 900px;
-	height: 34px;
-}
-
-.searchpath {
-	float: left;
-	display: flex;
-	align-items: flex-end;
-	width: 400px;
-	height: 30px;
-	color: grey;
-	font-family: 'Nanum Gothic', serif;
-	font-size: 10pt;
-	padding-bottom: 4px;
-}
-
-.result-align {
-	float: right;
-	width: 126px;
-	height: 34px;
-}
-
-.orderby {
-	width: 60px;
-	height: 34px;
-	font-size: 11pt;
-	font-family: 'Nanum Gothic', serif;
-	border: 1px solid;
-}
-
-a:link {
-	text-decoration: none;
-	color: #333333;
-}
-
-a:hover {
-	text-decoration: none !important;
-}
-
-/* 아래 css는 검색 결과  반복문에 적용 수정x */
-img {
-	height: 68%;
-}
-
-div .col-md-3.resent-grid.recommended-grid.movie-video-grid {
-	width: 200px;
-	height: 280px;
-	max-width: 200px;
-	max-height: 280px;
-	padding: 0px;
-	margin-right: 60px;
-	margin-bottom: 20px;
-}
 
 .overlay {
-	position: absolute;
-	bottom: 0;
-	margin: 0px;
-	background: none;
-	border: 1px solid grey;
-	color: #f1f1f1;
-	transition: .5s ease;
-	opacity: 0;
-	width: 200px;
-	height: 280px;
-	max-width: 200px;
-	max-height: 280px;
-	color: white;
-	font-size: 20px;
-	padding: 90px;
-	text-align: center;
+  position: absolute; 
+  bottom: 0; 
+  margin:0px;
+  background: none;
+  border : 1px solid grey;
+  color: #f1f1f1; 
+  transition: .5s ease;
+  opacity:0;
+  width:200px;
+height:280px;
+max-width: 200px;
+max-height: 280px;
+  color: white;
+  font-size: 20px;
+  padding: 90px;
+  text-align: center;
 }
 
-div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info
-	{
-	padding-top: 15px;
-	padding-right: 10px;
-	max-height: 86.5px;
+
+div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
+padding-top:15px;
+padding-right:10px;
+max-height: 86.5px;
 }
 
-div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
-	{
-	opacity: 1;
+div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
+  opacity: 1;
 }
 
-#addLec:hover #add {
-	opacity: 0.8;
+#addLec:hover #add{
+  opacity: 0.8;
 }
 
-.author {
-	position: relative;
-	bottom: 8px;
+.author{
+position:relative;
+bottom: 8px;
 }
 
-#notClick {
+ #notClick {
 	background-color: rgba(1, 1, 1, 0.7);
 	bottom: 0;
 	left: 0;
@@ -214,6 +155,7 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 	-webkit-animation: spin 2s linear infinite;
 	animation: spin 2s linear infinite;
 }
+
 </Style>
 
 </head>
@@ -221,69 +163,56 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 
-	<div class="search-container">
-		<div class="search-filters">
+	<div style="width: 2000px; height: auto;">
+		<div id="filter"
+			style="display: inline-block; margin: 40px; width: 400px; height: 600px;">
+			<div style="margin-bottom: 30px; font-weight: bold; font-size: 190%;">Search
+				Filter</div>
 
-			<div style="margin-bottom: 30px; font-size: 15pt; font-weight: bold; color: #333333">
-				Search Filter</div>
-
-			<div class="nav-category">
-				<div class="filter-title">Category</div>
-
-				<div class="filter">
-					<a id="allcategory" class="category" href="">
-						All Category</a>
-				</div>
-				<div class="filter">
-					<a id="it" class="category" href=""> IT</a>
-				</div>
-				<div class="filter">
-					<a id="language" class="category" href="">
-						Language</a>
-				</div>
-				<div class="filter">
-					<a id="food" class="category" href=""> Food</a>
-				</div>
-				<div class="filter">
-					<a id="health" class="category" href="">
-						Health</a>
-				</div>
-				<div class="filter">
-					<a id="life" class="category" href=""> Life</a>
-				</div>
-				<div class="filter">
-					<a id="etc" class="category" href=""> Etc.</a>
-				</div>
+			<div class="categoryMenu">Category</div>
+			<div class="category">
+				<a id="AllCategory" class="cate" href="" style="color: black">All
+					Category</a>
 			</div>
-			
+			<div class="category">
+				<a id="IT" class="cate" href="" style="color: black">IT</a>
+			</div>
+			<div class="category">
+				<a id="Language" class="cate" href="" style="color: black">Language</a>
+			</div>
+			<div class="category">
+				<a id="Food" class="cate" href="" style="color: black">Food</a>
+			</div>
+			<div class="category">
+				<a id="Health" class="cate" href="" style="color: black">Health</a>
+			</div>
+			<div class="category">
+				<a id="Life" class="cate" href="" style="color: black">Life</a>
+			</div>
+			<div class="category">
+				<a id="Etc" class="cate" href="" style="color: black">Etc.</a>
+			</div>
+			<br /> <br />
 
-			<div class="nav-lectype">
-				<div class="filter-title">Lecture Type</div>
-
-				<div class="filter">
-					<a id="online" class="lectype" href="">Online</a>
-				</div>
-
-				<div class="filter">
-					<a id="offline" class="lectype" href="">Offline</a>
-				</div>
+			<div class="categoryMenu">Lecture Type</div>
+			<div class="categoryType">
+				<a id="online" class="cateType" href="" style="color: black">Online</a>
+			</div>
+			<div class="categoryType">
+				<a id="offline" class="cateType" href="" style="color: black">Offline</a>
 			</div>
 		</div>
 
-		<div class="result-box">
-			<div class="searchpath">${category } > ${lecType }</div>
-			
-			<div class="result-align">
-				<div class="orderby">
-					<a id="recent" href="javascript:void(0)" onclick=>최신순↓</a>
-				</div>
-				<div class="orderby">
-					<a id="popular" href="javascript:void(0)" onclick=>인기순↓</a>
-				</div>
-			
-			</div>
+		<div
+			style="display: inline-block; width: 1200px; height: auto; position: relative; bottom: 450px;">
+			<div style="margin-bottom: 30px; font-size: 150%; color: grey">${category }
+				> ${lecType }</div>
 
-			<div class="searchresult">
+
+
+			<div id="" style="">
+
+
 				<c:forEach var="group" items="${list }">
 
 					<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
@@ -320,10 +249,11 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 					</div>
 
 				</c:forEach>
+
 			</div>
 		</div>
-	</div>
 
+	</div>
 
 	<div id="loader" style="display: none; z-index: 4;"></div>
 <div id="notClick" style="display: none; z-index: 3;"></div>	
@@ -332,7 +262,7 @@ $(()=>{
 	typeColor();
 	menuColor();
 	if('${category}' === "All Category"){
-		$('#allcategory').css('color','#169e83');
+		$('#AllCategory').css('color','#00ffbb');
 	}
 	var category = '#'+'${category}';
 	var type = '#'+'${lecType}'
@@ -341,12 +271,12 @@ $(()=>{
 	var clickType = 'online';
 	
 	console.log(category);
-	$(category).css('color','#169e83');
-	$(type).css('color','#169e83');
-	$('.category').click(function(){
+	$(category).css('color','#00ffbb');
+	$(type).css('color','#00ffbb');
+	$('.cate').click(function(){
 		event.preventDefault();
 		menuColor();
-		$(this).css('color','#169e83');
+		$(this).css('color','#00ffbb');
 		var a = $(this).css('color');
 		clickCategory = $(this).text();
 		console.log(clickCategory);
@@ -358,21 +288,21 @@ $(()=>{
 		$("#notClick").css('display','block');
 	});
 
-	$('.lectype').click(function(){
+	$('.cateType').click(function(){
 		event.preventDefault();
 		typeColor();
 		clickType = $(this).text();
 		console.log(clickType);
-		$(this).css('color','#169e83');
+		$(this).css('color','#00ffbb');
 	
 	});
 
 	function typeColor(){
-		$('.lectype').css('color','#333333');
+		$('.cateType').css('color','black');
 	}
 
 	function menuColor(){
-		$('.category').css('color','#333333');
+		$('.cate').css('color','black');
 	}
 	
 	var search = '${searchText}';

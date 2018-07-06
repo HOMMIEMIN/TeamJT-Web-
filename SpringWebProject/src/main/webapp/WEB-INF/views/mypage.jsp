@@ -216,7 +216,7 @@ h4 {
 
 <body id="page-top">
 
-	<!-- Navigation -->
+	<!-- Navigation 
 	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
 		<div class="container">
 			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
@@ -234,10 +234,11 @@ h4 {
 			</form>
 			<div class="collapse navbar-collapse" id="navbarResponsive"></div>
 		</div>
-	</nav>
+	</nav>-->
+<jsp:include page="header.jsp"></jsp:include>
 
-
-	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
+	<div
+		style="background-color: dcdcdc; height: 250px; max-height: 250px;">
 		<div class="frame" id="file" style="z-index: 1;"></div>
 		<div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
 		<div class="name" style="color: grey">${userId }</div>
@@ -245,12 +246,16 @@ h4 {
 
 
 	<div class="tab">
-		<button class="tablinks" id="London" onclick="openCity(event, 'London')">나는 학생</button>
-		<button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는 선생님</button>
+		<button class="tablinks" id="London"
+			onclick="openCity(event, 'London')">나는 학생</button>
+		<button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는
+			선생님</button>
 		<button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
-		<button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"
+		<button id="createFolder1"
+			onclick="document.getElementById('id01').style.display='block'"
 			style="display: none">online</button>
-		<button id="createFolder2" onclick="document.getElementById('id02').style.display='block'"
+		<button id="createFolder2"
+			onclick="document.getElementById('id02').style.display='block'"
 			style="display: none">offline</button>
 
 	</div>
@@ -271,17 +276,18 @@ h4 {
 
 	<div>
 
-		<div id="onLec" style="display: inline-block; margin-left: 200px;width: 1200px;max-width: 1200px"></div>
+		<div id="onLec"
+			style="display: inline-block; margin-left: 200px; width: 1200px; max-width: 1200px"></div>
 	</div>
 
-		<div>
-	<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
-	
+	<div>
+		<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
+
 	</div>
-	
+
 	<div id="loader" style="display: none; z-index: 4;"></div>
 	<div id="notClick" style="display: none; z-index: 3;"></div>
-	
+
 
 
 
@@ -401,13 +407,15 @@ h4 {
 	<!-- Plugin JavaScript -->
 
 	<script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script
+		src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="resources/js/main/creative.js"></script>
 
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+	<script
+		src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
