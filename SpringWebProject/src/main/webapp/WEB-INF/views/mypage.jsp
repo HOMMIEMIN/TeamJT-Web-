@@ -29,22 +29,22 @@
 
 
 <style>
-
 #createFolder1 {
 	position: relative;
 	left: 850px;
 	background-image: url("resources/img/button.png");
 	margin-top: 10px;
 	background-size: cover;
-	color:white;
+	color: white;
 }
+
 #createFolder2 {
 	position: relative;
 	left: 850px;
 	background-image: url("resources/img/button.png");
 	margin-top: 10px;
 	background-size: cover;
-	color:white;
+	color: white;
 }
 
 #notClick {
@@ -85,8 +85,6 @@
 	left: 230px;
 }
 
-
-
 .tab {
 	position: relative;
 	bottom: 800px;
@@ -120,19 +118,24 @@
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 @
@@ -145,19 +148,24 @@ keyframes spin { 0% {
 transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 
@@ -204,7 +212,7 @@ h4 {
 </head>
 
 <body id="page-top">
-<div id="top"> </div>
+	<div id="top"></div>
 	<script>
 	$('#top').load('header');
 	</script>
@@ -245,17 +253,18 @@ h4 {
 
 	<div>
 
-		<div id="onLec" style="display: inline-block; margin-left: 200px;width: 1200px;max-width: 1200px"></div>
+		<div id="onLec"
+			style="display: inline-block; margin-left: 200px; width: 1200px; max-width: 1200px"></div>
 	</div>
 
-		<div>
-	<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
-	
+	<div>
+		<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
+
 	</div>
-	
+
 	<div id="loader" style="display: none; z-index: 4;"></div>
 	<div id="notClick" style="display: none; z-index: 3;"></div>
-	
+
 
 
 
@@ -384,7 +393,7 @@ h4 {
 	</script>
 
 
-	
+
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Plugin JavaScript -->
@@ -408,17 +417,17 @@ h4 {
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
 	<link rel="stylesheet"
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<link rel="stylesheet"
+		href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+	<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<br />
 	<br />
 	<br />
