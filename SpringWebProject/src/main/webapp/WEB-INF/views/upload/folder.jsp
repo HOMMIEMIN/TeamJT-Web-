@@ -196,6 +196,8 @@ p.views.views-info {
 	<script>
 
 $(function(){
+	$('#onLec').css('display','block');
+	$('#offLec').css('display','block');
 	
 	var type = '온라인';
 	$('#online').css('color','#169e83');

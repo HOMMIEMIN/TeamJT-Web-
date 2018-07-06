@@ -111,9 +111,11 @@ public class OnLecController {
 	public String myLec(HttpSession session, Model model) {
 		String myID = (String)session.getAttribute("userId");
 		Member m = mService.readId(myID);
+		if(m.getOnLec() != null) {
 		List<GroupOn> list = service.readByMyLec(m);
 		if(list.size() != 0 || list != null) {
 			model.addAttribute("list", list);
+		}
 		}
 		return "/upload/myLec";
 	}
