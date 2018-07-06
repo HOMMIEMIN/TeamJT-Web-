@@ -53,5 +53,8 @@ public interface OffLecService {
 	// 수락완료한 오프라인 강의 목록 넣기  
 	int updateApply(Member member);
 	
+	// 학생페이지 오프라인폴더 보여주기 
+	List<GroupOff> readByMyLec(Member m);
+	
 	
 }

@@ -816,8 +816,9 @@
                  + '<td>'
                  + this.yourId
                  + '</td>'
-                 + '<td><a class="Message-content-link2" href="" data-mno2="' + this.mno + '">'                  + this.mcontent
-                 + '</td>'
+                 + '<td><a class="Message-content-link2" href="" data-mno2="' + this.mno + '">'
+                 + this.mcontent
+                 + '</a></td>'
                  + '<td>'
                  + dateString
                  + '</td>'

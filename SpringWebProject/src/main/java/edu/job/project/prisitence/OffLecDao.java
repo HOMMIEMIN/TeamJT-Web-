@@ -34,4 +34,9 @@ public interface OffLecDao {
 	
 	// 신청한 대기자 수락하기
 	int updateApply(OffLec offLec);
+	
+	GroupOff selectByMyLec(int groupBno);
+		
+		
+	
 }

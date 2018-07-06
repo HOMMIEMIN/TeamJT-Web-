@@ -87,6 +87,10 @@ div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info
 p.views.views-info {
 	margin-right: 10px;
 }
+
+#forder{
+right:500px;
+}
 </style>
 
 
@@ -95,21 +99,22 @@ p.views.views-info {
 	<br />
 	<br />
 	<br />
-	<h4 style="font-weight: bold;">오프라인 강의 관리</h4>
+	<h4 style="font-weight: bold;">오프라인 강의 수강 기록</h4>
 	<br />
 
-
 	<div>
-		<div id=offFolder style="display: inline-block;">
-			<c:forEach var="group" items="${groupList }">
+	
+		<div id=folder style="display: inline-block;">
+		<c:if test="${not empty list }">
+			<c:forEach var="group" items="${list }">
+
 				<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 					<div class="resent-grid-img recommended-grid-img">
-						<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}">
-						 	<c:if test="${not empty group.imgPath}">
+						<a href="offline/offFolderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
+								test="${not empty group.imgPath}">
 								<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imgPath}"
 									alt="">
-							</c:if> 
-							<c:if test="${empty group.imgPath }">
+							</c:if> <c:if test="${empty group.imgPath }">
 								<img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt="">
 							</c:if>
 						</a>
@@ -123,65 +128,31 @@ p.views.views-info {
 						</h5>
 						<ul>
 							<li><p class="author author-info">
-									<a href="#" class="author">${userName}</a>
+									<a href="#" class="author">${group.userId}</a>
 								</p></li>
 							<li class="right-list"><p class="views views-info">${group.lecLike}</p></li>
 						</ul>
 					</div>
 					<a
-						href="offline/offFolderDetail?bno=${group.bno }&lecName=${group.lecName}&lecCategory=${group.lecCategory}"
+						href="myLecView?groupBno=${group.bno }&lecName=${group.lecName}&userName=${userName}"
 						class="detail">
 						<div class="overlay"></div>
-					</a>
-					<button class="btndeup" id="btnUpdate"
-						style="background:url('${pageContext.request.contextPath}/resources/img/update.png');"></button>
-					<a href="upload/folderDelete?bno=${group.bno }">
-						<button class="btndeup" id="btnDelete"
-							style="background:url('${pageContext.request.contextPath}/resources/img/delete.png');"></button>
 					</a>
 					<div style="display: inline-block; width: 550px;"></div>
 				</div>
 
 			</c:forEach>
+			</c:if>
 		</div>
 	</div>
-	
-	<br />
-	<br />
-	<br />
 
 	<script>
-
-$(function(){
-	
-	$("#btnFolder2").click(function () {
-		
-		  var folderName = $('#folderName1').val();
-		  var category = $('#category option:selected').val();
-		  var id = '${userId}';
-		  var name = '${userName}';
-		  
-		  console.log(folderName);
-		  console.log(category);
-		  console.log(id)
-	});	  
-		
-	
-	$("#offFolder").on('click','.col-md-3.resent-grid.recommended-grid.movie-video-grid .detail', function(){
-		event.preventDefault();
-		console.log(' offLec folder 들어옴');
-		myFunction();
-		var location = $(this).attr('href');
-		$('#offLec').animate({opacity: 0},1000);
-		 $("#offLec").load(encodeURI(location));
-		$('#offLec').animate({opacity: 1},1000);		
+	$(()=>{
+		$('#loader').css('display', 'none');
+		$('#notClick').css('display', 'none');
 	});
 	
-});
-
-
-
-</script>
+	</script>
 
 
 </body>
