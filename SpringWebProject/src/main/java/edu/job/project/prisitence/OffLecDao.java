@@ -31,4 +31,7 @@ public interface OffLecDao {
 	OffLec selectBnoByOffLec(int bno);
 	
 	List<OffLec> selectGroupBnoByOffLec(int groupBno);
+	
+	// 신청한 대기자 수락하기
+	int updateApply(OffLec offLec);
 }

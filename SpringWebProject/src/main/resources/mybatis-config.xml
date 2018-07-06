@@ -14,7 +14,7 @@
 	<property name="col_profileurl" value="profileUrl"/>
 	<property name="col_onlec" value="onLec"/>
 	<property name="col_offlec" value="offLec"/>
-	<property name="col_offlecwaiting" value ="offLecWaiting"/>
+	<property name="col_offlecwaiting" value ="offlecwaiting"/>
 	
 	<!--MESSAGE -->
 	<property name="tbl_message" value="user_message"/>
@@ -61,6 +61,7 @@
 	<property name="col_imgpath" value="imgpath"/>
 	<property name="col_location" value="location"/>
 	<property name="col_groupbno2" value="groupbno"/>
+	
 	
 	<!--  GROUP OFFLINE -->
 	<property name="tbl_groupoff" value = "groupoff"/>	

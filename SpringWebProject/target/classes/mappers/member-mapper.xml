@@ -33,11 +33,24 @@ set ${col_onlec} = #{onLec}
 where ${col_userid} = #{userId}
 </update>
 
+<!--  OFFLINE 파트 -->
 <!-- 수강신청 ( 대기 ) -->
 <update id="updateOffLec">
-UPDATE ${tbl_member}
-SET ${col_offlecwaiting} = #{bno}
-WHERE ${col_userid} = #{userid}
+		UPDATE ${tbl_member}
+		SET ${col_offlecwaiting} = #{bno}
+		WHERE ${col_userid} = #{userid}
+</update>
+<!--  해당 회원이 신청한 오프라인강의 있는지 찾기 -->
+<select id="findWaiter" resultType="Member">
+ 		SELECT *
+		FROM ${tbl_member}
+		WHERE ${col_userid} = #{userid}
+</select>
+
+<update id="updateApplyId">
+		UPDATE ${tbl_member}
+		SET ${col_offlec} = #{offLec}
+		WHERE ${col_userid} = #{userId}
 </update>
 
 

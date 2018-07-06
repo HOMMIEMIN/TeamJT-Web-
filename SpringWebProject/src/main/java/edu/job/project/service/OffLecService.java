@@ -3,7 +3,9 @@ package edu.job.project.service;
 import java.util.List;
 
 import edu.job.project.domain.GroupOff;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
+import edu.job.project.domain.WaitingOff;
 
 
 public interface OffLecService {
@@ -37,6 +39,19 @@ public interface OffLecService {
 	int updateWaiting(OffLec offLec);
 	
 	OffLec readForWaiting(int bno);
+	
+	//멤버테이블 업데이트 
+	int updateWaitingMember(OffLec offLec);
+	//멤버테이블 업데이트2 ( 추가신청)
+	int updateWaitingMember(WaitingOff waitingOff);
+	
+	Member readWaitingMember(String userid);
+	
+	// 신청대기자 수락하기.
+	int updateConfirm(OffLec offLec);
+	
+	// 수락완료한 오프라인 강의 목록 넣기  
+	int updateApply(Member member);
 	
 	
 }

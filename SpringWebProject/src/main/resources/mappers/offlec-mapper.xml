@@ -24,7 +24,7 @@
 		WHERE ${col_bno} = #{bno}
 	</update>
   
-  	<!-- 멤버테이블에 넣을것.  -->
+  	<!-- 해당글번호에 대기자 있는지 찾기  -->
   	<select id="selectWaitingList" resultType="OffLec">
   		SELECT *
 		FROM ${tbl_offlec}
@@ -33,7 +33,8 @@
   		
   	<select id="selectAll" resultType="OffLec">
   	
-  	SELECT * FROM ${tbl_offlec} ORDER BY ${col_bno} DESC
+  	SELECT * FROM ${tbl_offlec}
+  	ORDER BY ${col_bno} DESC
   	
   	</select>	
   	
@@ -75,6 +76,18 @@
 	SELECT * FROM ${tbl_offlec}
 	WHERE ${col_groupbno2} = #{groupBno}
 	</select>
+	
+	<!-- 신청 확정하기  -->
+	<update id="updateApply">
+	UPDATE ${tbl_offlec}
+	SET ${col_applyId} = #{userid} , ${col_curmember} = #{curmember} + 1
+	WHERE ${col_bno} = #{bno}
+	</update>
+	
+		
+	
+	
+	
 	
   </mapper>
   

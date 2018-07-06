@@ -97,4 +97,10 @@ public class OffLecDaoImple implements OffLecDao {
 		return session.selectList(NAMESPACE + ".selectGroupBnoByOffLec", groupBno);
 	}
 	
+	@Override
+	public int updateApply(OffLec offLec) {
+		
+		return session.update(NAMESPACE + ".updateApply" , offLec);
+	}
+	
 }
