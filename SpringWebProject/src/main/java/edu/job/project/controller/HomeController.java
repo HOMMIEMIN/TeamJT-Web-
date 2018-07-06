@@ -25,6 +25,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		logger.info("test");
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -37,8 +38,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model) {
-
+	public String mypage(Locale locale, Model model, String type) {
+		
+		model.addAttribute("type", type);
 		
 		return "mypage";
 	}

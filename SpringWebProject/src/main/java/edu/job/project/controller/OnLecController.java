@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.job.project.domain.GroupOn;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OnLec;
+import edu.job.project.prisitence.MemberDao;
+import edu.job.project.service.MemberService;
 import edu.job.project.service.OnLecService;
 
 @Controller
@@ -29,39 +32,49 @@ public class OnLecController {
 	@Autowired
 	private OnLecService service;
 	
+	@Autowired
+	private MemberService mService;
+	
 	
 	@RequestMapping(value="/addonlec", method=RequestMethod.GET)
-	public String upload(int bno, String lecCategory, Model model) {
+	public String upload(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("업로드 : " + bno);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
+		System.out.println("lecName : "+lecName);
+		System.out.println("카테고리 : "+lecCategory);
 		return "/upload/upload";
 	}
 	
+	// 마이페이지에서 온라인 수강관리 파트 보이기.  루팡완료
 	@RequestMapping(value="/folder", method=RequestMethod.GET)
 	public String folder(HttpSession session, Model model) {
-		logger.info("컨트롤러");
+		logger.info("컨트롤러 온라인 수강관리");
 		String userId = (String) session.getAttribute("userId");
 		List<GroupOn> list = service.readGroup(userId);
 		model.addAttribute("groupList",list);
 		return "/upload/folder";
 	}
 	
+	
 	@RequestMapping(value="/folderDetail", method=RequestMethod.GET)
-	public String folderDetail(int bno, String lecCategory, Model model) {
+	public String folderDetail(int bno, String lecCategory, String lecName, Model model) {
 		System.out.println("bno : " + bno);
 		System.out.println(lecCategory);
 		List<OnLec>list = service.read(bno);
 		model.addAttribute("onLecList",list);
 		model.addAttribute("bno",bno);
 		model.addAttribute("lecCategory",lecCategory);
+		model.addAttribute("lecName",lecName);
 		return "/upload/folderDetail";
 	}
 	
+	//create Folder 루팡완료  //createOffFolder
 	@RequestMapping(value="createonlec", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Integer> createOnLec(@RequestBody GroupOn on){
-		int result = 0;
+		
 		int createResult = service.createGroup(on);
 		GroupOn onBno = null;
 		if(createResult == 1) {
@@ -74,9 +87,10 @@ public class OnLecController {
 	@RequestMapping(value="onLeccreate", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> onLeccreate(@RequestBody OnLec on){
-		
+		System.out.println("그룹 : " + on.getGroupBno());
 		int result = service.create(on);
 		String re = null;
+
 		if(result == 1) {
 			
 			int update = service.updateGroupImage(on);
@@ -87,5 +101,24 @@ public class OnLecController {
 		
 		return new ResponseEntity<String>(re, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/myLec", method=RequestMethod.GET)
+	public String myLec(HttpSession session, Model model) {
+		String myID = (String)session.getAttribute("userId");
+		Member m = mService.readId(myID);
+		List<GroupOn> list = service.readByMyLec(m);
+		if(list.size() != 0 || list != null) {
+			model.addAttribute("list", list);
+		}
+		return "/upload/myLec";
+	}
+	
+	@RequestMapping(value="/blackboardall", method=RequestMethod.GET)
+	public String blackboardall(HttpSession session, Model model) {
+	
+		return "/upload/blackboardall";
+	}
+	
+	
 	
 }

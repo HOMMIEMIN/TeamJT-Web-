@@ -36,4 +36,10 @@ public class MemberServiceDao implements MemberService {
 		return dao.checkName(userName);
 	}
 
+	@Override
+	public Member readId(String userId) {
+		
+		return dao.getId(userId);
+	}
+
 }

@@ -21,30 +21,71 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
- 
-.np{font-family: 'Nanum Pen Script', cursive;}
-.jg{font-family: 'Jeju Gothic', sans-serif;}
-.jm{font-family: 'Jeju Myeongjo', serif;}
-.kb{font-family: 'KoPub Batang', serif;}
-.nb{font-family: 'Nanum Brush Script', cursive;}
-.ns{font-family: 'Noto Sans KR', sans-serif;}
-.hn{font-family: 'Hanna', sans-serif;}
-.ng{font-family: 'Nanum Gothic', sans-serif;}
-.nm{font-family: 'Nanum Myeongjo', serif;}
-.jh{font-family: 'Jeju Hallasan', cursive;}
-.ngc{font-family: 'Nanum Gothic Coding', monospace;}
+
+.np {
+	font-family: 'Nanum Pen Script', cursive;
+}
+
+.jg {
+	font-family: 'Jeju Gothic', sans-serif;
+}
+
+.jm {
+	font-family: 'Jeju Myeongjo', serif;
+}
+
+.kb {
+	font-family: 'KoPub Batang', serif;
+}
+
+.nb {
+	font-family: 'Nanum Brush Script', cursive;
+}
+
+.ns {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.hn {
+	font-family: 'Hanna', sans-serif;
+}
+
+.ng {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+.nm {
+	font-family: 'Nanum Myeongjo', serif;
+}
+
+.jh {
+	font-family: 'Jeju Hallasan', cursive;
+}
+
+.ngc {
+	font-family: 'Nanum Gothic Coding', monospace;
+}
 
 .canvas-container {
 	border: 1px dotted LightGrey;
@@ -82,7 +123,9 @@
 </head>
 <body>
 	<div id='abosulte' style="float: top; margin: 10px;">
-		<h1 style="text-align: center;">칠판</h1>
+		<input type="text" id="maintitle"
+			style="font-size: 20px; margin: auto; text-align: center; width: 100%; border: 3px solid #fff; padding: 10px;"
+			placeholder="이 페이지의 타이틀을 입력하세요" required />
 		<hr />
 	</div>
 
@@ -96,7 +139,8 @@
 
 			<div class="form-group" style="margin-left: 15px;">
 				<br />
-				<textarea rows="4" cols="12" class="input" id="atext" style = "width:160px;height:110px;"></textarea>
+				<textarea rows="4" cols="12" class="input" id="atext"
+					style="width: 160px; height: 110px;"></textarea>
 				<button id="text" name="text">+</button>
 				<br />
 			</div>
@@ -327,7 +371,7 @@
 						<option class="nm" value="Nanum Myeongjo">나눔 명조</option>
 						<option class="jh" value="Jeju Hallasan">제주 한라산</option>
 						<option class="ngc" value="Nanum Gothic Coding">나눔고딕코딩</option>
-						
+
 					</select>
 
 
@@ -336,20 +380,20 @@
 						<div class="custom-item-body text-center">
 							<div class="btn-group" role="group" aria-label="..."
 								style="margin: 10px">
-								<button id = "leftP" type="button" class="btn btn"
+								<button id="leftP" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/left.png) no-repeat">
 									<i class="fa fa-align-left"
 										style="background: url(/project/resources/img/options/toback.png) no-repeat;"></i>
 								</button>
-								<button id = "centerP" type="button" class="btn btn"
+								<button id="centerP" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/center.png) no-repeat;">
 									<i class="fa fa-align-center"></i>
 								</button>
-								<button id = "rightP" type="button" class="btn btn"
+								<button id="rightP" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/right.png) no-repeat;">
 									<i class="fa fa-align-right"></i>
 								</button>
-								<button id = "justifyP" type="button" class="btn btn"
+								<button id="justifyP" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/justify.png) no-repeat;">
 									<i class="fa fa-align-justify"></i>
 								</button>
@@ -360,35 +404,35 @@
 						<div class="custom-item-title">스타일</div>
 						<div class="custom-item-body text-center">
 							<div class="btn-group" role="group" aria-label="...">
-								<button id = "bold" type="button" class="btn btn"
+								<button id="bold" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/bold.png) no-repeat;">
 									<i class="fa fa-bold"></i>
 								</button>
-								<button id = "italic" type="button" class="btn btn"
+								<button id="italic" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/italic.png) no-repeat;">
 									<i class="fa fa-italic"></i>
 								</button>
-								<button id = "underline" type="button" class="btn btn"
+								<button id="underline" type="button" class="btn btn"
 									style="background: url(/project/resources/img/options/underline.png) no-repeat;">
 									<i class="fa fa-underline"></i>
 								</button>
 							</div>
 						</div>
 					</div>
-					
-						<div class="custom-item-title">글씨 크기</div>
-							<input id="fontSize" type="range" step="1" min="1" max="120">
-						
-					
-				
-						<div class="custom-item-title">줄 간격</div>
-							<input id="fontHeight" type="range" step="0.1" min="0" max="10">
-						
-					
-					
-						<div class="custom-item-title">단어 간격</div>
-							<input id="charSpacing" type="range" step="10" min="-200" max="800">
-					
+
+					<div class="custom-item-title">글씨 크기</div>
+					<input id="fontSize" type="range" step="1" min="1" max="120">
+
+
+
+					<div class="custom-item-title">줄 간격</div>
+					<input id="fontHeight" type="range" step="0.1" min="0" max="10">
+
+
+
+					<div class="custom-item-title">단어 간격</div>
+					<input id="charSpacing" type="range" step="10" min="-200" max="800">
+
 				</div>
 			</div>
 
@@ -437,10 +481,46 @@
 				</div>
 			</div>
 		</div>
-		<button id = "toJSONF">확인</button>
-		<button id = "fromJSONF">불러오기</button>
+		<form id="saveJSON" method="POST">
+			<input type='hidden' id='hiddenField' name='title'/> <input
+				type='hidden' id='hiddenField2' name='json'/>
+			<button id="toJSONF">저장하기</button>
+		</form>
+		<form id="updateJSON" method="POST">
+			<input type='hidden' id='hfTitle' name='titleU'/>
+			<input type='hidden' id='hfJson' name='jsonU'/>
+			<input type='hidden' id='hfUserid' name='useridU'/>
+			<input type='hidden' id='hfBno' name='bnoU'/>
+			<button id="updateJSONF">수정하기</button>
+		</form>
+		<button id="fromJSONF">불러오기</button>
 	</div>
-	
-	
+	<script>
+		var bno = '${board.bno}';
+		var title = '${board.title}';
+		var userid = '${board.userid}';
+		var json = '${board.json}';
+		canvas = new fabric.Canvas('canvas', {
+			hoverCursor : 'pointer',
+			selection : true,
+			selectionBorderColor : 'blue'
+		});
+		if(bno!=0 || title!=''){
+			$('#maintitle').val(title);
+			$('#hfTitle').val(title);
+			$('#hfBno').val(bno);
+			$('#hfUserid').val(userid);
+			$('#hfJson').val(json);
+			$('#saveJSON').hide();
+			var jjson = JSON.parse(json);
+			canvas.loadFromJSON(jjson,function(){
+				canvas.renderAll.bind(canvas);
+			});
+		}else{
+			$('#updateJSON').hide();
+		}
+		
+	</script>
+
 </body>
 </html>

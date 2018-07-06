@@ -1,13 +1,10 @@
 $(document).ready(function() {
+	
 	$('.showF').hide();
 	$('.showT').hide();
 	$('.showI').hide();
 	$('.showD').show();
-	var canvas = new fabric.Canvas('canvas', {
-		hoverCursor : 'pointer',
-		selection : true,
-		selectionBorderColor : 'blue'
-	});
+
 	var subcanvas = new fabric.Canvas('subcanvas');
 
 
@@ -513,10 +510,21 @@ $(document).ready(function() {
 	});
 	
 	$(document).on('click', "#toJSONF", function() {
+		event.preventDefault();
+		var title = $('#maintitle').val();
+		$('#hiddenField').val(title);
+		console.log(title);
+		json = JSON.stringify(canvas.toJSON());
+		$('#hiddenField2').val(json);
 		
-		 json = canvas.toJSON();
-		console.log(json);
-		canvas.clear();
+		if(title!=""){
+			$('#saveJSON').attr('action','saveBlackBoard');
+			$("#saveJSON").submit();
+			canvas.clear();
+		}else{
+			alert("제목을 입력해주세요!");
+		}
+		
 		
 
 	});
@@ -530,6 +538,44 @@ $(document).ready(function() {
 		canvas.clear();
 		
 
+	});
+	
+	$('#updateJSON').click(function(){
+		event.preventDefault();
+		var title = $('#maintitle').val();
+		$('#hfTitle').val(title);
+		var json = JSON.stringify(canvas.toJSON());
+		$('#hfJSON').val(json);
+		var userid = $('#hfUserid').val();
+		var bno = $('#hfBno').val();
+	
+		$.ajax({
+			type : 'put',
+			url : '/project/updateBlackBoard',
+			headers : {
+				'Content-Type' : 'application/json; charset=UTF-8',
+				'X-HTTP-Method-Override':'put'
+			},
+			data : JSON.stringify({
+				'userid' : userid,
+				'title' : title,
+				'json' : json,
+				'bno' : bno
+			}),
+			success : function(result) {
+				console.log('수정 결과 : ' + result);
+
+				if (result) {
+					alert(userid + '님 페이지 수정 완료');
+					location = "toBlackBoard";
+
+				} else {
+					alert('삭제 실패');
+				}
+			}
+		});
+		
+		
 	});
 	
 

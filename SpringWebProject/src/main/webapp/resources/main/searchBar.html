@@ -220,43 +220,49 @@
         </style>
         <script type="text/javascript">
         function searchToggle(obj, evt){
+        	 evt.preventDefault();
             var container = $(obj).closest('.search-wrapper');
 
             if(!container.hasClass('active')){
                   container.addClass('active');
+                 
                   evt.preventDefault();
+   
             }
             else if(container.hasClass('active') && $(obj).closest('.input-holder').length == 0){
                   container.removeClass('active');
+                  
                   // clear input
                   container.find('.search-input').val('');
                   // clear and hide result container when we press close
                   container.find('.result-container').fadeOut(100, function(){$(this).empty();});
+                  
             }
+            var value = $('.search-input').val();
+           if(value == ''){
+        	   alert('검색어를 입력하세요');
+           }else{
+        	   $('#searchText').val(value);
+        	   $('#btnSearch').submit();
+           }
+           
+    
         }
 
         function submitFn(obj, evt){
+        	 
             value = $(obj).find('.search-input').val().trim();
-
-            _html = "입력 값 : ";
-            if(!value.length){
-                _html = "입력된 값 없음!";
-            }
-            else{
-                _html += "<b>" + value + "</b>";
-            }
-
-            $(obj).find('.result-container').html('<span>' + _html + '</span>');
-            $(obj).find('.result-container').fadeIn(100);
-
-            evt.preventDefault();
+			
+    		
         }
+        
+        
         </script>
 
     </head>
 
     <body>
-        <form onsubmit="submitFn(this, event);">
+        <form id="btnSearch" action="searchBtn">
             <div class="search-wrapper active">
                 <div class="input-holder">
                     <input type="text" class="search-input" placeholder="검색어를 입력 하세요!" />
@@ -267,6 +273,9 @@
 
                 </div>
             </div>
+            <input type="hidden" id="category" name="category" value="All Category"/>
+            <input type="hidden" id="lecType" name="lecType" value="online"/>
+            <input type="hidden" id="searchText" name="searchText" value="online"/>
         </form>
     </body>
 

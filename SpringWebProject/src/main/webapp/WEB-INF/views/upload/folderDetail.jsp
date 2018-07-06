@@ -38,8 +38,8 @@ max-height: 280px;
   position: absolute; 
   bottom: 0; 
   margin:0px;
-  background: rgb(0, 0, 0);
-  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  background: none;
+  border : 1px solid grey;
   color: #f1f1f1; 
   transition: .5s ease;
   opacity:0;
@@ -55,8 +55,8 @@ max-height: 280px;
 
 
 div .resent-grid-info.recommended-grid-info.recommended-grid-movie-info{
-padding-top:10px;
-padding:0px;
+padding-top:15px;
+padding-right:10px;
 max-height: 86.5px;
 }
 
@@ -68,11 +68,19 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
   opacity: 0.8;
 }
 
+.author{
+position:relative;
+bottom: 8px;
+}
+
 </style>
 </head>
 <body>
-
-
+<br/>
+<br/>
+<br/>
+<h4>${lecName }</h4>
+<br/>
 <div id = folder>
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec">
 <a id = "addLec">
@@ -83,7 +91,7 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 <div class="resent-grid-img recommended-grid-img">
-<a href="upload/folderDetail?bno=${group.bno }" class="detail">
+<a href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" class="detail">
 <c:if test="${not empty group.imagePath }">
 <img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
 </c:if>
@@ -101,8 +109,9 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 <li class="right-list"><p class="views views-info"></p></li>
 </ul>
 </div>
-<a href="upload/folderDetail?bno=${group.bno }">
+<a class="detail" href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
 <div class="overlay"></div>
+<div></div>
 </a>
 </div>
 
@@ -114,18 +123,18 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay {
 <script>
 
 $(()=>{
-	$('#createFolder').css('display','none');
+	$('#createFolder1').css('display','none');
 	$('#addLec').click(()=>{
 		event.preventDefault();
 		var bno = '${bno}';
-		var category = '${lecCategory}'
-		 $("#onLec").load("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category);
+		var category = '${lecCategory}';
+		var lecName = '${lecName}';
+		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
 		
 	});
-	
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
 
-	
-	
 });
 
 	
