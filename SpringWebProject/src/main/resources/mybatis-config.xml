@@ -45,6 +45,19 @@
 	<property name="col_leclike" value = "lecLike"/>
 	<property name="col_cnt" value = "cnt"/>
 
+
+
+   <!--MESSAGE -->
+   <property name="tbl_message" value="messageham"/>
+   <property name="col_mno" value="mno"/>
+   <property name="col_userid" value="userId"/>
+   <property name="col_yourid" value="yourId"/>
+   <property name="col_mcontent" value="mcontent"/>
+   <property name="col_regdate" value ="regDate"/>
+   <property name="col_reador" value ="readOr"/>
+   <property name="col_imagepath" value ="imagePath"/>
+		
+
 	<!-- UPLOAD_OFFLINE -->
 	<property name="tbl_offlec" value="offlec"/>
 	<property name="col_bno" value="bno"/>
