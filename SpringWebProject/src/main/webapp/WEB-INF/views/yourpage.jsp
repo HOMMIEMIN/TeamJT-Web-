@@ -215,9 +215,7 @@ h4 {
 
 	<div class="tab">
 		<button class="tablinks" id="London"
-			onclick="openCity(event, 'London')">나는 학생</button>
-		<button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는
-			선생님</button>
+			onclick="openCity(event, 'London')">강의</button>
 		<button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
 		<button id="createFolder1"
 			onclick="document.getElementById('id001').style.display='block'"
@@ -305,7 +303,7 @@ h4 {
 				$('#onLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#onLec').load("/project/upload/folder");
+				$('#onLec').load("/project/upload/yourOnFolder");
 				$('#onLec').animate({
 					opacity : 1
 				}, 1000);
@@ -313,7 +311,7 @@ h4 {
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/offline/offFolder");
+				$('#offLec').load("/project/offline/YourOffFolder");
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);
@@ -335,7 +333,10 @@ h4 {
 				$('#onLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#onLec').load("/project/upload/myLec");
+				var ud = '${userId}';
+				var name='${userName}';
+				console.log(ud);
+				$('#onLec').load("/project/upload/yourLec?userId="+ud+"&userName="+name);
 				$('#onLec').animate({
 					opacity : 1
 				}, 1000);

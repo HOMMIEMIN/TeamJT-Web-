@@ -102,84 +102,97 @@
       <div class="container">
        <div class="collapse navbar-collapse" id="navbarResponsive">
         <a class="navbar-brand js-scroll-trigger" href="#page-top">Team Job생각</a>
-        
-           <c:if test="${not empty userId }">      
-                <div class="frame1" id="profile">
-                   <div class="dropdown-content">
 
-                     <a href="/project/mypage?type=a" style="border-bottom: 1px solid lightgrey;">나는 학생</a>
-                   <a href="/project/mypage?type=b" style="border-bottom: 1px solid lightgrey;">나는 선생님</a>
-                   <a href="/project/mypage?type=c" style="border-bottom: 1px solid lightgrey;">칠판</a>
-                   <a href="" id="btnlogout">하교</a>
-                 </div>
-                </div>
-                <input type="text" id="messageUserId" value="${userId}" style="display: none;"   />
-               
-               
- <!-- 로그인시 쪽지함 모달!! -->
-   <div class="w3-container">
-         <div id = "messageCount" style = "left:850px ;position: relative; color : red;">0</div>
-         <button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
-               class="w3-button w3-black" style="position: relative; right:-100vh" >쪽지함.</button>
-               
-      <div id="id01" class="w3-modal">
-         <div id="id02" class="w3-modal-content w3-card-4 w3-animate-zoom">
-                       <header class="w3-container w3-blue"> 
-                        <span onclick="document.getElementById('id01').style.display='none'" 
-                        class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
-                        <h2>${userName }님의 쪽지함</h2>
-                     </header>
+				<c:if test="${not empty userId }">
+					<div class="frame1" id="profile">
+						<div class="dropdown-content">
 
-                 <div id="message" class="w3-bar w3-border-bottom">
-                     <button id="resetMget" class="tablink w3-bar-item w3-button" 
-                     onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
-                     <button id="resetMsend" class="tablink w3-bar-item w3-button" 
-                     onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
-                     <button id="resetMwrite" class="tablink w3-bar-item w3-button" 
-                     onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
-                 </div>
-            
-                 <div id="mGet" class="w3-container city">
-                    받은 쪽지함 0/7 <button style="left: -50%;" id="resetbtn1">새로고침</button>
-                    <table id="messageGetList">
-                  </table>
-                 </div>
-                 
-            
-                 <div id="mSend" class="w3-container city">
-                    보낸 쪽지함 0/7 <button style="left: -50%;" id="resetbtn2">새로고침</button>
-                    <table id="messageSendList">
-                  </table>
-                 </div>
-            
-                <div id="mWrite" class="w3-container city">
-                  <h5>쪽지 작성</h5>
-                  <label>받는 사람</label>
-                  
-                  <div id="resetwriteMessage">
-                     <input id="toId" class="w3-input w3-border w3-margin-bottom" type="text" 
-                             placeholder="ex) 아무게@itwill.com" name="yourId" required >
-                     <textarea id="writeContent" style="margin-bottom: 20px;" class="w3-input w3-border w3-margin-bottom"
-                               rows="7" cols="106" name="mcontent"placeholder="내용 작성" required></textarea>
-                     <label>보내는 사람</label>
-                     <input id="fromId" class="w3-input w3-border w3-margin-bottom" type="text" 
-                            value="${userId}" name="userId" readonly >
-                     <button id="writeSendBtn" class="w3-button w3-green w3-large" > 보내기 </button>
-                  </div>
-                 </div>
-            
-                 <div class="w3-container w3-light-grey w3-padding">
-                     <button class="w3-button w3-right w3-white w3-border" 
-                           onclick="document.getElementById('id01').style.display='none'">Close</button>
-                 </div>
-         </div>
-      </div>
-            
-   </div>
-<!-- end 로그인시 쪽지함 모달 !-->
-                
-           </c:if>
-           <c:if test="${empty userId }">
+							<a href="/project/mypage?type=a"
+								style="border-bottom: 1px solid lightgrey;">나는 학생</a> <a
+								href="/project/mypage?type=b"
+								style="border-bottom: 1px solid lightgrey;">나는 선생님</a> <a
+								href="/project/mypage?type=c"
+								style="border-bottom: 1px solid lightgrey;">칠판</a> <a href=""
+								id="btnlogout">하교</a>
+						</div>
+					</div>
+					<input type="text" id="messageUserId" value="${userId}"
+						style="display: none;" />
+
+
+					<!-- 로그인시 쪽지함 모달!! -->
+					<div class="w3-container">
+						<div id="messageCount"
+							style="left: 850px; position: relative; color: red;">0</div>
+						<button id="btnmessege"
+							onclick="document.getElementById('id01').style.display='block'"
+							class="w3-button w3-black"
+							style="position: relative; right: -100vh">쪽지함.</button>
+
+						<div id="id01" class="w3-modal">
+							<div id="id02" class="w3-modal-content w3-card-4 w3-animate-zoom">
+								<header class="w3-container w3-blue">
+									<span
+										onclick="document.getElementById('id01').style.display='none'"
+										class="w3-button w3-blue w3-xlarge w3-display-topright">&times;</span>
+									<h2>${userName }님의쪽지함</h2>
+								</header>
+
+								<div id="message" class="w3-bar w3-border-bottom">
+									<button id="resetMget" class="tablink w3-bar-item w3-button"
+										onclick="messageBtn(event, 'mGet')">받은 쪽지</button>
+									<button id="resetMsend" class="tablink w3-bar-item w3-button"
+										onclick="messageBtn(event, 'mSend')">보낸 쪽지</button>
+									<button id="resetMwrite" class="tablink w3-bar-item w3-button"
+										onclick="messageBtn(event, 'mWrite')">쪽지 작성</button>
+								</div>
+
+								<div id="mGet" class="w3-container city">
+									받은 쪽지함 0/7
+									<button style="left: -50%;" id="resetbtn1">새로고침</button>
+									<table id="messageGetList">
+									</table>
+								</div>
+
+
+								<div id="mSend" class="w3-container city">
+									보낸 쪽지함 0/7
+									<button style="left: -50%;" id="resetbtn2">새로고침</button>
+									<table id="messageSendList">
+									</table>
+								</div>
+
+								<div id="mWrite" class="w3-container city">
+									<h5>쪽지 작성</h5>
+									<label>받는 사람</label>
+
+									<div id="resetwriteMessage">
+										<input id="toId" class="w3-input w3-border w3-margin-bottom"
+											type="text" placeholder="ex) 아무게@itwill.com" name="yourId"
+											required>
+										<textarea id="writeContent" style="margin-bottom: 20px;"
+											class="w3-input w3-border w3-margin-bottom" rows="7"
+											cols="106" name="mcontent" placeholder="내용 작성" required></textarea>
+										<label>보내는 사람</label> <input id="fromId"
+											class="w3-input w3-border w3-margin-bottom" type="text"
+											value="${userId}" name="userId" readonly>
+										<button id="writeSendBtn" class="w3-button w3-green w3-large">
+											보내기</button>
+									</div>
+								</div>
+
+								<div class="w3-container w3-light-grey w3-padding">
+									<button class="w3-button w3-right w3-white w3-border"
+										onclick="document.getElementById('id01').style.display='none'">Close</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<!-- end 로그인시 쪽지함 모달 !-->
+
+				</c:if>
+				<c:if test="${empty userId }">
               <ul class="navbar-nav ml-auto">
                      <li class="nav-item">
                        <a class="nav-link js-scroll-trigger" data-toggle="modal" 
@@ -624,42 +637,42 @@
          var pwd = $('#password').val();
          console.log(id);
          console.log(pwd);
-         $.ajax({
-            type: 'post', 
-            url: '/project/login', 
-            headers: {'Content-Type' : 'application/json; charset=UTF-8', 
-                     'X-HTTP-Method-Override' : 'post'
-                     }, 
-            data: JSON.stringify({
-               'userId' : id,
-               'password' : pwd
-               
-            }),
-            success: function(result){
-                  if(result==='ok'){
-                                                         
-                        
-                     
-                      console.log(result);
-                     //location = document.location;
-                     location.reload();
-                     
-                     var target = document.location;
-            
-                     if(target === 'http://localhost:8181/project/'){
-                        location = '/project/#portfolio';                        
-                     } else {
-                        location = target;
-                     }
-
-                  }else{
-                     alert('아이디와 비밀번호를 확인해주세요!');
-                     $('#password').val('');
-                  }   
-            }
-            }); // end ajacx
-            
-      }); //end btnLogin.click()
+   			$.ajax({
+   				type : 'post',
+   				url : '/project/login',
+   				headers : {
+   					'Content-Type' : 'application/json; charset=UTF-8',
+   					'X-HTTP-Method-Override' : 'post'
+   				},
+   				data : JSON.stringify({
+   					'userId' : id,
+   					'password' : pwd
+   				}),
+   				success : function(result) {
+   					if (result === 'ok') {
+   
+   
+   
+   						console.log(result);
+   						//location = document.location;
+   						location.reload();
+   
+   						var target = document.location;
+   
+   						if (target === 'http://localhost:8181/project/') {
+   							location = '/project/#portfolio';
+   						} else {
+   							location = target;
+   						}
+   
+   					} else {
+   						alert('아이디와 비밀번호를 확인해주세요!');
+   						$('#password').val('');
+   					}
+   				}
+   			}); // end ajacx
+   
+   			}); //end btnLogin.click()
       
    
       // 로그아웃버튼 클릭시
@@ -667,8 +680,32 @@
          event.preventDefault();
          var re = '${userId}'
          ws.send('pageOut,'+ re);
+		var target = document.location;
+		$.ajax({
+   				type : 'post',
+   				url : '/project/logout',
+   				headers : {
+   					'Content-Type' : 'application/json; charset=UTF-8',
+   					'X-HTTP-Method-Override' : 'post'
+   				},
+   				data : JSON.stringify({
+   					'userId' : re
+   				}),
+   				success : function(result) {
+   					if (result === 'ok') {
+   						
+   						location.reload();
    
-         location = '/project/logout'; //<<--controller로 간다 .
+   						var target = document.location;
+   						
+   						location = target;
+   
+   					} else {
+   						alert('로그아웃 실패');
+   					}
+   				}
+   			}); // end ajacx
+   
       }); //end #btnlogout()
 
       

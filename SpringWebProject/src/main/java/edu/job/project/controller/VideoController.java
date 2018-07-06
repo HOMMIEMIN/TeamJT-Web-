@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.job.project.domain.GroupOn;
 import edu.job.project.domain.Member;
 import edu.job.project.domain.OnLec;
 import edu.job.project.service.MemberService;
@@ -43,18 +44,21 @@ public class VideoController {
 		OnLec bnoList = service.readByBno(bno);
 		List<OnLec> GroupbnoList = service.readByGroupBno(groupBno);
 		Member m = mService.readId(bnoList.getUserId());
-		Member myM = mService.readId((String)session.getAttribute("userId"));
-		System.out.println("OnLec : "+ m.getOnLec());
-		if(myM.getOnLec() != null) {
-			List<String> items = new ArrayList<>(Arrays.asList(myM.getOnLec().split("\\s*,\\s*")));
-			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
-			if(items.contains(String.valueOf(groupBno))) {
-				model.addAttribute("deleResult", "ok");
-				System.out.println("deleResult 넣음");
+		if(session.getAttribute("userId") != null) {
+			Member myM = mService.readId((String)session.getAttribute("userId"));
+			System.out.println("OnLec : "+ m.getOnLec());
+			if(myM.getOnLec() != null) {
+				List<String> items = new ArrayList<>(Arrays.asList(myM.getOnLec().split("\\s*,\\s*")));
+				System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
+				if(items.contains(String.valueOf(groupBno))) {
+					model.addAttribute("deleResult", "ok");
+					System.out.println("deleResult 넣음");
+				}
+				
+				service.updateCnt(bno);
 			}
-			
-			service.updateCnt(bno);
 		}
+		
 		model.addAttribute("bnoList", bnoList);
 		model.addAttribute("GroupbnoList", GroupbnoList);
 		model.addAttribute("userName", m.getUserName());
@@ -122,6 +126,14 @@ public class VideoController {
 		String result = service.likeDelete(on);
 	
 		return new ResponseEntity<String>(result, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value="/yourpage", method=RequestMethod.GET)
+	public void yourpage(String userId,String userName, Model model) {
+			model.addAttribute("userName", userName);
+			model.addAttribute("userId", userId);
+		
 	}
 	
 

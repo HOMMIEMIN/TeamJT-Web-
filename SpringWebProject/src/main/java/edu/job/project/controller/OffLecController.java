@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.job.project.domain.GroupOff;
 import edu.job.project.domain.GroupOn;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
 import edu.job.project.service.FileUploadService;
 import edu.job.project.service.OffLecService;
@@ -43,112 +44,142 @@ public class OffLecController {
 	@Autowired
 	private MapUtil maputil;
 
-	// 글목록 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void list(Model model) {
+	   // 글목록 
+	   @RequestMapping(value = "/list", method = RequestMethod.GET)
+	   public void list(Model model) {
+	      logger.info(" [list] 호출 ");
+	      List<OffLec> list = offlecService.read();
+	      model.addAttribute("offlecList", list);
+	   }
 
-		logger.info(" [list] 호출 ");
-
-		List<OffLec> list = offlecService.read();
-
-		model.addAttribute("offlecList", list);
-
-	}
-
-	// 글작성 페이지로 이동
-
-	@RequestMapping(value = "/register" , method = RequestMethod.GET)
-	public void register(Model model) {
-		logger.info("register 글등록 호출");
-		Date date = new Date();
-		//DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		SimpleDateFormat sdf1=new SimpleDateFormat("yyyy년 MM월 dd일 ");
-		SimpleDateFormat sdf2=new SimpleDateFormat("HH시mm분");
-		String formattedDate1 = sdf1.format(date);
-		String formattedDate2 = sdf2.format(date);
-		model.addAttribute("serverTime1", formattedDate1 );
-		model.addAttribute("serverTime2", formattedDate2 );
-		
-	}
+	   // 글작성 페이지로 이동
+	   @RequestMapping(value = "/register" , method = RequestMethod.GET)
+	   public void register(Model model , int bno, String lecCategory, String lecName) {
+	      logger.info("register 글등록 호출");
+	      Date date = new Date();
+	      //DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	      SimpleDateFormat sdf1=new SimpleDateFormat("yyyy년 MM월 dd일 ");
+	      SimpleDateFormat sdf2=new SimpleDateFormat("HH시mm분");
+	      String formattedDate1 = sdf1.format(date);
+	      String formattedDate2 = sdf2.format(date);
+	      model.addAttribute("serverTime1", formattedDate1 );
+	      model.addAttribute("serverTime2", formattedDate2 );
+	      System.out.println("upLoad groupBno : " + bno);
+	      model.addAttribute("bno",bno);
+	      model.addAttribute("lecCategory",lecCategory);
+	      model.addAttribute("lecName",lecName);
+	      System.out.println("lecName 폴더이름 : "+lecName);
+	      System.out.println("cateGory 카테고리 : "+lecCategory);
+	      
+	   }
+	   
+	   // 글등록 ( oncreate )
+//	   @RequestMapping(value = "/register1", method=RequestMethod.POST)
+//	   public String upload(Model model,
+//	         @RequestParam("title")String title,
+//	         @RequestParam("content")String content,
+//	         @RequestParam("meetingday")String meetingday,
+//	         @RequestParam("maxmember")int maxmember,
+//	         @RequestParam("imgPath") MultipartFile file,
+//	         @RequestParam("lat") String lat,
+//	         @RequestParam("long1") String long1,
+//	         @RequestParam("meetingtime")String meetingtime,
+//	         @RequestParam("groupBno")int groupBno
+//	          ){
+//
+//	      logger.info("upload 호출:  {}",  file);
+//	      System.out.println("위치 : " + lat + " " + long1);
+//	      
+//	      String url = fileUploadService.restore(file);
+//	      model.addAttribute("url", url);
+//
+//	      logger.info("이미지 url : {} ", url);
+//	      
+//	      String location= lat+","+long1;
+//	      
+//	      String meeting = meetingday+","+meetingtime;
+//	      OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember,0, null, url , location , groupBno);
+//	      int result = offlecService.create(offLecture);
+//	      
+//	      if(result ==1 ) {
+//	         offlecService.updateFolderImage(offLecture);
+//	      }
+//	      return "redirect:/mypage";
+//	      
+//	   }
+	   
+	   
+	   // 지도 위치 받기 
+	   @RequestMapping(value="/register" , method = RequestMethod.POST , produces= {"application/json"})
+	   public @ResponseBody Map<String, Object> GeocoderService(@RequestBody final OffLec offLecture){
+	      Map<String , Object> retVal = new HashMap<String , Object>();
+	      
+	      logger.info("offLecture.getLocation : {} " , offLecture.getLocation());
+	      
+	      // 지오코딩을 하는 서비스 호출
+	      Float[] coords = maputil.geoCoding(offLecture);
+	      
+	      logger.info("coords[0] : {} , coords[1]: {} ", coords[0],coords[1]);
+	      // 반환된 좌표값 채우는거
+	      retVal.put("id", "success");
+	      retVal.put("latitude", ""+coords[0]);
+	      retVal.put("longitude",coords[1]);
+	      
+	      logger.info("retVal : {}" , retVal);
+	      return retVal;
+	   }
+	   
+	   // 마이페이지의 오프라인 수강관리 볼더 보이기. 
+	   @RequestMapping(value="/offFolder", method=RequestMethod.GET)
+	   public String folder(HttpSession session, Model model) {
+	      logger.info("컨트롤러 오프라인 수강관리");
+	      String userId = (String) session.getAttribute("userId");
+	      List<GroupOff> list = offlecService.readGroup(userId);
+	      model.addAttribute("groupList",list);
+	      return "/offline/offFolder";
+	   }
+	   
+	   //TODO: 폴더 만들기 완료 
+	   @RequestMapping(value="createOffFolder", method = RequestMethod.POST)
+	   @ResponseBody
+	   public ResponseEntity<Integer> createOffFolder(@RequestBody GroupOff groupOff){
+	      
+	      int createResult = offlecService.create(groupOff);
+	      GroupOff offBno=null;
+	      if(createResult == 1) {
+	         offBno = offlecService.readGroup(groupOff);
+	      }
+	      
+	      return new ResponseEntity<Integer>(offBno.getBno(), HttpStatus.OK);
+	   }
+	   
+	   
+//	   // 한개의 강좌 들어갔을때 그 강좌의 강의목록 보이기 
+//	   @RequestMapping(value="/offFolderDetail",method=RequestMethod.GET)
+//	   public String offFolderDetail(int bno , String lecCategory, String lecName, Model model) {
+//	      logger.info("bno : {}" , bno);
+//	      logger.info(lecCategory);
+//	      List<OffLec> list = offlecService.read(bno);
+//	      model.addAttribute("offLecList",list);
+//	      model.addAttribute("bno",bno);
+//	      model.addAttribute("lecCategory",lecCategory);
+//	      model.addAttribute("lecName",lecName);
+//	            
+//	      return "/offline/offFolderDetail";
+//	   }
 	
-	// 글등록
-	@RequestMapping(value = "/register1", method=RequestMethod.POST)
-	public String upload(Model model, 
-			@RequestParam("title")String title,
-			@RequestParam("content")String content,
-			@RequestParam("meetingday")String meetingday,
-			@RequestParam("maxmember")int maxmember,
-			@RequestParam("imgPath") MultipartFile file,
-			@RequestParam("lat") String lat,
-			@RequestParam("long1") String long1,
-			@RequestParam("meetingtime")String meetingtime
-			 ){
-
-		logger.info("upload 호출:  {}",  file);
-		System.out.println("위치 : " + lat + " " + long1);
-		
-		String url = fileUploadService.restore(file);
-		model.addAttribute("url", url);
-
-		logger.info("이미지 url : {} ", url);
-		
-		String location= lat+","+long1;
-		
-		String meeting = meetingday+""+meetingtime;
-		OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember, null, url , location);
-		offlecService.create(offLecture);
-		
-		
-		return "redirect:/offline/list";
-	}
 	
-	// 지도 위치 받기 
-	@RequestMapping(value="/register" , method = RequestMethod.POST , produces= {"application/json"})
-	public @ResponseBody Map<String, Object> GeocoderService(@RequestBody final OffLec offLecture){
-		Map<String , Object> retVal = new HashMap<String , Object>();
-		
-		logger.info("offLecture.getLocation : {} " , offLecture.getLocation());
-		
-		// 지오코딩을 하는 서비스 호출
-		Float[] coords = maputil.geoCoding(offLecture);
-		
-		logger.info("coords[0] : {} , coords[1]: {} ", coords[0],coords[1]);
-		// 반환된 좌표값 채우는거
-		retVal.put("id", "success");
-		retVal.put("latitude", ""+coords[0]);
-		retVal.put("longitude",coords[1]);
-		
-		logger.info("retVal : {}" , retVal);
-		return retVal;
-	}
 	
-	// 마이페이지의 오프라인 수강관리 볼더 보이기. 
-	@RequestMapping(value="/offFolder", method=RequestMethod.GET)
-	public String folder(HttpSession session, Model model) {
-		logger.info("컨트롤러 오프라인 수강관리");
+	@RequestMapping(value="/myOffLec", method=RequestMethod.GET)
+	public String myLec(HttpSession session, Model model) {
 		String userId = (String) session.getAttribute("userId");
 		List<GroupOff> list = offlecService.readGroup(userId);
 		model.addAttribute("groupList",list);
-		return "/offline/offFolder";
-	}
-	
-	//TODO: 폴더 만들기 완료 
-	@RequestMapping(value="createOffFolder", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<Integer> createOffFolder(@RequestBody GroupOff groupOff){
-		
-		int createResult = offlecService.create(groupOff);
-		GroupOff offBno=null;
-		if(createResult == 1) {
-			offBno = offlecService.readGroup(groupOff);
+		if(list.size() != 0 || list != null) {
+			model.addAttribute("list", list);
 		}
-		
-		return new ResponseEntity<Integer>(offBno.getBno(), HttpStatus.OK);
+		return "/upload/myOffLec";
 	}
-	
-	
-	
-	
 	
 	
 	

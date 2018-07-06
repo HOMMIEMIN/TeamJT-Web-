@@ -128,7 +128,7 @@ right:500px;
 						</h5>
 						<ul>
 							<li><p class="author author-info">
-									<a href="#" class="author">${group.userId}</a>
+									<a href="#" class="author">${userName}</a>
 								</p></li>
 							<li class="right-list"><p class="views views-info">${group.lecLike}</p></li>
 						</ul>

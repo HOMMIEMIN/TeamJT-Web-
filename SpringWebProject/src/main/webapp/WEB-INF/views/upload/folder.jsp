@@ -146,22 +146,26 @@ p.views.views-info {
 		</div>
 	</div>
 	<!-- 폴더 이름입력창 -->
-	<div id="id01" class="w3-modal" style="position: absolute; height: 200%;">
+	<div id="id001" class="w3-modal" style="position: absolute; height: 200%;">
 		<div class="w3-modal-content w3-animate-opacity w3-card-4"
-			style="position: relative; left: 300px; top: 200px; width: 20%">
-			<header class="w3-container w3-teal">
-				<span onclick="document.getElementById('id01').style.display='none'"
-					class="w3-button w3-display-topright">&times;</span>
-				<h2>온라인 폴더 생성</h2>
+			style="position: relative; left: 300px; top: 200px; width: 18%;">
+			<header class="w3-container w3-teal" >
+				<span onclick="document.getElementById('id001').style.display='none'"
+					class="w3-button w3-display-topright" style="background-color: lightgrey">&times;</span>				
 			</header>
+			<div style="background-color: lightgrey; height: 80px;">
+			<div class= "lType" id="online" style="display: inline-block; background-color: lightgrey; width: 140px; padding-top: 50px; padding-left: 70px; font-size: 110%">온라인</div>
+				<div class= "lType" style="display: inline-block; background-color: lightgrey; width: 140px;padding-top: 50px; padding-left: 70px; font-size: 110%">오프라인</div>
+				</div>
 			<div class="w3-container" style="padding: 0px">
 				<div class="form-group">
 					<br />
+					<div >
 					<div>
-						<div style="display: inline-block; padding-left: 40px;">카테고리</div>
+						<div style="display: inline-block;padding-left: 40px;">카테고리</div>						
 						<form id="createFolder" style="padding-left: 10px; display: inline-block;">
-							<select id="category" class="form-control" name="category"
-								style="width: 163%; margin-left: 30px">
+							<select id="category1" class="form-control" name="category1"
+								style="width: 122%; display: inline-block; margin-left: 28px;">
 								<option>IT</option>
 								<option>Health</option>
 								<option>Food</option>
@@ -169,7 +173,7 @@ p.views.views-info {
 								<option>Language</option>
 								<option>Ect</option>
 							</select>
-					
+					</div>
 					<div>
 						<div style="display: inline-block; padding-left: 40px;">강의명</div>
 						<input type="text" id="folderName" name="folderName" class="form-control input-lg"
@@ -193,10 +197,19 @@ p.views.views-info {
 
 $(function(){
 	
+	var type = '온라인';
+	$('#online').css('color','#169e83');
+	$('.lType').click(function(event){
+		type = $(this).text();
+		$('.lType').css('color','black');
+		$(this).css('color','#169e83');
+		console.log(type);
+	});
+	
 	$("#btnFolder1").click(function () {
 		
 		  var folderName = $('#folderName').val();
-		  var category = $('#category option:selected').val();
+		  var category = $('#category1 option:selected').val();
 		  var id = '${userId}';
 		  var name = '${userName}';
 		  
@@ -207,6 +220,7 @@ $(function(){
 		  if($('#folderName').val() == ''){
 			  alert('폴더명을 입력하세요!');
 		  }else{
+			  if(type === '온라인'){
 			  $.ajax({
 					type:'post',
 					url:'/project/upload/createonlec',
@@ -222,18 +236,46 @@ $(function(){
 					success:function(result){
 						if(result != null){
 							console.log(result);
-							 $("#folder").append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "0" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
-							  $('#id01').css('display','none');
+							 $("#folder").append('<div style="display:inline-block" class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
+							  $('#id001').css('display','none');
 							  $('#folderName').val('');  
+							  alert('강의 폴더 생성!');
 						}else{
-							alert('등록 실패');
+							alert('강의 폴더 생성 실패!');
 						}
 					}
 					
 				});
 			 
+		  }else{			 
+			  $.ajax({
+					type:'post',
+					url:'/project/offline/createOffFolder',
+					headers:{
+						'Content-Type' : 'application/json; charset=UTF-8',
+						'X-HTTP-Method-Override' : 'post'
+					},
+					data: JSON.stringify({
+						'userId' : id,
+						'lecName' : folderName,
+						'lecCategory' : category
+					}),
+					success:function(result){
+						if(result != null){
+							console.log(result);
+							 $("#offFolder").append('<div style="display:inline-block" class="col-md-3 resent-grid recommended-grid movie-video-grid"><div class="resent-grid-img recommended-grid-img"><a href="upload/folderDetail?bno='+result +'&lecCategory='+category +'"><img src="/project/resources/img/nullfolder.png" alt=""></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"><h6 style="color: #04B486; font-size: 70%;font-weight: bold;">'+category+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+folderName+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+ name +'</a></p></li><li class="right-list"><p class="views views-info">'+ "" +' </p></li></ul></div><a href="upload/folderDetail?bno='+result+'" class="detail"><div class="overlay"></div></a><button class="btndeup" id="btnUpdate" style="background:url("project/resources/img/update.png");"></button><a href="upload/folderDelete?bno='+ result +'"><button class="btndeup" id="btnDelete" style="background:url("/project/resources/img/delete.png");"></button></a></div>');
+							 $('#id001').css('display','none');
+							  $('#folderName').val('');  
+							  alert('강의 폴더 생성!');
+						}else{
+							alert('강의 폴더 생성 실패!');
+						}
+					}
+					
+				});
+			  
 		  }
-		  
+		  }
 		});
 
 	
