@@ -9,10 +9,9 @@
 
 <!-- 로그인에 필요 -->
 <link href="resources/css/login-register.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
+
 	
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
@@ -20,8 +19,6 @@
 <script src="resources/js/main/login-register.js" type="text/javascript"></script>
 
 <!-- Plugin CSS -->
-<link href="resources/vendor/magnific-popup/magnific-popup.css"
-	rel="stylesheet">
 
 <!-- 쪽지함 모달 -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -189,9 +186,10 @@ tr:hover {
 }
 </style>
 </head>
-<body style="margin: 0px; height: 2400px;">
 
-	<nav class="navigation">
+<body>
+	<nav class="navigation"  style="margin: 0px; border: 1px solid black">
+
 		<div class="container">
 			<!-- 로고(메인페이지 링크) -->
 			<div class="navleft">

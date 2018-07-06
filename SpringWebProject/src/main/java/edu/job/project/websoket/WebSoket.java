@@ -30,8 +30,18 @@ public class WebSoket extends TextWebSocketHandler{
 			list.put(items.get(1), session);
 			System.out.println("접속자 : " + items.get(1));
 		}else if(items.get(0).equals("pageOut")) {
-			list.remove(items.remove(1));
+			String user = items.remove(1);
+			if(user != null) {
+				list.remove(user);	
+			}
+			
 			System.out.println("로그아웃 : " + items.get(1));
+		}else if(items.get(0).equals("message")) {
+			WebSocketSession you = list.get(items.get(1));
+			if(you != null) {
+			you.sendMessage(new TextMessage("웹소켓 전송 : "+items.get(1)));
+			System.out.println("메세지 전송");
+			}
 		}
 		System.out.println("웹소켓 유지 사이즈 : " + list.size());
 		
@@ -39,8 +49,7 @@ public class WebSoket extends TextWebSocketHandler{
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println(status.getReason());
-		session.close();
+	
 		System.out.println("웹소켓 종료");
 		System.out.println("웹소켓 종료 사이즈 : " + list.size());
 	}

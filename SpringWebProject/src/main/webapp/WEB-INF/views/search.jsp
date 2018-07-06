@@ -44,8 +44,13 @@ font-family: 'Nanum Gothic', serif;
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
+<<<<<<< HEAD
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="resources/css/folder2.css" rel="stylesheet" />-->
+=======
+
+<link href="resources/css/folder2.css" rel="stylesheet" />
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
 
 
@@ -221,6 +226,7 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 
+
 	<div class="search-container">
 		<div class="search-filters">
 
@@ -325,7 +331,9 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 	</div>
 
 
-	<div id="loader" style="display: none; z-index: 4;"></div>
+
+
+<div id="loader" style="display: none; z-index: 4;"></div>
 <div id="notClick" style="display: none; z-index: 3;"></div>	
 <script>
 $(()=>{

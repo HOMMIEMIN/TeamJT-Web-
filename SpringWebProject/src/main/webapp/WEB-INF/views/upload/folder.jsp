@@ -103,7 +103,7 @@ p.views.views-info {
 		<div id=folder style="display: inline-block;">
 			<c:forEach var="group" items="${groupList }">
 
-				<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
+				<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 					<div class="resent-grid-img recommended-grid-img">
 						<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
 								test="${not empty group.imagePath}">

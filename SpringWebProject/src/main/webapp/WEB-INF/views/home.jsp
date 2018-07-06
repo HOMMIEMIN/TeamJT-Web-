@@ -12,7 +12,6 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Team Job</title>
-    
    
     <!-- 웹소켓 -->
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
