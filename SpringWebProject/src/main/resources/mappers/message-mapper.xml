@@ -6,21 +6,39 @@
   <!-- MyBatis 프레임워크가 사용할 SQL 문장들을 정의 -->
 <mapper namespace="edu.job.project.mappers.MessageMapper">
 
+<!-- 받은 메세지 전체 -->
 <select id="messageAll" resultType="Message">
-		select * from ${tbl_message}
-		where ${col_yourid} = #{yourId}
-		order by ${col_mno} desc
+      select * from ${tbl_message}
+      where ${col_yourid} = #{yourId}
+      order by ${col_mno} desc
 </select>
 
+<!-- 보낸 메세지 전체 -->
 <select id="sendMessageAll" resultType="Message">
-		select * from ${tbl_message}
-		where ${col_userid} = #{userId}
-		order by ${col_mno} desc
+      select * from ${tbl_message}
+      where ${col_userid} = #{userId}
+      order by ${col_mno} desc
 </select>
 
 <insert id="messageSend">
-		insert into ${tbl_message} (${col_userid}, ${col_yourid}, ${col_mcontent})
-  		values (#{userId}, #{yourId}, #{mcontent})
+      insert into ${tbl_message} (${col_userid}, ${col_yourid}, ${col_mcontent})
+        values (#{userId}, #{yourId}, #{mcontent})
 </insert>
+
+<select id="selectByMno" resultType="Message">
+     select * from ${tbl_message}
+     where ${col_mno} = #{mno}
+</select>
+
+<update id="updateReadOr">
+     update ${tbl_message} set ${col_reador} = '읽음'
+     where ${col_mno} = #{mno}
+</update>
+
+<delete id="deleteMessege">
+   delete from ${tbl_message} where ${col_mno} = #{mno}
+</delete>
+
+     
 
 </mapper>

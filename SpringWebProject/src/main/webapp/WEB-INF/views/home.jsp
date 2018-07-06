@@ -391,23 +391,9 @@
                                 <!-- 로그인 모달 -->
                                 <div class="error"></div>
                                 <div class="form loginBox">
-                                    <!--<form method="post" action="/project/login">
-                                    <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
-                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
-                                    <input id="btnLogin" class="btn btn-default btn-login" type="submit" value="로그인">
-                                    </form>-->
-                                    
-                                    <!-- <form method="post" action="/project/login"> -->
                                     <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
                                     <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
                                     <button type="button" id="btnLogin" class="btn btn-default btn-login">로그인</button>
-                                    <!-- </form>-->
-                                                                     
-                                    <!-- <input id="userId" class="form-control" type="text" placeholder="Email" name="userId" required />
-                                    <input id="password" class="form-control" type="password" placeholder="Password" name="password" required />
-                                    
-                                    <button id="btnLogin" class="btn btn-default btn-login">로그인</button>
-                                    -->
                                 </div>
                              </div>
                         </div>
@@ -469,42 +455,32 @@
    
    ws.onmessage = function(event){
       console.log(event.data);
-   }
-   
-   window.onbeforeunload = function() {
-           var out = '${userId}';
-           if(out != ''){
-           ws.send('pageOut,'+ out);
-             websocket.close()
-           }
-      return null;
-   };
+   	}
    
    
+   	$(() => {
    
-   $(()=>{
-      
-      
-      
-      
-      var state1 = '${userId}';
-      console.log('아이디 : '+state1);
-      
-      if(state1 != ''){
-         ws.send('login,'+state1);
-         
-      }
-      
-      
-      
-         
-      
+   		var state1 = '${userId}';
+   		console.log('아이디 : ' + state1);
    
-      $('#getM').click(()=>{
-         
+   		if (state1 != '') {
+   			ws.send('login,' + state1);
+   
+   		}
+   		window.onbeforeunload = function() {
+   			websocket.onclose = function() {
+   				var userId = '${userId}'
+   				alert('dd');
+   				ws.send('pageOut,' + userId);
+   
+   			};
+   			ws.close();
+   		};
+   
+
+   
+   		$('#getM').click(()=>{
          console.log('aaa');
-      
-         
          });
       
       
@@ -667,7 +643,6 @@
          event.preventDefault();
          var re = '${userId}'
          ws.send('pageOut,'+ re);
-   
          location = '/project/logout'; //<<--controller로 간다 .
       }); //end #btnlogout()
 
@@ -688,8 +663,7 @@
       $('#sendM').click(function(){
          sendAllMessege();
       }); // end sendM
-
-   
+ 
        
       
       //쪽지함 모달에서 받은쪽지 새로고침버튼 
@@ -738,8 +712,7 @@
                'mcontent': writeContent
             }),
             success: function (result) { 
-               if(result ===1){
-                  ws.send('message,'+youid);
+               if(result === 1){
                   resetWriteMessage();
                   console.log("1111111111");
                   alert('성공적으로 보냈습니다.');
@@ -760,109 +733,112 @@
       });// end #writeSendBtn()
          
       
-       // 받은쪽지함에서 리스트로 보이게 하기 위한 코드
-       function getAllMessege() {
-         console.log('===== userId: ' + userId);
-         $.ajax({
-            type: 'get',
-            url: 'message/all',
-            headers: {
-               'Content-Type': 'application/json',
-               'X-HTTP-Method-Override': 'get'
-            },
-            data: encodeURI('userId='+userId),
-            success: function(result) {
-               var list1 = '';
-               var list2 = '';
-               list1 +='<tr>'
-                  +'<th>쪽지번호</th>'
-                  +'<th>보낸 사람</th>'
-                  +'<th>내용</th>'
-                  +'<th>보낸 시간</th>'
-                  +'</tr>';
-               $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
-                  console.log(this)
-                  var date = new Date(this.regdate);
-                  var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                  list2 += '<tr>'
-                  + '<td>'
-                  + this.mno
-                  + '</td>'
-                  + '<td>'
-                  + this.yourId
-                  + '</td>'
-                  + '<td>'
-                  + this.mcontent
-                  + '</td>'
-                  + '<td>'
-                  + dateString
-                  + '</td>'
-                  + '</tr>';
-               }); // end each()
-               $('#messageGetList').html(list1+list2);
-               //$('#messageList').html(list2);   
-            }
-         });      
-      }// end getAllMessege()
+      // 받은쪽지함에서 리스트로 보이게 하기 위한 코드
+      function getAllMessege() {
+        console.log('===== userId: ' + userId);
+        $.ajax({
+           type: 'get',
+           url: 'message/all',
+           headers: {
+              'Content-Type': 'application/json',
+              'X-HTTP-Method-Override': 'get'
+           },
+           data: encodeURI('userId='+userId),
+           success: function(result) {
+              var list1 = '';
+              var list2 = '';
+              list1 +='<tr>'
+                 +'<th>쪽지번호</th>'
+                 +'<th>보낸 사람</th>'
+                 +'<th>내용</th>'
+                 +'<th>보낸 시간</th>'
+                 +'<th>수신 여부</th>'
+                 +'</tr>';
+              $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+                 console.log(this)
+                 var date = new Date(this.regdate);
+                 var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                 list2 += '<tr>'
+                 + '<td id="getMno">'
+                 + this.mno
+                 + '</td>'
+                 + '<td>'
+                 + this.yourId
+                 + '</td>'
+                 + '<td><a class="Message-content-link1" href="" data-mno1="' + this.mno + '">'
+                 + this.mcontent
+                 + '</a></td>'
+                 + '<td>'
+                 + dateString
+                 + '</td>'
+                 + '<td>'
+                 + this.readOr
+                 + '</td>'
+                 + '</tr>'
+              }); // end each()
+              $('#messageGetList').html(list1+list2);
+              //$('#messageList').html(list2);   
+           }
+        });      
+     }// end getAllMessege()
+     
+     
       
-      // 보낸쪽지함에서 보낸쪽지를 리스트로 보이게 하기 위한 코드
-      function sendAllMessege() {
-         console.log('===== userId: ' + userId);
-         $.ajax({
-            type: 'get',
-            url: 'message/sendmessage',
-            headers: {
-               'Content-Type': 'application/json',
-               'X-HTTP-Method-Override': 'get'
-            }, 
-            data: encodeURI('userId='+userId),
-            success: function(result) {
-               var list1 = '';
-               var list2 = '';
-               list1 +='<tr>'
-                  +'<th>쪽지번호</th>'
-                  +'<th>받은 사람</th>'
-                  +'<th>내용</th>'
-                  +'<th>보낸 시간</th>'
-                  +'</tr>';
-               $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
-                  console.log(this)
-                  var date = new Date(this.regdate);
-                  var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-                  list2 += '<tr>'
-                  + '<td>'
-                  + this.mno
-                  + '</td>'
-                  + '<td>'
-                  + this.yourId
-                  + '</td>'
-                  + '<td>'
-                  + this.mcontent
-                  + '</td>'
-                  + '<td>'
-                  + dateString
-                  + '</td>'
-                  + '</tr>';
-               }); // end each()
-               $('#messageSendList').html(list1+list2);
-               //$('#messageList').html(list2);   
-            }
-         });
-      }// end sendAllMessege()
+     // 보낸쪽지함에서 보낸쪽지를 리스트로 보이게 하기 위한 코드
+     function sendAllMessege() {
+        console.log('===== userId: ' + userId);
+        $.ajax({
+           type: 'get',
+           url: 'message/sendmessage',
+           headers: {
+              'Content-Type': 'application/json',
+              'X-HTTP-Method-Override': 'get'
+           }, 
+           data: encodeURI('userId='+userId),
+           success: function(result) {
+              var list1 = '';
+              var list2 = '';
+              list1 +='<tr>'
+                 +'<th>쪽지번호</th>'
+                 +'<th>받은 사람</th>'
+                 +'<th>내용</th>'
+                 +'<th>보낸 시간</th>'
+                 +'<th>수신 여부</th>'
+                 +'</tr>';
+              $(result).each(function() { //each는 각이리고 for이라 생각 하면 된다 .
+                 console.log(this)
+                 var date = new Date(this.regdate);
+                 var dateString = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+                 list2 += '<tr>'
+                 + '<td>'
+                 + this.mno
+                 + '</td>'
+                 + '<td>'
+                 + this.yourId
+                 + '</td>'
+                 + '<td><a class="Message-content-link2" href="" data-mno2="' + this.mno + '">'                  + this.mcontent
+                 + '</td>'
+                 + '<td>'
+                 + dateString
+                 + '</td>'
+                 + '<td>'
+                 + this.readOr
+                 + '</td>'
+                 + '</tr>';
+              }); // end each()
+              $('#messageSendList').html(list1+list2);
+              //$('#messageList').html(list2);   
+           }
+        });
+     }// end sendAllMessege()
       
       $('.col-lg-4 col-sm-6').click(function(){
          console.log('gfgg');
          
-      });
-      
-   
-      
-      $('#btnSearch').click(function(){
-         event.preventDefault();
-         console.log('aa');
-      });
-
+      });  
 });// end document.reay()   
+
+
 
    //쪽지작성 후 보내기 하면 그칸이 다시 리셋되게 하기 위한 함수
    function resetWriteMessage(){
@@ -870,29 +846,104 @@
       $('#writeContent').val('');
    }// end resetWriteMessage()
 
-function btnlogout(event){
-   event.preventDefault();
-    location = '/project/logout';
- }
+	function btnlogout(event){
+	   event.preventDefault();
+	    location = '/project/logout';
+	 }// end btnlogout()
+ 
 
-//쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
-      document.getElementsByClassName("tablink")[0].click();
-      function messageBtn(event, btnName) {
-           var i, x, tablinks;
-           x = document.getElementsByClassName("city");
-           for (i = 0; i < x.length; i++) {
-             x[i].style.display = "none";
-           }
-           tablinks = document.getElementsByClassName("tablink");
-           for (i = 0; i < x.length; i++) {
-             tablinks[i].classList.remove("w3-light-grey");
-           }
-           document.getElementById(btnName).style.display = "block";
-           event.currentTarget.classList.add("w3-light-grey");
-         }// end messageBtn()  
-         
-   
-         
+	//쪽지함 모달에서 클릭되있는 버튼만 보이게 하는 코드
+     document.getElementsByClassName("tablink")[0].click();
+     function messageBtn(event, btnName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("city");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+            tablinks[i].classList.remove("w3-light-grey");
+          }
+          document.getElementById(btnName).style.display = "block";
+          event.currentTarget.classList.add("w3-light-grey");
+        }// end messageBtn()  
+        
+        
+        // (받은) 쪽지함에서 내용 클릭시 자세히 보기 
+        $('#mGet').on('click','#messageGetList .Message-content-link1', function(event){
+           event.preventDefault();
+           var Mno =$(this).attr('data-mno1');
+           console.log('받은쪽지함detail : ' + Mno);
+           $.ajax({
+              type: 'post',
+              url: 'message/getDetail',
+              headers: {
+                 'Content-Type': 'application/json',
+                 'X-HTTP-Method-Override': 'post'
+              },
+              data: JSON.stringify({
+                 'mno': Mno
+              }),
+              success: function (result) { 
+                 if(result != null){               
+                    var yourId = result['yourId'];
+                    var userId = result['userId'];
+                    var mcontent = result['mcontent'];
+                    var mno = result['mno'];
+                    console.log(JSON.stringify(result));
+                    var list = '';
+                    list+='<label>보낸 사람</label>'
+                    +'<input class="w3-input w3-border w3-margin-bottom" type="text" value="'+ userId +'" name="yourId" readonly >'
+                    +'<textarea id="writeContent" style="margin-bottom: 20px;" class="w3-input w3-border w3-margin-bottom" rows="7" cols="106" name="mcontent" readonly >'+ mcontent +'</textarea>'
+                     +'<label>받은 사람</label>'
+                     +'<input  class="w3-input w3-border w3-margin-bottom" type="text" value="'+ yourId +'" name="yourId" readonly >'
+                     +'<button class="w3-button w3-green w3-large" id="Deletebtn" type="button" >삭제 </button>'
+                     +'<input type="hidden" value="'+ mno +'" id="deletemno" name="mno" >'
+                 } // if
+                 $('#messageGetList').html(list);
+              } // seuccess
+           }); // end ajax()
+           
+        });// end $('#mGet').on(funcion())
+        
+        
+        // (보낸) 쪽지함에서 내용 클릭시 자세히 보기 
+        $('#mSend').on('click','#messageSendList .Message-content-link2', function(event){
+           event.preventDefault();
+           var Mno =$(this).attr('data-mno2');
+           console.log('보낸쪽지함detail mno: ' + Mno);
+           $.ajax({
+              type: 'post',
+              url: 'message/sendDetail',
+              headers: {
+                 'Content-Type': 'application/json',
+                 'X-HTTP-Method-Override': 'post'
+              },
+              data: JSON.stringify({
+                 'mno': Mno
+              }),
+              success: function (result) { 
+                 if(result != null){               
+                    var yourId = result['yourId'];
+                    var userId = result['userId'];
+                    var mcontent = result['mcontent'];
+                    var mno = result['mno'];
+                    console.log(JSON.stringify(result));
+                    var list = '';
+                    list+='<label>받은 사람</label>'
+                    +'<input class="w3-input w3-border w3-margin-bottom" type="text" value="'+ yourId +'" name="yourId" readonly >'
+                    +'<textarea id="writeContent" style="margin-bottom: 20px;" class="w3-input w3-border w3-margin-bottom" rows="7" cols="106" name="mcontent" readonly >'+ mcontent +'</textarea>'
+                     +'<label>보낸 사람</label>'
+                     +'<input  class="w3-input w3-border w3-margin-bottom" type="text" value="'+ userId +'" name="yourId" readonly >'
+                     +'<button class="w3-button w3-green w3-large" id="Deletebtn" type="button" >삭제 </button>'
+                     +'<input type="hidden" value="'+ mno +'" id="deletemno" name="mno" >'
+                 } // if
+                 $('#messageSendList').html(list);
+              } // seuccess
+           }); // end ajax()
+           
+        });// end $('#mSend').on('click'.function(event))
+        
          
    </script>
    
