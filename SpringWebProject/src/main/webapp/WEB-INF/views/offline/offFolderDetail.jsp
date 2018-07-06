@@ -81,25 +81,19 @@ bottom: 8px;
 <br/>
 <h4>${lecName }</h4>
 <br/>
-<div id = folder style="height: auto; min-height: 500px">
-<div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec" style="display: inline-block; margin-left: 170px;">
-<c:if test="${not empty onLecList }">
-<a id = "addLec" style="display: inline-block; position: relative; bottom: 150px;">
-</c:if>
-<c:if test="${empty onLecList }">
-<a id = "addLec" style="display: inline-block; position: relative; ">
-</c:if>
+<div id = folder2>
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec">
+<a id = "addLec">
 <img alt="" src="${pageContext.request.contextPath}/resources/img/addlec.png" id="add">
 </a>
 </div>
-<c:forEach var="group" items="${onLecList }">
+<c:forEach var="offlec" items="${offLecList}">
 
-<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
+<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
 <div class="resent-grid-img recommended-grid-img">
-<a class="detail" href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" >
-<c:if test="${not empty group.imagePath }">
-<img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
-</c:if>
+
+<img alt="" src="${pageContext.request.contextPath}/resources/image/offline/${offlec.imgPath }">
+
 </a>
 <div class="time small-time show-time movie-time">
 </div>
@@ -107,14 +101,14 @@ bottom: 8px;
 </div>
 </div>
 <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-<h6 style="color: #04B486; font-size: 70%;font-weight: bold;">${group.lecCategory }.</h6>
-<h5 style="font-size: 60%"><a href="single.html" class="title">${group.title }</a></h5>
+<h6 style="color: #04B486; font-size: 70%;font-weight: bold;">${offlec.category }.</h6>
+<h5 style="font-size: 60%"><a href="single.html" class="title">${offlec.title }</a></h5>
 <ul>
 <li><p class="author author-info"><a href="#" class="author">${userName }</a></p></li>
 <li class="right-list"><p class="views views-info"></p></li>
 </ul>
 </div>
-<a class="detail" href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
+<a class="detail" href="detail/offDetail?groupBno=${offlec.groupBno}&bno=${offlec.bno}&lecName=${lecName}">
 <div class="overlay"></div>
 <div></div>
 </a>
@@ -128,17 +122,19 @@ bottom: 8px;
 <script>
 
 $(()=>{
-	$('#createFolder1').css('display','none');
+	
+	$('#loader').css('display', 'none');
+	$('#notClick').css('display', 'none');
+	
+	$('#createFolder2').css('display','none');
 	$('#addLec').click(()=>{
 		event.preventDefault();
 		var bno = '${bno}';
 		var category = '${lecCategory}';
 		var lecName = '${lecName}';
-		 $("#onLec").load(encodeURI("/project/upload/addonlec?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
+		 $("#offLec").load(encodeURI("/project/offline/register?bno=" + bno + "&lecCategory=" + category + "&lecName="+ lecName));
 		
 	});
-	$('#loader').css('display', 'none');
-	$('#notClick').css('display', 'none');
 
 });
 

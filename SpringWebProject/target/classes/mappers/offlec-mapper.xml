@@ -12,28 +12,29 @@
   
 	<insert id="insert">
 		
-		INSERT INTO ${tbl_offlec} ( ${col_userid} , ${col_category} , ${col_title} , ${col_content} , ${col_meetingday} , ${col_maxmember} , ${col_imgpath} , ${col_location})
-		VALUES ( #{userid} , #{category} , #{title} , #{content} , #{meetingday} , #{maxmember} , #{imgPath} , #{location} )
+		INSERT INTO ${tbl_offlec} ( ${col_userid} , ${col_category} , ${col_title} , ${col_content} , ${col_meetingday} , ${col_maxmember} ,${col_curmember}, ${col_imgpath} , ${col_location} , ${col_groupbno2} )
+		VALUES ( #{userid} , #{category} , #{title} , #{content} , #{meetingday} , #{maxmember}, #{curmember} , #{imgPath} , #{location} , #{groupBno} )
 		
 	</insert>
-
+	
+	<!--  오프라인 대기자 신청  -->
 	<update id="updateWaitingId" >
 		UPDATE ${tbl_offlec}
 		SET ${col_waitingId} = #{waitingId}
 		WHERE ${col_bno} = #{bno}
 	</update>
   
+  	<!-- 해당글번호에 대기자 있는지 찾기  -->
   	<select id="selectWaitingList" resultType="OffLec">
-  	
-  		SELECT ${col_waitingId}
+  		SELECT *
 		FROM ${tbl_offlec}
 		WHERE ${col_bno} = #{bno}
-  	
   	</select>
   		
   	<select id="selectAll" resultType="OffLec">
   	
-  	SELECT * FROM ${tbl_offlec} ORDER BY ${col_bno} DESC
+  	SELECT * FROM ${tbl_offlec}
+  	ORDER BY ${col_bno} DESC
   	
   	</select>	
   	
@@ -54,4 +55,43 @@
 	AND ${col_lecname} = #{lecName}
 	</select>
   		
+  	<!--  디테일 폴더 번호에 따라 나열 -->
+	<select id="selectBnoOffLec" resultType="OffLec">
+	SELECT * FROM ${tbl_offlec} 
+	WHERE ${col_groupbno2} = #{bno}
+	</select>
+
+  	<update id="updateFolderImage" >
+  	UPDATE ${tbl_groupoff}
+  	SET ${col_imgpath} = #{imgpath}
+  	WHERE ${col_bno} = #{groupBno}
+  	</update>
+  	
+  	<select id="selectBnoByOffLec" resultType="OffLec">
+	SELECT * FROM ${tbl_offlec}
+	WHERE ${col_bno} = #{bno}
+	</select>
+  	
+  	<select id="selectGroupBnoByOffLec" resultType="OffLec">
+	SELECT * FROM ${tbl_offlec}
+	WHERE ${col_groupbno2} = #{groupBno}
+	</select>
+	
+	<!-- 신청 확정하기  -->
+	<update id="updateApply">
+	UPDATE ${tbl_offlec}
+	SET ${col_applyId} = #{userid} , ${col_curmember} = #{curmember} + 1
+	WHERE ${col_bno} = #{bno}
+	</update>
+	
+		
+	
+	
+	
+	
   </mapper>
+  
+  
+  
+  
+  
