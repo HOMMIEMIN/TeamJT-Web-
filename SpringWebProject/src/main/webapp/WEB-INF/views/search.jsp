@@ -24,11 +24,11 @@
 <!-- Custom fonts for this template
 <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
+   href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+   rel='stylesheet' type='text/css'>
 <link
-	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-	rel='stylesheet' type='text/css'> -->
+   href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+   rel='stylesheet' type='text/css'> -->
 
 <!-- link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet" type="text/css" -->
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
@@ -44,34 +44,35 @@ font-family: 'Nanum Gothic', serif;
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
-<<<<<<< HEAD
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link href="resources/css/folder2.css" rel="stylesheet" />-->
-=======
 
 <link href="resources/css/folder2.css" rel="stylesheet" />
->>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+
 
 
 
 
 <Style>
 .search-container {
+	display: flex;
 	max-width: 1200px;
+	min-width: 670px;
 	margin: auto;
+	margin-top: 60px;
 	padding-top: 40px;
 	font-family: 'Noto Sans KR', sans-serif;
+	z-index: 1;
 }
 
 .search-filters {
 	/*display: flex;
-	justify-content: flex-start;*/
+   justify-content: flex-start;*/
 	float: left;
 	width: 300px;
+	height: 100%;
 }
 
 .filter-title {
-	padding-bottom: 12px; 
+	padding-bottom: 12px;
 	color: #9c9c9c;
 	font-size: 12pt;
 }
@@ -98,8 +99,11 @@ font-family: 'Nanum Gothic', serif;
 }
 
 .result-box {
+	display: flex;
+	flex-direction: column;
 	float: right;
-	width: 900px;
+	max-width: 900px;
+	min-width: 370px;
 	height: 34px;
 }
 
@@ -143,13 +147,27 @@ img {
 	height: 68%;
 }
 
+.searchresult {
+	max-width: 900px;
+	min-width: 370px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-top: 100px;
+}
+
+.searchresult:after {
+	content: "";
+	flex: auto;
+}
+
 div .col-md-3.resent-grid.recommended-grid.movie-video-grid {
 	width: 200px;
 	height: 280px;
 	max-width: 200px;
 	max-height: 280px;
 	padding: 0px;
-	margin-right: 60px;
+	/*margin-right: 30px;*/
 	margin-bottom: 20px;
 }
 
@@ -219,6 +237,14 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 	-webkit-animation: spin 2s linear infinite;
 	animation: spin 2s linear infinite;
 }
+
+.category {
+	color: black;
+}
+
+.lecType {
+	color: black;
+}
 </Style>
 
 </head>
@@ -227,173 +253,174 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
 <jsp:include page="header.jsp"></jsp:include>
 
 
-	<div class="search-container">
-		<div class="search-filters">
+   <div class="search-container">
+      <div class="search-filters">
 
-			<div style="margin-bottom: 30px; font-size: 15pt; font-weight: bold; color: #333333">
-				Search Filter</div>
+         <div style="margin-bottom: 30px; font-size: 15pt; font-weight: bold; color: #333333">
+            Search Filter</div>
 
-			<div class="nav-category">
-				<div class="filter-title">Category</div>
+         <div class="nav-category">
+            <div class="filter-title">Category</div>
 
-				<div class="filter">
-					<a id="allcategory" class="category" href="">
-						All Category</a>
-				</div>
-				<div class="filter">
-					<a id="it" class="category" href=""> IT</a>
-				</div>
-				<div class="filter">
-					<a id="language" class="category" href="">
-						Language</a>
-				</div>
-				<div class="filter">
-					<a id="food" class="category" href=""> Food</a>
-				</div>
-				<div class="filter">
-					<a id="health" class="category" href="">
-						Health</a>
-				</div>
-				<div class="filter">
-					<a id="life" class="category" href=""> Life</a>
-				</div>
-				<div class="filter">
-					<a id="etc" class="category" href=""> Etc.</a>
-				</div>
-			</div>
-			
+            <div class="filter">
+               <a id="AllCategory" class="category" href="">All Category</a>
+            </div>
+            <div class="filter">
+               <a id="IT" class="category" href="">IT</a>
+            </div>
+            <div class="filter">
+               <a id="Language" class="category" href="">Language</a>
+            </div>
+            <div class="filter">
+               <a id="Food" class="category" href="">Food</a>
+            </div>
+            <div class="filter">
+               <a id="Health" class="category" href="">Health</a>
+            </div>
+            <div class="filter">
+               <a id="Life" class="category" href="">Life</a>
+            </div>
+            <div class="filter">
+               <a id="Ect" class="category" href="">Etc.</a>
+            </div>
+         </div>
+         
 
-			<div class="nav-lectype">
-				<div class="filter-title">Lecture Type</div>
+         <div class="nav-lectype">
+            <div class="filter-title">Lecture Type</div>
 
-				<div class="filter">
-					<a id="online" class="lectype" href="">Online</a>
-				</div>
+            <div class="filter">
+               <a id="online" class="lectype" href="">Online</a>
+            </div>
 
-				<div class="filter">
-					<a id="offline" class="lectype" href="">Offline</a>
-				</div>
-			</div>
-		</div>
+            <div class="filter">
+               <a id="offline" class="lectype" href="">Offline</a>
+            </div>
+         </div>
+      </div>
 
-		<div class="result-box">
-			<div class="searchpath">${category } > ${lecType }</div>
-			
-			<div class="result-align">
-				<div class="orderby">
-					<a id="recent" href="javascript:void(0)" onclick=>최신순↓</a>
-				</div>
-				<div class="orderby">
-					<a id="popular" href="javascript:void(0)" onclick=>인기순↓</a>
-				</div>
-			
-			</div>
+      <div class="result-box">
+         <div class="searchpath">${category } > ${lecType }</div>
+         
+         <div class="result-align">
+            <div class="orderby">
+               <a id="recent" href="javascript:void(0)" onclick=>최신순↓</a>
+            </div>
+            <div class="orderby">
+               <a id="popular" href="javascript:void(0)" onclick=>인기순↓</a>
+            </div>
+         
+         </div>
 
-			<div class="searchresult">
-				<c:forEach var="group" items="${list }">
+         <div class="searchresult">
+         <!-- div style="padding-top: 100px;"-->
+            <c:forEach var="group" items="${list }">
+      
+               <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
+                  <div class="resent-grid-img recommended-grid-img">
+                     <a
+                        href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}"
+                        class="detail"> <c:if test="${not empty group.imagePath }">
+                           <img alt=""
+                              src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
+                        </c:if>
+                     </a>
+                     <div class="time small-time show-time movie-time"></div>
+                     <div class="clck movie-clock"></div>
+                  </div>
+                  <div
+                     class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
+                     style="padding: 5px">
+                     <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${group.lecCategory }.</h6>
+                     <h5 style="font-size: 60%">
+                        <a href="single.html" class="title">${group.title }</a>
+                     </h5>
+                     <ul>
+                        <li><p class="author author-info">
+                              <a href="#" class="author">${group.userName }</a>
+                           </p></li>
+                        <li class="right-list"><p class="views views-info"></p></li>
+                     </ul>
+                  </div>
+                  <a class="detail"
+                     href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
+                     <div class="overlay"></div>
+                     <div></div>
+                  </a>
+               </div>
 
-					<div class="col-md-3 resent-grid recommended-grid movie-video-grid">
-						<div class="resent-grid-img recommended-grid-img">
-							<a
-								href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}"
-								class="detail"> <c:if test="${not empty group.imagePath }">
-									<img alt=""
-										src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
-								</c:if>
-							</a>
-							<div class="time small-time show-time movie-time"></div>
-							<div class="clck movie-clock"></div>
-						</div>
-						<div
-							class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
-							style="padding: 5px">
-							<h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${group.lecCategory }.</h6>
-							<h5 style="font-size: 60%">
-								<a href="single.html" class="title">${group.title }</a>
-							</h5>
-							<ul>
-								<li><p class="author author-info">
-										<a href="#" class="author">${group.userName }</a>
-									</p></li>
-								<li class="right-list"><p class="views views-info"></p></li>
-							</ul>
-						</div>
-						<a class="detail"
-							href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
-							<div class="overlay"></div>
-							<div></div>
-						</a>
-					</div>
-
-				</c:forEach>
-			</div>
-		</div>
-	</div>
+            </c:forEach>
+            <!-- /div-->
+         </div>
+      </div>
+   </div>
 
 
 
 
 <div id="loader" style="display: none; z-index: 4;"></div>
-<div id="notClick" style="display: none; z-index: 3;"></div>	
+<div id="notClick" style="display: none; z-index: 3;"></div>   
 <script>
 $(()=>{
-	typeColor();
-	menuColor();
-	if('${category}' === "All Category"){
-		$('#allcategory').css('color','#169e83');
-	}
-	var category = '#'+'${category}';
-	var type = '#'+'${lecType}'
-	console.log(category);
-	var clickCategory = '${category}';
-	var clickType = 'online';
-	
-	console.log(category);
-	$(category).css('color','#169e83');
-	$(type).css('color','#169e83');
-	$('.category').click(function(){
-		event.preventDefault();
-		menuColor();
-		$(this).css('color','#169e83');
-		var a = $(this).css('color');
-		clickCategory = $(this).text();
-		console.log(clickCategory);
-		if(clickCategory === 'Etc.'){
-			clickCategory = 'Etc';
-		}
-		location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
-		$("#loader").css('display','block');
-		$("#notClick").css('display','block');
-	});
+   typeColor();
+   menuColor();
+   if('${category}' === "All Category"){
+      $('#AllCategory').css('color','#169e83');
+   }
+   var category = '#'+'${category}';
+   var type = '#'+'${lecType}'
+   console.log('카테고리 : '+category);
+   var clickCategory = '${category}';
+   var clickType = 'online';
+   
+   console.log(category);
+   $(category).css('color','#169e83');
+   $(type).css('color','#169e83');
+   
+   
+   $('.category').click(function(){
+      event.preventDefault();
+      menuColor();
+      $(this).css('color','#169e83');
+      var a = $(this).css('color');
+      clickCategory = $(this).text();
+      console.log(clickCategory);
+      if(clickCategory === 'Etc.'){
+         clickCategory = 'Etc';
+      }
+      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
+      $("#loader").css('display','block');
+      $("#notClick").css('display','block');
+   });
 
-	$('.lectype').click(function(){
-		event.preventDefault();
-		typeColor();
-		clickType = $(this).text();
-		console.log(clickType);
-		$(this).css('color','#169e83');
-	
-	});
+   $('.lectype').click(function(){
+      event.preventDefault();
+      typeColor();
+      clickType = $(this).text();
+      console.log(clickType);
+      $(this).css('color','#169e83');
+   
+   });
 
-	function typeColor(){
-		$('.lectype').css('color','#333333');
-	}
+   function typeColor(){
+      $('.lectype').css('color','#333333');
+   }
 
-	function menuColor(){
-		$('.category').css('color','#333333');
-	}
-	
-	var search = '${searchText}';
-	if(search != null){
-		$('#searchText').val(search);
-	}
+   function menuColor(){
+      $('.category').css('color','#333333');
+   }
+   
+   var search = '${searchText}';
+   if(search != null){
+      $('#searchText').val(search);
+   }
 });
 
 
 </script>
 
 
-	
+   
 
 
 </body>
