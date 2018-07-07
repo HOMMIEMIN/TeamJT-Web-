@@ -39,6 +39,9 @@
    delete from ${tbl_message} where ${col_mno} = #{mno}
 </delete>
 
-     
+<select id="selectCount" resultType="Integer">
+select count(${col_reador}) from ${tbl_message}
+      where ${col_yourid} = #{yourId} and ${col_reador} ='읽지 않음'
+</select>     
 
 </mapper>

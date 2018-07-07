@@ -56,6 +56,12 @@ public class MessageDaoImple implements MessageDao {
       
       return sqlSession.delete(NAMESPACE+".deleteMessege", mno) ;
    }// end delete()
+
+@Override
+public int selectByCount(Message message) {
+	
+	return sqlSession.selectOne(NAMESPACE +".selectCount", message);
+}
    
 
 }//end class MessegeDaoImple

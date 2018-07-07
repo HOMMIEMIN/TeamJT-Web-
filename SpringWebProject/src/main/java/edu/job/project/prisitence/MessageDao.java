@@ -26,5 +26,7 @@ public interface MessageDao {
 	   // 삭제
 	   int delete(int mno);
 	   
+	   int selectByCount(Message message);
+	   
 	   
 	} // end interface MessegeDao

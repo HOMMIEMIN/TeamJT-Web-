@@ -452,13 +452,44 @@
    // 웹소켓
    var url = 'ws://localhost:8181/project/echo';
    var ws = new WebSocket(url);
-   
+   var messageId = '${userId}';
    ws.onmessage = function(event){
-      console.log(event.data);
+	   var data = event.data;
+	   var userid = '${userId}';
+	   console.log(data.indexOf('@'));
+	   if(data.indexOf('@') != -1){
+		   countMessage();
+	      }
    	}
+   
+   function countMessage(){
+  		
+			$.ajax({
+             type:'post',
+             url:'/project/message/count',
+             headers:{
+                'Content-Type' : 'application/json; charset=UTF-8',
+                'X-HTTP-Method-Override' : 'post'
+             },
+             data: JSON.stringify({
+                'yourId' : messageId
+             }),
+             success:function(result){	             
+                   console.log(result);
+                   $('#messageCount').text(result);
+              
+             }
+             
+          });
+		}
    
    
    	$(() => {
+   		
+   		if(messageId != ''){
+   		countMessage();
+   		}
+   		
    
    		var state1 = '${userId}';
    		console.log('아이디 : ' + state1);
@@ -467,14 +498,12 @@
    			ws.send('login,' + state1);
    
    		}
-   		window.onbeforeunload = function() {
-   			websocket.onclose = function() {
+   		window.onbeforeunload = function() {  			
    				var userId = '${userId}'
    				alert('dd');
    				ws.send('pageOut,' + userId);
-   
-   			};
-   			ws.close();
+   	
+   			
    		};
    
 
@@ -713,6 +742,7 @@
             }),
             success: function (result) { 
                if(result === 1){
+            	  ws.send('message,'+youid);
                   resetWriteMessage();
                   console.log("1111111111");
                   alert('성공적으로 보냈습니다.');
@@ -886,7 +916,8 @@
                  'mno': Mno
               }),
               success: function (result) { 
-                 if(result != null){               
+                 if(result != null){       
+                	countMessage();
                     var yourId = result['yourId'];
                     var userId = result['userId'];
                     var mcontent = result['mcontent'];

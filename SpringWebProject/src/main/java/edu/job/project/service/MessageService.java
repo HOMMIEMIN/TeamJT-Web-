@@ -27,5 +27,7 @@ public interface MessageService {
 	   // 쪽지 삭제
 	   int delete(int mno);
 	   
+	   int readCount(Message message);
+	   
 	   
 	}// end interface MessegeService

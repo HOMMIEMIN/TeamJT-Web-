@@ -30,16 +30,15 @@ public class WebSoket extends TextWebSocketHandler{
 			list.put(items.get(1), session);
 			System.out.println("접속자 : " + items.get(1));
 		}else if(items.get(0).equals("pageOut")) {
-			String user = items.remove(1);
+			String user = items.get(1);
 			if(user != null) {
 				list.remove(user);	
-			}
-			
-			System.out.println("로그아웃 : " + items.get(1));
+				System.out.println("로그아웃 : " + items.get(1));
+			}					
 		}else if(items.get(0).equals("message")) {
 			WebSocketSession you = list.get(items.get(1));
 			if(you != null) {
-			you.sendMessage(new TextMessage("웹소켓 전송 : "+items.get(1)));
+			you.sendMessage(new TextMessage(items.get(1)));
 			System.out.println("메세지 전송");
 			}
 		}
