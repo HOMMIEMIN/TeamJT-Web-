@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -304,9 +305,9 @@ color : black;
          <!-- div style="padding-top: 100px;"-->
          <c:if test="${not empty online }">
             <c:forEach var="online" items="${online }">
-      
+      			
                <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
-                  <div class="resent-grid-img recommended-grid-img">
+                  <div class="resent-grid-img recommended-grid-img">                 
                      <a
                         href=""
                         class="detail"> <c:if test="${not empty online.imagePath }">
@@ -331,10 +332,11 @@ color : black;
                         <li class="right-list"><p class="views views-info"></p></li>
                      </ul>
                   </div>
+                  
                   <a class="detail"
                      href="videoview?groupBno=${online.groupBno}&bno=${online.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
-                     <div></div>
+                     <div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">온라인</div>
                   </a>
                </div>
 
@@ -373,7 +375,16 @@ color : black;
                   <a class="detail"
                      href="videoview?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
-                     <div></div>
+                     <c:set var="now" value="<%=new java.util.Date()%>" />
+					 <c:set var="sysDate"><fmt:formatDate value="${now}" pattern="yyyyMMddhhmmss" /></c:set> 
+					 <c:set var="date" value="${offline.regdate }" />
+					 <c:set var="regDate"><fmt:formatDate value="${date}" pattern="yyyyMMddhhmmss" /></c:set>					 
+                     <c:if test="${offline.maxmember > offline.curmember }">
+                     <div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">모집중</div>
+              		 </c:if>
+              		 <c:if test="${offline.maxmember == offline.curmember }">
+                     <div style="width: 60px; height: 25px;background-color:orange; color:white; text-align: center; position: relative; bottom: 285px; ">모집마감</div>
+              		 </c:if>
                   </a>
                </div>
 
