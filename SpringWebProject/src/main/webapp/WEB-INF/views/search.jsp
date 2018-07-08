@@ -269,7 +269,7 @@ color : black;
                <a id="Life" class="category" href="">Life</a>
             </div>
             <div class="filter">
-               <a id="Ect" class="category" href="">Etc.</a>
+               <a id="Etc" class="category" href="">Etc.</a>
             </div>
          </div>
          
@@ -278,11 +278,11 @@ color : black;
             <div class="filter-title">Lecture Type</div>
 
             <div class="filter">
-               <a id="online" class="lectype" href="">Online</a>
+               <a id="Online" class="lectype" href="">Online</a>
             </div>
 
             <div class="filter">
-               <a id="offline" class="lectype" href="">Offline</a>
+               <a id="Offline" class="lectype" href="">Offline</a>
             </div>
          </div>
       </div>
@@ -292,25 +292,26 @@ color : black;
          
          <div class="result-align">
             <div class="orderby">
-               <a id="recent" href="javascript:void(0)" onclick=>최신순↓</a>
+               <a id="recent" href="javascript:void(0)" class = "repo">최신순↓</a>
             </div>
             <div class="orderby">
-               <a id="popular" href="javascript:void(0)" onclick=>인기순↓</a>
+               <a id="popular" href="javascript:void(0)" class = "repo">인기순↓</a>
             </div>
          
          </div>
 
          <div class="searchresult">
          <!-- div style="padding-top: 100px;"-->
-            <c:forEach var="group" items="${list }">
+         <c:if test="${not empty online }">
+            <c:forEach var="online" items="${online }">
       
                <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
                   <div class="resent-grid-img recommended-grid-img">
                      <a
-                        href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}"
-                        class="detail"> <c:if test="${not empty group.imagePath }">
+                        href=""
+                        class="detail"> <c:if test="${not empty online.imagePath }">
                            <img alt=""
-                              src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
+                              src="${pageContext.request.contextPath}/resources/image/tmpFiles/${online.imagePath}">
                         </c:if>
                      </a>
                      <div class="time small-time show-time movie-time"></div>
@@ -319,25 +320,65 @@ color : black;
                   <div
                      class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
                      style="padding: 5px">
-                     <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${group.lecCategory }.</h6>
+                     <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${online.lecCategory }.</h6>
                      <h5 style="font-size: 60%">
-                        <a href="single.html" class="title">${group.title }</a>
+                        <a href="single.html" class="title">${online.title }</a>
                      </h5>
                      <ul>
                         <li><p class="author author-info">
-                              <a href="#" class="author">${group.userName }</a>
+                              <a href="#" class="author">${online.userName }</a>
                            </p></li>
                         <li class="right-list"><p class="views views-info"></p></li>
                      </ul>
                   </div>
                   <a class="detail"
-                     href="videoview?groupBno=${group.groupBno}&bno=${group.bno}&lecName=${lecName}">
+                     href="videoview?groupBno=${online.groupBno}&bno=${online.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
                      <div></div>
                   </a>
                </div>
 
             </c:forEach>
+            </c:if>
+            
+             <c:if test="${not empty offline }">
+            <c:forEach var="offline" items="${offline }">
+      
+               <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
+                  <div class="resent-grid-img recommended-grid-img">
+                     <a
+                        href=""
+                        class="detail"> <c:if test="${not empty offline.imgPath }">
+                           <img alt=""
+                              src="${pageContext.request.contextPath}/resources/image/offline/${offline.imgPath}">
+                        </c:if>
+                     </a>
+                     <div class="time small-time show-time movie-time"></div>
+                     <div class="clck movie-clock"></div>
+                  </div>
+                  <div
+                     class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
+                     style="padding: 5px">
+                     <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${offline.category }.</h6>
+                     <h5 style="font-size: 60%">
+                        <a href="single.html" class="title">${offline.title }</a>
+                     </h5>
+                     <ul>
+                        <li><p class="author author-info">
+                              <a href="#" class="author">${offline.userid }</a>
+                           </p></li>
+                        <li class="right-list"><p class="views views-info"></p></li>
+                     </ul>
+                  </div>
+                  <a class="detail"
+                     href="videoview?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
+                     <div class="overlay"></div>
+                     <div></div>
+                  </a>
+               </div>
+
+            </c:forEach>
+            </c:if>
             <!-- /div-->
          </div>
       </div>
@@ -357,10 +398,14 @@ $(()=>{
    }
    var category = '#'+'${category}';
    var type = '#'+'${lecType}'
+   
    console.log('카테고리 : '+category);
    var clickCategory = '${category}';
-   var clickType = 'online';
-   
+   var clickType = '${lecType}';
+   if(category ==='#Etc.'){
+	   category = '#Etc';
+	   clickCategory = 'Etc';
+   }
    console.log(category);
    $(category).css('color','#169e83');
    $(type).css('color','#169e83');
@@ -372,10 +417,10 @@ $(()=>{
       $(this).css('color','#169e83');
       var a = $(this).css('color');
       clickCategory = $(this).text();
-      console.log(clickCategory);
       if(clickCategory === 'Etc.'){
-         clickCategory = 'Etc';
+    	  clickCategory = 'Etc';
       }
+      console.log(clickCategory);
       location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
       $("#loader").css('display','block');
       $("#notClick").css('display','block');
@@ -385,9 +430,18 @@ $(()=>{
       event.preventDefault();
       typeColor();
       clickType = $(this).text();
+      
       console.log(clickType);
       $(this).css('color','#169e83');
+      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
+      
    
+   });
+   
+   $('.orderby').click(function(){
+	   repoColor();
+	   $(this).css('border','1px solid #169e83');
+	   $(this).css('color','#169e83');
    });
 
    function typeColor(){
@@ -401,6 +455,11 @@ $(()=>{
    var search = '${searchText}';
    if(search != null){
       $('#searchText').val(search);
+   }
+   
+   function repoColor(){
+	   $('.orderby').css('color','black');
+	   $('.orderby').css('border','1px solid black');
    }
 });
 

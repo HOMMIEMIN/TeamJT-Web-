@@ -56,5 +56,5 @@ public interface OffLecService {
 	// 학생페이지 오프라인폴더 보여주기 
 	List<GroupOff> readByMyLec(Member m);
 	
-	
+	List<OffLec> readByCategory(String category);
 }

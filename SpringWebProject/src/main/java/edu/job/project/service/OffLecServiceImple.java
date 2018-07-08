@@ -149,6 +149,12 @@ public class OffLecServiceImple implements OffLecService {
 		
 		return list;
 	}
+
+	@Override
+	public List<OffLec> readByCategory(String category) {
+		
+		return dao.selectByCategory(category);
+	}
 	
 	
 }// end OffLecServiceImple

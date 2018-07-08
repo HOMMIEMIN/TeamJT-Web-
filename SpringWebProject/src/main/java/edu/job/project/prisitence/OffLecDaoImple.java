@@ -109,5 +109,11 @@ public class OffLecDaoImple implements OffLecDao {
 
 		return session.selectOne(NAMESPACE + ".selectByMyLec", groupBno);
 	}
+
+	@Override
+	public List<OffLec> selectByCategory(String category) {
+		
+		return session.selectList(NAMESPACE + ".selectByCategory", category);
+	}
 	
 }

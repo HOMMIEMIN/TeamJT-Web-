@@ -90,7 +90,10 @@
 	WHERE ${col_bno} = #{bno}
 	</select>
 	
-	
+	<!-- 검색 -->
+	<select id="selectByCategory" resultType="offLec">
+select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
+</select>
 	
 	
   </mapper>

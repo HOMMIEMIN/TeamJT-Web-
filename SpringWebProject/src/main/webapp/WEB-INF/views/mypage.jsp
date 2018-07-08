@@ -221,7 +221,7 @@ h4 {
       <button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
       <button id="createFolder1"
          onclick="document.getElementById('id001').style.display='block'"
-         style="display: none">online</button>
+         style="display: none"></button>
 
    </div>
 
@@ -258,24 +258,8 @@ h4 {
 
    <script>
       
-   $(()=>{
-      var type='${type}';
-      console.log('타입 : ' + type);
-      if(type != null){
-         switch(type){
-         case 'a':
-         openCity(event, 'London');
-         break;
-         case 'b':
-         openCity(event, 'Paris');
-         break;
-         case 'c':
-         openCity(event, 'Tokyo');
-         break;
-         }
-      }
-      
-   });
+   
+
          
          $('#btnSearchBar').click(()=>{
             $('#searchForm').submit();
@@ -295,8 +279,11 @@ h4 {
                   " active", "");
          }
          document.getElementById(cityName).style.display = "block";
-         evt.currentTarget.className += " active";
-         console.log(cityName+'입장      [종류]paris:선생 london:학생 tokyo:칠판')
+         $(document).ready(()=>{
+        	 evt.currentTarget.className += " active";
+             console.log(cityName+'입장      [종류]paris:선생 london:학생 tokyo:칠판')
+         });
+        
 
          if (cityName === 'Paris') {
             console.log('나는 선생님 페이지 들어옴');
@@ -373,7 +360,23 @@ h4 {
          $('#loader').css('display', 'none');
       }
       
-      
+      $(document).ready(function(){
+      	   var type='${type}';
+      	      console.log('타입 : ' + type);
+      	      if(type != null){
+      	         switch(type){
+      	         case 'a':
+      	         openCity(event, 'London');
+      	         break;
+      	         case 'b':
+      	         openCity(event, 'Paris');
+      	         break;
+      	         case 'c':
+      	         openCity(event, 'Tokyo');
+      	         break;
+      	         }
+      	      }
+         });
       
    </script>
 

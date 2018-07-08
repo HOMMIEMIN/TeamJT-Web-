@@ -37,6 +37,6 @@ public interface OffLecDao {
 	
 	GroupOff selectByMyLec(int groupBno);
 		
-		
+	List<OffLec> selectByCategory(String category);	
 	
 }

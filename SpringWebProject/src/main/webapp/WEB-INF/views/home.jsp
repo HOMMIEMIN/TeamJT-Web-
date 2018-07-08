@@ -241,7 +241,7 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=IT&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=IT&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/1.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -256,7 +256,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Language&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Language&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/2.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -271,7 +271,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Food&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Food&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/3.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -286,7 +286,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Health&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Health&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -301,7 +301,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Life&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Life&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/5.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -316,7 +316,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Etc&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Etc&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/6.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">

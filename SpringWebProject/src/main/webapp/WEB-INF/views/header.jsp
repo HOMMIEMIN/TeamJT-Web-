@@ -193,7 +193,7 @@ tr:hover {
 		<div class="container">
 			<!-- 로고(메인페이지 링크) -->
 			<div class="navleft">
-				<a href="#"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
+				<a href="/project"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
 			</div>
 			<!-- 검색창 -->
 			<div class="navcenter">
