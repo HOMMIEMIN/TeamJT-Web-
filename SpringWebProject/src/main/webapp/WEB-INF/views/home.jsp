@@ -118,7 +118,7 @@
                
  <!-- 로그인시 쪽지함 모달!! -->
    <div class="w3-container">
-         <div id = "messageCount" style = "left:850px ;position: relative; color : red;">0</div>
+         <div id = "messageCount" style = "left:850px ;position: relative; color : white; background-color: #169e83; border-radius: 18px; width: 20px; font-size: 80%; height: 20px; font: bold; text-align: center;">0</div>
          <button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
                class="w3-button w3-black" style="position: relative; right:-100vh" >쪽지함.</button>
                

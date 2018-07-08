@@ -19,7 +19,7 @@
 
 
 
-
+ 
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
@@ -376,6 +376,16 @@ h4 {
       	         break;
       	         }
       	      }
+      	      
+      	    jQuery.browser = {};
+      	  (function () {
+      	      jQuery.browser.msie = false;
+      	      jQuery.browser.version = 0;
+      	      if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+      	          jQuery.browser.msie = true;
+      	          jQuery.browser.version = RegExp.$1;
+      	      }
+      	  })();
          });
       
    </script>
@@ -393,12 +403,11 @@ h4 {
       href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
    <link rel="stylesheet"
       href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
+      <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 </body>
 
 </html>

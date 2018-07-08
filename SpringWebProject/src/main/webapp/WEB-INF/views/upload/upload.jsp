@@ -138,6 +138,14 @@
                     function onSelect2(e){
                     	$('#loader').css('display', 'block');
                 		$('#notClick').css('display', 'block');
+                		var fileReader = new FileReader();
+                        fileReader.onload = function (event) {
+                            console.log(event);
+                            var mapImage = event.target.result;
+                            $("#imageUp").attr('src', mapImage);
+                             
+                        }
+                        fileReader.readAsDataURL(e.files[0].rawFile);
                     }
                     
                     function onSelect(e){
@@ -149,19 +157,23 @@
                     function onSuccess(e){                 
                     	  var file0Uid = e.files[0].uid;
                     	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-                    	  $('#video1').attr('src','/project/resources/video/tmpFiles/'+ id + fileName);
+                    	 
                     	  $('#loading1').css('display','none');
-                    	  $('#percent').css('display','none');
+                    	  $('#percent').css('display','none');           
+                  		setTimeout(function(){
+                  			   // 1초 후 작동해야할 코드
+                  			 $('#video1').attr('src','/project/resources/video/tmpFiles/'+ id + fileName);
+                  			   }, 2000);
                     	  console.log(id+fileName);
                       }
                     
                     function onSuccess2(e){   	
                   	  var file0Uid = e.files[0].uid;
-                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	
-                  	$('#imageUp').attr('src','${pageContext.request.contextPath}/resources/image/tmpFiles/'+ id + imageName);
+                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	                 	
                   	  console.log(id+imageName);
                   	$('#loader').css('display', 'none');
-            		$('#notClick').css('display', 'none');
+            		$('#notClick').css('display', 'none');           		
+         
                     }
                       function onUpload(e){
                     	  $('#percent').text(e.percentComplete+'%');

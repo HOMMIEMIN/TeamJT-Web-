@@ -80,6 +80,7 @@ public class VideoController {
 		OnLec bnoList = service.readByBno(GroupbnoList.get(0).getBno());
 		
 		Member m = mService.readId(bnoList.getUserId());
+		if(session.getAttribute("userId") != null) {
 		Member myM = mService.readId((String)session.getAttribute("userId"));
 		System.out.println("OnLec : "+ m.getOnLec());
 		service.updateCnt(GroupbnoList.get(0).getBno());
@@ -92,6 +93,7 @@ public class VideoController {
 			}
 			
 			
+		}
 		}
 		model.addAttribute("bnoList", bnoList);
 		model.addAttribute("GroupbnoList", GroupbnoList);
@@ -131,8 +133,8 @@ public class VideoController {
 	
 	@RequestMapping(value="/yourpage", method=RequestMethod.GET)
 	public void yourpage(String userId,String userName, Model model) {
-			model.addAttribute("userName", userName);
-			model.addAttribute("userId", userId);
+			model.addAttribute("uName", userName);
+			model.addAttribute("uId", userId);
 		
 	}
 	
