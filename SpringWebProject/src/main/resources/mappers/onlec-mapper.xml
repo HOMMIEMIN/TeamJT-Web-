@@ -38,9 +38,9 @@ select ${col_lecname} from ${tbl_groupon} where ${col_bno} = #{groupBno}
 select * from ${tbl_onlec} where ${col_userid} = #{userId}
 </select>
 
-<select id="selectBnoOnLec" resultType="OnLec">
-select * from ${tbl_onlec} where ${col_groupbno1} = #{bno}
-</select>
+	<select id="selectBnoOnLec" resultType="OnLec">
+	select * from ${tbl_onlec} where ${col_groupbno1} = #{bno}
+	</select>
 
 <select id="selectAllGroupOn" resultType="GroupOn">
 select * from ${tbl_groupon} where ${col_userid} = #{userId}
@@ -55,14 +55,14 @@ insert into ${tbl_groupon}(${col_userid}, ${col_lecname}, ${col_leccategory})
 values(#{userId}, #{lecName}, #{lecCategory})
 </insert>
 
-<insert id="insertOnLec">
-insert into ${tbl_onlec}(${col_groupbno1}, ${col_leccategory}, ${col_title}, ${col_content}, ${col_videopath}, ${col_userid}, ${col_imagepath}, ${col_username})
-values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId}, #{imagePath}, #{userName})
-</insert>
+	<insert id="insertOnLec">
+	insert into ${tbl_onlec}(${col_groupbno1}, ${col_leccategory}, ${col_title}, ${col_content}, ${col_videopath}, ${col_userid}, ${col_imagepath}, ${col_username})
+	values(#{groupBno}, #{lecCategory}, #{title}, #{content}, #{videoPath}, #{userId}, #{imagePath}, #{userName})
+	</insert>
 
-<update id="gropOnImageUpdate">
-update ${tbl_groupon} set ${col_imagepath} = #{imagePath} where ${col_bno} = #{groupBno}
-</update>
+	<update id="gropOnImageUpdate">
+	update ${tbl_groupon} set ${col_imagepath} = #{imagePath} where ${col_bno} = #{groupBno}
+	</update>
 
 <update id="groupOnLike">
 update ${tbl_groupon} set ${col_leclike} = ${col_leclike} + 1 where ${col_bno} = #{bno}

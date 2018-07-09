@@ -70,11 +70,11 @@
 	</div>
 	</div>
 	<br/>
-	<div>
+	<div style="height: 480px;">
 	<video id="video1"  width="854" height="480" style="background-color:#F2F2F2;border:1px solid lightgrey; border-radius: 16px; max-height: 480px; max-width: 854;" >
     <source type="video/mp4">
     <source id = "video2" type="video/ogg"></video>
- <img id="loading" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: relative; right: 530px; bottom: 220px"></img>
+ <img id="loading1" src = "${pageContext.request.contextPath}/resources/img/movieImage.png" style="position: relative; left: 320px; bottom: 350px"></img>
  <div id= "percent" style="left: 1000px; top: 900px;position: absolute; display: none; font-weight: bold;">100%</div>		 
 </div>
             <div>
@@ -93,9 +93,7 @@
 	
  	<textarea class="form-control" style="width:854px; max-width: 854px;" placeholder="내용을 입력해주세요." rows="10" id="content"></textarea>
 
-		
-       <br/>
-		<input type="button" style="width: 854px;height:50px ;hemax-width: 854px; background-color: 3ED0C8; border: 1px solid 3ED0C8" id="creatLec" value=""/>
+		<input type="button" style="width: 854px;height:50px ;hemax-width: 854px; background-color: #169e83; border: 1px solid 3ED0C8" id="creatLec" value=""/>
 </div>
 
 <div id="loader" style="display: none; z-index: 4;"></div>
@@ -125,37 +123,57 @@
                     $("#files2").kendoUpload({
                         async: {
 
-                            chunkSize: 300,// bytes
+                            chunkSize: 800,// bytes
 
                             saveUrl: "chunkSaveImage",
                             removeUrl: "remove",
                             autoUpload: true
                         },
+                        select:onSelect2,
                         success:onSuccess2
                        
                     
                     });
                     
+                    function onSelect2(e){
+                    	$('#loader').css('display', 'block');
+                		$('#notClick').css('display', 'block');
+                		var fileReader = new FileReader();
+                        fileReader.onload = function (event) {
+                            console.log(event);
+                            var mapImage = event.target.result;
+                            $("#imageUp").attr('src', mapImage);
+                             
+                        }
+                        fileReader.readAsDataURL(e.files[0].rawFile);
+                    }
+                    
                     function onSelect(e){
                     	console.log('들어옴');
-                    	$('#loading').css('display','none');
+                    	$('#loading1').css('display','none');
                     	$('#percent').css('display','block');
                     }
                     
                     function onSuccess(e){                 
                     	  var file0Uid = e.files[0].uid;
                     	  fileName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();
-                    	  $('#video1').attr('src','/project/resources/video/tmpFiles/'+ id + fileName);
-                    	  $('#loading').css('display','none');
-                    	  $('#percent').css('display','none');
+                    	 
+                    	  $('#loading1').css('display','none');
+                    	  $('#percent').css('display','none');           
+                  		setTimeout(function(){
+                  			   // 1초 후 작동해야할 코드
+                  			 $('#video1').attr('src','/project/resources/video/tmpFiles/'+ id + fileName);
+                  			   }, 2000);
                     	  console.log(id+fileName);
                       }
                     
                     function onSuccess2(e){   	
                   	  var file0Uid = e.files[0].uid;
-                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	
-                  	$('#imageUp').attr('src','${pageContext.request.contextPath}/resources/image/tmpFiles/'+ id + imageName);
+                  	  imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();             	                 	
                   	  console.log(id+imageName);
+                  	$('#loader').css('display', 'none');
+            		$('#notClick').css('display', 'none');           		
+         
                     }
                       function onUpload(e){
                     	  $('#percent').text(e.percentComplete+'%');
@@ -217,7 +235,7 @@
                     	$('#files').click();
                     });
                     
-                    $('#loading').click(()=>{
+                    $('#loading1').click(()=>{
                     	$('#files').click();
                     });
                     

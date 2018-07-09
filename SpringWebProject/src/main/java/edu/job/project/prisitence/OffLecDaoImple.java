@@ -28,7 +28,7 @@ public class OffLecDaoImple implements OffLecDao {
 		
 		logger.info("insert( {},{},{},{},{},{},{} )",o.getUserid(),o.getCategory(),o.getTitle(),o.getContent(),o.getMeetingday(),o.getMaxmember(),o.getImgPath());
 		
-		return uploadMapper.insert(o);
+		return session.insert(NAMESPACE + ".insert" , o);
 	}
 	
 	// 대기자 넣기 
@@ -40,6 +40,7 @@ public class OffLecDaoImple implements OffLecDao {
 		return uploadMapper.updateWaitingId(offLecture);
 	}
 	
+	// 대기자 넣을 글번호 찾기 
 	@Override
 	public OffLec select(int bno) {
 	
@@ -70,6 +71,49 @@ public class OffLecDaoImple implements OffLecDao {
 	public GroupOff selectGroup(GroupOff off) {
 	
 		return session.selectOne(NAMESPACE + ".selectOneGroupOff",off);
+	}
+	
+	@Override
+	public List<OffLec> selectBno(int bno) {
+	
+		return session.selectList(NAMESPACE + ".selectBnoOffLec",bno);
+	}
+	
+	@Override
+	public int updateFolderImage(OffLec off) {
+	
+		return session.update(NAMESPACE + ".updateFolderImage" , off);
+	}
+	
+	@Override
+	public OffLec selectBnoByOffLec(int bno) {
+	
+		return (OffLec)session.selectOne(NAMESPACE + ".selectBnoByOffLec" , bno);
+	}
+
+	@Override
+	public List<OffLec> selectGroupBnoByOffLec(int groupBno) {
+	
+		return session.selectList(NAMESPACE + ".selectGroupBnoByOffLec", groupBno);
+	}
+	
+	@Override
+	public int updateApply(OffLec offLec) {
+		
+		return session.update(NAMESPACE + ".updateApply" , offLec);
+	}
+	
+	// 학생페이지에서 오프라인 폴더 목록 보이기 
+	@Override
+	public GroupOff selectByMyLec(int groupBno) {
+
+		return session.selectOne(NAMESPACE + ".selectByMyLec", groupBno);
+	}
+
+	@Override
+	public List<OffLec> selectByCategory(String category) {
+		
+		return session.selectList(NAMESPACE + ".selectByCategory", category);
 	}
 	
 }

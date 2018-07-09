@@ -81,9 +81,14 @@ bottom: 8px;
 <br/>
 <h4>${lecName }</h4>
 <br/>
-<div id = folder>
+<div id = folder style="height: auto; min-height: 500px">
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid" id="addLec" style="display: inline-block; margin-left: 170px;">
+<c:if test="${not empty onLecList }">
 <a id = "addLec" style="display: inline-block; position: relative; bottom: 150px;">
+</c:if>
+<c:if test="${empty onLecList }">
+<a id = "addLec" style="display: inline-block; position: relative; ">
+</c:if>
 <img alt="" src="${pageContext.request.contextPath}/resources/img/addlec.png" id="add">
 </a>
 </div>
@@ -91,7 +96,7 @@ bottom: 8px;
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 <div class="resent-grid-img recommended-grid-img">
-<a href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" class="detail">
+<a class="detail" href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" >
 <c:if test="${not empty group.imagePath }">
 <img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
 </c:if>
@@ -123,6 +128,7 @@ bottom: 8px;
 <script>
 
 $(()=>{
+	$('#offLec').css('display','none');
 	$('#createFolder1').css('display','none');
 	$('#addLec').click(()=>{
 		event.preventDefault();

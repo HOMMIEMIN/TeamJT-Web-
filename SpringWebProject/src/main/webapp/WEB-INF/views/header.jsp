@@ -190,12 +190,17 @@ tr:hover {
 </head>
 <body style="margin: 0px; height: 2400px;">
 
+<<<<<<< HEAD
 	<nav class="navigation">
+=======
+<body>
+	<nav class="navigation"  style="margin: 0px; z-index: 2">
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
 		<div class="header-container">
 			<!-- 로고(메인페이지 링크) -->
 			<div class="navleft">
-				<a href="#"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
+				<a href="/project"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
 			</div>
 			<!-- 검색창 -->
 			<div class="navcenter">
