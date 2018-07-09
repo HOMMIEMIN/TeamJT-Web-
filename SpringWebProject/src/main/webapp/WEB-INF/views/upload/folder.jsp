@@ -146,17 +146,19 @@ p.views.views-info {
 		</div>
 	</div>
 	<!-- 폴더 이름입력창 -->
-	<div id="id001" class="w3-modal" style="position: absolute; height: 200%;">
+	<div id="id001" class="w3-modal" style="position: absolute; height: 200%; ">
 		<div class="w3-modal-content w3-animate-opacity w3-card-4"
-			style="position: relative; left: 300px; top: 200px; width: 18%;">
+			style="position: relative; left: 300px; top: 200px; width: 18%; min-width: 343px; ">
 			<header class="w3-container w3-teal" >
 				<span onclick="document.getElementById('id001').style.display='none'"
 					class="w3-button w3-display-topright" style="background-color: lightgrey">&times;</span>				
 			</header>
 			<div style="background-color: lightgrey; height: 80px;">
-			<div class= "lType" id="online" style="display: inline-block; background-color: lightgrey; width: 140px; padding-top: 50px; padding-left: 70px; font-size: 110%">온라인</div>
-				<div class= "lType" style="display: inline-block; background-color: lightgrey; width: 140px;padding-top: 50px; padding-left: 70px; font-size: 110%">오프라인</div>
+			<div style="background-color: lightgrey; width: 300px; height: 53px;"></div>
+			<div class= "lType" id="online" style="display: inline-block; background-color: white; width: 169px; padding-left: 60px; font-size: 120%">온라인</div>
+				<div class= "lType" style="display: inline-block; background-color: white; width: 169px; padding-left: 40px; font-size: 120%">오프라인</div>
 				</div>
+				
 			<div class="w3-container" style="padding: 0px">
 				<div class="form-group">
 					<br />
@@ -200,11 +202,16 @@ $(function(){
 	$('#offLec').css('display','block');
 	
 	var type = '온라인';
-	$('#online').css('color','#169e83');
+	$('.lType').css('background-color','lightgrey');
+	$('.lType').css('color','grey');
+	$('#online').css('color','black');
+	$('#online').css('background-color','white');
 	$('.lType').click(function(event){
 		type = $(this).text();
-		$('.lType').css('color','black');
-		$(this).css('color','#169e83');
+		$('.lType').css('color','grey');
+		$('.lType').css('background-color','lightgrey');
+		$(this).css('color','black');
+		$(this).css('background-color','white');
 		console.log(type);
 	});
 	

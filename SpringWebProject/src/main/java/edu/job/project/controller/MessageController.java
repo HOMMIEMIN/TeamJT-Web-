@@ -120,5 +120,13 @@ public class MessageController {
 	      
 	      return entity;
 	   }// end createReply()
+	   
+	   @RequestMapping(value="/count", method=RequestMethod.POST)
+	   public ResponseEntity<Integer> readCount(@RequestBody Message message){
+		   System.out.println("메시지 소켓: " + message.getYourId());
+		   int result = messageService.readCount(message);
+		   
+		   return new ResponseEntity<Integer>(result, HttpStatus.OK);
+	   }
 	
 }// end class MessegeController

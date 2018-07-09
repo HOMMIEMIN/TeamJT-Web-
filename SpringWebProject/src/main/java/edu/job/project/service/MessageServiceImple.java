@@ -58,5 +58,11 @@ public class MessageServiceImple implements MessageService {
       
       return messageDao.delete(mno);
    }
+
+@Override
+public int readCount(Message message) {
+
+	return messageDao.selectByCount(message);
+}
    
 }

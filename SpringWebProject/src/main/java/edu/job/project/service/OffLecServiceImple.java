@@ -1,5 +1,7 @@
 package edu.job.project.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.job.project.domain.GroupOff;
+import edu.job.project.domain.GroupOn;
 import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
 import edu.job.project.domain.WaitingOff;
@@ -129,5 +132,48 @@ public class OffLecServiceImple implements OffLecService {
 		return mDao.updateApplyId(member);
 	}
 	
+	@Override
+	public List<GroupOff> readByMyLec(Member m) {
 	
-}
+		List<String> items = new ArrayList<>(Arrays.asList(m.getOffLec().split("\\s*,\\s*")));		
+		List<GroupOff> list= new ArrayList<>();
+		
+		if(items.size() != 0) {
+		      for(int a=0; a < items.size() ; a++) {
+		         GroupOff off = dao.selectByMyLec(Integer.parseInt(items.get(a)));
+		          Member mm = mDao.getId(off.getUserId());
+		          off.setUserId(mm.getUserName());
+		          list.add(off);
+		       }
+		   }
+		
+		return list;
+	}
+
+	@Override
+	public List<OffLec> readByCategory(String category) {
+		
+		return dao.selectByCategory(category);
+	}
+	
+	
+}// end OffLecServiceImple
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

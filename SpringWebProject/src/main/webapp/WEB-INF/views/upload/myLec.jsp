@@ -99,7 +99,7 @@ right:500px;
 	<br />
 	<br />
 	<br />
-	<h4 style="font-weight: bold;">온라인 강의 수강 기록</h4>
+	<h4 style="font-weight: bold;">온라인 강의 기록</h4>
 	<br />
 
 	<div>
@@ -107,16 +107,14 @@ right:500px;
 		<div id=folder style="display: inline-block;">
 		<c:if test="${not empty list }">
 			<c:forEach var="group" items="${list }">
-
+				<c:if test="${not empty group.imagePath }">
 				<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 					<div class="resent-grid-img recommended-grid-img">
 						<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
 								test="${not empty group.imagePath}">
 								<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}"
 									alt="">
-							</c:if> <c:if test="${empty group.imagePath }">
-								<img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt="">
-							</c:if>
+							</c:if> 						
 						</a>
 						<div class="time small-time show-time movie-time"></div>
 						<div class="clck movie-clock"></div>
@@ -140,7 +138,7 @@ right:500px;
 					</a>
 					<div style="display: inline-block; width: 550px;"></div>
 				</div>
-
+			</c:if>
 			</c:forEach>
 			</c:if>
 		</div>

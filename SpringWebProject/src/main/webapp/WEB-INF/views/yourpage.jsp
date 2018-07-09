@@ -208,8 +208,8 @@ h4 {
 	<div
 		style="background-color: dcdcdc; height: 250px; max-height: 250px;">
 		<div class="frame" id="file" style="z-index: 1;"></div>
-		<div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
-		<div class="name" style="color: grey">${userId }</div>
+		<div class="name" style="font-weight: bold; font-size: 130%">${uName }</div>
+		<div class="name" style="color: grey">${uId }</div>
 	</div>
 
 
@@ -257,7 +257,7 @@ h4 {
 	<script>
 		
 	$(()=>{
-		var type='${type}';
+		var type='a';
 		console.log('타입 : ' + type);
 		if(type != null){
 			switch(type){
@@ -293,8 +293,11 @@ h4 {
 						" active", "");
 			}
 			document.getElementById(cityName).style.display = "block";
-			evt.currentTarget.className += " active";
-			console.log(cityName)
+			$(()=>{
+				evt.currentTarget.className += " active";
+				console.log(cityName)	
+			});
+			
 
 			if (cityName === 'Paris') {
 				console.log('들어옴');
@@ -303,7 +306,7 @@ h4 {
 				$('#onLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#onLec').load("/project/upload/yourOnFolder");
+				$('#onLec').load("/project/upload/blackboard_urs");
 				$('#onLec').animate({
 					opacity : 1
 				}, 1000);
@@ -311,7 +314,7 @@ h4 {
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/offline/YourOffFolder");
+				
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);
@@ -333,8 +336,8 @@ h4 {
 				$('#onLec').animate({
 					opacity : 0
 				}, 1000);
-				var ud = '${userId}';
-				var name='${userName}';
+				var ud = '${uId}';
+				var name='${uName}';
 				console.log(ud);
 				$('#onLec').load("/project/upload/yourLec?userId="+ud+"&userName="+name);
 				$('#onLec').animate({

@@ -84,9 +84,16 @@
 	WHERE ${col_bno} = #{bno}
 	</update>
 	
-		
+	<!--  학생페이지에서 내 오프라인강의 보이게 -->
+	<select id="selectByMyLec" resultType="GroupOff">
+	SELECT * FROM ${tbl_groupoff}
+	WHERE ${col_bno} = #{bno}
+	</select>
 	
-	
+	<!-- 검색 -->
+	<select id="selectByCategory" resultType="offLec">
+select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
+</select>
 	
 	
   </mapper>

@@ -118,7 +118,7 @@
                
  <!-- 로그인시 쪽지함 모달!! -->
    <div class="w3-container">
-         <div id = "messageCount" style = "left:850px ;position: relative; color : red;">0</div>
+         <div id = "messageCount" style = "left:850px ;position: relative; color : white; background-color: #169e83; border-radius: 18px; width: 20px; font-size: 80%; height: 20px; font: bold; text-align: center;">0</div>
          <button id="btnmessege" onclick="document.getElementById('id01').style.display='block'" 
                class="w3-button w3-black" style="position: relative; right:-100vh" >쪽지함.</button>
                
@@ -241,7 +241,7 @@
       <div class="container-fluid p-0">
         <div class="row no-gutters popup-gallery">
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=IT&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=IT&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/1.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -256,7 +256,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Language&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Language&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/2.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -271,7 +271,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Food&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Food&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/3.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -286,7 +286,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Health&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Health&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -301,7 +301,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Life&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Life&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/5.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -316,7 +316,7 @@
             </a>
           </div>
           <div class="col-lg-4 col-sm-6">
-            <a class="portfolio-box" href="searchClick?category=Etc&lecType=online">
+            <a class="portfolio-box" href="searchClick?category=Etc&lecType=Online">
               <img class="img-fluid" src="resources/img/portfolio/thumbnails/6.jpg" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
@@ -452,13 +452,44 @@
    // 웹소켓
    var url = 'ws://localhost:8181/project/echo';
    var ws = new WebSocket(url);
-   
+   var messageId = '${userId}';
    ws.onmessage = function(event){
-      console.log(event.data);
+	   var data = event.data;
+	   var userid = '${userId}';
+	   console.log(data.indexOf('@'));
+	   if(data.indexOf('@') != -1){
+		   countMessage();
+	      }
    	}
+   
+   function countMessage(){
+  		
+			$.ajax({
+             type:'post',
+             url:'/project/message/count',
+             headers:{
+                'Content-Type' : 'application/json; charset=UTF-8',
+                'X-HTTP-Method-Override' : 'post'
+             },
+             data: JSON.stringify({
+                'yourId' : messageId
+             }),
+             success:function(result){	             
+                   console.log(result);
+                   $('#messageCount').text(result);
+              
+             }
+             
+          });
+		}
    
    
    	$(() => {
+   		
+   		if(messageId != ''){
+   		countMessage();
+   		}
+   		
    
    		var state1 = '${userId}';
    		console.log('아이디 : ' + state1);
@@ -467,14 +498,12 @@
    			ws.send('login,' + state1);
    
    		}
-   		window.onbeforeunload = function() {
-   			websocket.onclose = function() {
+   		window.onbeforeunload = function() {  			
    				var userId = '${userId}'
    				alert('dd');
    				ws.send('pageOut,' + userId);
-   
-   			};
-   			ws.close();
+   	
+   			
    		};
    
 
@@ -713,6 +742,7 @@
             }),
             success: function (result) { 
                if(result === 1){
+            	  ws.send('message,'+youid);
                   resetWriteMessage();
                   console.log("1111111111");
                   alert('성공적으로 보냈습니다.');
@@ -886,7 +916,8 @@
                  'mno': Mno
               }),
               success: function (result) { 
-                 if(result != null){               
+                 if(result != null){       
+                	countMessage();
                     var yourId = result['yourId'];
                     var userId = result['userId'];
                     var mcontent = result['mcontent'];

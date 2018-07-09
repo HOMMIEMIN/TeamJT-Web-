@@ -11,7 +11,6 @@
 <link href="resources/css/login-register.css" rel="stylesheet" />
 <link href="resources/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-
 	
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
@@ -29,13 +28,16 @@
 <style type="text/css">
 .navigation {
 	position: fixed;
-	top: 0; width : 100%; height : 60px;
+	top: 0; 
+	width : 100%; 
+	height : 60px;
 	background-color: #404040;
 	height: 60px;
 	width: 100%;
+	z-index: 2;
 }
 
-.container {
+.header-container {
 	display: flex;
 	justify-content: space-between;
 	max-width: 1200px;
@@ -186,14 +188,19 @@ tr:hover {
 }
 </style>
 </head>
+<body style="margin: 0px; height: 2400px;">
 
+<<<<<<< HEAD
+	<nav class="navigation">
+=======
 <body>
 	<nav class="navigation"  style="margin: 0px; z-index: 2">
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
-		<div class="container">
+		<div class="header-container">
 			<!-- 로고(메인페이지 링크) -->
 			<div class="navleft">
-				<a href="#"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
+				<a href="/project"><img style="height: 30px; width: 260px" src="/project/resources/img/logo_white.png" alt="YOU CAN BE A TEACHER"></a>
 			</div>
 			<!-- 검색창 -->
 			<div class="navcenter">

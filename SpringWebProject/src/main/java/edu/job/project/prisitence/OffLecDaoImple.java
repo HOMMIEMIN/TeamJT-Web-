@@ -103,4 +103,17 @@ public class OffLecDaoImple implements OffLecDao {
 		return session.update(NAMESPACE + ".updateApply" , offLec);
 	}
 	
+	// 학생페이지에서 오프라인 폴더 목록 보이기 
+	@Override
+	public GroupOff selectByMyLec(int groupBno) {
+
+		return session.selectOne(NAMESPACE + ".selectByMyLec", groupBno);
+	}
+
+	@Override
+	public List<OffLec> selectByCategory(String category) {
+		
+		return session.selectList(NAMESPACE + ".selectByCategory", category);
+	}
+	
 }

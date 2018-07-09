@@ -110,7 +110,7 @@ right:500px;
 
 				<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 					<div class="resent-grid-img recommended-grid-img">
-						<a href="upload/folderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
+						<a href="offline/offFolderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
 								test="${not empty group.imgPath}">
 								<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imgPath}"
 									alt="">

@@ -25,8 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.job.project.domain.GroupOff;
 import edu.job.project.domain.GroupOn;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
 import edu.job.project.service.FileUploadService;
+import edu.job.project.service.MemberService;
 import edu.job.project.service.OffLecService;
 
 import edu.job.project.util.MapUtil;
@@ -39,6 +41,8 @@ public class OffLecController {
 
    @Autowired
    private OffLecService offlecService;
+   @Autowired
+   private MemberService mService;
    @Autowired
    private FileUploadService fileUploadService;
    @Autowired
@@ -169,7 +173,22 @@ public class OffLecController {
    }
    
 
-   
+   @RequestMapping(value="/myOffLec", method=RequestMethod.GET)
+   public String myOffLec(HttpSession session,Model model) {
+	   String myId=(String)session.getAttribute("userId");
+	   logger.info("myId:{}" , myId);
+	   Member m =mService.readId(myId);
+	   if(m.getOffLec() != null) {
+		   List<GroupOff> list = offlecService.readByMyLec(m);
+		   if(list.size() != 0 || list != null) {
+		         model.addAttribute("list", list);
+		      }
+	   }else {
+		   logger.info("듣고 있는 오프라인강의가 없습니다.");
+	   }
+	   
+	   return "/offline/myOffLec";
+   }
    
    
    

@@ -40,12 +40,20 @@ public class BlackBoardController {
 				
 	}
 	
+	@RequestMapping(value="/upload/blackboard_urs", method=RequestMethod.GET)
+	public String blackboardall(HttpSession session, Model model) {
+	
+		return "/upload/blackboard_urs";
+	}
+	
+	
 	@RequestMapping(value = "/blackboard", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		
 		return "blackboard";
 	}
+	
 	
 	@RequestMapping(value = "/saveBlackBoard", method = RequestMethod.POST)
 	public String save(Locale locale, Model model, String title, String json, HttpSession session) {
@@ -73,6 +81,9 @@ public class BlackBoardController {
 		ResponseEntity<List<BlackBoard>> entity = new ResponseEntity<List<BlackBoard>>(list, HttpStatus.OK);
 		return entity;
 	}	
+	
+
+	
 	
 	@RequestMapping(value = "/updateBlackBoard", method = RequestMethod.PUT)
 	@ResponseBody
