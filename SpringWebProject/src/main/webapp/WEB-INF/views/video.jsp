@@ -13,34 +13,15 @@
 
     <title>You Can Be A Teacher</title>
     
-	<!-- 비디오 -->
-	<link href="http://vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
-<script src="http://vjs.zencdn.net/4.12/video.js"></script>
-
-
-    <!-- Bootstrap core CSS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- 로그인창 -->
-	<link href="resources/css/login-register.css" rel="stylesheet" />
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-  	<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	
-    <script src="resources/js/main/bootstrap.js"></script>
-     <script src="resources/js/main/login-register.js" type="text/javascript"></script>
      
 
     <!-- Custom fonts for this template -->
-    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
-<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <!-- Plugin CSS -->
-    <link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    
 
     <!-- Custom styles for this template -->
     <link href="resources/css/mypage.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  
 
    <style type="text/css">
    
@@ -87,27 +68,9 @@
   </head>
 
   <body id="page-top">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">You Can Be A Teacher</a>
-        <form>
-  <div class="input-group" id ="searchBar" style="width: 77%">
-    <input type="text" class="form-control" placeholder="Search">
-    <div class="input-group-btn">
-      <button class="btn btn-default" id="btnSearchBar" type="submit">
-        <i class="glyphicon glyphicon-search"></i>
-      </button>
-    </div>
-  </div>
-	</form>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-        
-        </div>
-      </div>
-    </nav>
-    <br/>
-	<div style="margin-left:240px ">
+    
+    <jsp:include page="header.jsp"></jsp:include>
+	<div style="margin-left:240px; margin-top: 100px;z-index: 1; ">
 	<div style="display: inline-block;">
 	<video width="854" height="480" controls>
  	<source src="/project/resources/video/tmpFiles/rlaghals999@naver.com123.mp4" type='video/mp4'>
@@ -167,8 +130,10 @@
 	<div style="margin-left: 240px; width: 1260px; height: 230px; border-bottom: 1px solid lightgrey">
 	 <div id="clickLike" style="background: url(resources/img/test1.png) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
 	 <div style="position: relative; top: 30px; right: 165px">
+	 <a href="yourpage?userId=${bnoList.userId }&userName=${bnoList.userName }">
 	 <div style="font-weight: bold; font-size: 120%">${bnoList.userName }</div>
 	 <div style="color: grey; font-size: 90%">${bnoList.userId }</div>
+	 </a>
 	 </div>
 	</div>
 	</div>

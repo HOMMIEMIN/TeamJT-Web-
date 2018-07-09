@@ -4,47 +4,79 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.btnGG{
+
+background: url(/project/resources/img/options/customUL.png) no-repeat;
+border: none;
+}
+</style>
 
 </head>
 <body>
 
+
 	<!-- 설정한 페이지가 없을때 보여주는 화면 -->
 	<div style="display: none;" id="notactive">
-		<h1>설정하신 페이지가 없습니다</h1>
+		<button style="width: 1500px; height: 636px"
+			class="btn btn-outline-success btn-rounded waves-effect"
+			onclick="window.location.href='/project/blackboard'">페이지 추가
+			(+)</button>
 	</div>
+	<div>
+	<div style="margin-left:1120px;display: block" id="ifowner">
+		<button data-toggle="tooltip" data-placement="bottom" title="현재 페이지 수정" id="cpsetting" style = "background-color: white;border: none;color: blue;cursor: pointer;"
+			class="btn btn-info btn-circle">
+			<i class="fa fa-pencil"></i>
+		</button>
 
-	<div id="ifowner">
-		<button id="cpsetting">현재 페이지 설정</button>
-		<button id="cpdelete">현재 페이지 삭제</button>
+
+		<button data-toggle="tooltip" data-placement="bottom" title="현재 페이지 삭제"  id="cpdelete" type="button"
+			class="btn btn-danger btn-circle" style = "background-color: white;border: none;color: red;cursor: pointer;">
+			<i class="fa fa-trash"></i>
+		</button>
+
+
 	</div>
-
 	<!-- 설정한 페이지가 있을때 보여주는 화면 -->
-	<div id="active" style="float: left">
-		<img id="imgD">
-		<canvas id="canvas" width="800" height="600"></canvas>
 
-		<form action="editPage" id="editPage" method="POST">
-			<input type="hidden" id="jsonH" name="json"> <input
-				type="hidden" name="bno" id="bnoH"> <input type="hidden"
-				id="titleH" name="title"> <input type="hidden" id="useidH"
-				name="userid" value="${userId}">
-		</form>
+
+
+	<canvas style="float: left" id="canvas" width="1200px"
+		height="636px"></canvas>
 	</div>
-	<div style="float: left">
+	<div style="float: left;">
+	<div id="bt"
+		style="display:inline-block;height: 600px; width: 290px; overflow-y: scroll; float: left;">
 		<div class="btn-group-vertical" role="group"
-			aria-label="Vertical button group" style="width: 200px;"></div>
-		<div id="ifowner">
-			<a id="pageadd" href="/project/blackboard">페이지 추가 (+)</a>
-		</div>
-		
+			aria-label="Vertical button group"></div>
+
 	</div>
+	<div>
+	<button type = "button" style="display:block;width:290px;height:36px" class="btn btn-outline-secondary waves-effect"
+		onclick="window.location.href='/project/blackboard'" > 페이지추가<i class="fa fa-plus"></i></button>
+		</div>
+	</div>
+
+	<form action="editPage" id="editPage" method="POST">
+		<input type="hidden" id="jsonH" name="json"> <input
+			type="hidden" name="bno" id="bnoH"> <input type="hidden"
+			id="titleH" name="title"> <input type="hidden" id="useidH"
+			name="userid" value="${userId}">
+	</form>
+
+
+
 
 
 	<script>
 		$(document).ready(function() {
-			var canvas = new fabric.Canvas('canvas');
-			$('canvas').hide();
-			
+	
+			$("#onLec").css('width', '100%');
+			$("#onLec").css('maxWidth', '100%');
+			$("#onLec").css('marginRight', '200px');
+			var canvas = new fabric.StaticCanvas('canvas');
+	
 	
 			function getAllBoards() {
 				//현재 로그인 유저가 설정한페이지 load
@@ -52,17 +84,21 @@
 					list = data;
 					//화면처리
 					if (list == null || list == "" || list.length == 0) {
+						$('#ifowner').hide();
 						$('#notactive').show();
 						$('#active').hide();
+						$('#bt').hide();
+	
 					} else {
+						$('#ifowner').show();
 						$('#notactive').hide();
 						$('#active').show();
-	
+						$('#bt').show();
 	
 						//설정한 페이지가 있을때 title을 이용한 버튼 생성
 						var buttontitle = "";
 						$(data).each(function() {
-							buttontitle += '<button type="button" class="btn btn-amber" style="width:200px;"  id =' + this.bno + '>'
+							buttontitle += '<button type="button" style="height:40px;" class="btnGG" id =' + this.bno + '>'
 								+ this.title + '</button> ';
 	
 						}); //end each()
@@ -79,14 +115,7 @@
 								$('#titleH').val(self.title);
 	
 								var json = JSON.parse(self.json);
-								canvas.loadFromJSON(json, function() {
-	
-									$('canvas').get(0).toBlob(function(blob) {
-										var url = URL.createObjectURL(blob)
-										var image = $('#imgD').attr('src', url);
-	
-									});
-								});
+								canvas.loadFromJSON(json, function() {});
 	
 								console.log("json: " + $('#jsonH').val());
 								console.log("bno: " + $('#bnoH').val());
@@ -100,11 +129,8 @@
 							$('#jsonH').val(list[list.length - 1].json);
 							$('#bnoH').val(list[list.length - 1].bno);
 							$('#titleH').val(list[list.length - 1].title);
-							$('canvas').get(0).toBlob(function(blob) {
-								var url = URL.createObjectURL(blob)
-								var image = $('#imgD').attr('src', url);
+							canvas.loadFromJSON(JSON.parse(list[list.length - 1].json), function() {});
 	
-							});
 						});
 	
 					}

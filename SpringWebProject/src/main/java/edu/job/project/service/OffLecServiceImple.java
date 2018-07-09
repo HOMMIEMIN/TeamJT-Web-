@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.job.project.domain.GroupOff;
+import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
-
-
+import edu.job.project.domain.WaitingOff;
+import edu.job.project.prisitence.MemberDao;
 import edu.job.project.prisitence.OffLecDao;
 
 @Service
@@ -20,6 +21,7 @@ public class OffLecServiceImple implements OffLecService {
 	
 	@Autowired
 	private OffLecDao dao;
+	@Autowired private MemberDao mDao;
 	
 	@Override
 	public List<OffLec> read() {
@@ -58,4 +60,74 @@ public class OffLecServiceImple implements OffLecService {
 	
 		return dao.selectGroup(off);
 	}
+	
+	// 디테일들어가기 
+	@Override
+	public List<OffLec> read(int bno) {
+		
+		return dao.selectBno(bno);
+	}
+	
+	@Override
+	public int updateFolderImage(OffLec off) {
+	
+		return dao.updateFolderImage(off);
+	}
+	
+	@Override
+	public OffLec readByBno(int bno) {
+	
+		return dao.selectBnoByOffLec(bno);
+	}
+	
+	@Override
+	public List<OffLec> readByGroupBno(int groupBno) {
+	
+		return dao.selectGroupBnoByOffLec(groupBno);
+	}
+	
+	
+	@Override
+	public int updateWaiting(OffLec offLec) {
+
+		return dao.update(offLec); 
+	}
+	
+	// 해당 글번호(강의)에 대기자가 있는지 찾기위함
+	@Override
+	public OffLec readForWaiting(int bno) {
+		return dao.select(bno);
+	}
+	
+	@Override
+	public int updateWaitingMember(OffLec offLec) {
+	
+		return mDao.updateOfflec(offLec);
+	}
+	
+	@Override
+	public int updateWaitingMember(WaitingOff waitingOff) {
+	
+		return mDao.updateOfflec(waitingOff);
+	}
+	
+	@Override
+	public Member readWaitingMember(String userid) {
+	
+		return mDao.select(userid);
+	}
+	
+	@Override
+	public int updateConfirm(OffLec offLec) {
+	
+		return dao.updateApply(offLec);
+	}
+	
+	@Override
+	public int updateApply(Member member) {
+	
+		return mDao.updateApplyId(member);
+	}
+	
+	
 }

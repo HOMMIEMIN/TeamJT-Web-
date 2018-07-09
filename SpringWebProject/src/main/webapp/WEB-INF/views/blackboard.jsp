@@ -277,7 +277,7 @@
 
 	<div id='center' style="float: left">
 		<div id="canvas-container">
-			<canvas id="canvas" width="800" height="600"></canvas>
+			<canvas id="canvas" width="1200px" height="625px"></canvas>
 		</div>
 
 	</div>
@@ -481,11 +481,13 @@
 				</div>
 			</div>
 		</div>
-		<form id="saveJSON" method="POST">
+		<div>
+		<form id="saveJSON" method="POST" style = "margin-left:30px">
 			<input type='hidden' id='hiddenField' name='title'/> <input
 				type='hidden' id='hiddenField2' name='json'/>
-			<button id="toJSONF">저장하기</button>
+			<button id="toJSONF" class="btn btn-outline-default btn-rounded waves-effect">저장하기</button>
 		</form>
+		</div>
 		<form id="updateJSON" method="POST">
 			<input type='hidden' id='hfTitle' name='titleU'/>
 			<input type='hidden' id='hfJson' name='jsonU'/>
@@ -493,7 +495,7 @@
 			<input type='hidden' id='hfBno' name='bnoU'/>
 			<button id="updateJSONF">수정하기</button>
 		</form>
-		<button id="fromJSONF">불러오기</button>
+		
 	</div>
 	<script>
 		var bno = '${board.bno}';

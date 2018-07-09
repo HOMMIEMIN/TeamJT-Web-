@@ -105,14 +105,15 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value= "logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
-		logger.info("logout() 호출");	
+	@RequestMapping(value= "logout", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> logout(@RequestBody Member member, HttpSession session) {
 		session.removeAttribute("userId");
 		session.invalidate();
+		String result = "ok";
 		
-		
-		return "redirect:/";
+		return new ResponseEntity<>(result, HttpStatus.OK);
+
 	}// end logout()
 	
 

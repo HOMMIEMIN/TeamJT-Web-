@@ -157,7 +157,7 @@ $(document).ready(function() {
 					format : 'png',
 					quality : 0.8
 				});
-			});
+			},{ crossOrigin: 'anonymous'});
 		};
 		reader.readAsDataURL(file);
 	});

@@ -14,13 +14,13 @@
         <meta property="og:title"         content="CSS3 Animated Search Box" />
         <meta property="og:description"   content="Your description" />
         <meta property="og:image"         content="http://demo.icanbecreative.com/css3-animated-search-box/featured.jpg" />
-		
+      
         <style type="text/css">
             html,body {height: 100%;}
             body {padding: 0px; margin:0px; background:url(image.jpg) ; background-position: center; background-size: cover; background-attachment: fixed; background-repeat: no-repeat;}
-			
-			
-			
+         
+         
+         
             .search-wrapper {
                 position: absolute;
                 -webkit-transform: translate(-50%, -50%);
@@ -220,7 +220,7 @@
         </style>
         <script type="text/javascript">
         function searchToggle(obj, evt){
-        	 evt.preventDefault();
+            evt.preventDefault();
             var container = $(obj).closest('.search-wrapper');
 
             if(!container.hasClass('active')){
@@ -240,20 +240,20 @@
             }
             var value = $('.search-input').val();
            if(value == ''){
-        	   alert('검색어를 입력하세요');
+              alert('검색어를 입력하세요');
            }else{
-        	   $('#searchText').val(value);
-        	   $('#btnSearch').submit();
+              $('#searchText').val(value);
+              $('#btnSearch').submit();
            }
            
     
         }
 
         function submitFn(obj, evt){
-        	 
+            
             value = $(obj).find('.search-input').val().trim();
-			
-    		
+         
+          
         }
         
         
