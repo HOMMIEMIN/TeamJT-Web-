@@ -54,25 +54,31 @@ font-family: 'Nanum Gothic', serif;
 
 <Style>
 .search-container {
+
    max-width: 1200px;
    margin: auto;
    margin-top: 60px;
    padding-top: 40px;
    font-family: 'Noto Sans KR', sans-serif;
    z-index: 1;
+
 }
 
 .search-filters {
+
    /*display: flex;
    justify-content: flex-start;*/
    float: left;
    width: 300px;
+
 }
 
 .filter-title {
+
    padding-bottom: 12px; 
    color: #9c9c9c;
    font-size: 12pt;
+
 }
 
 .filter {
@@ -97,9 +103,11 @@ font-family: 'Nanum Gothic', serif;
 }
 
 .result-box {
+
    float: right;
    width: 900px;
    height: 34px;
+
 }
 
 .searchpath {
@@ -150,7 +158,22 @@ img {
    padding-top: 100px;
 }
 
+.searchresult {
+	max-width: 900px;
+	min-width: 370px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-top: 100px;
+}
+
+.searchresult:after {
+	content: "";
+	flex: auto;
+}
+
 div .col-md-3.resent-grid.recommended-grid.movie-video-grid {
+
    width: 200px;
    height: 280px;
    max-width: 200px;
@@ -158,6 +181,7 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid {
    padding: 0px;
    /*margin-right: 30px;*/
    margin-bottom: 20px;
+
 }
 
 .overlay {
@@ -234,6 +258,14 @@ color : black;
 .lecType{
 color : black;
 }
+
+.category {
+	color: black;
+}
+
+.lecType {
+	color: black;
+}
 </Style>
 
 </head>
@@ -270,7 +302,11 @@ color : black;
                <a id="Life" class="category" href="">Life</a>
             </div>
             <div class="filter">
+<<<<<<< HEAD
+               <a id="Ect" class="category" href="">Etc.</a>
+=======
                <a id="Etc" class="category" href="">Etc.</a>
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
          </div>
          
@@ -279,11 +315,19 @@ color : black;
             <div class="filter-title">Lecture Type</div>
 
             <div class="filter">
+<<<<<<< HEAD
+               <a id="online" class="lectype" href="">Online</a>
+=======
                <a id="Online" class="lectype" href="">Online</a>
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
 
             <div class="filter">
+<<<<<<< HEAD
+               <a id="offline" class="lectype" href="">Offline</a>
+=======
                <a id="Offline" class="lectype" href="">Offline</a>
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
          </div>
       </div>
@@ -293,16 +337,19 @@ color : black;
          
          <div class="result-align">
             <div class="orderby">
+
                <a id="recent" href="javascript:void(0)" class = "repo">최신순↓</a>
             </div>
             <div class="orderby">
                <a id="popular" href="javascript:void(0)" class = "repo">인기순↓</a>
+
             </div>
          
          </div>
 
          <div class="searchresult">
          <!-- div style="padding-top: 100px;"-->
+
          <c:if test="${not empty online }">
             <c:forEach var="online" items="${online }">
       			
@@ -337,10 +384,13 @@ color : black;
                      href="videoview?groupBno=${online.groupBno}&bno=${online.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
                      <div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">온라인</div>
+
                   </a>
                </div>
 
             </c:forEach>
+
+
             </c:if>
             
              <c:if test="${not empty offline }">
@@ -390,6 +440,7 @@ color : black;
 
             </c:forEach>
             </c:if>
+
             <!-- /div-->
          </div>
       </div>
@@ -409,6 +460,27 @@ $(()=>{
    }
    var category = '#'+'${category}';
    var type = '#'+'${lecType}'
+<<<<<<< HEAD
+   console.log('카테고리 : '+category);
+   var clickCategory = '${category}';
+   var clickType = 'online';
+   
+   console.log(category);
+   $(category).css('color','#169e83');
+   $(type).css('color','#169e83');
+   
+   
+   $('.category').click(function(){
+      event.preventDefault();
+      menuColor();
+      $(this).css('color','#169e83');
+      var a = $(this).css('color');
+      clickCategory = $(this).text();
+      console.log(clickCategory);
+      if(clickCategory === 'Etc.'){
+         clickCategory = 'Etc';
+      }
+=======
    
    console.log('카테고리 : '+category);
    var clickCategory = '${category}';
@@ -432,6 +504,7 @@ $(()=>{
     	  clickCategory = 'Etc';
       }
       console.log(clickCategory);
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
       location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
       $("#loader").css('display','block');
       $("#notClick").css('display','block');
@@ -441,6 +514,11 @@ $(()=>{
       event.preventDefault();
       typeColor();
       clickType = $(this).text();
+<<<<<<< HEAD
+      console.log(clickType);
+      $(this).css('color','#169e83');
+   
+=======
       
       console.log(clickType);
       $(this).css('color','#169e83');
@@ -453,6 +531,7 @@ $(()=>{
 	   repoColor();
 	   $(this).css('border','1px solid #169e83');
 	   $(this).css('color','#169e83');
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
    });
 
    function typeColor(){
@@ -467,11 +546,14 @@ $(()=>{
    if(search != null){
       $('#searchText').val(search);
    }
+<<<<<<< HEAD
+=======
    
    function repoColor(){
 	   $('.orderby').css('color','black');
 	   $('.orderby').css('border','1px solid black');
    }
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 });
 
 
