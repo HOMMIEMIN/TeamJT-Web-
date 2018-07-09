@@ -22,19 +22,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
+import edu.job.project.domain.OnLec;
 import edu.job.project.domain.WaitingOff;
-
+import edu.job.project.service.MemberService;
 import edu.job.project.service.OffLecService;
 
 
 @Controller
-@RequestMapping(value="/detail")
+
 public class OffLecDetailController {
 
 	public static final Logger logger=LoggerFactory.getLogger(OffLecDetailController.class);
 	
 	@Autowired
 	private OffLecService service;
+	@Autowired
+	private MemberService mService;
 		
 	
 	// 한개의 특정강좌 보여주기 
@@ -65,42 +68,74 @@ public class OffLecDetailController {
 		
 			
 		String location=offLec.getLocation();
-		logger.info("location : {}" , location);
+		
 		String[] array=location.split(",");
 		String lat=array[0];
 		String long1=array[1];
-		logger.info("lat: {} long:{}" , lat , long1);
 		model.addAttribute("lat",lat);
 		model.addAttribute("long1",long1);
-		
 		String meet = offLec.getMeetingday();
-		logger.info("meet : {}" , meet);
 		String[] array2=meet.split(",");
 		String mday=array2[0];
 		String mtime=array2[1];
-		logger.info("mday:{} mtime:{}",mday,mtime);
 		model.addAttribute("mday",mday);
 		model.addAttribute("mtime",mtime);
 		model.addAttribute("groupBnoList",groupBnoList);	
 		model.addAttribute("lecName",lecName);
 		logger.info("lecName:{}",lecName);
 		if(lecName.equals("")) {
-			
+			//TODO:
+//			model.addAttribute("lecName", service.readByLecName(groupBno));
 		}
 		model.addAttribute("groupBno",groupBno);
 		
 		String userId=(String) session.getAttribute("userId");
 		String userName=(String) session.getAttribute("userName");
-		logger.info("userId : {} userName: {} ", userId,userName);
+		logger.info("[ 현재 로그인 상태 ]userId : {} userName: {} ", userId,userName);
 		
-		Member member = service.readWaitingMember(offLec.getUserid());
+		// findWaiter
+		String userid=offLec.getUserid();
+		Member member = service.readWaitingMember(userid);
 		model.addAttribute("memberId",member.getUserId());
 		model.addAttribute("memberName",member.getUserName());
-		logger.info("선생님 이름: {} 아이디: {}",member.getUserId(),member.getUserName());
-				
+		logger.info("[멤버테이블에서 검색한 선생님정보 ] 선생님 이름: {} 아이디: {}",member.getUserId(),member.getUserName());
+			
+		String name = (String)session.getAttribute("userId");
+		logger.info("로그인한  회원  : {}",name);
+		// 신청자 찾아서 model 에 넣고 신청버튼 안보이게 할거다~
+		if(offLec.getWaitingId() != null) {
+			String[] list=offLec.getWaitingId().split(",");
+			List<String> list2 = new ArrayList<>(Arrays.asList(list));
+			
+			if(list2.contains(name)) {
+				logger.info("1 대기자 목록에 회원이 있음.");
+				model.addAttribute("waitOK",1);	// 대기자 목록에 있을경우  1
+			}else {
+				logger.info("2 :  목록은 있으나, 대기자 명단에 없음.");
+				model.addAttribute("waitOK",2); // 대기자 명단에 회원이 없을경우 2 
+			}
+		}else {
+			logger.info("2 : 대기자 목록이 아예 없음.");
+			model.addAttribute("waitOK",2);
+		}
+		if(offLec.getApplyId() != null) {
+			String[] list=offLec.getApplyId().split(",");
+			List<String> list2=new ArrayList<>(Arrays.asList(list));
+			if(list2.contains(name)) {
+				logger.info("3 :  수강회원목록에 있음.");
+				model.addAttribute("applyOK",3);	// 수강완료자  목록에 회원이 있을경우  3
+			}else {
+				logger.info("4 : 신청자 목록은 있으나 로그인한 회원은 없음. ");
+				model.addAttribute("applyOK",4); // 없을경우 4
+			}
+		}else {
+			logger.info("4 : 신청자 목록이 아예 없음.");
+			model.addAttribute("applyOK",4);
+		}
 		
 		
-		logger.info("    -리턴-     ");
+		logger.info("  ---  - 리턴(세부페이지 보기 완료) -   ---  ");
+		System.out.println("");
 	}
 	
 	
@@ -177,34 +212,42 @@ public class OffLecDetailController {
 	
 	
 	
-	
+	// 대기자 수락 확정
 	@ResponseBody
 	@RequestMapping(value="/confirm", method=RequestMethod.POST)
-	public ResponseEntity<Integer> confirm(Model model, @RequestBody OffLec offLec) {
-		// 업데이트후 다시 한번 읽기 
-		OffLec Lec=service.readForWaiting(offLec.getBno());
+	public ResponseEntity<Integer> confirm(Model model, @RequestBody OffLec offLec) { // 이곳엔 신청자 아이디가 들어옴.
+		logger.info("[confirm 메소드 들어옴 offlec테이블 입장]");
+		// 해당강의 컬럼 들어가기. 
+		OffLec Lec=service.readForWaiting(offLec.getBno());// 글작성한 선생님 의 행
 		offLec.setCurmember(Lec.getCurmember());
-		logger.info("신청한 강의: {} 번 ,신청자: {} ,  최대수강인원 : {} , 현재 수강인원 :{}",offLec.getBno(),offLec.getUserid(),offLec.getMaxmember(),offLec.getCurmember());
+		// 신청자가 로그인사람  = 즉 선생님이 로그인했으니 선생님아이디가 들어감
+		logger.info("신청한 강의: {} 번 ,신청자: {} ,  최대수강인원 : {} , 현재 수강인원 :{}",offLec.getBno(),offLec.getUserid(),offLec.getMaxmember(),offLec.getCurmember()); 
 		int max = Lec.getMaxmember();
 		int cur = Lec.getCurmember();
-		if(Lec.getApplyId() == null) {
-			// 없는거 맞음 
+		OffLec updateConfirm = new OffLec();
+		updateConfirm.setBno(offLec.getBno());
+		updateConfirm.setCurmember(offLec.getCurmember());
+		if(Lec.getApplyId() == null) { // 현재 신청자가 없을 경우  
+			// 듣고 잇는 사람이 없을 경우 
+			updateConfirm.setUserid(offLec.getUserid());
 		}else {
+			// 수강하는 사람이 있을 경우  뒤에 , 붙여서 신청자이름 넣어서 보내기.
 			String applyId =new StringBuffer().append(Lec.getApplyId()).append(",").append(offLec.getUserid()).toString();
-			offLec.setUserid(applyId);
+//			offLec.setUserid(applyId);
+//			Lec.setUserid(applyId);
+			updateConfirm.setUserid(applyId);
 		}		
-		logger.info("현재 수강인원: {} , 현재 수강학생 :{}",offLec.getCurmember(),offLec.getUserid());
 		
-		
-		
-		
+		logger.info("[{}번 강의 ] 현재 수강인원: {} , 현재 수락을 해야 할 학생 :{}",updateConfirm.getBno(),updateConfirm.getCurmember(),updateConfirm.getUserid());
+		System.out.println();
 		
 		int result=0;
 		if(max > cur) {
-			result=service.updateConfirm(offLec);
+			result=service.updateConfirm(updateConfirm);
 				if(result ==1) {
 					//  수락시 대기자 명단에서 빼기 
-					String[] list=Lec.getWaitingId().split(",");
+					OffLec Lec2=service.readForWaiting(offLec.getBno());//
+					String[] list=Lec2.getWaitingId().split(",");
 					List<String> list2=new ArrayList<>(Arrays.asList(list));
 					logger.info("size before {}",list2.size());
 					list2.remove(offLec.getUserid());
@@ -218,7 +261,7 @@ public class OffLecDetailController {
 							sb.append(list2.get(i)).append(",");
 						}
 					}
-					logger.info("x :{}",sb.toString());
+					logger.info("수락한사람 뺀 후 명단:{}",sb.toString());
 					Lec.setWaitingId(sb.toString());
 					service.updateWaiting(Lec);
 				}
@@ -228,17 +271,23 @@ public class OffLecDetailController {
 		logger.info("result = {} ",result);
 		ResponseEntity<Integer> entity=new ResponseEntity<Integer>(result,HttpStatus.OK);
 			
-		// 신청자 찾기
+		// 신청자 찾기 ( 멤버테이블 )
+		logger.info("offLec.getUserid : {}" , offLec.getUserid());
 		Member member = service.readWaitingMember(offLec.getUserid());
-		
-		String a=member.getOffLec();	// 해당 회원의 수강신청대기중인 목록
+		logger.info("member.getOffLec : {}",member.getOffLec());
+		String a=member.getOffLec();	// 현재 수강하는 목록
 		String addCurList=Integer.toString(offLec.getBno());
 		
+		
+		logger.info("---------------------------------------------------------------------");
+		logger.info("[ 멤버테이블에서 수락대기사람삭제 > 확정컬럼으로 이동 ] ");
 		if(a == null) {
 			member.setOffLec(addCurList);
 			member.setUserId(offLec.getUserid());
 			service.updateApply(member);
-			logger.info("현재 {}님이 수강하고 있는 오프라인 강의 목록은 {} 입니다.",member.getUserId(),member.getOffLec());
+			logger.info("[ {}님의 멤버테이블] 수강하고 있는 오프라인 강의 목록은 {} 입니다.",member.getUserId(),member.getOffLec());
+			WaitingOff off=new WaitingOff("",offLec.getUserid());
+			service.updateWaitingMember(off);
 		}else {
 			String curList =new StringBuffer().append(member.getOffLec()).append(",").append(addCurList).toString();
 			member.setOffLec(curList);
@@ -258,18 +307,61 @@ public class OffLecDetailController {
 			
 			WaitingOff off=new WaitingOff(sb.toString(),offLec.getUserid());
 			service.updateWaitingMember(off);
-			
+			   
 		}	
 		
 		return entity;
 		
 	}
 	
+	@RequestMapping(value="/myOffLecView",method=RequestMethod.GET)
+	public String myLecView(int groupBno, String lecName, String userName, Model model, HttpSession session) {
+		
+		System.out.println("들어옴");
+		List<OffLec> GroupbnoList = service.readByGroupBno(groupBno);
+		OffLec bnoList = service.readByBno(GroupbnoList.get(0).getBno());
+		
+		Member m = mService.readId(bnoList.getUserid());
+		if(session.getAttribute("userId") != null) {
+		Member myM = mService.readId((String)session.getAttribute("userId"));
+		System.out.println("OnLec : "+ m.getOffLec());
+//		service.updateCnt(GroupbnoList.get(0).getBno());
+		if(myM.getOnLec() != null) {
+			List<String> items = new ArrayList<>(Arrays.asList(myM.getOffLec().split("\\s*,\\s*")));
+			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
+			if(items.contains(String.valueOf(groupBno))) {
+				model.addAttribute("deleResult", "ok");
+				System.out.println("deleResult 넣음");
+			}
+			
+			
+		}
+		}
+		model.addAttribute("bnoList", bnoList);
+		model.addAttribute("GroupbnoList", GroupbnoList);
+		model.addAttribute("userName", m.getUserName());
+		model.addAttribute("lecName", lecName);
+		System.out.println(lecName);
+//		if(lecName.equals("")) {
+//			model.addAttribute("lecName", service.readByLecName(groupBno));
+//		}
+		model.addAttribute("groupBno", groupBno);
+		System.out.println("리턴");
+		return "offDetail";
+	}
 	
 	
+
 	
-	
-	
+	// 모집 취소 하기 
+	@RequestMapping(value="offLecDelete", method=RequestMethod.POST)
+	public String offLecDelete(Model model,@RequestParam("deletebno")int bno){
+		logger.info("삭제할 글번호: {} ",bno );
+		int result=service.deleteOffLec(bno);
+		logger.info(" 삭제결과 : {}",result);
+		
+		return "redirect:/mypage";
+	}
 	
 	
 	

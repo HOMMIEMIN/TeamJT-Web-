@@ -42,8 +42,7 @@ where ${col_userid} = #{userId}
 </update>
 <!--  해당 회원이 신청한 오프라인강의 있는지 찾기 -->
 <select id="findWaiter" resultType="Member">
- 		SELECT *
-		FROM ${tbl_member}
+ 		SELECT * FROM ${tbl_member}
 		WHERE ${col_userid} = #{userid}
 </select>
 

@@ -108,7 +108,7 @@ bottom: 8px;
 <li class="right-list"><p class="views views-info"></p></li>
 </ul>
 </div>
-<a class="detail" href="detail/offDetail?groupBno=${offlec.groupBno}&bno=${offlec.bno}&lecName=${lecName}">
+<a class="detail" href="offDetail?groupBno=${offlec.groupBno}&bno=${offlec.bno}&lecName=${lecName}">
 <div class="overlay"></div>
 <div></div>
 </a>

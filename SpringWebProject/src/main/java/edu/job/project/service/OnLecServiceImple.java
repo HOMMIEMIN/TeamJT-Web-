@@ -176,7 +176,7 @@ public class OnLecServiceImple implements OnLecService {
 
       List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
       List<GroupOn> list = new ArrayList<>();
-	
+   
       if(items.size() != 0) {
       for(int a=0; a < items.size() ; a++) {
          GroupOn on = dao.selectByMyLec(Integer.parseInt(items.get(a)));

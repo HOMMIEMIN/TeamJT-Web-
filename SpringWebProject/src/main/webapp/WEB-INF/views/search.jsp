@@ -373,7 +373,7 @@ color : black;
                      </ul>
                   </div>
                   <a class="detail"
-                     href="videoview?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
+                     href="offDetail?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
                      <c:set var="now" value="<%=new java.util.Date()%>" />
 					 <c:set var="sysDate"><fmt:formatDate value="${now}" pattern="yyyyMMddhhmmss" /></c:set> 

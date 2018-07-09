@@ -134,8 +134,7 @@ public class VideoController {
 	@RequestMapping(value="/yourpage", method=RequestMethod.GET)
 	public void yourpage(String userId,String userName, Model model) {
 			model.addAttribute("uName", userName);
-			model.addAttribute("uId", userId);
-		
+			model.addAttribute("uId", userId);		
 	}
 	
 

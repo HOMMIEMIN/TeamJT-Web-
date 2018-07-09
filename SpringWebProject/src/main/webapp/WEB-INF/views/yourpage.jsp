@@ -300,32 +300,7 @@ h4 {
 			
 
 			if (cityName === 'Paris') {
-				console.log('들어옴');
-				
-				myFunction();
-				$('#onLec').animate({
-					opacity : 0
-				}, 1000);
-				$('#onLec').load("/project/upload/yourOnFolder");
-				$('#onLec').animate({
-					opacity : 1
-				}, 1000);
-				
-				$('#offLec').animate({
-					opacity : 0
-				}, 1000);
-				$('#offLec').load("/project/offline/YourOffFolder");
-				$('#offLec').animate({
-					opacity : 1
-				}, 1000);
-				
-				$('#Paris').css('border-bottom', '5px solid black');
-				$('#Tokyo').css('border-bottom', 'none');
-				$('#London').css('border-bottom', 'none');
-				$('#createFolder1').css('display', 'block');
-				$('#createFolder2').css('display', 'block');
-				
-				
+
 			
 				
 
@@ -347,7 +322,7 @@ h4 {
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/upload/myOffLec");
+				$('#offLec').load("/project/offline/yourOffLec?userId="+ud+"&userName="+name);
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);
