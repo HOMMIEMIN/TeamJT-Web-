@@ -13,9 +13,8 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>   
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 
 
 
@@ -61,22 +60,22 @@
 
 
 		<!--  지도 , 폴더 목록  -->
-		<div class="container-fluid">
-			<div class="row" style="height: 420px; padding-top: 5px;">
+		<div class="container-fluid" style="padding-top: 50px;">
+			<div class="row" style="height: 420px; padding-top: 20px;">
 				<div class="col-sm-6">
 					
 					
 					<div class="row">
 						<div class="col-sm-10">
-							<!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> -->
+							 <!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> --> 
 						</div>
 						<div class="col-sm-2"></div>
 					</div>
 					<div id="map"></div>
 				</div>
 
-				<div class="col-sm-3" style="padding-top: 40px;">
-					<div id="datepicker">
+				<div class="col-sm-3" style="padding-top: 40px; padding-right: 10px;">
+					<div id="datepicker" >
 						
 
 
@@ -92,12 +91,12 @@
 				</div>
 
 				<!--  폴더 목록 -->
-				<div class="col-sm-3">
+				<div class="col-sm-3" style="padding-right: 20px;">
 					<%
 						int a = 1;
 					%>
 					<div
-						style="display: inline-block; width: 400px; bottom: 340px; margin-bottom: 50px; bottom: 0px; position: relative; ">
+						style="display: inline-block; width: 400px; bottom: 340px; margin-bottom: 50px; bottom: 0px; position: relative; margin-left: 30px;">
 						<div
 							style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
 						<div style="width: 400px; height: 330px; overflow: scroll;">
@@ -136,8 +135,8 @@
 		<hr />
 
 
-		<div class="container-fluid">
-			<div class="row" style="height: 100px;">
+		<div class="container-fluid" style="margin-top: 10px;">
+			<div class="row" style="height: 100px; ">
 				<div class="col-sm-6">
 					<div class="col-sm-10" style="height: 20px;">
 						<div class="row">
@@ -367,6 +366,9 @@
 
 	<!--  스크립트      -->
 	<script type="text/javascript">
+	
+		
+		
 		function initMap() {
 			var latitude = Number(${lat});
 			var longitude = Number(${long1});
@@ -472,14 +474,28 @@
 					}
 				}  // 서버에서 HttpStatus.OK 응답이 왔을 때 실행시킬 콜백 함수
 			}); // end ajax
+			
+			
+			
 		});
 		$('#cancelManager').click(function(){
 			alert('강의가 취소되었습니다.');
 		});
 		
-		
+
+			jQuery.browser = {};
+            (function() {
+               jQuery.browser.msie = false;
+               jQuery.browser.version = 0;
+               if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                  jQuery.browser.msie = true;
+                  jQuery.browser.version = RegExp.$1;
+               }
+            })();
+
 		
 	</script>
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZERHrUzBgHvXAa2TJ843Ca6Ng5nTq-ts&callback=initMap"></script>
 </body>
