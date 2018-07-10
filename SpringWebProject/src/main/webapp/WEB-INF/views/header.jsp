@@ -190,12 +190,10 @@ tr:hover {
 </head>
 <body style="margin: 0px; height: 2400px;">
 
-<<<<<<< HEAD
-	<nav class="navigation">
-=======
-<body>
+
+
 	<nav class="navigation"  style="margin: 0px; z-index: 2">
->>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+
 
 		<div class="header-container">
 			<!-- 로고(메인페이지 링크) -->
@@ -820,6 +818,6 @@ $('document').ready(function(){
 //	}
 	
 </script>
-</div>
+
 </body>
 </html>

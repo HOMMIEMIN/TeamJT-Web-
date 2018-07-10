@@ -40,11 +40,6 @@ public class BlackBoardController {
 				
 	}
 	
-	@RequestMapping(value="/upload/blackboard_urs", method=RequestMethod.GET)
-	public String blackboardall(HttpSession session, Model model) {
-	
-		return "/upload/blackboard_urs";
-	}
 	
 	
 	@RequestMapping(value = "/blackboard", method = RequestMethod.GET)
@@ -80,8 +75,17 @@ public class BlackBoardController {
 		List<BlackBoard> list = service.selectById((String)(session.getAttribute("userId")));
 		ResponseEntity<List<BlackBoard>> entity = new ResponseEntity<List<BlackBoard>>(list, HttpStatus.OK);
 		return entity;
-	}	
+	}
 	
+	
+	@RequestMapping(value = "/loadBlackBoardurs", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<List<BlackBoard>> loadurs(HttpSession session) {
+		List<BlackBoard> list = service.selectById((String)(session.getAttribute("uId")));
+		logger.info("uid:{}",(String)(session.getAttribute("uId")));
+		ResponseEntity<List<BlackBoard>> entity = new ResponseEntity<List<BlackBoard>>(list, HttpStatus.OK);
+		return entity;
+	}
 
 	
 	

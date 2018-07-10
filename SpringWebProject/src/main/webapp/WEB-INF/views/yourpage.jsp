@@ -303,13 +303,7 @@ h4 {
 				console.log('들어옴');
 				
 				myFunction();
-				$('#onLec').animate({
-					opacity : 0
-				}, 1000);
-				$('#onLec').load("/project/upload/blackboard_urs");
-				$('#onLec').animate({
-					opacity : 1
-				}, 1000);
+				
 				
 				$('#offLec').animate({
 					opacity : 0
@@ -358,6 +352,13 @@ h4 {
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
+				$('#onLec').animate({
+					opacity : 0
+				}, 1000);
+				$('#onLec').load("/project/upload/blackboard_urs");
+				$('#onLec').animate({
+					opacity : 1
+				}, 1000);
 			} else {
 				$('#createFolder1').css('display', 'none');
 				$('#createFolder2').css('display', 'none');
@@ -393,6 +394,8 @@ h4 {
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
 	<link rel="stylesheet"
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<br />
 	<br />
 	<br />
