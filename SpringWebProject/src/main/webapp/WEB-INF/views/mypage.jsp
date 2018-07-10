@@ -1,10 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <!DOCTYPE>
 <html>
 <head>
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -15,15 +18,18 @@
 
 <!-- 로그인창 -->
 <link href="resources/css/login-register.css" rel="stylesheet" />
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-<link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<link href="resources/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <script src="resources/js/main/bootstrap.js"></script>
 <script src="resources/js/main/login-register.js" type="text/javascript"></script>
 
 
 <!-- Custom fonts for this template -->
-<link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="resources/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
@@ -31,13 +37,16 @@
 	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
 <script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <!-- Plugin CSS -->
-<link href="resources/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+<link href="resources/vendor/magnific-popup/magnific-popup.css"
+	rel="stylesheet">
 
 <!-- Custom styles for this template -->
 <link href="resources/css/mypage.css" rel="stylesheet">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 
 <style>
@@ -47,15 +56,16 @@
 	background-image: url("resources/img/button.png");
 	margin-top: 10px;
 	background-size: cover;
-	color:white;
+	color: white;
 }
+
 #createFolder2 {
 	position: relative;
 	left: 850px;
 	background-image: url("resources/img/button.png");
 	margin-top: 10px;
 	background-size: cover;
-	color:white;
+	color: white;
 }
 
 #notClick {
@@ -96,8 +106,6 @@
 	left: 230px;
 }
 
-
-
 .tab {
 	position: relative;
 	bottom: 800px;
@@ -131,19 +139,24 @@
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 @
@@ -156,19 +169,24 @@ keyframes spin { 0% {
 transform
 
 
+
+
 :
 
+
  
+
 
 rotate
 
 
+
+
 (360
 deg
+
+
 );
-
- 
-
 }
 }
 
@@ -217,14 +235,17 @@ h4 {
 <body id="page-top">
 
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top"
+		id="mainNav">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="/project">You Can Be A Teacher</a>
+			<a class="navbar-brand js-scroll-trigger" href="/project">You Can
+				Be A Teacher</a>
 			<form id="searchForm" action="searchBtn">
 				<div class="input-group" id="searchBar">
-					<input type="text" class="form-control" name = "searchText" placeholder="Search">
-					<input type="hidden" name="category" value="All Category">
-					<input type="hidden" name="lecType" value="online">
+					<input type="text" class="form-control" name="searchText"
+						placeholder="Search"> <input type="hidden" name="category"
+						value="All Category"> <input type="hidden" name="lecType"
+						value="online">
 					<div class="input-group-btn">
 						<button class="btn btn-default" id="btnSearchBar" type="button">
 							<i class="glyphicon glyphicon-search"></i>
@@ -237,7 +258,8 @@ h4 {
 	</nav>
 
 
-	<div style="background-color: dcdcdc; height: 250px; max-height: 250px;">
+	<div
+		style="background-color: dcdcdc; height: 250px; max-height: 250px;">
 		<div class="frame" id="file" style="z-index: 1;"></div>
 		<div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
 		<div class="name" style="color: grey">${userId }</div>
@@ -245,12 +267,16 @@ h4 {
 
 
 	<div class="tab">
-		<button class="tablinks" id="London" onclick="openCity(event, 'London')">나는 학생</button>
-		<button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는 선생님</button>
+		<button class="tablinks" id="London"
+			onclick="openCity(event, 'London')">나는 학생</button>
+		<button class="tablinks" id="Paris" onclick="openCity(event, 'Paris')">나는
+			선생님</button>
 		<button class="tablinks" id="Tokyo" onclick="openCity(event, 'Tokyo')">칠판</button>
-		<button id="createFolder1" onclick="document.getElementById('id01').style.display='block'"
+		<button id="createFolder1"
+			onclick="document.getElementById('id01').style.display='block'"
 			style="display: none">online</button>
-		<button id="createFolder2" onclick="document.getElementById('id02').style.display='block'"
+		<button id="createFolder2"
+			onclick="document.getElementById('id02').style.display='block'"
 			style="display: none">offline</button>
 
 	</div>
@@ -274,25 +300,71 @@ h4 {
 		<div id="onLec" style="display: inline-block; margin-left: 200px"></div>
 	</div>
 
-		<div>
-	<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
-	
+	<div>
+		<div id="offLec" style="display: inline-block; margin-left: 200px"></div>
+
 	</div>
-	
+
 	<div id="loader" style="display: none; z-index: 4;"></div>
 	<div id="notClick" style="display: none; z-index: 3;"></div>
+
+
+<!--  댓글 목록들  -->
+	<div>
+		댓글목록들
+		
+		<table>
+			<thead style="background : aquablue">
+				<tr>
+					<th> 댓글번호 </th>
+					<th>카테고리</th>
+					<th>강의제목</th>
+					<th>댓글내용</th>
+					<th>작성시간</th>					
+				</tr>
+			</thead>
+				
+			<tbody>
+				<c:forEach var ="reply" items="${replyList}">
+				<tr>
+					<td>${reply.rno }</td>	
+					<td> 케티고리</td>
+					<td> 겅와제목</td>
+					<td>${reply.content}</td>
+					<td>${regdate }</td>					
+				</tr>	
+				</c:forEach>			
+			</tbody>
+			
+		</table>
+
+
+
+		<ul>
+			<c:if test="${pageMaker.hasPrev }">
+				<li><a class="page-link" href="${pageMaker.startNo -1 } "> 이전</a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPageNo }" end="${pageMaker.endPageNo }"
+				var="num">
+				<li><a class="page-link" href="${num }">${num }</a></li>
+			</c:forEach>
+
+			<c:if test="${page.hasNext }">
+				<li><a class="page-link" href="${pageMaker.endPageNo + 1 }">다음</a>
+			</c:if>
+
+		</ul>
+
+	<form id="page-form">
+		<input type="hidden" id="page" name="page" value="${pageMaker.criteria.page }" />
+		<input type="hidden" id="numsPerPage" name="numsPerPage" value= "${pageMaker.criteria.numsPerPage }" />
+		<input type="hidden" id="page-form-bno" name="bno" />
+	</form>
+		
 	
 
-	
-
-
-
-
-
-
-
-
-
+	</div>
 
 
 
@@ -388,13 +460,15 @@ h4 {
 	<!-- Plugin JavaScript -->
 
 	<script src="resources/vendor/scrollreveal/scrollreveal.min.js"></script>
-	<script src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script
+		src="resources/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 	<!-- Custom scripts for this template -->
 	<script src="resources/js/main/creative.js"></script>
 
 	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/jquery.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+	<script
+		src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
@@ -410,6 +484,96 @@ h4 {
 	<br />
 	<br />
 	<br />
+	
+<!-- 댓글 script -->	
+<script >
+ $('.page-link').click(function(){
+	// <a> 태그의 기본 이벤트 동작(클릭하면 페이지 이동 )을 금지 . 같은 페이지에서 숫자링크만 변경되는것이기 때문
+	event.preventDefault();
+	// 이동할 페이지 번호 
+	var targetPage = $(this).attr('href');
+	$('#page').val(targetPage);
+	// #page-form 의 내용을 submit
+	var frm = $('#page-form');
+	frm.attr('action', 'mypage');
+	frm.attr('method', 'get');
+	frm.submit();
+	
+})
+
+
+
+/* 
+$(document).ready(function(){
+	
+	function getAllReplies(){
+		
+		console.log("bno = " + bno);
+		var list ='';	
+		
+
+		
+		$.getJSON("mypage-reply", function(para){					
+			if(para.length == 0){
+				list += '댓글이 없습니다 '
+				$('#onReplies').html(list);	
+			} else {			
+				$(para).each(function(){  // 데이터가 0개 이면  for 구문을 실행시킬 수가 없어서 input, button 들이 전부 생성될 수가 없음
+				console.log("rno ? " + this.rno);
+				var date = new Date(this.regdate);  
+				var dateString = date.toLocaleDateString() + ' ' +date.toLocaleTimeString();
+									
+ 	 			list += '<div class ="reply-item">'
+// 	 				 +'<img src ="/main/webapp/resources/img/1.jpg">'
+				
+					 + '<input type="text" id="rno" value= "'
+					 + this.rno 
+					 + '" /> ' 	
+					 + '<textarea rows="7px" cols="60px" id="reply-content" >'	
+					 + this.content
+					 + '</textarea> '
+					 + '<input type="text" id="reply-userid" value="'
+					 + this.userid 
+					 + '" />'
+					 + '<input type="text" id="reply-regdate" value="'
+					 + dateString
+					 + '"/>'
+					 +'<button class ="btnUpdate"> 댓글 수정 </button>'
+					 +'<button class ="btnDelete"> 댓글 삭제 </button>'
+					 + '</div>' 						 				 
+	 
+			}) // .each
+			$('#onReplies').html(list);				 
+			} // if-else{}
+			
+		}) // .getJSON
+		
+		
+
+		
+	} // getAllReplis()
+
+	
+getAllReplies(); // 함수 호출 
+	 */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}) 
+ 
+
+
+</script>	
+	
 </body>
 
 </html>

@@ -69,8 +69,11 @@
 	<property name="col_leccategory" value="lecCategory"/>
 	<property name="col_leclike" value = "lecLike"/>
 		
-		
-		
+	
+	<!-- Online Replies -->	
+	<property name="reply_board" value="on_replies"/>
+	<property name="col_rno" value="rno" />
+	
 	</properties>
 	<!-- MyBatis 프레임워크에서 select의 결과를 저장할 Model 클래스(VO)를 찾기 위해서 -->
 	<typeAliases>

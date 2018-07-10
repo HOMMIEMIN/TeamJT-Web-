@@ -30,12 +30,12 @@ public class VideoController {
 	@Autowired
 	private MemberService mService;
 	
-	
-	@RequestMapping(value="/video",method=RequestMethod.GET)
-	public void video() {
-		
-	}
-	
+//	
+//	@RequestMapping(value="/video",method=RequestMethod.GET)
+//	public void video() {
+//		
+//	}
+//	
 	@RequestMapping(value="/videoview", method=RequestMethod.GET)
 	public String videoview(int bno, int groupBno, String lecName, Model model, HttpSession session) {
 		System.out.println("들어옴");
@@ -59,6 +59,8 @@ public class VideoController {
 		model.addAttribute("GroupbnoList", GroupbnoList);
 		model.addAttribute("userName", m.getUserName());
 		model.addAttribute("lecName", lecName);
+		model.addAttribute("bno", bno);
+		
 		System.out.println(lecName);
 		if(lecName.equals("")) {
 			model.addAttribute("lecName", service.readByLecName(groupBno));
