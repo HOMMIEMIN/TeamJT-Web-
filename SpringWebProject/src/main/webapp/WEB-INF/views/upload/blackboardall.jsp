@@ -23,7 +23,8 @@ border: none;
 			onclick="window.location.href='/project/blackboard'">페이지 추가
 			(+)</button>
 	</div>
-	<div>
+	
+	<div style="display: none;" id="active">
 	<div style="margin-left:1120px;display: block" id="ifowner">
 		<button data-toggle="tooltip" data-placement="bottom" title="현재 페이지 수정" id="cpsetting" style = "background-color: white;border: none;color: blue;cursor: pointer;"
 			class="btn btn-info btn-circle">
@@ -41,10 +42,9 @@ border: none;
 	<!-- 설정한 페이지가 있을때 보여주는 화면 -->
 
 
-
 	<canvas style="float: left" id="canvas" width="1200px"
 		height="636px"></canvas>
-	</div>
+	
 	<div style="float: left;">
 	<div id="bt"
 		style="display:inline-block;height: 600px; width: 290px; overflow-y: scroll; float: left;">
@@ -64,7 +64,7 @@ border: none;
 			id="titleH" name="title"> <input type="hidden" id="useidH"
 			name="userid" value="${userId}">
 	</form>
-
+	</div>
 
 
 
@@ -134,7 +134,7 @@ border: none;
 						});
 	
 					}
-	
+					
 				}); //end $.getJSON()
 			} // end getAlReplies()
 	

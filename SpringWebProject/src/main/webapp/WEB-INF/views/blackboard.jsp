@@ -493,7 +493,7 @@
 			<input type='hidden' id='hfJson' name='jsonU'/>
 			<input type='hidden' id='hfUserid' name='useridU'/>
 			<input type='hidden' id='hfBno' name='bnoU'/>
-			<button id="updateJSONF">수정하기</button>
+			<button id="updateJSONF"  class="btn btn-outline-default btn-rounded waves-effect">수정하기</button>
 		</form>
 		
 	</div>
@@ -514,13 +514,34 @@
 			$('#hfUserid').val(userid);
 			$('#hfJson').val(json);
 			$('#saveJSON').hide();
-			var jjson = JSON.parse(json);
-			canvas.loadFromJSON(jjson,function(){
-				canvas.renderAll.bind(canvas);
-			});
+
 		}else{
 			$('#updateJSON').hide();
 		}
+		
+		$.getJSON('/project/loadBlackBoard', function(data) {
+			list = data;
+			//화면처리
+			if (list == null || list == "" || list.length == 0) {
+
+			} else {
+
+				$(data).each(function() {
+					var self = this
+					
+						if(this.bno== bno){
+
+
+						var json = JSON.parse(self.json);
+						canvas.loadFromJSON(json, function() {});
+						$('#hfJson').val(json);
+						}
+					
+				});
+				
+			}
+			
+		}); //end $.getJSON()
 		
 	</script>
 
