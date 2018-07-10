@@ -129,5 +129,19 @@ public class OffLecDaoImple implements OffLecDao {
 
 		return session.delete(NAMESPACE + ".deleteOffLec", bno);
 	}
+	
+	
+	@Override
+	public OffLec selectByMyOffLec(int bno) {
+	
+		return session.selectOne(NAMESPACE + ".selectByMyOffLec",bno);
+	}
+	
+	
+	@Override
+	public String selectGroupBnoByLecName(int groupBno) {
+
+		return session.selectOne(NAMESPACE + ".selectGroupBnoByLecName", groupBno);
+	}
 
 }

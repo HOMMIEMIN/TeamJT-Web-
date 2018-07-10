@@ -90,6 +90,13 @@
 	WHERE ${col_bno} = #{bno}
 	</select>
 	
+	<select id="selectByMyOffLec" resultType="OffLec">
+	SELECT * FROM ${tbl_offlec}
+	WHERE ${col_bno} = #{bno}
+	</select>
+	
+	
+	
 	<!-- 검색 -->
 	<select id="selectByCategory" resultType="offLec">
 	select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
@@ -105,6 +112,12 @@
 	DELTE {tbl_offlec}
 	WHERE ${col_bno} = #{bno}
 	</delete>
+	
+	<select id="selectGroupBnoByLecName" resultType="String">
+	SELECT ${col_lecname} 
+	FROM ${tbl_groupoff}
+	WHERE ${col_bno} = #{groupBno}
+	</select>
 	
   </mapper>
   

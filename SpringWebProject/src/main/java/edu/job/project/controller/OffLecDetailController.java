@@ -84,8 +84,7 @@ public class OffLecDetailController {
 		model.addAttribute("lecName",lecName);
 		logger.info("lecName:{}",lecName);
 		if(lecName.equals("")) {
-			//TODO:
-//			model.addAttribute("lecName", service.readByLecName(groupBno));
+			model.addAttribute("lecName", service.readByLecName(groupBno));
 		}
 		model.addAttribute("groupBno",groupBno);
 		
@@ -315,38 +314,138 @@ public class OffLecDetailController {
 	}
 	
 	@RequestMapping(value="/myOffLecView",method=RequestMethod.GET)
-	public String myLecView(int groupBno, String lecName, String userName, Model model, HttpSession session) {
+	public String myLecView(int bno, String lecName, String userName,int groupBno, Model model, HttpSession session) {
 		
-		System.out.println("들어옴");
-		List<OffLec> GroupbnoList = service.readByGroupBno(groupBno);
-		OffLec bnoList = service.readByBno(GroupbnoList.get(0).getBno());
-		
-		Member m = mService.readId(bnoList.getUserid());
-		if(session.getAttribute("userId") != null) {
-		Member myM = mService.readId((String)session.getAttribute("userId"));
-		System.out.println("OnLec : "+ m.getOffLec());
-//		service.updateCnt(GroupbnoList.get(0).getBno());
-		if(myM.getOnLec() != null) {
-			List<String> items = new ArrayList<>(Arrays.asList(myM.getOffLec().split("\\s*,\\s*")));
-			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
-			if(items.contains(String.valueOf(groupBno))) {
-				model.addAttribute("deleResult", "ok");
-				System.out.println("deleResult 넣음");
-			}
-			
-			
-		}
-		}
-		model.addAttribute("bnoList", bnoList);
-		model.addAttribute("GroupbnoList", GroupbnoList);
-		model.addAttribute("userName", m.getUserName());
-		model.addAttribute("lecName", lecName);
-		System.out.println(lecName);
-//		if(lecName.equals("")) {
-//			model.addAttribute("lecName", service.readByLecName(groupBno));
+		System.out.println("학생페이지에서 특정강의 클릭해서 들어옴");
+////		List<OffLec> GroupbnoList = service.readByGroupBno(bno);
+//		OffLec bnoList = service.readByBno(GroupbnoList.get(0).getBno());
+//		
+//		Member m = mService.readId(bnoList.getUserid());
+//		if(session.getAttribute("userId") != null) {
+//		Member myM = mService.readId((String)session.getAttribute("userId"));
+//		System.out.println("OnLec : "+ m.getOffLec());
+////		service.updateCnt(GroupbnoList.get(0).getBno());
+//		if(myM.getOnLec() != null) {
+//			List<String> items = new ArrayList<>(Arrays.asList(myM.getOffLec().split("\\s*,\\s*")));
+//			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
+//			if(items.contains(String.valueOf(groupBno))) {
+//				model.addAttribute("deleResult", "ok");
+//				System.out.println("deleResult 넣음");
+//			}
+//			
+//			
 //		}
-		model.addAttribute("groupBno", groupBno);
-		System.out.println("리턴");
+//		}
+//		model.addAttribute("bnoList", bnoList);
+//		model.addAttribute("GroupbnoList", GroupbnoList);
+//		model.addAttribute("userName", m.getUserName());
+//		model.addAttribute("lecName", lecName);
+//		System.out.println(lecName);
+//		//TODO:
+////		if(lecName.equals("")) {
+////			model.addAttribute("lecName", service.readByLecName(groupBno));
+////		}
+//		model.addAttribute("groupBno", groupBno);
+//		System.out.println("리턴");
+		
+		
+		
+		
+		logger.info(" bno(한 강의의 글번호) :{} ,groupBno :{}, lecName:{} ",bno,groupBno,lecName);
+		OffLec offLec = service.readByBno(bno);
+		List<OffLec> groupBnoList = service.readByGroupBno(groupBno);
+		
+			
+		model.addAttribute("bnoList", offLec);
+		logger.info("bnoList 의 신청자 목록 : {} ",offLec.getWaitingId());
+		String waitingId=offLec.getWaitingId();
+		if(waitingId != null) {
+		String[] waitingList=waitingId.split(",");
+		
+		List<String> waitList=new ArrayList<>();	
+		
+		for(int i=0; i<waitingList.length;i++) {
+			logger.info("신청자 목록: {} ", waitingList[i]);
+			logger.info("---------------------");
+			waitList.add(waitingList[i]);
+		}
+		logger.info("waitList: {}",waitList);
+		model.addAttribute("waitList",waitList);
+		model.addAttribute("waitListCount", waitingList.length);
+		}
+		
+			
+		String location=offLec.getLocation();
+		
+		String[] array=location.split(",");
+		String lat=array[0];
+		String long1=array[1];
+		model.addAttribute("lat",lat);
+		model.addAttribute("long1",long1);
+		String meet = offLec.getMeetingday();
+		String[] array2=meet.split(",");
+		String mday=array2[0];
+		String mtime=array2[1];
+		model.addAttribute("mday",mday);
+		model.addAttribute("mtime",mtime);
+		model.addAttribute("groupBnoList",groupBnoList);	
+		model.addAttribute("lecName",lecName);
+		logger.info("lecName:{}",lecName);
+		if(lecName.equals("")) {
+			//TODO:
+			model.addAttribute("lecName", service.readByLecName(groupBno));
+		}
+		model.addAttribute("groupBno",groupBno);
+		
+		String userId=(String) session.getAttribute("userId");
+		String userName1=(String) session.getAttribute("userName");
+		logger.info("[ 현재 로그인 상태 ]userId : {} userName: {} ", userId,userName1);
+		
+		// findWaiter
+		String userid=offLec.getUserid();
+		Member member = service.readWaitingMember(userid);
+		model.addAttribute("memberId",member.getUserId());
+		model.addAttribute("memberName",member.getUserName());
+		logger.info("[멤버테이블에서 검색한 선생님정보 ] 선생님 이름: {} 아이디: {}",member.getUserId(),member.getUserName());
+			
+		String name = (String)session.getAttribute("userId");
+		logger.info("로그인한  회원  : {}",name);
+		// 신청자 찾아서 model 에 넣고 신청버튼 안보이게 할거다~
+		if(offLec.getWaitingId() != null) {
+			String[] list=offLec.getWaitingId().split(",");
+			List<String> list2 = new ArrayList<>(Arrays.asList(list));
+			
+			if(list2.contains(name)) {
+				logger.info("1 대기자 목록에 회원이 있음.");
+				model.addAttribute("waitOK",1);	// 대기자 목록에 있을경우  1
+			}else {
+				logger.info("2 :  목록은 있으나, 대기자 명단에 없음.");
+				model.addAttribute("waitOK",2); // 대기자 명단에 회원이 없을경우 2 
+			}
+		}else {
+			logger.info("2 : 대기자 목록이 아예 없음.");
+			model.addAttribute("waitOK",2);
+		}
+		if(offLec.getApplyId() != null) {
+			String[] list=offLec.getApplyId().split(",");
+			List<String> list2=new ArrayList<>(Arrays.asList(list));
+			if(list2.contains(name)) {
+				logger.info("3 :  수강회원목록에 있음.");
+				model.addAttribute("applyOK",3);	// 수강완료자  목록에 회원이 있을경우  3
+			}else {
+				logger.info("4 : 신청자 목록은 있으나 로그인한 회원은 없음. ");
+				model.addAttribute("applyOK",4); // 없을경우 4
+			}
+		}else {
+			logger.info("4 : 신청자 목록이 아예 없음.");
+			model.addAttribute("applyOK",4);
+		}
+		
+		
+		logger.info("  ---  - 리턴(나는 학생페이지에서 타고 들어옴 ) -   ---  ");
+		System.out.println("");
+		
+		
 		return "offDetail";
 	}
 	

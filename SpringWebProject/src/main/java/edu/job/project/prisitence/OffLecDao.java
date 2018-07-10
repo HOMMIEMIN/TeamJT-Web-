@@ -44,5 +44,10 @@ public interface OffLecDao {
 	
 	int deleteOffLec(int bno);
 	
+	OffLec selectByMyOffLec(int bno);
+	
+	// 그룹찾기 
+	String selectGroupBnoByLecName(int groupBno);
+	
 	
 }

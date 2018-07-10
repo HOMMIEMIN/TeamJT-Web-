@@ -61,7 +61,7 @@ public class OffLecController {
    public void register(Model model , int bno, String lecCategory, String lecName) {
       logger.info("register 글등록 호출");
       Date date = new Date();
-      //DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
       SimpleDateFormat sdf1=new SimpleDateFormat("yyyy년 MM월 dd일 ");
       SimpleDateFormat sdf2=new SimpleDateFormat("HH시mm분");
       String formattedDate1 = sdf1.format(date);
@@ -183,7 +183,7 @@ public class OffLecController {
 	   Member m =mService.readId(myId);
 	   logger.info("m.getOffLec: {}" , m.getOffLec());
 	   if(m.getOffLec() != null) {
-		   List<GroupOff> list = offlecService.readByMyLec(m);
+		   List<OffLec> list = offlecService.readByMyLec(m);
 		   if(list.size() != 0 || list != null) {
 		         model.addAttribute("list", list);
 		      }
