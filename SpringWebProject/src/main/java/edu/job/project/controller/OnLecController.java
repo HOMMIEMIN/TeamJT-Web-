@@ -134,9 +134,9 @@ public class OnLecController {
    public String yourLec(String userId, String userName, Model model) {
       List<GroupOn> list = service.readGroup(userId);
       if(list.size() != 0 || list != null) {
-         model.addAttribute("list", list);
-         model.addAttribute("userName", userName);
-      }
+          model.addAttribute("list", list);
+          model.addAttribute("userName", userName);
+       }
       return "/upload/myLec";
    }
    

@@ -349,6 +349,7 @@ h4 {
 				$('#loader').css('display', 'block');
 				$('#notClick').css('display', 'block');
 			} else if (cityName === 'Tokyo') {
+				var ud = '${uId}';
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');

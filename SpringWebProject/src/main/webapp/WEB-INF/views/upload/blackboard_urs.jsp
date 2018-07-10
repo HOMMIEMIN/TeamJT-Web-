@@ -54,7 +54,8 @@ border: none;
 
 	<script>
 		$(document).ready(function() {
-			console.log(${uId});
+			var ud = '${uId}';
+			
 			$("#onLec").css('width', '100%');
 			$("#onLec").css('maxWidth', '100%');
 			$("#onLec").css('marginRight', '200px');
@@ -65,6 +66,7 @@ border: none;
 				//현재 로그인 유저가 설정한페이지 load
 				$.getJSON('/project/loadBlackBoardurs', function(data) {
 					list = data;
+					
 					//화면처리
 					if (list == null || list == "" || list.length == 0) {
 					
