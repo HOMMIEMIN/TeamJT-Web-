@@ -88,7 +88,9 @@ public class OffLecController {
          @RequestParam("lat") String lat,
          @RequestParam("long1") String long1,
          @RequestParam("meetingtime")String meetingtime,
-         @RequestParam("groupBno")int groupBno
+         @RequestParam("groupBno")int groupBno,
+         @RequestParam("userId")String userid,
+         @RequestParam("lecCategory")String category 
           ){
 
       logger.info("upload 호출:  {}",  file);
@@ -102,12 +104,13 @@ public class OffLecController {
       String location= lat+","+long1;
       
       String meeting = meetingday+","+meetingtime;
-      OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember,0, null, url , location , groupBno);
+      
+      OffLec offLecture = new OffLec(0,userid,category,title,content,meeting ,maxmember,0, null, url , location , groupBno);
       int result = offlecService.create(offLecture);
       
-      if(result ==1 ) {
-         offlecService.updateFolderImage(offLecture);
-      }
+//      if(result ==1 ) {
+//         offlecService.updateFolderImage(offLecture);
+//      }
       return "redirect:/mypage";
       
    }
@@ -176,8 +179,9 @@ public class OffLecController {
    @RequestMapping(value="/myOffLec", method=RequestMethod.GET)
    public String myOffLec(HttpSession session,Model model) {
 	   String myId=(String)session.getAttribute("userId");
-	   logger.info("myId:{}" , myId);
+	   logger.info("로그인한 아이디 :{}" , myId);
 	   Member m =mService.readId(myId);
+	   logger.info("m.getOffLec: {}" , m.getOffLec());
 	   if(m.getOffLec() != null) {
 		   List<GroupOff> list = offlecService.readByMyLec(m);
 		   if(list.size() != 0 || list != null) {
@@ -188,6 +192,16 @@ public class OffLecController {
 	   }
 	   
 	   return "/offline/myOffLec";
+   }
+   
+   @RequestMapping(value="/yourOffLec", method=RequestMethod.GET)
+   public String yourOffLec(String userId, String userName, Model model) {
+      List<GroupOff> list = offlecService.readGroup(userId);
+      if(list.size() != 0 || list != null) {
+         model.addAttribute("list", list);
+         model.addAttribute("userName", userName);
+      }
+      return "/offline/myOffLec";
    }
    
    

@@ -135,13 +135,14 @@ public class OffLecServiceImple implements OffLecService {
 	@Override
 	public List<GroupOff> readByMyLec(Member m) {
 	
-		List<String> items = new ArrayList<>(Arrays.asList(m.getOffLec().split("\\s*,\\s*")));		
+		List<String> items = new ArrayList<>(Arrays.asList(m.getOffLec().split(",")));		
 		List<GroupOff> list= new ArrayList<>();
 		
 		if(items.size() != 0) {
 		      for(int a=0; a < items.size() ; a++) {
 		         GroupOff off = dao.selectByMyLec(Integer.parseInt(items.get(a)));
 		          Member mm = mDao.getId(off.getUserId());
+		          logger.info("off.getUserId : {}",off.getUserId());
 		          off.setUserId(mm.getUserName());
 		          list.add(off);
 		       }
@@ -154,6 +155,18 @@ public class OffLecServiceImple implements OffLecService {
 	public List<OffLec> readByCategory(String category) {
 		
 		return dao.selectByCategory(category);
+	}
+	
+	@Override
+	   public int updateCnt(int bno) {
+
+	      return dao.cntUpdate(bno);
+	   }
+	
+	@Override
+	public int deleteOffLec(int bno) {
+	
+		return dao.deleteOffLec(bno);
 	}
 	
 	

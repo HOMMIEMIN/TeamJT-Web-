@@ -111,6 +111,7 @@ public class OnLecController {
    public String myLec(HttpSession session, Model model) {
       String myID = (String)session.getAttribute("userId");
       Member m = mService.readId(myID);
+      logger.info("로그인한 아이디:{} ,듣고 있는 강의:{}", myID, m.getOnLec());
       List<GroupOn> list = service.readByMyLec(m);
       if(list.size() != 0 || list != null) {
          model.addAttribute("list", list);

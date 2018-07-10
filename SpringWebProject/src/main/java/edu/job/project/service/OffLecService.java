@@ -57,4 +57,9 @@ public interface OffLecService {
 	List<GroupOff> readByMyLec(Member m);
 	
 	List<OffLec> readByCategory(String category);
+	
+	// ?? 뭐하는지 모르겠음....
+	int updateCnt(int bno);
+	
+	int deleteOffLec(int bno);
 }

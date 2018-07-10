@@ -39,4 +39,10 @@ public interface OffLecDao {
 		
 	List<OffLec> selectByCategory(String category);	
 	
+	//??? 뭐하는지 모르겠음.
+	int cntUpdate(int bno);
+	
+	int deleteOffLec(int bno);
+	
+	
 }

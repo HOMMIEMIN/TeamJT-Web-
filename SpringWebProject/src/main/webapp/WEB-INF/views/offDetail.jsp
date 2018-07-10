@@ -69,12 +69,12 @@
 
 </head>
 <body>
-
-	<h1>강좌 제목 : ${lecName}</h1>
+	
+	
 
 	<div class="container" style="padding-top: 30px;">
-
-
+<jsp:include page="header.jsp"></jsp:include>
+<h1>강좌 제목 : ${lecName}</h1>
 		<div class="container-fluid">
 			<div class="row" style="height: 350px;">
 				<div class="col-sm-4">
@@ -116,7 +116,7 @@
 					<label for="location" style="font-size: 20px; color: rgb(22, 160, 133);">모임 장소</label>
 					<div class="row" style="padding-bottom: 10px;">
 						<div class="col-sm-10">							
-							<h5 class="text-warning" id="location">${bnoList.location }</h5>
+						<!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> -->
 						</div>
 						<div class="col-sm-2"></div>
 					</div>
@@ -127,7 +127,7 @@
 
 				</div>
 				<div class="col-sm-4">
-					<div class="form-group" style="padding-top: 80px;">
+					<div class="form-group" style="padding-top: 50px;">
 						<label for="meetingday" class="control-label"
 							style="font-size: 20px; color: rgb(22, 160, 133);">모임 날짜</label>
 						<div class="col-sm-10">
@@ -136,7 +136,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group" style="padding-top: 30px;">
+					<div class="form-group" style="padding-top: 15px;">
 						<label for="meetingtime" class="conrol-label"
 							style="font-size: 20px; color: rgb(22, 160, 133);">모임 시간</label>
 						<div class="col-sm-10">
@@ -147,7 +147,7 @@
 
 
 					</div>
-					<div class="form-group" style="padding-top: 30px;">
+					<div class="form-group" style="padding-top: 15px;">
 						<label for="maxmember" class="control-label"
 							style="font-size: 20px; color: rgb(22, 160, 133);">수강인원</label>
 						<div class="row" style="padding-left: 60%;">
@@ -162,13 +162,30 @@
 						<div class="row" style="padding-left: 60%;">
 							<div>
 							<c:if test="${userId eq bnoList.userid}">
-						<input type="button" id="applyManager" value="모집마감하기(선생님만 보임)" class="form-control" name="applyManager" style="background-color: rgb(22, 160, 133); color: white;">
+								<c:if test="${bnoList.curmember eq bnoList.maxmember}">
+							<input type="button" id="applyManager" value="모집마감하기" class="form-control" name="applyManager" style="background-color: rgb(22, 160, 133); color: white;">
+							</c:if>
+						<form action="offLecDelete" method="post">
+						<input type="submit" id="cancelManager" value="강의취소하기(해당글 삭제)" class="form-control" name="cancelManager" style="background-color: rgb(22, 160, 133); color: white;">
+						<input type="hidden" id="deletebno" name="deletebno" value="${bnoList.bno }" >
+						</form>
 							 </c:if>
 							 
 							 
 							 <c:if test="${userId ne bnoList.userid}">
-							 <input type="button" id="apply" value="신청" class="form-control" name="apply" style="background-color: rgb(22, 160, 133); color: white;">
-							<input type="button" id="applywait" value="신청수락 대기중" class="form-control" name="applywait" style="background-color: rgb(22, 160, 133); color: white;">	
+							 
+								 <c:choose>
+		    						<c:when test="${waitOK == 2 and applyOK == 4}">
+		        							<input type="button" id="apply" value="신청" class="form-control" name="apply" style="background-color: rgb(22, 160, 133); color: white;">
+		    						</c:when>
+		    						<c:when test="${waitOK == 1}">
+											<input type="button" id="applywait" value="신청수락 대기중" class="form-control" name="applywait" style="background-color: rgb(22, 160, 133); color: white;">					         
+								    </c:when>
+								    <c:when test="${applyOK == 3}">
+											<h4>${userId}님 수강신청 완료되었습니다!</h4>					         
+								    </c:when>
+								    
+								</c:choose>				
 							</c:if>
 							</div>
 						</div>
@@ -191,10 +208,12 @@
 							 		<div class="col-sm-3">${item }</div>
 							 		<div class="col-sm-4" >
 							 			<input type="hidden" name="itemBno" id="itemBno" value="${bnoList.bno}">
-							 			<input type="hidden" name="itemId" id="itemId" value="${item}">
+							 			<input type="hidden" name="itemId" id="itemId" value="${item }">
 							 			<input type="hidden" name="itemMax" id="itemMax" value="${bnoList.maxmember}">
 							 			<input type="hidden" name="itemCur" id="itemCur" value="${bnoList.curmember}">
-							 			<button type="button" name="btnYes" id="btnYes">수락</button>							 			
+							 			<c:if test="${userId eq bnoList.userid}">
+							 			<button type="button" name="btnYes" id="btnYes">수락</button>		
+							 			</c:if>					 			
 							 		</div>
 							 	</div>						
 							</c:forEach>
@@ -213,8 +232,10 @@
 					<div class="form-group" style="padding-top: 5px;">
 						<label for="member" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">선생님</label>
 						<div class="col-sm-12" style="padding-top: 10px;">
-							<h3>${memberId}</h3>
-							<h3>${memberName}</h3>
+							<a href="yourpage?userId=${memberId}&userName=${memberName}">
+							 <div style="font-weight: bold; font-size: 120%">${memberName}</div>
+							 <div style="color: grey; font-size: 90%">${memberId}</div>
+							 </a>
 						</div>
 					</div>
 				</div>
@@ -264,6 +285,37 @@
 		</div>
 
 
+
+	<%int a= 1; %>
+	<div style="display: inline-block;width: 400px;bottom: 380px; margin-bottom: 10px; bottom: 0px;position: relative;">
+	<div style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
+	<div style="width:400px; height:410px;overflow:scroll;">
+	<c:if test="${not empty groupBnoList }">
+	<c:forEach var="group" items="${groupBnoList }">
+	<c:if test="${group.title != bnoList.title }">
+	<a href="offDetail?groupBno=${groupBno}&bno=${group.bno}&lecName=${lecName}" style="color: black">
+	<div class="item" style="padding: 10px; background-color: lightgrey">
+	<%=a %>      <img src="/project/resources/image/tmpFiles/${group.imgPath }" width="90px" height="50px">
+	<div style="display: inline-block; margin-bottom: 10px">${group.title }</div>
+	</div>
+	</a>		
+	</c:if>
+	<c:if test="${group.title == bnoList.title }">	
+	<div  style="padding: 10px; background-color: #E6E6E6">
+	<img src="/project/resources/img/this.png" width="" height="">      <img src="/project/resources/image/tmpFiles/${group.imgPath }" width="90px" height="50px">
+	<div style="display: inline-block; margin-bottom: 10px; font-weight: bold;">${group.title }</div>
+	</div>
+	</c:if>
+	<%a++; %>
+	</c:forEach>
+	</c:if>
+	</div>
+	</div>
+	
+	
+	
+
+
 	</div>
 
 	<!--  지도     -->
@@ -298,7 +350,7 @@
 			var bno = '${bnoList.bno}';
 			$.ajax({
 				type : 'put',
-				url : '/project/detail/apply',
+				url : '/project/apply',
 				headers: {'Content-Type' : 'application/json; charset=UTF-8', 
 					'X-HTTP-Method-Override' : 'put'
 					}, 
@@ -324,16 +376,18 @@
 																		
 								list += '<div class="row">'
 											+'<div class="col-sm-8" style="padding-left:20px;">'
-												+ item 
+												+ '<h3>'+item+'</h3>' 
 											+'</div>'
 											+'<div class="col-sm-4">'
+											+'<c:if test="${userId eq bnoList.userid}">'
 												+'<button>수락</button>'
+											+'</c:if>'
 											+'</div>'
 										+ '</div>'	
 							});
 							$(result).each(function(index,item){
 								var count = index+1;
-								listCount ='<h3> 현재 신청자수 '+count+'명</h3>'
+								listCount ='<h4> 현재 신청자수 '+count+'명</h4>'
 							});
 							$('#waitingMember').html(list);
 							$('#waitingMemberCount').html(listCount);
@@ -349,7 +403,7 @@
 			console.log('수락버튼클릭');		
 			
 			var bno = $(this).prevAll('#itemBno').val();
-			var userid = $(this).prevAll('#itemId').val();			// 이 변수를 밑에 stringify 에 써준것
+			var userid = $(this).prevAll('#itemId').val();	
 			var maxmember = $(this).prevAll('#itemMax').val();
 			var curmember = $(this).prevAll('#itemCur').val();
 			
@@ -359,7 +413,7 @@
 			$.ajax( {	// ajax ? 함수 호출 하겠다!!!!   그래서 오브젝트를 만들어야 하는데 그것들이 밑의 기능 
 				// 오브젝트 하나에 매개변수를 준다. 
 				type: 'post', // 요청방식
-				url : '/project/detail/confirm', // 요청주소 
+				url : '/project/confirm', // 요청주소 
 				headers: { 'Content-Type':'application/json',
 						   'X-HTTP-Method-Override':'post'  // PUT 이나 DELETE 는 꼭 post 방식을 줘야함 
 						 } , // 요청 헤더 (request header)
@@ -384,6 +438,12 @@
 			}); // end ajax
 		});
 		
+		$('#cancelManager').click(function(){
+			
+			alert('강의가 취소되었습니다.');
+			
+			
+		});
 		
 
 		

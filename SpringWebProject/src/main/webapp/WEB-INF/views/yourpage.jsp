@@ -300,6 +300,7 @@ h4 {
 			
 
 			if (cityName === 'Paris') {
+
 				console.log('들어옴');
 				
 				myFunction();
@@ -320,9 +321,6 @@ h4 {
 				$('#createFolder2').css('display', 'block');
 				
 				
-			
-				
-
 			} else if (cityName === 'London') {
 				$('#London').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
@@ -341,7 +339,7 @@ h4 {
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/upload/myOffLec");
+				$('#offLec').load("/project/offline/yourOffLec?userId="+ud+"&userName="+name);
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);

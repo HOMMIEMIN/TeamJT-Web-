@@ -33,7 +33,7 @@
 	});
 	$(function() {
 		$("#timepicker1").timepicker({
-			timeFormat : 'h:mm p',
+			timeFormat : 'hh시mm분',
 			interval : 30,
 			minTime : '30',
 			maxTime : '11:59pm',
@@ -102,7 +102,7 @@
 	<hr/>
 			<div class="container-fluid">
 
-				<div class="row" style="height: 450px; padding-top: 5px;">
+				<div class="row" style="height: 550px; padding-top: 5px;">
 					<div class="col-sm-8" >
 						<div class="row" style="padding-bottom: 10px;">
 							<div class="col-sm-10">
@@ -170,6 +170,8 @@
 						
 							<input type="submit" value="업로드" class="form-control" style="background-color:rgb(22, 160, 133); color: white; "> <input type="hidden"
 								name="lat" id="lat"> <input type="hidden" name="long1" id="long" > <input type="hidden" name="groupBno" id="groupBno" value="${bno}">
+								<input type="hidden" name="userId" id="userId" value="${userId}">
+								<input type="hidden" name="lecCategory" id="lecCategory" value="${lecCategory}">
 						
 					</div>
 				</div>
