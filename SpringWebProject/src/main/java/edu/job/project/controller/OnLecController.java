@@ -119,13 +119,25 @@ public class OnLecController {
       return "/upload/myLec";
    }
    
+   @RequestMapping(value="/blackboardall", method=RequestMethod.GET)
+   public String blackboardall(HttpSession session, Model model) {
+   
+      return "/upload/blackboardall";
+   }
+   
+	@RequestMapping(value="/blackboard_urs", method=RequestMethod.GET)
+	public String blackboardurs(HttpSession session, Model model) {
+	
+		return "/upload/blackboard_urs";
+	}
+   
    @RequestMapping(value="/yourLec", method=RequestMethod.GET)
    public String yourLec(String userId, String userName, Model model) {
       List<GroupOn> list = service.readGroup(userId);
       if(list.size() != 0 || list != null) {
-         model.addAttribute("list", list);
-         model.addAttribute("userName", userName);
-      }
+          model.addAttribute("list", list);
+          model.addAttribute("userName", userName);
+       }
       return "/upload/myLec";
    }
    

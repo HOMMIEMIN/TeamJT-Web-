@@ -132,6 +132,7 @@ public class OffLecDetailController {
 			model.addAttribute("applyOK",4);
 		}
 		
+		session.setAttribute("uId", offLec.getUserid());
 		
 		logger.info("  ---  - 리턴(세부페이지 보기 완료) -   ---  ");
 		System.out.println("");

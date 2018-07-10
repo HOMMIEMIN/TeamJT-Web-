@@ -301,9 +301,26 @@ h4 {
 
 			if (cityName === 'Paris') {
 
-			
+				console.log('들어옴');
 				
-
+				myFunction();
+				
+				
+				$('#offLec').animate({
+					opacity : 0
+				}, 1000);
+				
+				$('#offLec').animate({
+					opacity : 1
+				}, 1000);
+				
+				$('#Paris').css('border-bottom', '5px solid black');
+				$('#Tokyo').css('border-bottom', 'none');
+				$('#London').css('border-bottom', 'none');
+				$('#createFolder1').css('display', 'block');
+				$('#createFolder2').css('display', 'block');
+				
+				
 			} else if (cityName === 'London') {
 				$('#London').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
@@ -330,9 +347,17 @@ h4 {
 				$('#loader').css('display', 'block');
 				$('#notClick').css('display', 'block');
 			} else if (cityName === 'Tokyo') {
+				var ud = '${uId}';
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
+				$('#onLec').animate({
+					opacity : 0
+				}, 1000);
+				$('#onLec').load("/project/upload/blackboard_urs");
+				$('#onLec').animate({
+					opacity : 1
+				}, 1000);
 			} else {
 				$('#createFolder1').css('display', 'none');
 				$('#createFolder2').css('display', 'none');
@@ -368,6 +393,8 @@ h4 {
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
 	<link rel="stylesheet"
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<br />
 	<br />
 	<br />

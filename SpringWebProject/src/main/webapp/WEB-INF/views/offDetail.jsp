@@ -6,35 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
-<!--  time picker -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
-<!--  부트스트랩 -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-	crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-	crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-	integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-	crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>   
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
+
 
 <style>
 #map {
@@ -56,23 +39,14 @@
 	// i mention $ symbol before function so its not identified by onchange;
 	
 	
-		$(function() {
-
-		 $('#datepickerdiv').datepicker({	
-				dateFormat : 'yy년 mm월 dd일 ',
-				prevText : '이전 달',
-				nextText : '다음 달',
-				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',	'8월', '9월', '10월', '11월', '12월' ],
-				monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
-				dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-				dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-				showMonthAfterYear : true,
-				minDate : 0,
-				yearSuffix : '년' 
-	    });
-	});
+	$(document).ready(function() {
 	
+		  $('#datepicker').datepicker({
+			  
+			  });
+	
+	
+	});
 	
 </script>
 </head>
@@ -88,11 +62,11 @@
 
 		<!--  지도 , 폴더 목록  -->
 		<div class="container-fluid">
-			<div class="row" style="height: 450px; padding-top: 5px;">
+			<div class="row" style="height: 420px; padding-top: 5px;">
 				<div class="col-sm-6">
-					<!-- 모임장소  -->
-					<label for="location" style="font-size: 20px; color: rgb(22, 160, 133);">모임 장소</label>
-					<div class="row" style="padding-bottom: 10px;">
+					
+					
+					<div class="row">
 						<div class="col-sm-10">
 							<!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> -->
 						</div>
@@ -101,25 +75,20 @@
 					<div id="map"></div>
 				</div>
 
-				<div class="col-sm-3">
-					<div id="datepickerdiv"></div>
-					<!-- 모임날짜  -->
-					<div class="form-group" style="padding-top: 50px;">
+				<div class="col-sm-3" style="padding-top: 40px;">
+					<div id="datepicker">
+						
 
-						
-				
-						<div class="col-sm-10">
-							<div style="padding-left: 22%;">
-								<h5 id="dateandmeet" class="text-warning" style="border-radius: 1px;">${mday} , ${mtime}</h5>
-							</div>
-						</div>					
-						
+
+
 					</div>
-					
-					
-
-					
-
+					<!-- 모임날짜  -->
+					<div class="col-sm-12">
+						<h5 id="dateandmeet"
+							style="width: 100%; font-size: 17px; border-style: solid; border-color: gray; text-align: center;">${mday}<br />
+							${mtime}
+						</h5>
+					</div>
 				</div>
 
 				<!--  폴더 목록 -->
@@ -128,7 +97,7 @@
 						int a = 1;
 					%>
 					<div
-						style="display: inline-block; width: 400px; bottom: 340px; margin-bottom: 10px; bottom: 0px; position: relative; padding-top: 45px;">
+						style="display: inline-block; width: 400px; bottom: 340px; margin-bottom: 50px; bottom: 0px; position: relative; ">
 						<div
 							style="background-color: #424242; font-weight: bold; color: white; font-size: 135%; padding: 22px; position: relative;">${lecName }</div>
 						<div style="width: 400px; height: 330px; overflow: scroll;">
@@ -187,54 +156,48 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6">
-
+				<div class="col-sm-6" style="padding-bottom: 100px;">
 					<!-- 수강인원   -->
-					<div class="form-group" style="padding-top: 15px;">
-						<div class="row" style="padding-left: 60%;">
-							<div>
-								<h5 id="maxmember" class="text-warning">모집인원  ${bnoList.curmember}/${bnoList.maxmember}</h5>
-							</div>
-						</div>
+					<div class="row" style="padding-left: 60%;">
+						<h5 id="maxmember" style="font-size: 13px; padding-top: 30px;">모집인원
+							${bnoList.curmember}/${bnoList.maxmember}</h5>
 					</div>
 					<!-- 수강신청 로직  -->
-					<div class="form-group" style="padding-top: 30px;">
-
-						<div class="row" style="padding-left: 60%;">
-							<div>
-								<c:if test="${userId eq bnoList.userid}">
-									<c:if test="${bnoList.curmember eq bnoList.maxmember}">
-										<input type="button" id="applyManager" value="모집마감하기" class="form-control"
-											name="applyManager" style="background-color: rgb(22, 160, 133); color: white;">
-									</c:if>
-									<form action="offLecDelete" method="post">
-										<input type="submit" id="cancelManager" value="강의취소하기(해당글 삭제)" class="form-control"
-											name="cancelManager" style="background-color: rgb(22, 160, 133); color: white;">
-										<input type="hidden" id="deletebno" name="deletebno" value="${bnoList.bno }">
-									</form>
+					<div class="row" style="padding-left: 60%;">
+						<div>
+							<c:if test="${userId eq bnoList.userid}">
+								<c:if test="${bnoList.curmember eq bnoList.maxmember}">
+									<input type="button" id="applyManager" value="모집마감하기" class="form-control"
+										name="applyManager" style="background-color: rgb(22, 160, 133); color: white;">
 								</c:if>
+								<form action="offLecDelete" method="post">
+									<input type="submit" id="cancelManager" value="강의취소하기(해당글 삭제)" class="form-control"
+										name="cancelManager" style="background-color: rgb(22, 160, 133); color: white;"> <input
+										type="hidden" id="deletebno" name="deletebno" value="${bnoList.bno }">
+								</form>
+							</c:if>
 
 
-								<c:if test="${userId ne bnoList.userid}">
+							<c:if test="${userId ne bnoList.userid}">
 
-									<c:choose>
-										<c:when test="${waitOK == 2 and applyOK == 4}">
-											<input type="button" id="apply" value="신청" class="form-control" name="apply"
-												style="background-color: rgb(22, 160, 133); color: white;">
-										</c:when>
-										<c:when test="${waitOK == 1}">
-											<input type="button" id="applywait" value="신청수락 대기중" class="form-control"
-												name="applywait" style="background-color: rgb(22, 160, 133); color: white;">
-										</c:when>
-										<c:when test="${applyOK == 3}">
-											<h4>${userId}님수강신청완료되었습니다!</h4>
-										</c:when>
+								<c:choose>
+									<c:when test="${waitOK == 2 and applyOK == 4}">
+										<input type="button" id="apply" value="신청" class="form-control" name="apply"
+											style="background-color: rgb(22, 160, 133); color: white;">
+									</c:when>
+									<c:when test="${waitOK == 1}">
+										<input type="button" id="applywait" value="신청수락 대기중" class="form-control" name="applywait"
+											style="background-color: rgb(22, 160, 133); color: white;">
+									</c:when>
+									<c:when test="${applyOK == 3}">
+										<h5>${userId}님수강신청완료!</h5>
+									</c:when>
 
-									</c:choose>
-								</c:if>
-							</div>
+								</c:choose>
+							</c:if>
 						</div>
 					</div>
+
 
 				</div>
 
@@ -249,9 +212,15 @@
 				<div class="col-sm-12">
 					<div class="form-group" style="padding-top: 5px;">
 						<div class="row">
-							
-						<label for="member" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">신청자</label>
-						<h5> ${waitListCount}명</h5>
+
+							<label for="member" class="control-label"
+								style="font-size: 20px; color: rgb(22, 160, 133); padding-left: 15px; padding-top: 5px;">신청자</label>
+							<h5 style="padding-left: 10px; margin-bottom: 20px;">
+								<c:choose>
+									<c:when test="${waitListCount eq null}"> 0 명  </c:when>
+									<c:when test="${waitListCount ne 0}"> ${waitListCount}명  </c:when>
+								</c:choose>
+							</h5>
 						</div>
 						<div class="col-sm-12" style="padding-top: 10px;">
 							<div id="waitingMemberCount"></div>
@@ -259,27 +228,49 @@
 								<c:forEach var="item" items="${waitList }">
 									<div class="row" id="applyDiv">
 										<div class="col-sm-10">
-											<div data-text-content="true" style="background-color: rgb(250, 250, 250); border-width: 0px; border-style: none; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 4px 0px; width: 288px; height: 80px;">
-												<div data-image-content="true" style="background-image:url(/static/imagefarm/100072178/rBl7h5c3wnlQg0PoMeCqnb8AOiDXQVOh);"></div>
-												<div data-text-content="true" style="font-weight: bold; font-size: 16px; color: rgb(33, 33, 33);" class="">${item}</div>
-												<div data-text-content="true" style="font-size: 11px; color: rgb(127, 127, 127);" class="">wendy@redvelvet.com<br></div>
+											<div data-text-content="true"
+												style="background-color: rgb(250, 250, 250); border-width: 0px; border-style: none; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 4px 0px; width: 288px; height: 80px;">
+												<div data-image-content="true"
+													style="background-image: url(/static/imagefarm/100072178/rBl7h5c3wnlQg0PoMeCqnb8AOiDXQVOh);"></div>
+
+												<div data-text-content="true"
+													style="font-weight: bold; font-size: 16px; color: rgb(33, 33, 33); padding-left: 60px; padding-top: 13px;"
+													class="">
+													${item}
+													<c:if test="${userId ne bnoList.userid}">
+														<c:choose>
+															<c:when test="${waitOK == 1}">
+																<input type="button" value="대기"
+																	style="background-color: rgb(22, 160, 133); color: white; margin-left: 120px;">
+															</c:when>
+															<c:when test="${applyOK == 3}">
+																<input type="button" value="선택"
+																	style="background-color: rgb(255, 255, 255); color: white; margin-left: 120px;">
+															</c:when>
+														</c:choose>
+													</c:if>
+
+												</div>
+												<div style="padding-left: 60px; font-size: 12px;">
+													wendy@redvelvet.com<br>
+												</div>
 												<c:if test="${userId eq bnoList.userid}">
-												<button type="button" name="btnYes" id="btnYes">수락</button>
+													<button type="button" name="btnYes" id="btnYes" style="margin-left: 220px; margin-bottom: 20px; ">수락</button>
 												</c:if>
 											</div>
-										
+
 										</div>
 										<div class="col-sm-2">
-											<input type="hidden" name="itemBno" id="itemBno" value="${bnoList.bno}"> 
-											<input type="hidden" name="itemId" id="itemId" value="${item }"> 
-											<input type="hidden" name="itemMax" id="itemMax" value="${bnoList.maxmember}">
-											<input type="hidden" name="itemCur" id="itemCur" value="${bnoList.curmember}">
-											
+											<input type="hidden" name="itemBno" id="itemBno" value="${bnoList.bno}"> <input
+												type="hidden" name="itemId" id="itemId" value="${item }"> <input type="hidden"
+												name="itemMax" id="itemMax" value="${bnoList.maxmember}"> <input type="hidden"
+												name="itemCur" id="itemCur" value="${bnoList.curmember}">
+
 										</div>
 									</div>
 								</c:forEach>
-								
-							
+
+
 							</div>
 							<input type="hidden" name="waitList" id="waitList" value="${bnoList.waitingId}">
 						</div>
@@ -322,16 +313,20 @@
 						<label for="member" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">선생님</label>
 						<div class="col-sm-12" style="padding-top: 10px;">
 							<a href="yourpage?userId=${memberId}&userName=${memberName}">
-								<div style="font-weight: bold; font-size: 120%">선생님 이름: ${memberName}</div>
-								<div style="color: grey; font-size: 90%">선생님 아이디 : ${memberId}</div>
+								<div style="font-weight: bold; font-size: 120%"> ${memberName}</div>
+								<div style="color: grey; font-size: 90%; padding-left: 20px;"> ${memberId}</div>
 
 							</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-6">
-					<div>
-						<h5 style="padding-top: 50px; padding-left: 200px;">선생님 칠판 아이콘</h5>
+					<div style="padding-top: 50px; padding-left: 320px;">
+						
+							<button type="button" class="btn btn-default btn-sm" onclick="location.href='yourpage?userId=${memberId}&userName=${memberName}' ">
+								<span class="glyphicon glyphicon-edit" ></span> 선생님의 칠판
+							</button>
+						
 					</div>
 				</div>
 
@@ -487,7 +482,6 @@
 	</script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZERHrUzBgHvXAa2TJ843Ca6Ng5nTq-ts&callback=initMap"></script>
-
 </body>
 
 

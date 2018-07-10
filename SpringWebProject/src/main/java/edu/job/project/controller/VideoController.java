@@ -132,9 +132,13 @@ public class VideoController {
 	
 	
 	@RequestMapping(value="/yourpage", method=RequestMethod.GET)
-	public void yourpage(String userId,String userName, Model model) {
-			model.addAttribute("uName", userName);
-			model.addAttribute("uId", userId);		
+
+	public void yourpage(String userId,String userName, Model model, HttpSession session) {
+		model.addAttribute("uName", userName);
+		model.addAttribute("uId", userId);
+		session.setAttribute("uName", userName);
+		session.setAttribute("uId", userId);
+		
 	}
 	
 
