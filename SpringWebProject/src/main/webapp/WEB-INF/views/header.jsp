@@ -135,7 +135,7 @@
 
 /* 로그인 후 아이콘 UI */
 .nav-profile {
-	/*position: relative;*/
+	position: absolute;
 	
 	display: inline-block;
 	background: url(/project/resources/img/test.png) center center no-repeat;

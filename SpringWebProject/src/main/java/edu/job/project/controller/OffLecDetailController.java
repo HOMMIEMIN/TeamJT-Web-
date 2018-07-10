@@ -317,39 +317,7 @@ public class OffLecDetailController {
 	public String myLecView(int bno, String lecName, String userName,int groupBno, Model model, HttpSession session) {
 		
 		System.out.println("학생페이지에서 특정강의 클릭해서 들어옴");
-////		List<OffLec> GroupbnoList = service.readByGroupBno(bno);
-//		OffLec bnoList = service.readByBno(GroupbnoList.get(0).getBno());
-//		
-//		Member m = mService.readId(bnoList.getUserid());
-//		if(session.getAttribute("userId") != null) {
-//		Member myM = mService.readId((String)session.getAttribute("userId"));
-//		System.out.println("OnLec : "+ m.getOffLec());
-////		service.updateCnt(GroupbnoList.get(0).getBno());
-//		if(myM.getOnLec() != null) {
-//			List<String> items = new ArrayList<>(Arrays.asList(myM.getOffLec().split("\\s*,\\s*")));
-//			System.out.println("contains : "+items.contains(String.valueOf(groupBno)));
-//			if(items.contains(String.valueOf(groupBno))) {
-//				model.addAttribute("deleResult", "ok");
-//				System.out.println("deleResult 넣음");
-//			}
-//			
-//			
-//		}
-//		}
-//		model.addAttribute("bnoList", bnoList);
-//		model.addAttribute("GroupbnoList", GroupbnoList);
-//		model.addAttribute("userName", m.getUserName());
-//		model.addAttribute("lecName", lecName);
-//		System.out.println(lecName);
-//		//TODO:
-////		if(lecName.equals("")) {
-////			model.addAttribute("lecName", service.readByLecName(groupBno));
-////		}
-//		model.addAttribute("groupBno", groupBno);
-//		System.out.println("리턴");
-		
-		
-		
+
 		
 		logger.info(" bno(한 강의의 글번호) :{} ,groupBno :{}, lecName:{} ",bno,groupBno,lecName);
 		OffLec offLec = service.readByBno(bno);
@@ -388,8 +356,9 @@ public class OffLecDetailController {
 		String mtime=array2[1];
 		model.addAttribute("mday",mday);
 		model.addAttribute("mtime",mtime);
-		model.addAttribute("groupBnoList",groupBnoList);	
-		model.addAttribute("lecName",lecName);
+		model.addAttribute("groupBnoList",groupBnoList);
+		
+		model.addAttribute("lecName",service.readByLecName(groupBno));
 		logger.info("lecName:{}",lecName);
 		if(lecName.equals("")) {
 			//TODO:

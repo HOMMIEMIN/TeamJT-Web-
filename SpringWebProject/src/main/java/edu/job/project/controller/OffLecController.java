@@ -175,7 +175,7 @@ public class OffLecController {
       return "/offline/offFolderDetail";
    }
    
-
+   // 마이페이지 (mypage) 에서 학생탭의 오프라인강좌 보여주기.
    @RequestMapping(value="/myOffLec", method=RequestMethod.GET)
    public String myOffLec(HttpSession session,Model model) {
 	   String myId=(String)session.getAttribute("userId");
@@ -190,6 +190,9 @@ public class OffLecController {
 	   }else {
 		   logger.info("듣고 있는 오프라인강의가 없습니다.");
 	   }
+	   
+	   
+	   
 	   
 	   return "/offline/myOffLec";
    }

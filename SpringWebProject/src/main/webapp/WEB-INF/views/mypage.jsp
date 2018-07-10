@@ -84,7 +84,7 @@
 
 .nav-taps {
 	height: 45px;
-	display: inline-block;
+	
 }
 
 /*
@@ -474,6 +474,7 @@ h4 {
        }
        document.getElementById(cityName).style.display = "block";
        $(document).ready(()=>{
+    	   // 크롬 콘솔에서 계속 에러 납니다. 
           evt.currentTarget.className += " active";
            console.log(cityName+'입장      [종류]paris:선생 london:학생 tokyo:칠판')
        });
