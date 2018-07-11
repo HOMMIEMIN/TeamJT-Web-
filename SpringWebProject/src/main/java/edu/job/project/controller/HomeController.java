@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -37,16 +38,14 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Locale locale, Model model, String type) {
-		
-		model.addAttribute("type", type);
-		
-		return "mypage";
-	}
 	
 	@RequestMapping(value="/header", method=RequestMethod.GET)
 	public void header() {
+		
+	}
+	
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public void mypage() {
 		
 	}
 	

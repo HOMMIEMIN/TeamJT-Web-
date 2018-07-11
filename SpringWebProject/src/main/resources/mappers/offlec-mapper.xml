@@ -92,9 +92,19 @@
 	
 	<!-- 검색 -->
 	<select id="selectByCategory" resultType="offLec">
-select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
-</select>
+	select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
+	</select>
+
+	<update id="updateCnt">
+	UPDATE ${tbl_onlec}
+	SET {col_cnt} = ${col_cnt} + 1 
+	WHERE ${col_bno} = #{bno}
+	</update>
 	
+	<delete id="deleteOffLec">
+	DELTE {tbl_offlec}
+	WHERE ${col_bno} = #{bno}
+	</delete>
 	
   </mapper>
   

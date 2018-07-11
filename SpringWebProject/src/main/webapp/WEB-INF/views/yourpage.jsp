@@ -27,6 +27,29 @@
 
 
 <style>
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 #createFolder1 {
 	position: relative;
 	left: 850px;
@@ -300,21 +323,16 @@ h4 {
 			
 
 			if (cityName === 'Paris') {
+
 				console.log('들어옴');
 				
 				myFunction();
-				$('#onLec').animate({
-					opacity : 0
-				}, 1000);
-				$('#onLec').load("/project/upload/yourOnFolder");
-				$('#onLec').animate({
-					opacity : 1
-				}, 1000);
+				
 				
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/offline/YourOffFolder");
+				
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);
@@ -326,9 +344,6 @@ h4 {
 				$('#createFolder2').css('display', 'block');
 				
 				
-			
-				
-
 			} else if (cityName === 'London') {
 				$('#London').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
@@ -347,7 +362,7 @@ h4 {
 				$('#offLec').animate({
 					opacity : 0
 				}, 1000);
-				$('#offLec').load("/project/upload/myOffLec");
+				$('#offLec').load("/project/offline/yourOffLec?userId="+ud+"&userName="+name);
 				$('#offLec').animate({
 					opacity : 1
 				}, 1000);
@@ -355,9 +370,13 @@ h4 {
 				$('#loader').css('display', 'block');
 				$('#notClick').css('display', 'block');
 			} else if (cityName === 'Tokyo') {
+				var ud = '${uId}';
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
+
+				$('#onLec').load("/project/upload/blackboard_urs");
+
 			} else {
 				$('#createFolder1').css('display', 'none');
 				$('#createFolder2').css('display', 'none');
@@ -393,6 +412,8 @@ h4 {
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.min.css" />
 	<link rel="stylesheet"
 		href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.material.mobile.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<br />
 	<br />
 	<br />

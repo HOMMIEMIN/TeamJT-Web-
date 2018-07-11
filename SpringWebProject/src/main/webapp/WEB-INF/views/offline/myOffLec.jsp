@@ -134,7 +134,7 @@ right:500px;
 						</ul>
 					</div>
 					<a
-						href="myLecView?groupBno=${group.bno }&lecName=${group.lecName}&userName=${userName}"
+						href="myOffLecView?groupBno=${group.bno }&lecName=${group.lecName}&userName=${userName}"
 						class="detail">
 						<div class="overlay"></div>
 					</a>

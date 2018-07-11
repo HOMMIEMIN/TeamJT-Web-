@@ -22,88 +22,89 @@ public class OffLecDaoImple implements OffLecDao {
 	private UploadMapper uploadMapper;
 	@Autowired
 	private SqlSession session;
-	
+
 	@Override
 	public int insert(OffLec o) {
-		
-		logger.info("insert( {},{},{},{},{},{},{} )",o.getUserid(),o.getCategory(),o.getTitle(),o.getContent(),o.getMeetingday(),o.getMaxmember(),o.getImgPath());
-		
-		return session.insert(NAMESPACE + ".insert" , o);
+
+		logger.info("insert( {},{},{},{},{},{},{} )", o.getUserid(), o.getCategory(), o.getTitle(), o.getContent(),
+				o.getMeetingday(), o.getMaxmember(), o.getImgPath());
+
+		return session.insert(NAMESPACE + ".insert", o);
 	}
-	
-	// 대기자 넣기 
+
+	// 대기자 넣기
 	@Override
 	public int update(OffLec offLecture) {
-	
-		logger.info("update ( 오프라인 강의 신청대기자 넣기) {},{}",offLecture.getBno(),offLecture.getWaitingId());
-		
+
+		logger.info("update ( 오프라인 강의 신청대기자 넣기) {},{}", offLecture.getBno(), offLecture.getWaitingId());
+
 		return uploadMapper.updateWaitingId(offLecture);
 	}
-	
-	// 대기자 넣을 글번호 찾기 
+
+	// 대기자 넣을 글번호 찾기
 	@Override
 	public OffLec select(int bno) {
-	
-		logger.info("select( 해당 게시글의 번호: {} )" , bno);
-		
+
+		logger.info("select( 해당 게시글의 번호: {} )", bno);
+
 		return uploadMapper.selectWaitingList(bno);
 	}
-	
+
 	@Override
 	public List<OffLec> select() {
-		
+
 		return uploadMapper.selectAll();
 	}
-	
+
 	@Override
 	public int insertGroup(GroupOff off) {
-		 logger.info("insert 폴더 :{}" , off.getLecName());
-		return session.insert(NAMESPACE+".groupInsert",off);
+		logger.info("insert 폴더 :{}", off.getLecName());
+		return session.insert(NAMESPACE + ".groupInsert", off);
 	}
 
 	@Override
 	public List<GroupOff> selectAllGroup(String userId) {
-		
-		return session.selectList(NAMESPACE + ".selectAllGroupOff" , userId);
+
+		return session.selectList(NAMESPACE + ".selectAllGroupOff", userId);
 	}
-	
+
 	@Override
 	public GroupOff selectGroup(GroupOff off) {
-	
-		return session.selectOne(NAMESPACE + ".selectOneGroupOff",off);
+
+		return session.selectOne(NAMESPACE + ".selectOneGroupOff", off);
 	}
-	
+
 	@Override
 	public List<OffLec> selectBno(int bno) {
-	
-		return session.selectList(NAMESPACE + ".selectBnoOffLec",bno);
+
+		return session.selectList(NAMESPACE + ".selectBnoOffLec", bno);
 	}
-	
+
 	@Override
 	public int updateFolderImage(OffLec off) {
-	
-		return session.update(NAMESPACE + ".updateFolderImage" , off);
+
+		return session.update(NAMESPACE + ".updateFolderImage", off);
 	}
-	
+
 	@Override
 	public OffLec selectBnoByOffLec(int bno) {
-	
-		return (OffLec)session.selectOne(NAMESPACE + ".selectBnoByOffLec" , bno);
+
+		return (OffLec) session.selectOne(NAMESPACE + ".selectBnoByOffLec", bno);
 	}
 
 	@Override
 	public List<OffLec> selectGroupBnoByOffLec(int groupBno) {
-	
+
 		return session.selectList(NAMESPACE + ".selectGroupBnoByOffLec", groupBno);
 	}
-	
+
 	@Override
 	public int updateApply(OffLec offLec) {
-		
-		return session.update(NAMESPACE + ".updateApply" , offLec);
+
+		return session.update(NAMESPACE + ".updateApply", offLec);
 	}
-	
-	// 학생페이지에서 오프라인 폴더 목록 보이기 
+
+	// 학생페이지에서 오프라인 폴더 목록 보이기
 	@Override
 	public GroupOff selectByMyLec(int groupBno) {
 
@@ -112,8 +113,21 @@ public class OffLecDaoImple implements OffLecDao {
 
 	@Override
 	public List<OffLec> selectByCategory(String category) {
-		
+
 		return session.selectList(NAMESPACE + ".selectByCategory", category);
 	}
-	
+
+	@Override
+	public int cntUpdate(int bno) {
+
+		return session.update(NAMESPACE + ".updateCnt", bno);
+	}
+
+	// 글삭제
+	@Override
+	public int deleteOffLec(int bno) {
+
+		return session.delete(NAMESPACE + ".deleteOffLec", bno);
+	}
+
 }

@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+=======
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 <html>
 <head>
 <meta charset="UTF-8">
@@ -32,7 +37,8 @@
 
 <!-- link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet" type="text/css" -->
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css" rel="stylesheet"
+   type="text/css">
 <!-- 
 font-family: 'Jeju Gothic', serif;
 font-family: 'Noto Sans KR', sans-serif; 
@@ -53,7 +59,10 @@ font-family: 'Nanum Gothic', serif;
 
 <Style>
 .search-container {
+<<<<<<< HEAD
    display: flex;
+=======
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
    max-width: 1200px;
    min-width: 670px;
    margin: auto;
@@ -68,7 +77,10 @@ font-family: 'Nanum Gothic', serif;
    justify-content: flex-start;*/
    float: left;
    width: 300px;
+<<<<<<< HEAD
    height: 100%;
+=======
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 }
 
 .filter-title {
@@ -99,8 +111,11 @@ font-family: 'Nanum Gothic', serif;
 }
 
 .result-box {
+<<<<<<< HEAD
    display: flex;
    flex-direction: column;
+=======
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
    float: right;
    max-width: 900px;
    min-width: 370px;
@@ -246,12 +261,14 @@ div .col-md-3.resent-grid.recommended-grid.movie-video-grid:hover .overlay
    animation: spin 2s linear infinite;
 }
 
-.category{
-color : black;
+.category {
+   color: black;
 }
 
-.lecType{
-color : black;
+.lecType {
+   color: black;
+<<<<<<< HEAD
+=======
 }
 
 .category {
@@ -260,13 +277,14 @@ color : black;
 
 .lecType {
    color: black;
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 }
 </Style>
 
 </head>
 
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+   <jsp:include page="header.jsp"></jsp:include>
 
 
    <div class="search-container">
@@ -297,38 +315,76 @@ color : black;
                <a id="Life" class="category" href="">Life</a>
             </div>
             <div class="filter">
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
                <a id="Etc" class="category" href="">Etc.</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
          </div>
-         
+
 
          <div class="nav-lectype">
             <div class="filter-title">Lecture Type</div>
 
             <div class="filter">
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
                <a id="Online" class="lectype" href="">Online</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
 
             <div class="filter">
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
                <a id="Offline" class="lectype" href="">Offline</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </div>
          </div>
       </div>
 
       <div class="result-box">
-         <div class="searchpath">${category } > ${lecType }</div>
-         
+         <div class="searchpath">${category }> ${lecType }</div>
+
          <div class="result-align">
             <div class="orderby">
+<<<<<<< HEAD
                <a id="recent" href="javascript:void(0)" class = "repo">최신순↓</a>
+=======
+
+               <a id="recent" href="javascript:void(0)" class="repo">최신순↓</a>
             </div>
+            <div class="orderby">
+               <a id="popular" href="javascript:void(0)" class="repo">인기순↓</a>
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+            </div>
+<<<<<<< HEAD
             <div class="orderby">
                <a id="popular" href="javascript:void(0)" class = "repo">인기순↓</a>
             </div>
          
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
          </div>
 
          <div class="searchresult">
+<<<<<<< HEAD
          <!-- div style="padding-top: 100px;"-->
          <c:if test="${not empty online }">
             <c:forEach var="online" items="${online }">
@@ -365,25 +421,100 @@ color : black;
                      <div></div>
                   </a>
                </div>
+=======
+            <!-- div style="padding-top: 100px;"-->
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
+<<<<<<< HEAD
             </c:forEach>
+=======
+            <c:if test="${not empty online }">
+               <c:forEach var="online" items="${online }">
+
+                  <div class="col-md-3 resent-grid recommended-grid movie-video-grid"
+                     style="display: inline-block;">
+                     <div class="resent-grid-img recommended-grid-img">
+                        <a href="" class="detail"> <c:if test="${not empty online.imagePath }">
+                              <img alt=""
+                                 src="${pageContext.request.contextPath}/resources/image/tmpFiles/${online.imagePath}">
+                           </c:if>
+                        </a>
+                        <div class="time small-time show-time movie-time"></div>
+                        <div class="clck movie-clock"></div>
+                     </div>
+                     <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
+                        style="padding: 5px">
+                        <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${online.lecCategory }.</h6>
+                        <h5 style="font-size: 60%">
+                           <a href="single.html" class="title">${online.title }</a>
+                        </h5>
+                        <ul>
+                           <li><p class="author author-info">
+                                 <a href="#" class="author">${online.userName }</a>
+                              </p></li>
+                           <li class="right-list"><p class="views views-info"></p></li>
+                        </ul>
+                     </div>
+
+                     <a class="detail"
+                        href="videoview?groupBno=${online.groupBno}&bno=${online.bno}&lecName=${lecName}">
+                        <div class="overlay"></div>
+                        <div
+                           style="width: 60px; height: 25px; background-color: #169e83; color: white; text-align: center; position: relative; bottom: 285px;">온라인</div>
+
+                     </a>
+                  </div>
+
+               </c:forEach>
+
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             </c:if>
-            
-             <c:if test="${not empty offline }">
-            <c:forEach var="offline" items="${offline }">
-      
-               <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
-                  <div class="resent-grid-img recommended-grid-img">
-                     <a
-                        href=""
-                        class="detail"> <c:if test="${not empty offline.imgPath }">
-                           <img alt=""
-                              src="${pageContext.request.contextPath}/resources/image/offline/${offline.imgPath}">
+
+            <c:if test="${not empty offline }">
+               <c:forEach var="offline" items="${offline }">
+
+                  <div class="col-md-3 resent-grid recommended-grid movie-video-grid"
+                     style="display: inline-block;">
+                     <div class="resent-grid-img recommended-grid-img">
+                        <a href="" class="detail"> <c:if test="${not empty offline.imgPath }">
+                              <img alt=""
+                                 src="${pageContext.request.contextPath}/resources/image/offline/${offline.imgPath}">
+                           </c:if>
+                        </a>
+                        <div class="time small-time show-time movie-time"></div>
+                        <div class="clck movie-clock"></div>
+                     </div>
+                     <div class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
+                        style="padding: 5px">
+                        <h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${offline.category }.</h6>
+                        <h5 style="font-size: 60%">
+                           <a href="single.html" class="title">${offline.title }</a>
+                        </h5>
+                        <ul>
+                           <li><p class="author author-info">
+                                 <a href="#" class="author">${offline.userid }</a>
+                              </p></li>
+                           <li class="right-list"><p class="views views-info"></p></li>
+                        </ul>
+                     </div>
+                     <a class="detail"
+                        href="offDetail?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
+                        <div class="overlay"></div> <c:set var="now" value="<%=new java.util.Date()%>" /> <c:set
+                           var="sysDate">
+                           <fmt:formatDate value="${now}" pattern="yyyyMMddhhmmss" />
+                        </c:set> <c:set var="date" value="${offline.regdate }" /> <c:set var="regDate">
+                           <fmt:formatDate value="${date}" pattern="yyyyMMddhhmmss" />
+                        </c:set> <c:if test="${offline.maxmember > offline.curmember }">
+                           <div
+                              style="width: 60px; height: 25px; background-color: #169e83; color: white; text-align: center; position: relative; bottom: 285px;">모집중</div>
+                        </c:if> <c:if test="${offline.maxmember == offline.curmember }">
+                           <div
+                              style="width: 60px; height: 25px; background-color: orange; color: white; text-align: center; position: relative; bottom: 285px;">모집마감</div>
                         </c:if>
                      </a>
-                     <div class="time small-time show-time movie-time"></div>
-                     <div class="clck movie-clock"></div>
                   </div>
+<<<<<<< HEAD
                   <div
                      class="resent-grid-info recommended-grid-info recommended-grid-movie-info"
                      style="padding: 5px">
@@ -404,9 +535,15 @@ color : black;
                      <div></div>
                   </a>
                </div>
+=======
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
-            </c:forEach>
+               </c:forEach>
             </c:if>
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
             <!-- /div-->
          </div>
       </div>
@@ -415,6 +552,7 @@ color : black;
 
 
 
+<<<<<<< HEAD
 <div id="loader" style="display: none; z-index: 4;"></div>
 <div id="notClick" style="display: none; z-index: 3;"></div>   
 <script>
@@ -447,22 +585,100 @@ $(()=>{
       clickCategory = $(this).text();
       if(clickCategory === 'Etc.'){
          clickCategory = 'Etc';
+=======
+   <div id="loader" style="display: none; z-index: 4;"></div>
+   <div id="notClick" style="display: none; z-index: 3;"></div>
+   
+   <script>
+   var isEnd = false;
+   var checkScroll = true;
+
+   $(()=>{
+      var start = 1;
+      var end = 12;
+      typeColor();
+      menuColor();
+      if('${category}' === "All Category"){
+         $('#AllCategory').css('color','#169e83');
       }
+      var category = '#'+'${category}';
+      var type = '#'+'${lecType}'
+      
+      console.log('카테고리 : '+category);
+      var clickCategory = '${category}';
+      var clickType = '${lecType}';
+      if(category ==='#Etc.'){
+         category = '#Etc';
+         clickCategory = 'Etc';
+      }
+      console.log(category);
+      $(category).css('color','#169e83');
+      $(type).css('color','#169e83');
+      
+      
+      $('.category').click(function(){
+         event.preventDefault();
+         menuColor();
+         $(this).css('color','#169e83');
+         var a = $(this).css('color');
+         clickCategory = $(this).text();
+         if(clickCategory === 'Etc.'){
+            clickCategory = 'Etc';
+         }
+         console.log(clickCategory);
+         location = 'searchClick?category='+clickCategory +'&lecType=' + clickType+"&start=1&end=12";
+         $("#loader").css('display','block');
+         $("#notClick").css('display','block');
+      });
+
+      $('.lectype').click(function(){
+         event.preventDefault();
+         typeColor();
+         clickType = $(this).text();
+         
+         console.log(clickType);
+         $(this).css('color','#169e83');
+         location = 'searchClick?category='+clickCategory +'&lecType=' + clickType+"&start=1&end=12";
+         
+      
+      });
+      
+      $('.orderby').click(function(){
+         repoColor();
+         $(this).css('border','1px solid #169e83');
+         $(this).css('color','#169e83');
+      });
+
+      function typeColor(){
+         $('.lectype').css('color','#333333');
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+      }
+<<<<<<< HEAD
       console.log(clickCategory);
       location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
       $("#loader").css('display','block');
       $("#notClick").css('display','block');
    });
+=======
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
+<<<<<<< HEAD
    $('.lectype').click(function(){
       event.preventDefault();
       typeColor();
       clickType = $(this).text();
+=======
+      function menuColor(){
+         $('.category').css('color','#333333');
+      }
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
       
-      console.log(clickType);
-      $(this).css('color','#169e83');
-      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
+      var search = '${searchText}';
+      if(search != null){
+         $('#searchText').val(search);
+      }
       
+<<<<<<< HEAD
    
    });
    
@@ -470,12 +686,63 @@ $(()=>{
       repoColor();
       $(this).css('border','1px solid #169e83');
       $(this).css('color','#169e83');
+=======
+      function repoColor(){
+         $('.orderby').css('color','black');
+         $('.orderby').css('border','1px solid black');
+      }
+      
+      
+      $(window).scroll(function(){
+            var $window = $(this);
+            var scrollTop = $window.scrollTop();
+            var windowHeight = $window.height();
+            var documentHeight = $(document).height();
+
+           if(scrollTop + windowHeight + 10 > documentHeight){
+              if(checkScroll == true){
+                 checkScroll = false;
+              searchScroll();
+              }
+           }
+        
+               
+        });
+    
+      function searchScroll(){
+           if(isEnd == true){
+              return;
+           }
+           start += 12;
+           end += 12;
+          if(clickType === 'Online'){ 
+          $.ajax({
+               type: 'get',
+               url: 'searchScroll?start='+start+'&end='+end+"&category="+clickCategory+"&lecType="+clickType,
+               headers: {
+                  'Content-Type': 'application/json',
+                  'X-HTTP-Method-Override': 'get'
+               },
+               success: function(result) {
+                  if(result.length < 16){
+                     isEnd = true;
+                  }
+                  console.log(result);
+                  $.each(result, function(){
+                     console.log('반복문 들어옴');
+                     $('.searchresult').append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;"><div class="resent-grid-img recommended-grid-img"><a href="" class="detail"><img alt="" src="/project/resources/image/tmpFiles/'+ this.imagePath + '"></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info" style="padding: 5px"><h6 style="color: #04B486; font-size: 70%; font-weight: bold;">'+this.lecCategory+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+this.title+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+this.userName+'</a></p></li><li class="right-list"><p class="views views-info"></p></li></ul></div><a class="detail"href="videoview?groupBno='+this.groupBno+'&bno='+ this.bno +'&lecName="${lecName}""><div class="overlay"></div><div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">온라인</div><div></div></a></div>');
+                     checkScroll = true;
+                  });
+               }
+          });
+          }
+        }
+    
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
    });
 
-   function typeColor(){
-      $('.lectype').css('color','#333333');
-   }
 
+<<<<<<< HEAD
    function menuColor(){
       $('.category').css('color','#333333');
    }
@@ -490,12 +757,13 @@ $(()=>{
       $('.orderby').css('border','1px solid black');
    }
 });
+=======
+   </script>
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 
 
-</script>
 
 
-   
 
 
 </body>

@@ -31,6 +31,8 @@
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="resources/js/main/bootstrap.js"></script>
+<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
 
 
 <style>
@@ -106,7 +108,6 @@
 }
 
 #editprofile {
-	border: 1px solid black;
 }
 
 #createFolder1 {
@@ -267,6 +268,7 @@ h4 {
 }
 
 .modal-content {
+	font-family: 'Noto Sans KR', sans-serif;
 	position: relative;
 	background-color: #ffffff;
 	outline: none;
@@ -275,14 +277,27 @@ h4 {
 	box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
 	background-clip: padding-box;
 	
+	
+}
+
+.modal-content-top{
+	display: flex;
+	justify-content: flex-end
+	width: 360px;
+	
+	
+}
+
+.set-username{
+	padding-top: 50px;
 }
 
 .profile-close {
-	width: 10px;
-	height: 10px;
+	width: 50px;
+	height: 50px;
 	float: right;
-	font-size: 21px;
-	font-weight: bold;
+	font-size: 40px;
+	/*font-weight: bold;*/
 	line-height: 1;
 	color: #000000;
 	text-shadow: 0 1px 0 #ffffff;
@@ -331,6 +346,54 @@ li {
 	height: 50px;
 	text-align: center;
 	border-bottom: 4px;
+}
+
+.big-text {
+	border: 0px;
+	font-size: 26px;
+	width: 200px;
+	height: 46px;
+}
+
+.username-oneline {
+	display: inline-flex;
+
+}
+
+.phone-oneline {
+	display: inline-flex;
+}
+
+#select-img{
+	position: absolute;
+	z-index: 1500;
+	margin-left: 105px;
+	margin-top: 105px;
+}
+
+.set-password {
+	width: 340px;
+	display: flex;
+	flex-direction: column;
+	padding-left: 40px;
+}
+
+.set-phone {
+	margin-top: 50px;
+	padding-left: 40px;
+}
+
+.box{
+	padding-left: 50px;
+	padding-top: 50px;
+}
+
+.set-img {
+	padding-top: 13px;
+}
+
+.change-pwd {
+	text-align: center;
 }
 
 </style>
@@ -405,36 +468,51 @@ li {
 				<div class="modal-content">
 
 					<div class="modal-body">
+					<button type="button" class="profile-close" data-dismiss="modal"
+									aria-hidden="true">&times;
+									</button>
+									
 						<div class="box">
 							<div class="content">
-								<button type="button" class="profile-close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
+								
+									<a id="select-img" href="javascript:void(0)" onclick=><img
+										src="/project/resources/img/selectpic.png" alt="사진선택"></a>
+								<div class="modal-content-top">
 								<div class="set-profileimg">
 									<!-- div id="cur-profile"></div-->
 									<div id="profileimg"></div>
-									<a id="select-img" href="javascript:void(0)" onclick=><img
-										src="/project/resources/img/selectpic.png" alt="사진선택"></a>
+									
 								</div>
 								<div class="set-username">
+								<div class="username-oneline">
 									<input class="big-text" id="username1" type="text"
-										name="username1" value="${userName}" readonly="readonly" /> <img
-										id="edit-username" src="/project/resources/img/edit_18_18.png" alt="닉네임수정하기" style="display: block">
-									<img id="new-username" src="/project/resources/img/profile_ok.png" alt="닉네임수정완료"
-										style="display: none">
+										name="username1" value="${userName}" readonly="readonly" /> 
+										<div class="set-img">
+										<img id="edit-username" width="18px" height="18px" src="/project/resources/img/edit_18_18.png" alt="닉네임수정하기" style="display: block">
+									<img id="new-username" width="18px" height="18px" src="/project/resources/img/profile_ok.png" alt="닉네임수정완료"
+										style="display: none"></div>
+										</div>
 									<div id="checkNamefail" class="checkFail"
 										style="display: none; color: red;">닉네임이 존재합니다!</div>
 									<div class="checkNameSuccess" style="display: none; color: green;">사용 가능한 닉네임입니다</div>
 									<div class="checkNameNull" style="display: none; color: red;">
 										닉네임을 입력해주세요!</div>
 									<div>${userId}</div>
+									</div>
 
 								</div>
 								<div class="set-phone">
 									<div class="content-title">전화번호</div>
+									<div class="phone-oneline">
 									<input class="big-text" id="phone1" type="text" name="phone1"
-										value="${phone}" readonly="readonly" /> <img id="edit-phone"
-										src="/project/resources/img/edit_18_18.png" alt="번호수정하기" style="display: block"> <img
-										id="new-phone" src="/project/resources/img/profile_ok.png" alt="번호수정완료" style="display: none">
+										value="${phone}" readonly="readonly" /> 
+										<div class="set-img">
+										<img id="edit-phone" width="18px" height="18px"
+										src="/project/resources/img/edit_18_18.png" alt="번호수정하기" style="display: block"> 
+										<img
+										id="new-phone" width="18px" height="18px" src="/project/resources/img/profile_ok.png" alt="번호수정완료" style="display: none">
+										</div>
+										</div>
 									<div class="checkPhoneNull" style="display: none; color: red;">
 										번호를 입력해주세요!</div>
 								</div>
@@ -457,12 +535,17 @@ li {
 										입력하신 비밀번호가 다릅니다</div>
 								</div>
 
-								<div class="change-pwd"
-										style="padding: 10px; background-color: gray; color: white; font-size: 14pt;">비밀번호 변경하기</div>
+								
 								<!-- div class="change-pwd"
 										style="padding: 10px; background-color: #169e83; color: white; font-size: 14pt;">비밀번호 변경하기</div-->
 							</div>
 						</div>
+						
+						
+						<div class="change-pwd"
+										style="padding: 10px; background-color: gray; color: white; font-size: 14pt;">비밀번호 변경하기</div>
+						
+						
 					</div>
 
 				</div>
@@ -916,6 +999,8 @@ li {
 			      $('.ef').css('cursor','pointer');
 			      $('.ef').css('font-family','Noto Sans KR');
 			      $('.ef').css('font-size','13pt');
+			     $('.modal-content').css('border-radius','0');
+			      $('.modal-body').css('padding','0');
 			   }
 			
 		</script>
@@ -924,8 +1009,7 @@ li {
 		<script
 			src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet"
-			href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+		
 		<link rel="stylesheet"
 			href="https://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common-material.min.css" />
 		<link rel="stylesheet"

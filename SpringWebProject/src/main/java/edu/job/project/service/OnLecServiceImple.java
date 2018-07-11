@@ -176,6 +176,7 @@ public class OnLecServiceImple implements OnLecService {
 	   List<GroupOn> list = new ArrayList<>();
 	   if(m.getOnLec() != null) {
       List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
+   
 
       if(items.size() != 0) {
       for(int a=0; a < items.size() ; a++) {
