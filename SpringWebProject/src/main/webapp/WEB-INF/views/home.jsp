@@ -287,7 +287,7 @@
           </div>
           <div class="col-lg-4 col-sm-6">
             <a class="portfolio-box" href="searchClick?category=Health&lecType=Online">
-              <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.jpg" alt="">
+              <img class="img-fluid" src="resources/img/portfolio/thumbnails/4.png" alt="">
               <div class="portfolio-box-caption">
                 <div class="portfolio-box-caption-content">
                   <div class="project-category text-faded">

@@ -16,28 +16,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.job.project.domain.Message;
-import edu.job.project.domain.OffReply;
-import edu.job.project.service.OffReplyService;
+import edu.job.project.domain.OnReply;
+import edu.job.project.service.OnReplyService;
 import edu.job.project.util.PageLinkMaker;
 import edu.job.project.util.PaginationCriteria;
 
 @Controller
-public class OffReplyController {
+public class OnReplyController {
 
-	@Autowired OffReplyService replyService;
+	@Autowired OnReplyService replyService;
 
 	
-	@RequestMapping(value ="/offDetail2", method=RequestMethod.GET)
-	public ResponseEntity<List<OffReply>> readRepliesByBno(int bno, Model model, int start, int end){
+	@RequestMapping(value ="/video", method=RequestMethod.GET)
+	public ResponseEntity<List<OnReply>> readRepliesByBno(int bno, Model model, int start, int end){
 		
 		System.out.println("readRepliesByBno()로 들어옴 bno =" + bno);		
-//		List<OffReply> list = replyService.read(bno);
-//		ResponseEntity<List<OffReply>> entity = new ResponseEntity<List<OffReply>>(list, HttpStatus.OK); 
+//		List<OnReply> list = replyService.read(bno);
+//		ResponseEntity<List<OnReply>> entity = new ResponseEntity<List<OnReply>>(list, HttpStatus.OK); 
 				
 		PaginationCriteria criteria = new PaginationCriteria();
 		criteria.setStart(start);
 		criteria.setEnd(end);
-		List<OffReply> list = replyService.read(bno,criteria);
+		List<OnReply> list = replyService.read(bno,criteria);
 		int result = replyService.getNumOfRecords(bno);
 		
 		System.out.println("result (total count) = " + result);
@@ -54,36 +54,36 @@ public class OffReplyController {
 		
 //		model.addAttribute("bno", bno);
 //		model.addAttribute("replyList", list);
-		ResponseEntity<List<OffReply>> entity = new ResponseEntity<List<OffReply>>(list,HttpStatus.OK);
+		ResponseEntity<List<OnReply>> entity = new ResponseEntity<List<OnReply>>(list,HttpStatus.OK);
 		
 		return entity;
 	} // readRepliesByBno
 	
 
-	@RequestMapping(value="/create2" , method=RequestMethod.POST)
-	public ResponseEntity<Integer> createOffReply(@RequestBody OffReply OffReply){
+	@RequestMapping(value="/create" , method=RequestMethod.POST)
+	public ResponseEntity<Integer> createOnReply(@RequestBody OnReply onReply){
 		System.out.println("create 들어왔음?!");
-		int result = replyService.create(OffReply);
+		int result = replyService.create(onReply);
 		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
 		System.out.println("entity로 저장되었음!??!");
 		return entity; 
-	} // createOffReply()
+	} // createOnReply()
 	
 
-	@RequestMapping(value="/update2" , method= RequestMethod.PUT)
-	public ResponseEntity<Integer> updateOffReply(@RequestBody OffReply OffReply){
-		System.out.println(OffReply.getContent());
+	@RequestMapping(value="/update" , method= RequestMethod.PUT)
+	public ResponseEntity<Integer> updateOnReply(@RequestBody OnReply onReply){
+		System.out.println(onReply.getContent());
 		System.out.println("update() 로 들어와라!! ");	
-		System.out.println("rno=" + OffReply.getRno());
-		int result = replyService.update(OffReply);
+		System.out.println("rno=" + onReply.getRno());
+		int result = replyService.update(onReply);
 		ResponseEntity<Integer> entity = new ResponseEntity<Integer>(result, HttpStatus.OK);
 		
 		return entity;	
-	}// updateOffReply()
+	}// updateOnReply()
 	
-	@RequestMapping(value="/delete2", method =RequestMethod.DELETE)
+	@RequestMapping(value="/delete", method =RequestMethod.DELETE)
 	@ResponseBody
-	public ResponseEntity<Integer> deleteOffReply(@RequestBody OffReply reply){
+	public ResponseEntity<Integer> deleteOnReply(@RequestBody OnReply reply){
 		
 		System.out.println("delete 로 들어와라 !! ");
 		System.out.println(reply.getRno());
@@ -92,7 +92,7 @@ public class OffReplyController {
 
 		System.out.println("delete() 메소드가 불렸는데,, ");
 		return entity;
-	} // deleteOffReply
+	} // deleteOnRePly
 	
 	
 	
@@ -107,9 +107,9 @@ public class OffReplyController {
 			criteria.setNumsPerPage(numsPerPage);
 		}
 		
-		List<OffReply> list = replyService.read(criteria);
+		List<OnReply> list = replyService.read(criteria);
 		model.addAttribute("replyList", list);
-//		ResponseEntity<List<OffReply>> entity = new ResponseEntity<List<OffReply>>(list,HttpStatus.OK);
+//		ResponseEntity<List<OnReply>> entity = new ResponseEntity<List<OnReply>>(list,HttpStatus.OK);
 		
 		PageLinkMaker pagemaker = new PageLinkMaker();
 		pagemaker.setCriteria(criteria);
@@ -127,4 +127,4 @@ public class OffReplyController {
 	
 	
 	
-} // OffReplyController{}
+} // OnReplyController{}

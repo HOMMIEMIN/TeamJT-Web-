@@ -601,7 +601,7 @@ getAllReplies(); // 함수 호출
     console.log(' 오프라인 댓글 a : ' + a);
     $.ajax({
        type: 'post',
-       url:'create',
+       url:'create2',
        headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override' : 'post'},
        data : JSON.stringify({'bno':'${bnoList.bno}', 'content':content, 'userid':userid }),
        success: function(result){
@@ -627,7 +627,7 @@ getAllReplies(); // 함수 호출
     
  })
   */
- $('#offReplies').on('click', '.media border p-3 .reply-one .btnUpdate', function(){
+ $('#offReplies').on('click', '#reply-item .reply-one .btnUpdate', function(){
     $('#reply-content').focus();
     var rno = $(this).attr('data-rno');
     var content = $(this).prevAll('#reply-content').val();
@@ -636,7 +636,7 @@ getAllReplies(); // 함수 호출
     console.log('content = ' + content);
     $.ajax({
        type:'put',
-       url:"update",
+       url:"update2",
        headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override': 'put'},
        data: JSON.stringify({'rno':rno, 'content':content}),
        success: function(result){
@@ -648,14 +648,14 @@ getAllReplies(); // 함수 호출
  }) // btnUpdate
  
  
-  $('#offReplies').on('click', '.media border p-3 .reply-one .btnDelete', function(){
+  $('#offReplies').on('click', '#reply-item .reply-one .btnDelete', function(){
 //    var rno = $(this).prevAll('#rno').val();
     var rno = $(this).attr('data-rno');
     console.log("rno j= " + rno);
     console.log("type of rno= "+ typeof rno);
     $.ajax({
        type:'delete' ,
-       url: "delete",
+       url: "delete2",
        headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override': 'delete'},
        data:JSON.stringify({'rno':rno, 'content' : 'dd'}),
        success: function(){
@@ -670,7 +670,7 @@ getAllReplies(); // 함수 호출
     
     
 
-})   
+});  
 
 	
 	</script>

@@ -13,10 +13,6 @@
 <title>You Can Be A Teacher</title>
 
 
-<!-- Bootstrap core CSS -->
-
-<link href="resources/css/mypage.css" rel="stylesheet">
-
 <!-- 웹폰트 -->
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css"
    rel="stylesheet" type="text/css">
@@ -34,6 +30,8 @@
 
 
 <style>
+
+
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -81,6 +79,17 @@
 }
 
 #profileimg {
+   position: relative;
+   display: inline-block;
+   background: url(resources/img/test.png) center center no-repeat;
+   border-radius: 50%;
+   width: 140px;
+   height: 140px;
+   margin-right: 10px;
+   padding-bottom: 15px;
+}
+
+#profileimg1 {
    position: relative;
    display: inline-block;
    background: url(resources/img/test.png) center center no-repeat;
@@ -348,11 +357,13 @@ button.profile-close {
                   <div id="username">${userName}</div>
                   <div id="userid">${userId}</div>
                   <div class="nav-taps">
+
                   	<div class="row">
                      <div class="col-sm-4"><button class="tablinks" id="London" style="background-color:#ffffff; border-style: none;  " onclick="openCity(event, 'London')">나는 학생</button></div>
                      <div class="col-sm-4"><button class="tablinks" id="Paris"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Paris')">나는 선생님</button></div>
                      <div class="col-sm-4"><button class="tablinks" id="Tokyo"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Tokyo')">칠판</button></div>             
                     </div>
+
                   </div>
                </div>
                <div class="top-menu-right">
@@ -384,7 +395,9 @@ button.profile-close {
                            aria-hidden="true">&times;</button>
                         <div class="set-profileimg">
                            <!-- div id="cur-profile"></div-->
-                           <div id="profileimg"></div>
+
+                           <div id="profileimg1"></div>
+
                            <a id="select-img" href="javascript:void(0)" onclick=><img
                               src="" alt="사진선택"></a>
                         </div>
@@ -443,17 +456,16 @@ button.profile-close {
       </div>
 
       <div id="London" class="tabcontent" style="border: none;">
-         <h3>나는 학생</h3>
-         <p>London is the capital city of England.</p>
+         
+         <!--  나는 학생 강의 DIV  -->
       </div>
 
       <div id="Paris" class="tabcontent" style="border: none;">
-         <!--  나는 선생님 강의 관리  -->
+         <!--  나는 선생님 강의 DIV  -->
       </div>
 
       <div id="Tokyo" class="tabcontent" style="border: none;">
-         <h3>칠판</h3>
-         <p>Tokyo is the capital of Japan.</p>
+      <!--  칠판 강의 DIV  -->         
       </div>
 
       <div>
@@ -472,17 +484,22 @@ button.profile-close {
       <div id="notClick" style="display: none; z-index: 3;"></div>
 
 
-
+    <div class="demo-section k-content" style="display: none;">
+                    <input name="files" id="filesImage" type="file" accept=".jpg,.jpeg.,.gif,.png"/>
+                </div>
+	</div>
 
       <script>
-      
-      
-      
+      var myImage = '${imagePath}';
+      console.log('ddd' + myImage);
+      $("#profileimg").css('background-image', 'url("/project/resources/image/tmpFiles/'+myImage+'")');
+      $("#profileimg1").css('background-image', 'url("/project/resources/image/tmpFiles/'+myImage+'")');
+
+
          $('#btnSearchBar').click(() => {
             $('#searchForm').submit();
          });
-      
-         // 닉네임 수정 input editable
+       // 닉네임 수정 input editable
          $('#edit-username').click(function() {
             $('input[name="username1"]').prop('readonly', false);
             $('input[name="username1"]').prop('required', true);
@@ -490,8 +507,12 @@ button.profile-close {
             $('#new-username').css('display', 'block');
          });
       
+
          var nameCheck = false;
+
       
+
+
          // 닉네입 입력값 유무 즉각 확인         
          $("#username1").on("change keyup paste", function() {
             var name = $('#username1').val();
@@ -526,38 +547,10 @@ button.profile-close {
                   });
                }
                }
+
          });
       
-         // 닉네임 중복체크
-         /*$('#username1').change(function() {
-            var name = $('#username1').val();
-            if (name != null && name != '') {
-               $.ajax({
-                  type : 'post',
-                  url : '/project/check',
-                  headers : {
-                     'Content-Type' : 'application/json; charset=UTF-8',
-                     'X-HTTP-Method-Override' : 'post'
-                  },
-                  data : JSON.stringify({
-                     'userName' : name
-                  }),
-                  success : (result) => {
-                     if (result == 'ok') {
-                        $('.checkFail').css('display', 'block');
-                        $('.checkNameSuccess').css('display', 'none');
-                        nameCheck = false;
-                     } else {
-                        $('.checkFail').css('display', 'none');
-                        $('.checkNameSuccess').css('display', 'block');
-                        
-                        nameCheck = true;
-                     }
-                  }
-               });
-            }
-         });
-      */
+
          // 새 닉네임 저장
          $('#new-username').click(function() {
             var name = $('#username1').val();
@@ -566,7 +559,6 @@ button.profile-close {
                if (name != null) {
                   var id = '${userId}';
                   console.log('ajax');
-      
                   $.ajax({
                      type : 'post',
                      url : '/project/update-name',
@@ -742,7 +734,7 @@ button.profile-close {
             target.removeData('bs.modal').find(".modal-content").html('');
             document.location.reload();
             // 리로드 하면서 닉네임, 전화번호는 새로 저장된 값 다시 가져오기 비밀번호 input은 모두 지우기 
-         })
+         });
       
          // 프로필 모달
          function profileModal() {
@@ -760,114 +752,181 @@ button.profile-close {
             });
             $('.error').removeClass('alert alert-danger').html('');
          }
+
       
+
       
-         function openCity(evt, cityName) {
-            var i,
-               tabcontent,
-               tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-               tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-               tablinks[i].className = tablinks[i].className.replace(
-                  " active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            $(document).ready(() => {
-               evt.currentTarget.className += " active";
-               console.log(cityName + '입장      [종류]paris:선생 london:학생 tokyo:칠판')
-            });
-      
-      
-            if (cityName === 'Paris') {
-               console.log('나는 선생님 페이지 들어옴');
-               $('#Paris').css('border-bottom', '5px solid black');
-               $('#London').css('border-bottom', 'none');
-               $('#Tokyo').css('border-bottom', 'none');
-               
-               myFunction();
-               $('#onLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#onLec').load("/project/upload/folder");
-               $('#onLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#offLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#offLec').load("/project/offline/offFolder");
-               $('#offLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-      
-               $('#createFolder1').css('display', 'block');
-               $('#createFolder2').css('display', 'block');
-      
-      
-      
-      
-      
-            } else if (cityName === 'London') {
-               console.log('나는 학생 페이지 들어옴');
-               $('#London').css('border-bottom', '5px solid black');
-               $('#Paris').css('border-bottom', 'none');
-               $('#Tokyo').css('border-bottom', 'none');
-      
-               $('#onLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#onLec').load("/project/upload/myLec");
-               $('#onLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#offLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#offLec').load("/project/offline/myOffLec");
-               $('#offLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#loader').css('display', 'block');
-               $('#notClick').css('display', 'block');
-            } else if (cityName === 'Tokyo') {
-      
-                $('#Tokyo').css('border-bottom', '5px solid black');
-                $('#onLec').load("/project/upload/blackboardall");
-                $('#Paris').css('border-bottom', 'none');
-                $('#London').css('border-bottom', 'none');
-            	
-            	
-            	
-            	
-            	
-            	
-            } else {
-               $('#createFolder1').css('display', 'none');
-               $('#createFolder2').css('display', 'none');
-            }
-         }
-      
-         function myFunction() {
-            console.log('myFunction() 들어옴')
-            $('#loader').css('display', 'block');
-            $('#notClick').css('display', 'block');
-      
-         }
-      
-         function showPage() {
-            $('#notClick').css('display', 'none');
-            $('#loader').css('display', 'none');
-         }
-      
-         $(document).ready(function() {
+         
+        	 
+        	 var userId = '${userId}'
+        	      console.log('userID = ' + userId);
+        	   if(userId == ''){
+        	      alert('로그인이 필요한 페이지  입니다.');
+        	      location = '/project'
+        	   }
+        	   
+        	   $('#select-img').click(function(){
+        	      $('#filesImage').click();
+        	   });
+        	   
+        	   
+        	    // 이미지 업로드
+        	    $("#filesImage").kendoUpload({
+        	                   async: {
+
+        	                       chunkSize: 800,// bytes
+
+        	                       saveUrl: "chunkSaveImage",
+        	                       removeUrl: "remove",
+        	                       autoUpload: true
+        	                   },
+        	                   select:onSelect3,
+        	                   success:onSuccess3
+        	                  
+        	               
+        	               });
+        	    
+        	    function onSelect3(e){
+        	       $('#loader').css('display', 'block');
+        	      $('#notClick').css('display', 'block');
+        	      var fileReader = new FileReader();
+        	        fileReader.onload = function (event) {
+        	            console.log(event);
+        	            var mapImage = event.target.result;
+        	                               
+        	        }
+        	        fileReader.readAsDataURL(e.files[0].rawFile);
+        	    }
+        	    
+        	    function onSuccess3(e){      
+        	         var file0Uid = e.files[0].uid;
+        	         var id = '${userId}'
+        	         imageName = $(".k-file[data-uid='" + file0Uid + "']").find(".k-file-name").text();                                    
+        	         console.log(id+imageName);
+        	         var imagePath = id+imageName;
+        	         setTimeout(function(){
+        	            $("#profileimg").css('background-image', 'url("/project/resources/image/tmpFiles/'+imagePath+'")');
+        	            $("#profileimg1").css('background-image', 'url("/project/resources/image/tmpFiles/'+imagePath+'")');
+        	            alert('프로필 사진 변경 완료');
+        	         },3000)
+        	         $.ajax({
+        	                type:'post',
+        	                url:'/project/imageUp',
+        	                headers:{
+        	                   'Content-Type' : 'application/json; charset=UTF-8',
+        	                   'X-HTTP-Method-Override' : 'post'
+        	                },
+        	                data: JSON.stringify({
+        	                   'profileUrl' : imagePath,
+        	                   'userId' : id                       
+        	                }),
+        	                success:(result)=>{
+        	                   
+        	                }
+        	                
+        	             });
+        	         
+        	      }
+        	    
+        	    
+        	      
+                function openCity(evt, cityName) {
+                   var i,
+                      tabcontent,
+                      tablinks;
+                   tabcontent = document.getElementsByClassName("tabcontent");
+                   for (i = 0; i < tabcontent.length; i++) {
+                      tabcontent[i].style.display = "none";
+                   }
+                   tablinks = document.getElementsByClassName("tablinks");
+                   for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].className = tablinks[i].className.replace(
+                         " active", "");
+                   }
+                   document.getElementById(cityName).style.display = "block";
+                   $(document).ready(() => {
+                      evt.currentTarget.className += " active";
+                      console.log(cityName + '입장      [종류]paris:선생 london:학생 tokyo:칠판')
+                   });
+             
+             
+                   if (cityName === 'Paris') {
+                      console.log('나는 선생님 페이지 들어옴');
+                      $('#Paris').css('border-bottom', '5px solid black');
+                      $('#London').css('border-bottom', 'none');
+                      $('#Tokyo').css('border-bottom', 'none');
+                      
+                      myFunction();
+                      $('#onLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#onLec').load("/project/upload/folder");
+                      $('#onLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#offLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#offLec').load("/project/offline/offFolder");
+                      $('#offLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+             
+                      $('#createFolder1').css('display', 'block');
+                      $('#createFolder2').css('display', 'block');
+           
+                   } else if (cityName === 'London') {
+                      console.log('나는 학생 페이지 들어옴');
+                      $('#London').css('border-bottom', '5px solid black');
+                      $('#Paris').css('border-bottom', 'none');
+                      $('#Tokyo').css('border-bottom', 'none');
+             
+                      $('#onLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#onLec').load("/project/upload/myLec");
+                      $('#onLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#offLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#offLec').load("/project/offline/myOffLec");
+                      $('#offLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#loader').css('display', 'block');
+                      $('#notClick').css('display', 'block');
+                   } else if (cityName === 'Tokyo') {
+             
+                       $('#Tokyo').css('border-bottom', '5px solid black');
+                       $('#onLec').load("/project/upload/blackboardall");
+                       $('#Paris').css('border-bottom', 'none');
+                       $('#London').css('border-bottom', 'none'); 	
+                   	
+                   } else {
+                      $('#createFolder1').css('display', 'none');
+                      $('#createFolder2').css('display', 'none');
+                   }
+                }
+             
+                function myFunction() {
+                   console.log('myFunction() 들어옴')
+                   $('#loader').css('display', 'block');
+                   $('#notClick').css('display', 'block');
+             
+                }
+             
+                function showPage() {
+                   $('#notClick').css('display', 'none');
+                   $('#loader').css('display', 'none');
+                }
+        	    
+        	    $(document).ready(function() {
             var type = '${type}';
             console.log('타입 : ' + type);
             if (type != null) {
@@ -883,6 +942,7 @@ button.profile-close {
                   break;
                }
             }
+         
       
             jQuery.browser = {};
             (function() {
@@ -893,11 +953,11 @@ button.profile-close {
                   jQuery.browser.version = RegExp.$1;
                }
             })();
-         });
+        	    });
       </script>
 
 
-      <script
+       <script
          src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet"
@@ -916,8 +976,14 @@ button.profile-close {
          href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
       <script
          src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+ 
+         
+        
+      
+        
 </body>
 
 </html>

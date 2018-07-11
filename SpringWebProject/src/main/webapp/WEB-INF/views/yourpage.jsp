@@ -49,6 +49,10 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
 #createFolder1 {
 	position: relative;
 	left: 850px;
@@ -373,13 +377,9 @@ h4 {
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
-				$('#onLec').animate({
-					opacity : 0
-				}, 1000);
+
 				$('#onLec').load("/project/upload/blackboard_urs");
-				$('#onLec').animate({
-					opacity : 1
-				}, 1000);
+
 			} else {
 				$('#createFolder1').css('display', 'none');
 				$('#createFolder2').css('display', 'none');
