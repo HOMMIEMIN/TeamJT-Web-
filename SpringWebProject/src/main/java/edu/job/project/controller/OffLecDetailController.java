@@ -47,7 +47,7 @@ public class OffLecDetailController {
 		OffLec offLec = service.readByBno(bno);
 		List<OffLec> groupBnoList = service.readByGroupBno(groupBno);
 		
-			
+		model.addAttribute("bno",bno);
 		model.addAttribute("bnoList", offLec);
 		logger.info("bnoList 의 신청자 목록 : {} ",offLec.getWaitingId());
 		String waitingId=offLec.getWaitingId();

@@ -34,6 +34,29 @@
 
 
 <style>
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 .mypage-container {
    
 }
@@ -325,14 +348,11 @@ button.profile-close {
                   <div id="username">${userName}</div>
                   <div id="userid">${userId}</div>
                   <div class="nav-taps">
-                     <ul>
-                        <li><button class="tablinks" id="London"
-                              onclick="openCity(event, 'London')">나는 학생</button></li>
-                        <li><button class="tablinks" id="Paris"
-                              onclick="openCity(event, 'Paris')">나는 선생님</button></li>
-                        <li><button class="tablinks" id="Tokyo"
-                              onclick="openCity(event, 'Tokyo')">칠판</button></li>
-                     </ul>
+                  	<div class="row">
+                     <div class="col-sm-4"><button class="tablinks" id="London" style="background-color:#ffffff; border-style: none;  " onclick="openCity(event, 'London')">나는 학생</button></div>
+                     <div class="col-sm-4"><button class="tablinks" id="Paris"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Paris')">나는 선생님</button></div>
+                     <div class="col-sm-4"><button class="tablinks" id="Tokyo"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Tokyo')">칠판</button></div>             
+                    </div>
                   </div>
                </div>
                <div class="top-menu-right">
@@ -347,30 +367,7 @@ button.profile-close {
                         style="display: none">offline</button>
                   </div>
                </div>
-               <!-- 
-            <div class="frame" id="file" style="z-index: 1;"></div>
-            <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
-            <div class="name" style="color: grey">${userId }</div>
-            -->
             </div>
-
-
-            <!-- div class="tab">
-               <button class="tablinks" id="London"
-                  onclick="openCity(event, 'London')">나는 학생</button>
-               <button class="tablinks" id="Paris"
-                  onclick="openCity(event, 'Paris')">나는 선생님</button>
-               <button class="tablinks" id="Tokyo"
-                  onclick="openCity(event, 'Tokyo')">칠판</button>
-               <button id="createFolder1"
-                  onclick="document.getElementById('id01').style.display='block'"
-                  style="display: none">online</button>
-               <button id="createFolder2"
-                  onclick="document.getElementById('id02').style.display='block'"
-                  style="display: none">offline</button>
-
-
-            </div-->
 
          </div>
       </div>
@@ -787,7 +784,10 @@ button.profile-close {
       
             if (cityName === 'Paris') {
                console.log('나는 선생님 페이지 들어옴');
-      
+               $('#Paris').css('border-bottom', '5px solid black');
+               $('#London').css('border-bottom', 'none');
+               $('#Tokyo').css('border-bottom', 'none');
+               
                myFunction();
                $('#onLec').animate({
                   opacity : 0
@@ -815,7 +815,9 @@ button.profile-close {
       
             } else if (cityName === 'London') {
                console.log('나는 학생 페이지 들어옴');
-      
+               $('#London').css('border-bottom', '5px solid black');
+               $('#Paris').css('border-bottom', 'none');
+               $('#Tokyo').css('border-bottom', 'none');
       
                $('#onLec').animate({
                   opacity : 0
@@ -837,6 +839,16 @@ button.profile-close {
                $('#notClick').css('display', 'block');
             } else if (cityName === 'Tokyo') {
       
+                $('#Tokyo').css('border-bottom', '5px solid black');
+                $('#onLec').load("/project/upload/blackboardall");
+                $('#Paris').css('border-bottom', 'none');
+                $('#London').css('border-bottom', 'none');
+            	
+            	
+            	
+            	
+            	
+            	
             } else {
                $('#createFolder1').css('display', 'none');
                $('#createFolder2').css('display', 'none');
@@ -904,6 +916,8 @@ button.profile-close {
          href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
       <script
          src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
 
 </html>

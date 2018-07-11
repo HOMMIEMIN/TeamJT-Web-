@@ -92,6 +92,10 @@
 	<property name="col_userid" value="userid"/>
 	<property name="col_json" value="json"/>
 	<property name="col_title" value="title"/>	
+	
+	<!-- Offline Replies -->   
+   <property name="offreply_board" value="off_replies"/>
+   <property name="col_rno" value="rno" />
 		
 	</properties>
 	<!-- MyBatis 프레임워크에서 select의 결과를 저장할 Model 클래스(VO)를 찾기 위해서 -->

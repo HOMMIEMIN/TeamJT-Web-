@@ -13,7 +13,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>   
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 
 
@@ -63,11 +63,11 @@
 		<div class="container-fluid" style="padding-top: 50px;">
 			<div class="row" style="height: 420px; padding-top: 20px;">
 				<div class="col-sm-6">
-					
-					
+
+
 					<div class="row">
 						<div class="col-sm-10">
-							 <!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> --> 
+							<!--  	<h5 class="text-warning" id="location">${bnoList.location }</h5> -->
 						</div>
 						<div class="col-sm-2"></div>
 					</div>
@@ -75,12 +75,7 @@
 				</div>
 
 				<div class="col-sm-3" style="padding-top: 40px; padding-right: 10px;">
-					<div id="datepicker" >
-						
-
-
-
-					</div>
+					<div id="datepicker"></div>
 					<!-- 모임날짜  -->
 					<div class="col-sm-12">
 						<h5 id="dateandmeet"
@@ -134,9 +129,9 @@
 
 		<hr />
 
-
+		<!--  카테고리 대제목,소제목 -->
 		<div class="container-fluid" style="margin-top: 10px;">
-			<div class="row" style="height: 100px; ">
+			<div class="row" style="height: 100px;">
 				<div class="col-sm-6">
 					<div class="col-sm-10" style="height: 20px;">
 						<div class="row">
@@ -205,7 +200,7 @@
 
 
 		<hr />
-
+		<!--  신청자  -->
 		<div class="container-fluid">
 			<div class="row" style="padding-top: 5px;">
 				<div class="col-sm-12">
@@ -251,11 +246,15 @@
 
 												</div>
 												<div style="padding-left: 60px; font-size: 12px;">
-													wendy@redvelvet.com<br>
+													<div class="row">
+														wendy@redvelvet.com
+														<c:if test="${userId eq bnoList.userid}">
+															<button type="button" name="btnYes" id="btnYes"
+																style="margin-left: 70px; margin-bottom: 20px;">수락</button>
+														</c:if>
+													</div>
 												</div>
-												<c:if test="${userId eq bnoList.userid}">
-													<button type="button" name="btnYes" id="btnYes" style="margin-left: 220px; margin-bottom: 20px; ">수락</button>
-												</c:if>
+
 											</div>
 
 										</div>
@@ -280,10 +279,8 @@
 		</div>
 
 
-
-
-
 		<hr />
+		<!--  강의내용 -->
 		<div class="container-fluid">
 			<div class="row" style="padding-top: 5px;">
 				<div class="col-sm-12">
@@ -291,7 +288,7 @@
 						<label for="content" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">강의내용</label>
 						<div class="col-sm-12" style="padding-top: 10px;">
 
-							<p style="height: 200px; border: 1px;" id="content">${bnoList.content}</p>
+							<p style="height: 200px; border: 1px;">${bnoList.content}</p>
 						</div>
 					</div>
 				</div>
@@ -300,11 +297,8 @@
 		</div>
 
 
-
 		<hr />
-
-
-
+		<!--  선생님 -->
 		<div class="container-fluid">
 			<div class="row" style="padding-top: 5px;">
 				<div class="col-sm-6">
@@ -312,8 +306,8 @@
 						<label for="member" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">선생님</label>
 						<div class="col-sm-12" style="padding-top: 10px;">
 							<a href="yourpage?userId=${memberId}&userName=${memberName}">
-								<div style="font-weight: bold; font-size: 120%"> ${memberName}</div>
-								<div style="color: grey; font-size: 90%; padding-left: 20px;"> ${memberId}</div>
+								<div style="font-weight: bold; font-size: 120%">${memberName}</div>
+								<div style="color: grey; font-size: 90%; padding-left: 20px;">${memberId}</div>
 
 							</a>
 						</div>
@@ -321,11 +315,12 @@
 				</div>
 				<div class="col-sm-6">
 					<div style="padding-top: 50px; padding-left: 320px;">
-						
-							<button type="button" class="btn btn-default btn-sm" onclick="location.href='yourpage?userId=${memberId}&userName=${memberName}' ">
-								<span class="glyphicon glyphicon-edit" ></span> 선생님의 칠판
-							</button>
-						
+
+						<button type="button" class="btn btn-default btn-sm"
+							onclick="location.href='yourpage?userId=${memberId}&userName=${memberName}' ">
+							<span class="glyphicon glyphicon-edit"></span> 선생님의 칠판
+						</button>
+
 					</div>
 				</div>
 
@@ -334,8 +329,11 @@
 
 
 		<hr />
-
 		<!--  댓글  -->
+		   <div id="loader" style="display: none; z-index: 4;"></div>
+   			<div id="notClick" style="display: none; z-index: 3;"></div>
+   			<input type="hidden" id="start" value="1">
+   			<input type="hidden" id="end" value="3">
 		<div class="container-fluid">
 			<div class="row" style="padding-top: 5px;">
 				<div class="col-sm-12">
@@ -343,7 +341,18 @@
 						<label for="comment" class="control-label" style="font-size: 20px; color: rgb(22, 160, 133);">댓글</label>
 						<div class="col-sm-12" style="padding-top: 10px;">
 
-							<p style="height: 300px; border: 1px;" id="comment">댓글 창</p>
+							<div class="container mt-3" style="border-bottom: 1px solid lightgrey; padding-top: 100px;">
+
+								<form action="">
+									<input type="text" id="userid" value="${userId}" readonly /> <input type="text"
+										id="content" placeholder="내용을 입력" />
+									<button type="button" id="btnCreate">댓글등록</button>
+								</form>
+								<hr />
+								<!--    <div id="offReplies" style="overflow: scroll; border: 1px solid red; padding: 10px; width:1200px; height: 400px;">댓글 목록들</div> -->
+								<div id="offReplies">댓글목록들</div>
+
+							</div>
 						</div>
 					</div>
 				</div>
@@ -351,7 +360,6 @@
 		</div>
 
 		<!--  끝!! 밑에는 Hidden 이다  -->
-
 		<div class="col-sm-12" style="height: 100px;">
 			<div class="form-group">
 				<input type="hidden" name="lat" id="lat" value=""> <input type="hidden" name="long1"
@@ -364,7 +372,7 @@
 
 	</div>
 
-	<!--  스크립트      -->
+	<!--  오프라인강의 스크립트      -->
 	<script type="text/javascript">
 	
 		
@@ -491,10 +499,183 @@
                   jQuery.browser.msie = true;
                   jQuery.browser.version = RegExp.$1;
                }
-            })();
-
-		
+            })();           
+            
 	</script>
+
+
+	<!--  댓글 스크립트 -->
+	<script type="text/javascript">
+	  
+    // 댓글    
+		$(document).ready(function(){
+		 
+		 console.log('window innerWidth: ' + window.innerWith + ', innerHeight: ' + window.innerHeight);
+		 console.log('window outerWidth: ' + window.outerWith + ', outerHeight: ' + window.outerHeight);
+		 console.log('screen width: ' + screen.width + ', height: ' + screen.height);
+		 console.log('jquery window height(): ' + $(window).height);
+		 console.log('jquery document height(): ' + $(document).height());
+		 
+		
+		 $(window).scroll(function(){
+		    console.log(" 스크롤이 작동은 됨?!");
+		    if($(window).scrollTop() == $(document).height() - $(window).height()) {
+		       console.log("스크롤이 바닥에 닿음");   
+		    //   if(checkEnd == true){
+		       getAllReplies();
+		    //   checkEnd == false;
+		    //   }
+		       
+		       
+		    }            
+		    
+		 }); // window.scroll ()      
+ 
+ 
+ var bno = '${bnoList.bno}';
+    
+ function getAllReplies(){
+    
+    console.log("bno = " + bno);
+    var list ='';   
+    var start = parseInt($('#start').val());
+    var end = parseInt($('#end').val());
+    $.getJSON("offDetail2?bno=" +bno + "&start="+start +"&end="+end, function(para){            
+       
+        start += 3;
+       end += 3;
+       $('#start').val(start);
+       $('#end').val(end);
+       console.log('start : ' +start); 
+       console.log('end : ' + end);
+       
+       if(para.length == 0){
+       if(checkLength == true){
+          list += '댓글이 없습니다 '
+             $('#offReplies').html(list);   
+          checkLength = false;
+       }
+             
+       } else {
+          checkLength = false;
+          $(para).each(function(){  // 데이터가 0개 이면  for 구문을 실행시킬 수가 없어서 input, button 들이 전부 생성될 수가 없음
+          console.log("rno ? " + this.rno);
+          var date = new Date(this.regdate);  
+          var dateString = date.toLocaleDateString() + ' ' +date.toLocaleTimeString();
+          $('#offReplies').append('<div class ="media border p-3" style="width: 80%; border:none;">'
+                   + '<p id="reply-rno" style="display:inline-block" >'
+                 + this.rno 
+                 + '</p>'                  
+                 + '<img src="/project/resources/img/test1.png" class="align-self-start mr-3" style="border-radius: 50%; width: 60px;"  />'                   
+                 + '<div class ="reply-one">'
+                 
+                 + '<div >'
+                 + '<h3>'
+                 + this.userid
+//                 + '</h4>'
+                 + ' <small><i>'
+                 + dateString 
+                 + '</i></small></h3>'
+                 + '</div>'              
+                 + '<input id="reply-content" style="display:inline-block; border: none; width:400px; height: 100px; font-size: 120%;" value="'   
+                 + this.content
+                 + '"/>'
+                  +'<button class ="btnUpdate" data-rno="' + this.rno + '" > 댓글 수정 </button>'
+                 +'<button class ="btnDelete" data-rno="' + this.rno + '" > 댓글 삭제 </button>'                   
+                 + '</div>');               
+                
+       }) // .each
+       } // if-else{}
+    }) // .getJSON    
+ } // getAllReplis()
+
+ 
+getAllReplies(); // 함수 호출 
+
+
+ $('#btnCreate').click(function(){
+    var content = $('#content').val();
+    var userid = $('#userid').val();
+//    var userid = ${userid};
+    var a = '${bnoList.bno}';
+    console.log(' 오프라인 댓글 a : ' + a);
+    $.ajax({
+       type: 'post',
+       url:'create',
+       headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override' : 'post'},
+       data : JSON.stringify({'bno':'${bnoList.bno}', 'content':content, 'userid':userid }),
+       success: function(result){
+          console.log('댓글등록 성공! result = ' +result);
+          
+          if(result === 1) {
+             $('#content').val('');
+             console.log("btnCreate() 는 됐는데,, 대체 왜??")
+             getAllReplies();
+          }
+       }
+    }) // .ajax
+    
+ }) // ('#btnCreate').click
+ 
+
+ 
+/*       
+ $('#offReplies').on('click', '.reply-item .reply-one .btnUp', function(){
+    $('#reply-content').focus();
+    $('#btnUpdate').style.visibility="visible";
+    
+    
+ })
+  */
+ $('#offReplies').on('click', '.media border p-3 .reply-one .btnUpdate', function(){
+    $('#reply-content').focus();
+    var rno = $(this).attr('data-rno');
+    var content = $(this).prevAll('#reply-content').val();
+    
+    console.log('rno = ' + rno);
+    console.log('content = ' + content);
+    $.ajax({
+       type:'put',
+       url:"update",
+       headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override': 'put'},
+       data: JSON.stringify({'rno':rno, 'content':content}),
+       success: function(result){
+          alert(rno+'번 내용이 수정되었습니다 ')
+          getAllReplies();
+       }
+    })
+    
+ }) // btnUpdate
+ 
+ 
+  $('#offReplies').on('click', '.media border p-3 .reply-one .btnDelete', function(){
+//    var rno = $(this).prevAll('#rno').val();
+    var rno = $(this).attr('data-rno');
+    console.log("rno j= " + rno);
+    console.log("type of rno= "+ typeof rno);
+    $.ajax({
+       type:'delete' ,
+       url: "delete",
+       headers:{'Content-Type' : 'application/json', 'X-HTTP-Method-Override': 'delete'},
+       data:JSON.stringify({'rno':rno, 'content' : 'dd'}),
+       success: function(){
+          confirm(rno+' 번을 삭제하시겠습니까?')
+          getAllReplies();
+       }
+    })
+    
+    
+ }) // btnDelete
+     
+    
+    
+
+})   
+
+	
+	</script>
+
+
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDZERHrUzBgHvXAa2TJ843Ca6Ng5nTq-ts&callback=initMap"></script>
