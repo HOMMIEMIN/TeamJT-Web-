@@ -18,6 +18,14 @@ public interface MemberDao {
 	
 	Member getId(String userId);
 	
+	String getPwd(String userId);
+	
+	int updatePwd(String password, String userId);
+	
+	int updateUserName(String userName, String userId);
+	
+	int updatePhone(String phone, String userId);
+	
 	int updateOnlec(Member m);
 	
 	int updateOfflec(OffLec offLec);

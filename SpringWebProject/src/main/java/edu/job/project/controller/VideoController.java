@@ -26,7 +26,9 @@ import edu.job.project.service.OnLecService;
 @Controller
 public class VideoController {
 
-   
+
+ 
+
    @Autowired
    private OnLecService service;
    @Autowired

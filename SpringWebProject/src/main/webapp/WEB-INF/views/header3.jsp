@@ -135,14 +135,13 @@
 
 /* 로그인 후 아이콘 UI */
 .nav-profile {
-	position: absolute;
+	/*position: relative;*/
 	
 	display: inline-block;
 	background: url(/project/resources/img/test.png) center center no-repeat;
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
-	right: 400px;
 	/*left:108%;*/
 }
 
@@ -154,35 +153,22 @@
 	background-color: #f9f9f9;
 	min-width: 90px;
 	box-shadow: 0px 7px 16px 10px rgba(0, 0, 0, 0.2);
-	margin-top:50px;
-	transition: height 1000ms ease-in;
 }
 
 .dropdown-content a {
-	
 	padding-top: 5px;
 	padding-bottom: 5px;
 	color: black;
 	text-decoration: none;
 	display: block;
-	 transition: all 4s;
-	 transition-duration: 5s,5s;
 }
 
 .dropdown-content a:hover {
-margin-top:45px;
 	background-color: lightgrey;
-	transition: all 2s;
-	transition-timing-function: linear;
-	
 }
 
 .nav-profile:hover .dropdown-content {
-margin-top:50px;
 	display: block;
-	transition: all 2s;
-	transition-timing-function: linear;
-	
 }
 
 .city {
@@ -204,10 +190,7 @@ tr:hover {
 </head>
 <body style="margin: 0px; height: 2400px;">
 
-
-
-
-
+<body>
 	<nav class="navigation"  style="margin: 0px; z-index: 2">
 
 		<div class="header-container">
@@ -833,6 +816,6 @@ $('document').ready(function(){
 //	}
 	
 </script>
-
+</div>
 </body>
 </html>

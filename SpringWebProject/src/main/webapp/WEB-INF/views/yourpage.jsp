@@ -49,10 +49,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
 
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/HOMMIEMIN/TeamJT-Web-.git
+
+
 #createFolder1 {
 	position: relative;
 	left: 850px;

@@ -75,6 +75,10 @@
 	<property name="col_location" value="location"/>
 	<property name="col_groupbno2" value="groupbno"/>
 	
+	<!-- Online Replies -->   
+   <property name="reply_board" value="on_replies"/>
+   <property name="col_rno" value="rno" />
+	
 	
 	<!--  GROUP OFFLINE -->
 	<property name="tbl_groupoff" value = "groupoff"/>	
@@ -85,6 +89,8 @@
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leccategory" value="lecCategory"/>
 	<property name="col_leclike" value = "lecLike"/>
+	
+	
 		
 
 	

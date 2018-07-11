@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <meta name="description" content="">
 <meta name="author" content="">
 
@@ -26,38 +26,46 @@
 
 <style type="text/css">
 #notClick {
+
 	background-color: rgba(1, 1, 1, 0.7);
 	bottom: 0;
 	left: 0;
 	position: fixed;
 	right: 0;
 	top: 0;
+
 }
 
 #loader {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	z-index: 1;
-	width: 150px;
-	height: 150px;
-	margin: -75px 0 0 -75px;
-	border: 16px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 16px solid #3498db;
-	width: 120px;
-	height: 120px;
-	top: 500px;
-	-webkit-animation: spin 2s linear infinite;
-	animation: spin 2s linear infinite;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   z-index: 1;
+   width: 150px;
+   height: 150px;
+   margin: -75px 0 0 -75px;
+   border: 16px solid #f3f3f3;
+   border-radius: 50%;
+   border-top: 16px solid #3498db;
+   width: 120px;
+   height: 120px;
+   top: 500px;
+   -webkit-animation: spin 2s linear infinite;
+   animation: spin 2s linear infinite;
 }
 
 a:link {
+
 	text-decoration: none;
 	color: black;
+
 }
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+
+
+
 
 body {
 	font-family: 'Nanum Gothic', serif;
@@ -90,8 +98,7 @@ body {
 							<a
 								href="videoview?groupBno=${groupBno}&bno=${group.bno}&lecName=${lecName}"
 								style="color: black">
-								<div class="item"
-									style="padding: 10px; background-color: lightgrey">
+								<div class="item" style="padding: 10px; background-color: lightgrey">
 									<%=a%>
 									<img
 										src="/project/resources/image/tmpFiles/${group.imagePath }"
@@ -484,5 +491,8 @@ body {
 	<script src="resources/js/main/creative.js"></script>
 
 </body>
+
+
+
 
 </html>

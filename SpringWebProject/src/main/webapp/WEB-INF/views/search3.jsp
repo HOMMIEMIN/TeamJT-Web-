@@ -148,33 +148,34 @@ img {
 }
 
 .searchresult {
-   width: 1100px;
-   height : auto;
-   display: flex;  
+   width: 900px;
+   display: flex;
+   justify-content: space-between;
    flex-wrap: wrap;
    padding-top: 100px;
 }
 
 .searchresult {
-   max-width: 1100px;
+   max-width: 900px;
    min-width: 370px;
-   height:500px;
-   display: flex; 
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
    padding-top: 100px;
 }
-/*
+
 .searchresult:after {
    content: "";
    flex: auto;
 }
-*/
+
 div .col-md-3.resent-grid.recommended-grid.movie-video-grid {
    width: 200px;
    height: 280px;
    max-width: 200px;
    max-height: 280px;
    padding: 0px;
-   margin-right: 30px;
+   /*margin-right: 30px;*/
    margin-bottom: 20px;
 }
 
@@ -315,8 +316,7 @@ color : black;
       </div>
 
       <div class="result-box">
-      
-         <div class="searchpath">${category } > ${lecType }<c:if test="${not empty keyword }"> > ${keyword }</c:if> </div>
+         <div class="searchpath">${category } > ${lecType }</div>
          
          <div class="result-align">
             <div class="orderby">
@@ -362,7 +362,6 @@ color : black;
                   <a class="detail"
                      href="videoview?groupBno=${online.groupBno}&bno=${online.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
-                      <div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">온라인</div>
                      <div></div>
                   </a>
                </div>
@@ -400,18 +399,9 @@ color : black;
                      </ul>
                   </div>
                   <a class="detail"
-                     href="offDetail?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
+                     href="videoview?groupBno=${offline.groupBno}&bno=${offline.bno}&lecName=${lecName}">
                      <div class="overlay"></div>
-                     <c:set var="now" value="<%=new java.util.Date()%>" />
-                <c:set var="sysDate"><fmt:formatDate value="${now}" pattern="yyyyMMddhhmmss" /></c:set> 
-                <c:set var="date" value="${offline.regdate }" />
-                <c:set var="regDate"><fmt:formatDate value="${date}" pattern="yyyyMMddhhmmss" /></c:set>                
-                     <c:if test="${offline.maxmember > offline.curmember }">
-                     <div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">모집중</div>
-                     </c:if>
-                     <c:if test="${offline.maxmember == offline.curmember }">
-                     <div style="width: 60px; height: 25px;background-color:orange; color:white; text-align: center; position: relative; bottom: 285px; ">모집마감</div>
-                     </c:if>
+                     <div></div>
                   </a>
                </div>
 
@@ -428,12 +418,7 @@ color : black;
 <div id="loader" style="display: none; z-index: 4;"></div>
 <div id="notClick" style="display: none; z-index: 3;"></div>   
 <script>
-var isEnd = false;
-var checkScroll = true;
-
 $(()=>{
-   var start = 1;
-   var end = 12;
    typeColor();
    menuColor();
    if('${category}' === "All Category"){
@@ -464,7 +449,7 @@ $(()=>{
          clickCategory = 'Etc';
       }
       console.log(clickCategory);
-      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType+"&start=1&end=12";
+      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
       $("#loader").css('display','block');
       $("#notClick").css('display','block');
    });
@@ -476,7 +461,7 @@ $(()=>{
       
       console.log(clickType);
       $(this).css('color','#169e83');
-      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType+"&start=1&end=12";
+      location = 'searchClick?category='+clickCategory +'&lecType=' + clickType;
       
    
    });
@@ -504,53 +489,6 @@ $(()=>{
       $('.orderby').css('color','black');
       $('.orderby').css('border','1px solid black');
    }
-   
-   
-   $(window).scroll(function(){
-         var $window = $(this);
-         var scrollTop = $window.scrollTop();
-         var windowHeight = $window.height();
-         var documentHeight = $(document).height();
-
-        if(scrollTop + windowHeight + 10 > documentHeight){
-           if(checkScroll == true){
-              checkScroll = false;
-           searchScroll();
-           }
-        }
-     
-            
-     });
- 
-   function searchScroll(){
-        if(isEnd == true){
-           return;
-        }
-        start += 12;
-        end += 12;
-       if(clickType === 'Online'){ 
-       $.ajax({
-            type: 'get',
-            url: 'searchScroll?start='+start+'&end='+end+"&category="+clickCategory+"&lecType="+clickType,
-            headers: {
-               'Content-Type': 'application/json',
-               'X-HTTP-Method-Override': 'get'
-            },
-            success: function(result) {
-               if(result.length < 16){
-                  isEnd = true;
-               }
-               console.log(result);
-               $.each(result, function(){
-                  console.log('반복문 들어옴');
-                  $('.searchresult').append('<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;"><div class="resent-grid-img recommended-grid-img"><a href="" class="detail"><img alt="" src="/project/resources/image/tmpFiles/'+ this.imagePath + '"></a><div class="time small-time show-time movie-time"></div><div class="clck movie-clock"></div></div><div class="resent-grid-info recommended-grid-info recommended-grid-movie-info" style="padding: 5px"><h6 style="color: #04B486; font-size: 70%; font-weight: bold;">'+this.lecCategory+'.</h6><h5 style="font-size: 60%"><a href="single.html" class="title">'+this.title+'</a></h5><ul><li><p class="author author-info"><a href="#" class="author">'+this.userName+'</a></p></li><li class="right-list"><p class="views views-info"></p></li></ul></div><a class="detail"href="videoview?groupBno='+this.groupBno+'&bno='+ this.bno +'&lecName="${lecName}""><div class="overlay"></div><div style="width: 60px; height: 25px;background-color:#169e83; color:white; text-align: center; position: relative; bottom: 285px; ">온라인</div><div></div></a></div>');
-                  checkScroll = true;
-               });
-            }
-       });
-       }
-     }
- 
 });
 
 
