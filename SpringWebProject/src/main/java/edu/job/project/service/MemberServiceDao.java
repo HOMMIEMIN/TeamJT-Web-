@@ -29,17 +29,38 @@ public class MemberServiceDao implements MemberService {
 	
 		return dao.checkId(userId);
 	}
-
+	
 	@Override
 	public int readName(String userName) {
 
 		return dao.checkName(userName);
+	}
+	
+	@Override
+	public int updateUserName(String userName, String userId) {
+		
+		return dao.updateUserName(userName, userId);
+	}
+	
+	@Override
+	public int updatePhone(String phone, String userId) {
+		return dao.updatePhone(phone, userId);
+	}
+	
+	@Override
+	public int updatePwd(String password, String userId) {
+		return dao.updatePwd(password, userId);
 	}
 
 	@Override
 	public Member readId(String userId) {
 		
 		return dao.getId(userId);
+	}
+	
+	@Override
+	public String readPwd(String userId) {
+		return dao.getPwd(userId);
 	}
 
 }

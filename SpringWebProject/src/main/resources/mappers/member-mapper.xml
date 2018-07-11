@@ -19,8 +19,24 @@ select * from ${tbl_member} where ${col_userid} = #{userId} and ${col_password} 
 select * from ${tbl_member} where ${col_userid} = #{userId}
 </select>
 
+<update id ="updateUserName">
+update ${tbl_member} set ${col_username} = #{userName} where ${col_userid} = #{userId}
+</update>
+
+<update id ="updatePhone">
+update ${tbl_member} set ${col_phone} = #{phone} where ${col_userid} = #{userId}
+</update>
+
+<update id ="updatePwd">
+update ${tbl_member} set ${col_password} = #{password} where ${col_userid} = #{userId}
+</update>
+
 <select id="checkid" resultType="Integer">
 select count(${col_userid}) from ${tbl_member} where ${col_userid} = #{userId} 
+</select>
+
+<select id="getPwd" resultType="String">
+select ${col_password} from ${tbl_member} where ${col_userid} = #{userId}
 </select>
 
 <select id="namecheck" resultType="Integer">

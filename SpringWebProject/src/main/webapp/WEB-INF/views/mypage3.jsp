@@ -361,7 +361,7 @@ li {
 					</div>
 					<div class="top-menu-right">
 						<div id="editprofile" data-toggle="modal"
-							href="javascript:void(0)" onclick="profileModal()"><img src="/project/resources/img/profile_edit.png"></div>
+							href="javascript:void(0)" onclick="profileModal()">프로필</div>
 						<div class="makefolder">
 							<button id="createFolder1"
 								onclick="document.getElementById('id01').style.display='block'"
@@ -413,13 +413,13 @@ li {
 									<!-- div id="cur-profile"></div-->
 									<div id="profileimg"></div>
 									<a id="select-img" href="javascript:void(0)" onclick=><img
-										src="/project/resources/img/selectpic.png" alt="사진선택"></a>
+										src="" alt="사진선택"></a>
 								</div>
 								<div class="set-username">
 									<input class="big-text" id="username1" type="text"
 										name="username1" value="${userName}" readonly="readonly" /> <img
-										id="edit-username" src="/project/resources/img/edit_18_18.png" alt="닉네임수정하기" style="display: block">
-									<img id="new-username" src="/project/resources/img/profile_ok.png" alt="닉네임수정완료"
+										id="edit-username" src="" alt="닉네임수정하기" style="display: block">
+									<img id="new-username" src="" alt="닉네임수정완료"
 										style="display: none">
 									<div id="checkNamefail" class="checkFail"
 										style="display: none; color: red;">닉네임이 존재합니다!</div>
@@ -433,8 +433,8 @@ li {
 									<div class="content-title">전화번호</div>
 									<input class="big-text" id="phone1" type="text" name="phone1"
 										value="${phone}" readonly="readonly" /> <img id="edit-phone"
-										src="/project/resources/img/edit_18_18.png" alt="번호수정하기" style="display: block"> <img
-										id="new-phone" src="/project/resources/img/profile_ok.png" alt="번호수정완료" style="display: none">
+										src="" alt="번호수정하기" style="display: block"> <img
+										id="new-phone" src="" alt="번호수정완료" style="display: none">
 									<div class="checkPhoneNull" style="display: none; color: red;">
 										번호를 입력해주세요!</div>
 								</div>

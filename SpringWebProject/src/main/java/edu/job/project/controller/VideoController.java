@@ -32,15 +32,13 @@ public class VideoController {
 	private MemberService mService;
 	
 	
-	@RequestMapping(value="/video",method=RequestMethod.GET)
-	public void video() {
-		
-	}
+
 	
 	@RequestMapping(value="/videoview", method=RequestMethod.GET)
 	public String videoview(int bno, int groupBno, String lecName, Model model, HttpSession session) {
 		System.out.println("들어옴");
 		System.out.println(groupBno);
+		model.addAttribute("bno", bno);
 		OnLec bnoList = service.readByBno(bno);
 		List<OnLec> GroupbnoList = service.readByGroupBno(groupBno);
 		Member m = mService.readId(bnoList.getUserId());

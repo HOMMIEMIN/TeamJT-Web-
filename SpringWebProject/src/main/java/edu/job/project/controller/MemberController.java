@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.job.project.domain.Member;
@@ -60,6 +61,7 @@ public class MemberController {
 		// -> 콘트롤러에서 직접 당당하지 않고, loginInterceptor에서 담당하도록
 		model.addAttribute("loginResult", member1);
 		System.out.println("들어옴 로그인");
+		System.out.println(member1.getPhone());
 		
 		
 		// 여기는 home.jsp에서 A.jax에게 ok를 넘겨 주기 위함
@@ -67,6 +69,7 @@ public class MemberController {
 		if(member1 != null) {
 			session.setAttribute("userId", member.getUserId());
 			session.setAttribute("userName", member1.getUserName());
+			session.setAttribute("phone", member1.getPhone());
 			result = "ok";
 		}
 		System.out.println(result);
@@ -89,9 +92,9 @@ public class MemberController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/check", method=RequestMethod.POST) // 아이디 중복체크
+	@RequestMapping(value="/check", method=RequestMethod.POST) // 닉네임 중복체크, 비밀번호 체크
 	@ResponseBody
-	public ResponseEntity<String> checkName(@RequestBody Member member){
+	public ResponseEntity<String> check(@RequestBody Member member){
 		
 		String result = null;
 		
@@ -103,6 +106,72 @@ public class MemberController {
 		System.out.println("result1 : " + result1);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/checkpwd", method=RequestMethod.POST) // 닉네임 중복체크, 비밀번호 체크
+	@ResponseBody
+	public ResponseEntity<String> checkPwd(@RequestBody Member member){
+		System.out.println("유저아이디 : " + member.getUserId());
+		String result = null;
+		String getPwd = service.readPwd(member.getUserId());
+		if(getPwd.equals(member.getPassword())) {
+			result = "same";
+		} else {
+			result = "notSame";
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/update-name", method=RequestMethod.POST) // 닉네임 변경
+	public ResponseEntity<String> updateUserName(@RequestBody Member m, HttpSession session){
+		String result = null;
+		System.out.println(m.getUserId());
+		System.out.println(m.getUserName());
+		int result1 = service.updateUserName(m.getUserName(), m.getUserId());
+		
+		if (result1 == 1) {
+			result = "ok";
+			session.setAttribute("userName", m.getUserName());
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/update-phone", method=RequestMethod.POST) // 전화번호 변경
+	public ResponseEntity<String> updatePhone(@RequestBody Member m, HttpSession session){
+		String result = null;
+		int result1 = service.updatePhone(m.getPhone(), m.getUserId());
+		
+		if (result1 == 1) {
+			result = "ok";
+			session.setAttribute("phone", m.getPhone());
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/update-password", method=RequestMethod.POST) // 전화번호 변경
+	public ResponseEntity<String> updatePhone(@RequestBody Member m){
+		String result = null;
+		int result1 = service.updatePwd(m.getPassword(), m.getUserId());
+		
+		if (result1 == 1) {
+			result = "ok";
+		}
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+//	@RequestMapping(value="/check-password", method=RequestMethod.POST) // 비밀번호 체크
+//	@ResponseBody
+//	public ResponseEntity<String> checkPwd(@RequestBody Member member){
+//		
+//		String result = null;
+//		
+//		int result1 = service.readName(member.getUserName());
+//		if(result1 == 1) {
+//			result = "ok";
+//		}
+//		System.out.println("result : " + result);
+//		System.out.println("result1 : " + result1);
+//		return new ResponseEntity<>(result, HttpStatus.OK);
+//	}
 	
 	
 	@RequestMapping(value= "logout", method = RequestMethod.POST)
