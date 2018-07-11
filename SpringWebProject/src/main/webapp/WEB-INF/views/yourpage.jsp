@@ -27,6 +27,29 @@
 
 
 <style>
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
 #createFolder1 {
 	position: relative;
 	left: 850px;
@@ -351,13 +374,9 @@ h4 {
 				$('#Tokyo').css('border-bottom', '5px solid black');
 				$('#Paris').css('border-bottom', 'none');
 				$('#London').css('border-bottom', 'none');
-				$('#onLec').animate({
-					opacity : 0
-				}, 1000);
+
 				$('#onLec').load("/project/upload/blackboard_urs");
-				$('#onLec').animate({
-					opacity : 1
-				}, 1000);
+
 			} else {
 				$('#createFolder1').css('display', 'none');
 				$('#createFolder2').css('display', 'none');
