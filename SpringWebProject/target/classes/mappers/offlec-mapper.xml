@@ -93,10 +93,14 @@
 	WHERE ${col_bno} = #{bno}
 	</select>
 	
-	<!-- 검색 -->
-	<select id="selectByCategory" resultType="OffLec">
-select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
-</select>
+	<select id="selectByMyOffLec" resultType="OffLec">
+	SELECT * FROM ${tbl_offlec}
+	WHERE ${col_bno} = #{bno}
+	</select>
+	
+	
+	
+
 
 <select id="selectByTextCategory" resultType="OffLec">
 select * from ${tbl_offlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) and ${col_category} = #{category} order by ${col_regdate} asc
@@ -105,7 +109,28 @@ select * from ${tbl_offlec} where (${col_title} like #{keyword} or ${col_content
 <select id="selectByText" resultType="OffLec">
 select * from ${tbl_offlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) order by ${col_regdate} asc
 </select>
+
+	<select id="selectByCategory" resultType="offLec">
+	select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
+	</select>
+
+	<update id="updateCnt">
+	UPDATE ${tbl_onlec}
+	SET {col_cnt} = ${col_cnt} + 1 
+	WHERE ${col_bno} = #{bno}
+	</update>
+
 	
+	<delete id="deleteOffLec">
+	DELTE {tbl_offlec}
+	WHERE ${col_bno} = #{bno}
+	</delete>
+	
+	<select id="selectGroupBnoByLecName" resultType="String">
+	SELECT ${col_lecname} 
+	FROM ${tbl_groupoff}
+	WHERE ${col_bno} = #{groupBno}
+	</select>
 	
   </mapper>
   

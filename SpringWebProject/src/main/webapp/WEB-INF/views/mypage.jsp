@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -13,10 +12,6 @@
 
 <title>You Can Be A Teacher</title>
 
-
-<!-- Bootstrap core CSS -->
-
-<link href="resources/css/mypage.css" rel="stylesheet">
 
 <!-- 웹폰트 -->
 <link href="http://fonts.googleapis.com/earlyaccess/notosanskr.css"
@@ -37,6 +32,33 @@
 
 
 <style>
+
+
+
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+
 
 .mypage-container {
    
@@ -64,6 +86,7 @@
 #profileimg {
    position: relative;
    display: inline-block;
+   background: url(resources/img/test.png) center center no-repeat;
    border-radius: 50%;
    width: 140px;
    height: 140px;
@@ -367,11 +390,33 @@ li {
 #select-img{
    position: absolute;
    z-index: 1500;
+   margin-left: 105px;
+   margin-top: 105px;
 }
 
-#createFolder1{
-position: relative;
-left: 50px;
+.set-password {
+   width: 340px;
+   display: flex;
+   flex-direction: column;
+   padding-left: 40px;
+}
+
+.set-phone {
+   margin-top: 50px;
+   padding-left: 40px;
+}
+
+.box{
+   padding-left: 50px;
+   padding-top: 50px;
+}
+
+.set-img {
+   padding-top: 13px;
+}
+
+.change-pwd {
+   text-align: center;
 }
 
 </style>
@@ -381,38 +426,31 @@ left: 50px;
 
 <!-- body id="page-top"-->
 <body>
+
    <jsp:include page="header.jsp"></jsp:include>
    <div class="mypage-container">
       <div class="top">
          <div class="menu-container">
             <div class="top-menu">
-               <c:if test="${not empty imagePath }">
-               <div id="profileimg" style="background-image: url('${imagePath}');"></div>
-               </c:if>
-               <c:if test="${empty imagePath }">
-               <div id="profileimg" style="background-image: url('resources/img/person.png'); background-size: contain;"></div>
-               </c:if>
+               <div id="profileimg"></div>
                <div class="top-menu-center">
                   <div id="username">${userName}</div>
                   <div id="userid">${userId}</div>
-                        
-                     <ul class="tab-menu">
-                        <li class="ef" id="ef-a"><a class="tablinks" id="London" 
-                              onclick="openCity(event, 'London')">나는 학생</a></li>
-                        <li class="ef" id="ef-b"><a class="tablinks" id="Paris"
-                              onclick="openCity(event, 'Paris')">나는 선생님</a></li>
-                        <li class="ef" id="ef-c"><a class="tablinks" id="Tokyo"
-                              onclick="openCity(event, 'Tokyo')">칠판</a></li>
-                         <li id="createFolder1"
-                  onclick="document.getElementById('id001').style.display='block'"
-                  style="display: none">online</li>  
-                     </ul>
+                  <div class="nav-taps">
+
+                     <div class="row">
+                     <div class="col-sm-4"><button class="tablinks" id="London" style="background-color:#ffffff; border-style: none;  " onclick="openCity(event, 'London')">나는 학생</button></div>
+                     <div class="col-sm-4"><button class="tablinks" id="Paris"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Paris')">나는 선생님</button></div>
+                     <div class="col-sm-4"><button class="tablinks" id="Tokyo"  style="background-color:#ffffff; border-style: none; " onclick="openCity(event, 'Tokyo')">칠판</button></div>             
+                    </div>
+
+                  </div>
                </div>
                <div class="top-menu-right">
                   <div id="editprofile" data-toggle="modal"
-                     href="javascript:void(0)" onclick="profileModal()"><img src="/project/resources/img/profile_edit.png"></div>
+                     href="javascript:void(0)" onclick="profileModal()">프로필</div>
                   <div class="makefolder">
-                     <button id="createFolder12"
+                     <button id="createFolder1"
                         onclick="document.getElementById('id01').style.display='block'"
                         style="display: none">online</button>
                      <button id="createFolder2"
@@ -420,41 +458,31 @@ left: 50px;
                         style="display: none">offline</button>
                   </div>
                </div>
-               <!-- 
-            <div class="frame" id="file" style="z-index: 1;"></div>
-            <div class="name" style="font-weight: bold; font-size: 130%">${userName }</div>
-            <div class="name" style="color: grey">${userId }</div>
-            -->
             </div>
 
 
-            <!-- div class="tab">
-               <button class="tablinks" id="London"
-                  onclick="openCity(event, 'London')">나는 학생</button>
-               <button class="tablinks" id="Paris"
-                  onclick="openCity(event, 'Paris')">나는 선생님</button>
-               <button class="tablinks" id="Tokyo"
-                  onclick="openCity(event, 'Tokyo')">칠판</button>
-              
-               
 
 
-            </div-->
+
 
          </div>
       </div>
+
 
       <!-- 프로필 모달 -->
       <div class="modal fade profile" id="profileModal">
          <div class="modal-dialog profile animated">
             <div class="modal-content">
 
+
                <div class="modal-body">
-                  <div class="box">
-                     <div class="content">
-                        <button type="button" class="profile-close" data-dismiss="modal"
+               <button type="button" class="profile-close" data-dismiss="modal"
                            aria-hidden="true">&times;
                            </button>
+                           
+                  <div class="box">
+                     <div class="content">
+                        
                            <a id="select-img" href="javascript:void(0)" onclick=><img
                               src="/project/resources/img/selectpic.png" alt="사진선택"></a>
                         <div class="modal-content-top">
@@ -467,9 +495,10 @@ left: 50px;
                         <div class="username-oneline">
                            <input class="big-text" id="username1" type="text"
                               name="username1" value="${userName}" readonly="readonly" /> 
+                              <div class="set-img">
                               <img id="edit-username" width="18px" height="18px" src="/project/resources/img/edit_18_18.png" alt="닉네임수정하기" style="display: block">
                            <img id="new-username" width="18px" height="18px" src="/project/resources/img/profile_ok.png" alt="닉네임수정완료"
-                              style="display: none">
+                              style="display: none"></div>
                               </div>
                            <div id="checkNamefail" class="checkFail"
                               style="display: none; color: red;">닉네임이 존재합니다!</div>
@@ -479,16 +508,19 @@ left: 50px;
                            <div>${userId}</div>
                            </div>
 
+
                         </div>
                         <div class="set-phone">
                            <div class="content-title">전화번호</div>
                            <div class="phone-oneline">
                            <input class="big-text" id="phone1" type="text" name="phone1"
                               value="${phone}" readonly="readonly" /> 
+                              <div class="set-img">
                               <img id="edit-phone" width="18px" height="18px"
                               src="/project/resources/img/edit_18_18.png" alt="번호수정하기" style="display: block"> 
                               <img
                               id="new-phone" width="18px" height="18px" src="/project/resources/img/profile_ok.png" alt="번호수정완료" style="display: none">
+                              </div>
                               </div>
                            <div class="checkPhoneNull" style="display: none; color: red;">
                               번호를 입력해주세요!</div>
@@ -512,31 +544,41 @@ left: 50px;
                               입력하신 비밀번호가 다릅니다</div>
                         </div>
 
-                        <div class="change-pwd"
-                              style="padding: 10px; background-color: gray; color: white; font-size: 14pt;">비밀번호 변경하기</div>
+                        
                         <!-- div class="change-pwd"
                               style="padding: 10px; background-color: #169e83; color: white; font-size: 14pt;">비밀번호 변경하기</div-->
                      </div>
                   </div>
+                  
+                  
+                  <div class="change-pwd"
+                              style="padding: 10px; background-color: gray; color: white; font-size: 14pt;">비밀번호 변경하기</div>
+                  
+                  
                </div>
 
             </div>
          </div>
       </div>
 
+
       <div id="London" class="tabcontent" style="border: none;">
-         <h3>나는 학생</h3>
-         <p>London is the capital city of England.</p>
+         
+         <!--  나는 학생 강의 DIV  -->
       </div>
+
+
 
       <div id="Paris" class="tabcontent" style="border: none;">
-         <!--  나는 선생님 강의 관리  -->
+         <!--  나는 선생님 강의 DIV  -->
       </div>
 
+
+
       <div id="Tokyo" class="tabcontent" style="border: none;">
-         <h3>칠판</h3>
-         <p>Tokyo is the capital of Japan.</p>
+      <!--  칠판 강의 DIV  -->         
       </div>
+
 
       <div>
 
@@ -555,25 +597,35 @@ left: 50px;
 
 
 
+    <div class="demo-section k-content" style="display: none;">
+                    <input name="files" id="filesImage" type="file" accept=".jpg,.jpeg.,.gif,.png"/>
+                </div>
+   </div>
 
       <script>
-      
-      
-      changeLinkAttr();
+      var myImage = '${imagePath}';
+      console.log('ddd' + myImage);
+      $("#profileimg").css('background-image', 'url("/project/resources/image/tmpFiles/'+myImage+'")');
+      $("#profileimg1").css('background-image', 'url("/project/resources/image/tmpFiles/'+myImage+'")');
+
+
          $('#btnSearchBar').click(() => {
             $('#searchForm').submit();
          });
-      
-         // 닉네임 수정 input editable
+       // 닉네임 수정 input editable
          $('#edit-username').click(function() {
             $('input[name="username1"]').prop('readonly', false);
             $('input[name="username1"]').prop('required', true);
             $('#edit-username').css('display', 'none');
             $('#new-username').css('display', 'block');
          });
-      
+    
+       
          var nameCheck = false;
+
       
+
+
          // 닉네입 입력값 유무 즉각 확인         
          $("#username1").on("change keyup paste", function() {
             var name = $('#username1').val();
@@ -608,38 +660,10 @@ left: 50px;
                   });
                }
                }
+
          });
       
-         // 닉네임 중복체크
-         /*$('#username1').change(function() {
-            var name = $('#username1').val();
-            if (name != null && name != '') {
-               $.ajax({
-                  type : 'post',
-                  url : '/project/check',
-                  headers : {
-                     'Content-Type' : 'application/json; charset=UTF-8',
-                     'X-HTTP-Method-Override' : 'post'
-                  },
-                  data : JSON.stringify({
-                     'userName' : name
-                  }),
-                  success : (result) => {
-                     if (result == 'ok') {
-                        $('.checkFail').css('display', 'block');
-                        $('.checkNameSuccess').css('display', 'none');
-                        nameCheck = false;
-                     } else {
-                        $('.checkFail').css('display', 'none');
-                        $('.checkNameSuccess').css('display', 'block');
-                        
-                        nameCheck = true;
-                     }
-                  }
-               });
-            }
-         });
-      */
+
          // 새 닉네임 저장
          $('#new-username').click(function() {
             var name = $('#username1').val();
@@ -648,7 +672,6 @@ left: 50px;
                if (name != null) {
                   var id = '${userId}';
                   console.log('ajax');
-      
                   $.ajax({
                      type : 'post',
                      url : '/project/update-name',
@@ -824,7 +847,7 @@ left: 50px;
             target.removeData('bs.modal').find(".modal-content").html('');
             document.location.reload();
             // 리로드 하면서 닉네임, 전화번호는 새로 저장된 값 다시 가져오기 비밀번호 input은 모두 지우기 
-         })
+         });
       
          // 프로필 모달
          function profileModal() {
@@ -842,102 +865,111 @@ left: 50px;
             });
             $('.error').removeClass('alert alert-danger').html('');
          }
+
       
+
       
-         function openCity(evt, cityName) {
-            var i,
-               tabcontent,
-               tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-               tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-               tablinks[i].className = tablinks[i].className.replace(
-                  " active", "");
-            }
-            document.getElementById(cityName).style.display = "block";
-            $(document).ready(() => {
-               evt.currentTarget.className += " active";
-               console.log(cityName + '입장      [종류]paris:선생 london:학생 tokyo:칠판')
-            });
-      
-      
-            if (cityName === 'Paris') {
-               console.log('나는 선생님 페이지 들어옴');
-      
-               myFunction();
-               $('#onLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#onLec').load("/project/upload/folder");
-               $('#onLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#offLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#offLec').load("/project/offline/offFolder");
-               $('#offLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-      
-               $('#createFolder1').css('display', 'block');
-               $('#createFolder2').css('display', 'block');
+         
+            
                
-               $('#ef-b').css('font-weight', 'bold');
-               $('#ef-b').css('border-bottom', '4px');
-      
-      
-      
-      
-      
-            } else if (cityName === 'London') {
-               console.log('나는 학생 페이지 들어옴');
-      
-      
-               $('#onLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#onLec').load("/project/upload/myLec");
-               $('#onLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#offLec').animate({
-                  opacity : 0
-               }, 1000);
-               $('#offLec').load("/project/offline/myOffLec");
-               $('#offLec').animate({
-                  opacity : 1
-               }, 1000);
-      
-               $('#loader').css('display', 'block');
-               $('#notClick').css('display', 'block');
-            } else if (cityName === 'Tokyo') {
-      
-            } else {
-               $('#createFolder1').css('display', 'none');
-               $('#createFolder2').css('display', 'none');
-            }
-         }
-      
-         function myFunction() {
-            console.log('myFunction() 들어옴')
-            $('#loader').css('display', 'block');
-            $('#notClick').css('display', 'block');
-      
-         }
-      
-         function showPage() {
-            $('#notClick').css('display', 'none');
-            $('#loader').css('display', 'none');
-         }
-      
-         $(document).ready(function() {
+                 
+                function openCity(evt, cityName) {
+                   var i,
+                      tabcontent,
+                      tablinks;
+                   tabcontent = document.getElementsByClassName("tabcontent");
+                   for (i = 0; i < tabcontent.length; i++) {
+                      tabcontent[i].style.display = "none";
+                   }
+                   tablinks = document.getElementsByClassName("tablinks");
+                   for (i = 0; i < tablinks.length; i++) {
+                      tablinks[i].className = tablinks[i].className.replace(
+                         " active", "");
+                   }
+                   document.getElementById(cityName).style.display = "block";
+                   $(document).ready(() => {
+                      evt.currentTarget.className += " active";
+                      console.log(cityName + '입장      [종류]paris:선생 london:학생 tokyo:칠판')
+                   });
+             
+             
+                   if (cityName === 'Paris') {
+                      console.log('나는 선생님 페이지 들어옴');
+                      $('#Paris').css('border-bottom', '5px solid black');
+                      $('#London').css('border-bottom', 'none');
+                      $('#Tokyo').css('border-bottom', 'none');
+                      
+                      myFunction();
+                      $('#onLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#onLec').load("/project/upload/folder");
+                      $('#onLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#offLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#offLec').load("/project/offline/offFolder");
+                      $('#offLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+             
+                      $('#createFolder1').css('display', 'block');
+                      $('#createFolder2').css('display', 'block');
+           
+                   } else if (cityName === 'London') {
+                      console.log('나는 학생 페이지 들어옴');
+                      $('#London').css('border-bottom', '5px solid black');
+                      $('#Paris').css('border-bottom', 'none');
+                      $('#Tokyo').css('border-bottom', 'none');
+             
+                      $('#onLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#onLec').load("/project/upload/myLec");
+                      $('#onLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#offLec').animate({
+                         opacity : 0
+                      }, 1000);
+                      $('#offLec').load("/project/offline/myOffLec");
+                      $('#offLec').animate({
+                         opacity : 1
+                      }, 1000);
+             
+                      $('#loader').css('display', 'block');
+                      $('#notClick').css('display', 'block');
+                   } else if (cityName === 'Tokyo') {
+             
+                       $('#Tokyo').css('border-bottom', '5px solid black');
+                       $('#onLec').load("/project/upload/blackboardall");
+                       $('#Paris').css('border-bottom', 'none');
+                       $('#London').css('border-bottom', 'none');    
+                      
+                   } else {
+                      $('#createFolder1').css('display', 'none');
+                      $('#createFolder2').css('display', 'none');
+                   }
+                }
+             
+                function myFunction() {
+                   console.log('myFunction() 들어옴')
+                   $('#loader').css('display', 'block');
+                   $('#notClick').css('display', 'block');
+             
+                }
+             
+                function showPage() {
+                   $('#notClick').css('display', 'none');
+                   $('#loader').css('display', 'none');
+                }
+               
+               $(document).ready(function() {
             var type = '${type}';
             console.log('타입 : ' + type);
             if (type != null) {
@@ -953,6 +985,7 @@ left: 50px;
                   break;
                }
             }
+         
       
             jQuery.browser = {};
             (function() {
@@ -963,22 +996,19 @@ left: 50px;
                   jQuery.browser.version = RegExp.$1;
                }
             })();
-         });
-         
-         
-         function changeLinkAttr(){
-               $('.ef').css('color','#333333');
-               $('.ef').css('cursor','pointer');
-               $('.ef').css('font-family','Noto Sans KR');
-               $('.ef').css('font-size','13pt');
-              $('.modal-content').css('border-radius','0');
-               $('.modal-body').css('padding','0');
-            }
-         
+               });
+               
+               function changeLinkAttr(){
+                  $('.ef').css('color','#333333');
+                  $('.ef').css('cursor','pointer');
+                  $('.ef').css('font-family','Noto Sans KR');
+                  $('.ef').css('font-size','13pt');
+                 $('.modal-content').css('border-radius','0');
+                  $('.modal-body').css('padding','0');
+               }
       </script>
 
-
-      <script
+<script
          src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       
@@ -996,6 +1026,13 @@ left: 50px;
          href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
       <script
          src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+         
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.3.3/fabric.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+      
+        
+
 </body>
 
 </html>

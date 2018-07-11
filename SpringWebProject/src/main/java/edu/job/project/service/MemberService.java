@@ -15,7 +15,17 @@ public interface MemberService {
 	
 	int readName(String userName);
 	
+	String readPwd(String userId);
+	
+	int updatePwd(String password, String userId);
+	
+	int updateUserName(String userName, String userId);
+	
+	int updatePhone(String phone, String userId);
+	
 	Member readId(String userId);
 	
+
 	int updateImage(Member m);
+
 }

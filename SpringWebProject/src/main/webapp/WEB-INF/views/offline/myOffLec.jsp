@@ -106,15 +106,15 @@ right:500px;
 	
 		<div id=folder style="display: inline-block;">
 		<c:if test="${not empty list }">
-			<c:forEach var="group" items="${list }">
+			<c:forEach var="offlec" items="${list }">
 
 				<div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 					<div class="resent-grid-img recommended-grid-img">
-						<a href="offline/offFolderDetail?bno=${group.bno }&lecCategory=${group.lecCategory}"> <c:if
-								test="${not empty group.imgPath}">
-								<img src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imgPath}"
+						<a href="offline/offFolderDetail?bno=${offlec.bno }&lecCategory=${offlec.category}"> <c:if
+								test="${not empty offlec.imgPath}">
+								<img src="${pageContext.request.contextPath}/resources/image/offline/${offlec.imgPath}"
 									alt="">
-							</c:if> <c:if test="${empty group.imgPath }">
+							</c:if> <c:if test="${empty offlec.imgPath }">
 								<img src="${pageContext.request.contextPath}/resources/img/nullfolder.png" alt="">
 							</c:if>
 						</a>
@@ -122,19 +122,19 @@ right:500px;
 						<div class="clck movie-clock"></div>
 					</div>
 					<div class="resent-grid-info recommended-grid-info recommended-grid-movie-info">
-						<h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${group.lecCategory }.</h6>
+						<h6 style="color: #04B486; font-size: 70%; font-weight: bold;">${offlec.category }.</h6>
 						<h5 style="font-size: 60%">
-							<a href="single.html" class="title">${group.lecName }</a>
+							<a href="single.html" class="title">${offlec.title }</a>
 						</h5>
 						<ul>
 							<li><p class="author author-info">
-									<a href="#" class="author">${group.userId}</a>
+									<a href="#" class="author">${offlec.userid}</a>
 								</p></li>
-							<li class="right-list"><p class="views views-info">${group.lecLike}</p></li>
+							
 						</ul>
 					</div>
 					<a
-						href="myLecView?groupBno=${group.bno }&lecName=${group.lecName}&userName=${userName}"
+						href="myOffLecView?bno=${offlec.bno }&lecName=${offlec.title}&userName=${userName}&groupBno=${offlec.groupBno}"
 						class="detail">
 						<div class="overlay"></div>
 					</a>

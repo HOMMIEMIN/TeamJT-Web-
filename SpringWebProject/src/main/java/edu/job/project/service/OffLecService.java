@@ -56,11 +56,21 @@ public interface OffLecService {
 	int updateApply(Member member);
 	
 	// 학생페이지 오프라인폴더 보여주기 
-	List<GroupOff> readByMyLec(Member m);
+	List<OffLec> readByMyLec(Member m);
 	
 	List<OffLec> readByCategory(String category);
 	
+
 	List<OffLec> readByKeyword(String keyword);
 	
 	List<OffLec> readByCategoryKey(String category, String keyword);
+
+	// ?? 뭐하는지 모르겠음....
+	int updateCnt(int bno);
+	
+	int deleteOffLec(int bno);
+	
+	String readByLecName(int groupBno);
+	
+	
 }

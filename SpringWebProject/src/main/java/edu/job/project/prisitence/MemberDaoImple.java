@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.job.project.domain.Member;
 import edu.job.project.domain.OffLec;
@@ -50,6 +51,38 @@ public class MemberDaoImple implements MemberDao {
 	public Member getId(String userId) {
 		
 		return session.selectOne(NAMESPACE + ".getId", userId);
+	}
+	
+	@Override
+	public String getPwd(String userId) {
+		
+		return session.selectOne(NAMESPACE + ".getPwd", userId);
+	}
+	
+	@Override
+	public int updateUserName(String userName, String userId) {
+		Map<String, String> userInfo = new HashMap<String, String>();
+		System.out.println("이름 : " + userName);
+		System.out.println("아이디 : " + userId);
+		userInfo.put("userName", userName);
+		userInfo.put("userId", userId);
+		return session.update(NAMESPACE +".updateUserName", userInfo);
+	}
+	
+	@Override
+	public int updatePhone(String phone, String userId) {
+		Map<String, String> userInfo = new HashMap<String, String>();
+		userInfo.put("phone", phone);
+		userInfo.put("userId", userId);
+		return session.update(NAMESPACE +".updatePhone", userInfo);
+	}
+	
+	@Override
+	public int updatePwd(String password, String userId) {
+		Map<String, String> userInfo = new HashMap<String, String>();
+		userInfo.put("password", password);
+		userInfo.put("userId", userId);
+		return session.update(NAMESPACE + ".updatePwd", userInfo);
 	}
 
 	@Override

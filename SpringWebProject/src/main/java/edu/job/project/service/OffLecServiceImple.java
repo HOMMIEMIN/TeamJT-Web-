@@ -133,16 +133,18 @@ public class OffLecServiceImple implements OffLecService {
 	}
 	
 	@Override
-	public List<GroupOff> readByMyLec(Member m) {
+	public List<OffLec> readByMyLec(Member m) {
 	
-		List<String> items = new ArrayList<>(Arrays.asList(m.getOffLec().split("\\s*,\\s*")));		
-		List<GroupOff> list= new ArrayList<>();
+		List<String> items = new ArrayList<>(Arrays.asList(m.getOffLec().split(",")));		
+		List<OffLec> list= new ArrayList<>();
+		
 		
 		if(items.size() != 0) {
 		      for(int a=0; a < items.size() ; a++) {
-		         GroupOff off = dao.selectByMyLec(Integer.parseInt(items.get(a)));
-		          Member mm = mDao.getId(off.getUserId());
-		          off.setUserId(mm.getUserName());
+		         OffLec off = dao.selectByMyOffLec(Integer.parseInt(items.get(a)));
+		          Member mm = mDao.getId(off.getUserid());
+		          logger.info("off.getUserId : {}",off.getUserid());
+		          off.setUserid(mm.getUserName());
 		          list.add(off);
 		       }
 		   }
@@ -174,6 +176,24 @@ public class OffLecServiceImple implements OffLecService {
 		return dao.selectByKeyword(keyword);
 	}
 	
+	@Override
+	   public int updateCnt(int bno) {
+
+	      return dao.cntUpdate(bno);
+	   }
+	
+	@Override
+	public int deleteOffLec(int bno) {
+	
+		return dao.deleteOffLec(bno);
+	}
+	
+	
+	 @Override
+	   public String readByLecName(int groupBno) {
+
+	      return dao.selectGroupBnoByLecName(groupBno);
+	   }
 	
 }// end OffLecServiceImple
 

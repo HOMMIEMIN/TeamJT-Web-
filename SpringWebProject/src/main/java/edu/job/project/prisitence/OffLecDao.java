@@ -45,4 +45,15 @@ public interface OffLecDao {
 	
 	List<OffLec> selectByCategoryText(String category, String keywords);
 	
+	//??? 뭐하는지 모르겠음.
+	int cntUpdate(int bno);
+	
+	int deleteOffLec(int bno);
+	
+	OffLec selectByMyOffLec(int bno);
+	
+	// 그룹찾기 
+	String selectGroupBnoByLecName(int groupBno);
+	
+	
 }

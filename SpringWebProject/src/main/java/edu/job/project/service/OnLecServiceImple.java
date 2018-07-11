@@ -174,10 +174,13 @@ public class OnLecServiceImple implements OnLecService {
    @Override
    public List<GroupOn> readByMyLec(Member m) {
 	   List<GroupOn> list = new ArrayList<>();
+
 	  if(m.getOnLec() != null) {
+
+	  
+
       List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
-      
-	
+
       if(items.size() != 0) {
       for(int a=0; a < items.size() ; a++) {
          GroupOn on = dao.selectByMyLec(Integer.parseInt(items.get(a)));
@@ -185,9 +188,13 @@ public class OnLecServiceImple implements OnLecService {
          on.setUserId(mm.getUserName());
          list.add(on);
          
+      
       }
-      }
+
 	  }
+
+	   }
+
       return list;
    }
 

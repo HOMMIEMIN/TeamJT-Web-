@@ -61,7 +61,7 @@ public class OffLecController {
    public void register(Model model , int bno, String lecCategory, String lecName) {
       logger.info("register 글등록 호출");
       Date date = new Date();
-      //DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
       SimpleDateFormat sdf1=new SimpleDateFormat("yyyy년 MM월 dd일 ");
       SimpleDateFormat sdf2=new SimpleDateFormat("HH시mm분");
       String formattedDate1 = sdf1.format(date);
@@ -88,7 +88,9 @@ public class OffLecController {
          @RequestParam("lat") String lat,
          @RequestParam("long1") String long1,
          @RequestParam("meetingtime")String meetingtime,
-         @RequestParam("groupBno")int groupBno
+         @RequestParam("groupBno")int groupBno,
+         @RequestParam("userId")String userid,
+         @RequestParam("lecCategory")String category 
           ){
 
       logger.info("upload 호출:  {}",  file);
@@ -102,12 +104,13 @@ public class OffLecController {
       String location= lat+","+long1;
       
       String meeting = meetingday+","+meetingtime;
-      OffLec offLecture = new OffLec(0,"","",title,content,meeting ,maxmember,0, null, url , location , groupBno);
+      
+      OffLec offLecture = new OffLec(0,userid,category,title,content,meeting ,maxmember,0, null, url , location , groupBno);
       int result = offlecService.create(offLecture);
       
-      if(result ==1 ) {
-         offlecService.updateFolderImage(offLecture);
-      }
+//      if(result ==1 ) {
+//         offlecService.updateFolderImage(offLecture);
+//      }
       return "redirect:/mypage";
       
    }
@@ -172,14 +175,15 @@ public class OffLecController {
       return "/offline/offFolderDetail";
    }
    
-
+   // 마이페이지 (mypage) 에서 학생탭의 오프라인강좌 보여주기.
    @RequestMapping(value="/myOffLec", method=RequestMethod.GET)
    public String myOffLec(HttpSession session,Model model) {
 	   String myId=(String)session.getAttribute("userId");
-	   logger.info("myId:{}" , myId);
+	   logger.info("로그인한 아이디 :{}" , myId);
 	   Member m =mService.readId(myId);
+	   logger.info("m.getOffLec: {}" , m.getOffLec());
 	   if(m.getOffLec() != null) {
-		   List<GroupOff> list = offlecService.readByMyLec(m);
+		   List<OffLec> list = offlecService.readByMyLec(m);
 		   if(list.size() != 0 || list != null) {
 		         model.addAttribute("list", list);
 		      }
@@ -187,7 +191,20 @@ public class OffLecController {
 		   logger.info("듣고 있는 오프라인강의가 없습니다.");
 	   }
 	   
+	   
+	   
+	   
 	   return "/offline/myOffLec";
+   }
+   
+   @RequestMapping(value="/yourOffLec", method=RequestMethod.GET)
+   public String yourOffLec(String userId, String userName, Model model) {
+      List<GroupOff> list = offlecService.readGroup(userId);
+      if(list.size() != 0 || list != null) {
+         model.addAttribute("list", list);
+         model.addAttribute("userName", userName);
+      }
+      return "/offline/myOffLec";
    }
    
    
