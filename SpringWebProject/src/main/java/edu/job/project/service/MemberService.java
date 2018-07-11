@@ -16,4 +16,6 @@ public interface MemberService {
 	int readName(String userName);
 	
 	Member readId(String userId);
+	
+	int updateImage(Member m);
 }

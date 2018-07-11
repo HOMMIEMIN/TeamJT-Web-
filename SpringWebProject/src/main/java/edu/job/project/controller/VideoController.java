@@ -43,9 +43,12 @@ public class VideoController {
 		System.out.println(groupBno);
 		OnLec bnoList = service.readByBno(bno);
 		List<OnLec> GroupbnoList = service.readByGroupBno(groupBno);
+		
 		Member m = mService.readId(bnoList.getUserId());
+		
 		if(session.getAttribute("userId") != null) {
 			Member myM = mService.readId((String)session.getAttribute("userId"));
+			model.addAttribute("image", myM.getProfileUrl());
 			System.out.println("OnLec : "+ m.getOnLec());
 			if(myM.getOnLec() != null) {
 				List<String> items = new ArrayList<>(Arrays.asList(myM.getOnLec().split("\\s*,\\s*")));
@@ -82,6 +85,7 @@ public class VideoController {
 		Member m = mService.readId(bnoList.getUserId());
 		if(session.getAttribute("userId") != null) {
 		Member myM = mService.readId((String)session.getAttribute("userId"));
+		model.addAttribute("image", myM.getProfileUrl());
 		System.out.println("OnLec : "+ m.getOnLec());
 		service.updateCnt(GroupbnoList.get(0).getBno());
 		if(myM.getOnLec() != null) {
@@ -132,9 +136,10 @@ public class VideoController {
 	
 	
 	@RequestMapping(value="/yourpage", method=RequestMethod.GET)
-	public void yourpage(String userId,String userName, Model model) {
-			model.addAttribute("uName", userName);
-			model.addAttribute("uId", userId);
+	public void yourpage(String userId,String userName,String profile, Model model, HttpSession session) {
+			session.setAttribute("uName", userName);
+			session.setAttribute("uId", userId);
+			model.addAttribute("image", profile);
 		
 	}
 	

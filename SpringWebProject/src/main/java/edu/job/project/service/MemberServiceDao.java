@@ -42,4 +42,10 @@ public class MemberServiceDao implements MemberService {
 		return dao.getId(userId);
 	}
 
+	@Override
+	public int updateImage(Member m) {
+		
+		return dao.updateImage(m);
+	}
+
 }

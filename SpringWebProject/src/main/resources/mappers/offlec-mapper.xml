@@ -31,12 +31,15 @@
 		WHERE ${col_bno} = #{bno}
   	</select>
   		
-  	<select id="selectAll" resultType="OffLec">
-  	
-  	SELECT * FROM ${tbl_offlec}
-  	ORDER BY ${col_bno} DESC
-  	
+  	<select id="selectAll" resultType="OffLec"> 
+  				SELECT * FROM ${tbl_offlec} ORDER BY ${col_bno} DESC
+
   	</select>	
+  	
+  	
+  	<select id="selectAll2" resultType="OffLec">
+  	SELECT * FROM ${tbl_offlec} ORDER BY ${col_bno} DESC	
+  	</select>
   	
   	<!-- 폴더 생성 -->
   	<insert id="groupInsert">
@@ -91,8 +94,16 @@
 	</select>
 	
 	<!-- 검색 -->
-	<select id="selectByCategory" resultType="offLec">
+	<select id="selectByCategory" resultType="OffLec">
 select * from ${tbl_offlec} where ${col_category} = #{category} order by ${col_regdate} asc
+</select>
+
+<select id="selectByTextCategory" resultType="OffLec">
+select * from ${tbl_offlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) and ${col_category} = #{category} order by ${col_regdate} asc
+</select>
+
+<select id="selectByText" resultType="OffLec">
+select * from ${tbl_offlec} where (${col_title} like #{keyword} or ${col_content} like #{keyword}) order by ${col_regdate} asc
 </select>
 	
 	

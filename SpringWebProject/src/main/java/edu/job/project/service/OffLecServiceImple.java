@@ -155,6 +155,24 @@ public class OffLecServiceImple implements OffLecService {
 		
 		return dao.selectByCategory(category);
 	}
+
+	@Override
+	public List<OffLec> read(int start, int end) {
+
+		return dao.select(start, end);
+	}
+
+	@Override
+	public List<OffLec> readByCategoryKey(String category, String keyword) {
+	
+		return dao.selectByCategoryText(category, keyword);
+	}
+
+	@Override
+	public List<OffLec> readByKeyword(String keyword) {
+
+		return dao.selectByKeyword(keyword);
+	}
 	
 	
 }// end OffLecServiceImple

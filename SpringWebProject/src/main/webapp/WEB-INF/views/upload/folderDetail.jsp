@@ -96,7 +96,7 @@ bottom: 8px;
 
 <div class="col-md-3 resent-grid recommended-grid movie-video-grid" style="display: inline-block;">
 <div class="resent-grid-img recommended-grid-img">
-<a class="detail" href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}" >
+<a class="detail" href="Video/videoview?videopath=${group.videoPath }&userId=${userId}&groupBno=${group.groupBno}&lecCategory=${group.lecCategory}&title=${group.title}&content=${group.content}&regDate=${group.regDate}&image=${imagePath}" >
 <c:if test="${not empty group.imagePath }">
 <img alt="" src="${pageContext.request.contextPath}/resources/image/tmpFiles/${group.imagePath}">
 </c:if>

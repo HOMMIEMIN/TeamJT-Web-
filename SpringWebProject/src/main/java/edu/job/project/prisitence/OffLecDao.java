@@ -14,6 +14,8 @@ public interface OffLecDao {
 	
 	OffLec select(int bno);
 	
+	List<OffLec> select(int start, int end);
+	
 	List<OffLec> select();
 	
 	int insertGroup(GroupOff off);
@@ -37,6 +39,10 @@ public interface OffLecDao {
 	
 	GroupOff selectByMyLec(int groupBno);
 		
-	List<OffLec> selectByCategory(String category);	
+	List<OffLec> selectByCategory(String category);
+	
+	List<OffLec> selectByKeyword(String keyword);	
+	
+	List<OffLec> selectByCategoryText(String category, String keywords);
 	
 }

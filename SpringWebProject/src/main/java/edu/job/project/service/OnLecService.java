@@ -9,6 +9,8 @@ import edu.job.project.domain.OnLec;
 public interface OnLecService {
 
 	
+	List<OnLec> readByCateKey(String category, String keyword);
+	
 	List<OnLec> read(String userId);
 	
 	List<OnLec> read(int bno);
@@ -33,11 +35,11 @@ public interface OnLecService {
 	
 	int likeUp(int Bno);
 	
-	List<OnLec> readByCategory(String category);
+	List<OnLec> readByCategory(String category, int start, int end);
 	
 	String readByLecName(int groupBno);
 	
-	List<OnLec> readByCategoryAll();
+	List<OnLec> readByCategoryAll(int start, int end);
 	
 	List<OnLec> readByKeyword(String keyword);
 	

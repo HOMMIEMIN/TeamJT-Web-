@@ -39,9 +39,50 @@
    delete from ${tbl_message} where ${col_mno} = #{mno}
 </delete>
 
+<select id="totalGetCount" resultType="Integer">
+	select count(${col_mno}) from ${tbl_message}
+	where ${col_yourid} = #{yourId}
+</select>
+
+<select id="totalSendCount" resultType="Integer">
+	select count(${col_mno}) from ${tbl_message}
+	where ${col_userid} = #{userId}
+</select>
+
 <select id="selectCount" resultType="Integer">
 select count(${col_reador}) from ${tbl_message}
       where ${col_yourid} = #{yourId} and ${col_reador} ='읽지 않음'
-</select>     
+</select>    
+
+<!--  받은 쪽지 -->
+<select id="listgetPage" resultType="Message">
+	select b.rn, b.mno, b.userid, b.yourid, b.mcontent, b.regdate, b.reador
+	from (
+	select rownum rn, a.*
+	from(
+		select * from ${tbl_message}
+		where ${col_yourid} = #{yourId}
+		order by ${col_mno} desc
+	) a
+	) b
+	where rn between #{start} and #{end}
+</select>
+
+<!--  보낸 쪽지 -->
+<select id="listsendPage" resultType="Message">
+	select b.rn, b.mno, b.userid, b.yourid, b.mcontent, b.regdate, b.reador
+	from (
+	select rownum rn, a.*
+	from(
+		select * from ${tbl_message}
+		where ${col_userid} = #{userId}
+		order by ${col_mno} desc
+	) a
+	) b
+	where rn between #{start} and #{end}
+</select>
+  	
+
+     
 
 </mapper>

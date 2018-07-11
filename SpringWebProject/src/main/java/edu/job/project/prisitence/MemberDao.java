@@ -28,4 +28,6 @@ public interface MemberDao {
 	Member select(String userid);
 	
 	int updateApplyId(Member member);
+	
+	int updateImage(Member m);
 }

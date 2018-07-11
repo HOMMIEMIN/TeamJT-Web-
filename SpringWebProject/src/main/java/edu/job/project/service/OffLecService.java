@@ -14,6 +14,8 @@ public interface OffLecService {
 	
 	List<OffLec> read();
 	
+	List<OffLec> read(int start, int end);
+	
 	int create(OffLec offLecture);
 	
 	// 대기자 신청
@@ -57,4 +59,8 @@ public interface OffLecService {
 	List<GroupOff> readByMyLec(Member m);
 	
 	List<OffLec> readByCategory(String category);
+	
+	List<OffLec> readByKeyword(String keyword);
+	
+	List<OffLec> readByCategoryKey(String category, String keyword);
 }

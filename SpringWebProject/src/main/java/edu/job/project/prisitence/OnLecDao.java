@@ -14,6 +14,8 @@ public interface OnLecDao {
 	
 	List<OnLec> selectAll(String userId);
 	
+	List<OnLec> selectSearch(String category, String text);
+	
 	List<OnLec> selectBno(int bno);
 	
 	OnLec selectBnoByOnLec(int bno);
@@ -37,11 +39,11 @@ public interface OnLecDao {
 	
 	int updateLikeDelete(int bno);
 	
-	List<OnLec> selectByCategory(String category);
+	List<OnLec> selectByCategory(String category, int start, int end);
 	
 	String selectGroupBnoByLecName(int groupBno);
 	
-	List<OnLec> selectByCategoryAll();
+	List<OnLec> selectByCategoryAll(int start, int end);
 	
 	List<OnLec> selectByKeyword(String keyword);
 	

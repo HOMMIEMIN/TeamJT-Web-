@@ -120,9 +120,9 @@ public class OnLecServiceImple implements OnLecService {
    }
 
    @Override
-   public List<OnLec> readByCategory(String category) {
+   public List<OnLec> readByCategory(String category, int start, int end) {
    
-      return dao.selectByCategory(category);
+      return dao.selectByCategory(category, start, end);
    }
 
    @Override
@@ -132,9 +132,9 @@ public class OnLecServiceImple implements OnLecService {
    }
 
    @Override
-   public List<OnLec> readByCategoryAll() {
+   public List<OnLec> readByCategoryAll(int start, int end) {
 
-      return dao.selectByCategoryAll();
+      return dao.selectByCategoryAll(start, end);
    }
 
    @Override
@@ -173,9 +173,10 @@ public class OnLecServiceImple implements OnLecService {
 
    @Override
    public List<GroupOn> readByMyLec(Member m) {
-
+	   List<GroupOn> list = new ArrayList<>();
+	  if(m.getOnLec() != null) {
       List<String> items = new ArrayList<>(Arrays.asList(m.getOnLec().split("\\s*,\\s*")));
-      List<GroupOn> list = new ArrayList<>();
+      
 	
       if(items.size() != 0) {
       for(int a=0; a < items.size() ; a++) {
@@ -186,6 +187,7 @@ public class OnLecServiceImple implements OnLecService {
          
       }
       }
+	  }
       return list;
    }
 
@@ -194,6 +196,12 @@ public class OnLecServiceImple implements OnLecService {
 
       return dao.cntUpdate(bno);
    }
+
+@Override
+public List<OnLec> readByCateKey(String category, String keyword) {
+
+	return dao.selectSearch(category, keyword);
+}
 
    
 

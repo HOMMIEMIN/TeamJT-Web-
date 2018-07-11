@@ -8,13 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.job.project.domain.Message;
+import edu.job.project.messagepageutil.MessagePageLinkMaker;
+import edu.job.project.messagepageutil.NowPageAndShowOnepageMessageNo;
 import edu.job.project.service.MessageService;
+
 
 
 
@@ -22,26 +26,108 @@ import edu.job.project.service.MessageService;
 
 @Controller
 @RequestMapping(value = "/message" )
-public class MessageController {
+public class MessageController {	
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
-	
 	@Autowired private MessageService messageService;
 	
+	class MessageDto { //entity를 쓰기위한 전용 클래스
+		private List<Message> list;
+		private MessagePageLinkMaker maker;
+		
+		public MessageDto(List<Message> list, MessagePageLinkMaker maker) {
+			this.list = list;
+			this.maker = maker;
+		}
+
+		public List<Message> getList() {
+			return list;
+		}
+
+		public void setList(List<Message> list) {
+			this.list = list;
+		}
+
+		public MessagePageLinkMaker getMaker() {
+			return maker;
+		}
+
+		public void setMaker(MessagePageLinkMaker maker) {
+			this.maker = maker;
+		}
+		
+	}// end EntityPrivate 내무 클래스 (entity)에 두개의 클래스를 담기위한 클래스!
 	
-	 // 내가 받은 모든 쪽지 검색 
-	   @RequestMapping(value = "/all" , method = RequestMethod.GET)
-	   public ResponseEntity<List<Message>> readGetMessegebyId(String userId) {
+	
+ // 내가 받은 모든 쪽지 검색 
+	   @RequestMapping(value = "/getmessege" , method = RequestMethod.GET)
+	   public ResponseEntity<MessageDto> readGetMessegebyId(String userId, Integer nowShowPage, Integer onePageMessageNo) {
 	      System.out.println("메세지컨트롤러에서 all get의 userId ="+userId);
 	      logger.info("readMessegebyId(userId: {})", userId);
-	      List<Message> list = messageService.getRead(userId);
-	      ResponseEntity<List<Message>> entity = new ResponseEntity<List<Message>>(list,HttpStatus.OK);
-	          
 	      
+	      NowPageAndShowOnepageMessageNo nowPageAndShowOnepageMessageNo =new NowPageAndShowOnepageMessageNo();
+	      
+			if( nowShowPage != null) {
+				//criteria.setPage(page);
+				nowPageAndShowOnepageMessageNo.setNowShowPage(nowShowPage);
+			}
+			if(onePageMessageNo != null) {
+				nowPageAndShowOnepageMessageNo.setOnePageMessageNo(onePageMessageNo);
+			}
+	      List<Message> list = messageService.getRead(userId, nowPageAndShowOnepageMessageNo);
+	      // 페이지 링크를 보기위한 클래스  (ex: < 1 2 3 4 5 6 7 >)
+	      MessagePageLinkMaker maker = new MessagePageLinkMaker();
+	      maker.setNowpageandshowonepagemessageno(nowPageAndShowOnepageMessageNo); // 현재 몇번째 페이지 보고있느냐
+	      maker.setTotalPageConut(messageService.getNumOfRecords(userId));
+	      maker.setPageLinkData();
+	      System.out.println("시작 : " + messageService.getNumOfRecords(userId));
+	      System.out.println("끝 : " + maker.getTotalPageConut());
+	      MessageDto dto = new MessageDto(list, maker);
+	      ResponseEntity<MessageDto> entity =  new ResponseEntity<MessageDto>(dto,HttpStatus.OK);
 	      return entity;
 	   }// end readMessegebyId()
 
+	   
+	   
+	   // 내가 보낸 모든 쪽지 검색 
+	   @RequestMapping(value = "/sendmessage" , method = RequestMethod.GET)
+	   public ResponseEntity<MessageDto> readSendMessegebyId(String userId, Integer nowShowPage, Integer onePageMessageNo) {
+
+		      NowPageAndShowOnepageMessageNo nowPageAndShowOnepageMessageNo =new NowPageAndShowOnepageMessageNo();
+		      
+				if( nowShowPage != null) {
+					//criteria.setPage(page);
+					nowPageAndShowOnepageMessageNo.setNowShowPage(nowShowPage);
+				}
+				if(onePageMessageNo != null) {
+					nowPageAndShowOnepageMessageNo.setOnePageMessageNo(onePageMessageNo);
+				}
+				List<Message> list = messageService.sendRead(userId, nowPageAndShowOnepageMessageNo);
+		      // 페이지 링크를 보기위한 클래스  (ex: < 1 2 3 4 5 6 7 >)
+		      MessagePageLinkMaker maker = new MessagePageLinkMaker();
+		      maker.setNowpageandshowonepagemessageno(nowPageAndShowOnepageMessageNo); // 현재 몇번째 페이지 보고있느냐
+		      maker.setTotalPageConut(messageService.getSendNumOfRecords(userId));
+		      maker.setPageLinkData();
+		      System.out.println("시작 : " + messageService.getSendNumOfRecords(userId));
+		      System.out.println("끝 : " + maker.getTotalPageConut());
+		      MessageDto dto = new MessageDto(list, maker);
+		      ResponseEntity<MessageDto> entity =  new ResponseEntity<MessageDto>(dto,HttpStatus.OK);
+		      return entity;
+
+		      
+		 /*		      
+		   System.out.println("메세지컨트롤러에서 all get의 userId ="+userId);
+		   logger.info("readMessegebyId(userId: {})", userId);
+		   List<Message> list = messageService.sendRead(userId);
+		   ResponseEntity<List<Message>> entity = new ResponseEntity<List<Message>>(list,HttpStatus.OK);
+		   
+		   return entity;*/
+		      
+	   }// end readMessegebyId()
 	
+	   
+	   
 	
 	   // (받은) 쪽지 자세히 보기.
 	   @RequestMapping(value= "/getDetail", method = RequestMethod.POST)
@@ -69,24 +155,10 @@ public class MessageController {
 	      int mno = m.getMno();
 	      Message result = messageService.sendDetail(mno);
 	      ResponseEntity<Message> entity = new ResponseEntity<Message>(result, HttpStatus.OK);
-	      
 	      return entity;
 	   }// end sendDetailMessage()
 	   
 	
-	   // 내가 받은 모든 쪽지 검색 
-	   @RequestMapping(value = "/sendmessage" ,// /all/{bno} {bno}는 주소줄에 있는 PathVariable이라고 부르고 매겨변수로 생각하면 된다
-	         method = RequestMethod.GET)
-	   public ResponseEntity<List<Message>> readSendMessegebyId(String userId) {
-	      // @PathVariable: 요청 주소에 포함된 변수(${userId})를 
-	      // 콘트롤러 메소드의 매개변수로 주입하는 어노테이션
-	      System.out.println("메세지컨트롤러에서 all get의 userId ="+userId);
-	      logger.info("readMessegebyId(userId: {})", userId);
-	      List<Message> list = messageService.sendRead(userId);
-	      ResponseEntity<List<Message>> entity = new ResponseEntity<List<Message>>(list,HttpStatus.OK);
-	      
-	      return entity;
-	   }// end readMessegebyId()
 	   
 	
 	
@@ -108,6 +180,19 @@ public class MessageController {
 	   }// end createReply()
 	   
 	   
+	   
+	   //@@@@@@@@@ 호민이형꺼 살리기!!
+	    @RequestMapping(value="/count", method=RequestMethod.POST)
+	      public ResponseEntity<Integer> readCount(@RequestBody Message message){
+	         System.out.println("메시지 소켓: " + message.getYourId());
+	         int result = messageService.readCount(message);
+	         
+	         return new ResponseEntity<Integer>(result, HttpStatus.OK);
+	    }
+	   
+	   
+	   
+	   
 	   // 쪽지 삭제
 	   @RequestMapping(value = "/delete" , method = RequestMethod.POST)
 	   public ResponseEntity<Integer> deleteMessage(@RequestBody int mno) {
@@ -121,12 +206,7 @@ public class MessageController {
 	      return entity;
 	   }// end createReply()
 	   
-	   @RequestMapping(value="/count", method=RequestMethod.POST)
-	   public ResponseEntity<Integer> readCount(@RequestBody Message message){
-		   System.out.println("메시지 소켓: " + message.getYourId());
-		   int result = messageService.readCount(message);
-		   
-		   return new ResponseEntity<Integer>(result, HttpStatus.OK);
-	   }
+	   
+	   
 	
 }// end class MessegeController

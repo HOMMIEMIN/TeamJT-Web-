@@ -7,8 +7,8 @@
 <mapper namespace="edu.job.project.mappers.MemberMapper">
 
 <insert id="insertMember">
-insert into ${tbl_member}(${col_userid}, ${col_password}, ${col_username}, ${col_phone}) 
-values(#{userId}, #{password}, #{userName}, #{phone})
+insert into ${tbl_member}(${col_userid}, ${col_password}, ${col_username}, ${col_phone}, ${col_profileurl} ) 
+values(#{userId}, #{password}, #{userName}, #{phone}, #{profileUrl})
 </insert>
 
 <select id="login" resultType="Member">
@@ -50,6 +50,12 @@ where ${col_userid} = #{userId}
 <update id="updateApplyId">
 		UPDATE ${tbl_member}
 		SET ${col_offlec} = #{offLec}
+		WHERE ${col_userid} = #{userId}
+</update>
+
+<update id="updateImage">
+		UPDATE ${tbl_member}
+		SET ${col_profileurl} = #{profileUrl}
 		WHERE ${col_userid} = #{userId}
 </update>
 

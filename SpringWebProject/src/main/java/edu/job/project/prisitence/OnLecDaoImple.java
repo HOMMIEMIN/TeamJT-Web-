@@ -81,9 +81,12 @@ public class OnLecDaoImple implements OnLecDao{
 	}
 
 	@Override
-	public List<OnLec> selectByCategory(String category) {
-
-		return session.selectList(NAMESPACE +".selectByCategory", category);
+	public List<OnLec> selectByCategory(String category, int start, int end) {
+		Map<String, Object> list = new HashMap<>();
+		list.put("category", category);
+		list.put("start", start);
+		list.put("end", end);
+		return session.selectList(NAMESPACE +".selectByCategory", list);
 	}
 
 	@Override
@@ -93,9 +96,11 @@ public class OnLecDaoImple implements OnLecDao{
 	}
 
 	@Override
-	public List<OnLec> selectByCategoryAll() {
-	
-		return session.selectList(NAMESPACE +".selectByCategoryAll");
+	public List<OnLec> selectByCategoryAll(int start, int end) {
+		Map<String, Integer> list = new HashMap<>();
+		list.put("start", start);
+		list.put("end", end);
+		return session.selectList(NAMESPACE +".selectByCategoryAll", list);
 	}
 
 	@Override
@@ -122,6 +127,14 @@ public class OnLecDaoImple implements OnLecDao{
 	public int cntUpdate(int bno) {
 		
 		return session.update(NAMESPACE + ".updateCnt",bno);
+	}
+
+	@Override
+	public List<OnLec> selectSearch(String category, String text) {
+		Map<String, String> list = new HashMap<>();
+		list.put("category",category);
+		list.put("keyword", "%"+text+"%");
+		return session.selectList(NAMESPACE + ".selectByTextCategory", list);
 	}
 	
 

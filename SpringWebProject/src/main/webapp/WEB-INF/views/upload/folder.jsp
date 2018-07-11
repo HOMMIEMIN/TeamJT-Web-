@@ -156,7 +156,7 @@ p.views.views-info {
 			<div style="background-color: lightgrey; height: 80px;">
 			<div style="background-color: lightgrey; width: 300px; height: 53px;"></div>
 			<div class= "lType" id="online" style="display: inline-block; background-color: white; width: 169px; padding-left: 60px; font-size: 120%">온라인</div>
-				<div class= "lType" style="display: inline-block; background-color: white; width: 169px; padding-left: 40px; font-size: 120%">오프라인</div>
+				<div class= "lType" style="display: inline-block; background-color: white; width: 168px; padding-left: 40px; font-size: 120%">오프라인</div>
 				</div>
 				
 			<div class="w3-container" style="padding: 0px">

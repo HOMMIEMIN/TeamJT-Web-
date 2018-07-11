@@ -31,6 +31,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String create(Member member, RedirectAttributes att) {
+		member.setProfileUrl("/project/resources/img/person.png");
 		int result = service.create(member);
 		if(result == 1) {
 		att.addFlashAttribute("registerResult","OK");
@@ -67,6 +68,7 @@ public class MemberController {
 		if(member1 != null) {
 			session.setAttribute("userId", member.getUserId());
 			session.setAttribute("userName", member1.getUserName());
+			session.setAttribute("imagePath", member1.getProfileUrl());
 			result = "ok";
 		}
 		System.out.println(result);
@@ -106,15 +108,25 @@ public class MemberController {
 	
 	
 	@RequestMapping(value= "logout", method = RequestMethod.POST)
-	@ResponseBody
-	public ResponseEntity<String> logout(@RequestBody Member member, HttpSession session) {
-		session.removeAttribute("userId");
+	public String logout(@RequestBody String userId, HttpSession session) {
+		System.out.println(userId);
+		session.removeAttribute(userId);
 		session.invalidate();
 		String result = "ok";
 		
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		return "redirect:/";
 
 	}// end logout()
+	
+	@RequestMapping(value="/imageUp", method=RequestMethod.POST)
+	@ResponseBody
+	public String imageUp(@RequestBody Member member, HttpSession session) {
+		
+		System.out.println(member.getProfileUrl());
+		service.updateImage(member);
+		session.setAttribute("imagePath", member.getProfileUrl());
+		return "ok";
+	}
 	
 
 }

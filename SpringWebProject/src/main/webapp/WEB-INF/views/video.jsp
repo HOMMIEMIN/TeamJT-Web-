@@ -128,9 +128,9 @@
 	${bnoList.content }
 	</div>
 	<div style="margin-left: 240px; width: 1260px; height: 230px; border-bottom: 1px solid lightgrey">
-	 <div id="clickLike" style="background: url(resources/img/test1.png) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
+	 <div id="clickLike" style="background: url(resources/image/tmpFiles/${image}) center center no-repeat;border-radius: 50%; width: 60px; height: 60px; position: relative; right: 240px;top: 80px; display: inline-block;"></div>
 	 <div style="position: relative; top: 30px; right: 165px">
-	 <a href="yourpage?userId=${bnoList.userId }&userName=${bnoList.userName }">
+	 <a href="yourpage?userId=${bnoList.userId }&userName=${bnoList.userName }&profile=${image}">
 	 <div style="font-weight: bold; font-size: 120%">${bnoList.userName }</div>
 	 <div style="color: grey; font-size: 90%">${bnoList.userId }</div>
 	 </a>

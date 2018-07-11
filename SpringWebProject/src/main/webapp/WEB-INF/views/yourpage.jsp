@@ -257,6 +257,9 @@ h4 {
 	<script>
 		
 	$(()=>{
+		var image = '${image}'
+		console.log(image);
+			$("#file").css('background-image', 'url("/project/resources/image/tmpFiles/'+image+'")');
 		var type='a';
 		console.log('타입 : ' + type);
 		if(type != null){

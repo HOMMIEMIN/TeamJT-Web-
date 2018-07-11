@@ -81,5 +81,11 @@ public class MemberDaoImple implements MemberDao {
 	
 		return session.update(NAMESPACE+".updateApplyId", member);
 	}
+
+	@Override
+	public int updateImage(Member m) {
+
+		return session.update(NAMESPACE + ".updateImage",m);
+	}
 	
 }

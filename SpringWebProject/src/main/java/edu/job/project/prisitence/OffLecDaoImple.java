@@ -1,6 +1,8 @@
 package edu.job.project.prisitence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -50,9 +52,11 @@ public class OffLecDaoImple implements OffLecDao {
 	}
 	
 	@Override
-	public List<OffLec> select() {
-		
-		return uploadMapper.selectAll();
+	public List<OffLec> select(int start, int end) {
+		Map<String, Integer> list = new HashMap<>();
+		list.put("start", start);
+		list.put("end", end);
+		return session.selectList(NAMESPACE + ".selectAll", list);
 	}
 	
 	@Override
@@ -114,6 +118,26 @@ public class OffLecDaoImple implements OffLecDao {
 	public List<OffLec> selectByCategory(String category) {
 		
 		return session.selectList(NAMESPACE + ".selectByCategory", category);
+	}
+
+	@Override
+	public List<OffLec> select() {
+
+		return session.selectList(NAMESPACE + ".selectAll2");
+	}
+
+	@Override
+	public List<OffLec> selectByCategoryText(String category, String keywords) {
+		Map<String, String> list = new HashMap<>();
+		list.put("category", category);
+		list.put("keyword", "%"+keywords+"%");
+		return session.selectList(NAMESPACE + ".selectByTextCategory", list);
+	}
+
+	@Override
+	public List<OffLec> selectByKeyword(String keyword) {
+		
+		return session.selectList(NAMESPACE + ".selectByText", "%"+keyword+"%");
 	}
 	
 }
