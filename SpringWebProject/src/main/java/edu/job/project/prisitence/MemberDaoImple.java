@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.job.project.domain.Member;
+import edu.job.project.domain.OffLec;
 import edu.job.project.domain.OnLec;
+import edu.job.project.domain.WaitingOff;
 
 @Repository
 public class MemberDaoImple implements MemberDao {
@@ -56,4 +58,28 @@ public class MemberDaoImple implements MemberDao {
 		return session.update(NAMESPACE +".updateOnlec", m);
 	}
 
+	@Override
+	public int updateOfflec(OffLec offLec) {
+	
+		return session.update(NAMESPACE+".updateOffLec",offLec);
+	}
+	
+	@Override
+	public int updateOfflec(WaitingOff waitingOff) {
+	
+		return session.update(NAMESPACE+".updateOffLec",waitingOff);
+	}
+	
+	@Override
+	public Member select(String userid) {
+		
+		return session.selectOne(NAMESPACE+".findWaiter" ,userid );
+	}
+
+	@Override
+	public int updateApplyId(Member member) {
+	
+		return session.update(NAMESPACE+".updateApplyId", member);
+	}
+	
 }

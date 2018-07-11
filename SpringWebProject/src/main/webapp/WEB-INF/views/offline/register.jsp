@@ -5,17 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>오프라인 강의 업로드 페이지</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="resources/css/mainview.css" type="text/css/" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
 <style>
 #map {
 	height: 400px;
@@ -26,36 +16,27 @@
 <script>
 	$(function() {
 
-		$("#datepicker1").datepicker(
-				{
-					inline : true,
-					sidebySide : true,
-					dateFormat : 'yy년 mm월 dd일 ',
-					prevText : '이전 달',
-					nextText : '다음 달',
-					monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',
-							'8월', '9월', '10월', '11월', '12월' ],
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
-					dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
-					showMonthAfterYear : true,
-					changeMonth : true,
-					changeYear : true,
-					yearSuffix : '년' 
-					
-
-				});
-
+		 $('#datepicker').datepicker({
+	       		altField : '#datepicker1',			
+				dateFormat : 'yy년 mm월 dd일 ',
+				prevText : '이전 달',
+				nextText : '다음 달',
+				monthNames : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월',	'8월', '9월', '10월', '11월', '12월' ],
+				monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월' ],
+				dayNames : [ '일', '월', '화', '수', '목', '금', '토' ],
+				dayNamesShort : [ '일', '월', '화', '수', '목', '금', '토' ],
+				dayNamesMin : [ '일', '월', '화', '수', '목', '금', '토' ],
+				showMonthAfterYear : true,
+				minDate : 0,
+				yearSuffix : '년' 
+	    });
 	});
 	$(function() {
 		$("#timepicker1").timepicker({
-			timeFormat : 'h:mm p',
+			timeFormat : 'hh시mm분',
 			interval : 30,
 			minTime : '30',
 			maxTime : '11:59pm',
-			
 			startTime : '10:00',
 			dynamic : true,
 			dropdown : true,
@@ -74,8 +55,12 @@
 			filerd.readAsDataURL(input.files[0]);
 		}
 	}
-
 	// i mention $ symbol before function so its not identified by onchange;
+	
+
+
+
+
 </script>
 
 </head>
@@ -86,7 +71,7 @@
 
 	<div class="container" style="padding-top: 30px;">
 
-		<form method="post" action="register1" enctype="multipart/form-data">
+		<form method="post" action="offline/register1" enctype="multipart/form-data">
 			<div class="container-fluid">
 				<div class="row" style="height: 250px;">
 					<div class="col-sm-4" >
@@ -99,9 +84,9 @@
 					</div>
 					<div class="col-sm-8" >
 						<div class="form-group" style="padding-top: 50px;">
-							<label for="category" class="col-sm-2 control-label" style=" font-size: 30px; color:rgb(22, 160, 133); ">Language</label>
+							<label for="category" class="col-sm-2 control-label" style=" font-size: 30px; color:rgb(22, 160, 133); ">${lecCategory}.</label>
 							<div class="col-sm-10">
-							<label for="foldername" class="control-label" style="padding-top: 5px; font-size: 20px;">왕초보 영어회화스터디</label>
+							<label for="foldername" class="control-label" style="padding-top: 5px; font-size: 20px;">${lecName}</label>
 							</div>
 							<div class="form-group">
 								
@@ -117,7 +102,7 @@
 	<hr/>
 			<div class="container-fluid">
 
-				<div class="row" style="height: 450px; padding-top: 5px;">
+				<div class="row" style="height: 550px; padding-top: 5px;">
 					<div class="col-sm-8" >
 						<div class="row" style="padding-bottom: 10px;">
 							<div class="col-sm-10">
@@ -134,10 +119,10 @@
 
 					</div>
 					<div class="col-sm-4" >
-						<div class="form-group" style="padding-top: 90px;">
+						<div class="form-group" style="padding-top: 30px;">
 							<label for="meetingday" class="control-label" style=" font-size: 20px; color:rgb(22, 160, 133); ">모임 날짜</label>
 							<div class="col-sm-10">
-							
+								<div id="datepicker"></div>
 								<input type='text' class="form-control" id="datepicker1" name="meetingday" placeholder="${serverTime1}"/>
 							</div>
 						</div>
@@ -184,7 +169,9 @@
 					<div class="form-group">
 						
 							<input type="submit" value="업로드" class="form-control" style="background-color:rgb(22, 160, 133); color: white; "> <input type="hidden"
-								name="lat" id="lat"> <input type="hidden" name="long1" id="long" >
+								name="lat" id="lat"> <input type="hidden" name="long1" id="long" > <input type="hidden" name="groupBno" id="groupBno" value="${bno}">
+								<input type="hidden" name="userId" id="userId" value="${userId}">
+								<input type="hidden" name="lecCategory" id="lecCategory" value="${lecCategory}">
 						
 					</div>
 				</div>

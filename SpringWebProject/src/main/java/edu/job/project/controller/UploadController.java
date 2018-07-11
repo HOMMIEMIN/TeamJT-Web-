@@ -67,7 +67,7 @@ public class UploadController {
         
          for (MultipartFile file : files) {
             byte[] bytes = file.getBytes();
-             String rootPath = "C:\\Users\\stu\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\video";
+             String rootPath = "C:\\Users\\rlagh\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\video";
              File dir = new File(rootPath + File.separator + "tmpFiles");
              System.out.println(File.separator);
             if (!dir.exists())
@@ -116,7 +116,7 @@ public class UploadController {
         
          for (MultipartFile file : files) {
             byte[] bytes = file.getBytes();
-             String rootPath = "C:\\Users\\stu\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\image";
+             String rootPath = "C:\\Users\\rlagh\\git\\TeamJT-Web-\\SpringWebProject\\src\\main\\webapp\\resources\\image";
              File dir = new File(rootPath + File.separator + "tmpFiles");
              System.out.println(File.separator);
             if (!dir.exists())

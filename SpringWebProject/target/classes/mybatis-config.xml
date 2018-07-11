@@ -14,7 +14,17 @@
 	<property name="col_profileurl" value="profileUrl"/>
 	<property name="col_onlec" value="onLec"/>
 	<property name="col_offlec" value="offLec"/>
-	<property name="col_offlecwaiting" value = "offLecWaiting"/>
+	<property name="col_offlecwaiting" value ="offlecwaiting"/>
+	
+	<!--MESSAGE -->
+	<property name="tbl_message" value="user_message"/>
+	<property name="col_mno" value="mno"/>
+	<property name="col_userid" value="userId"/>
+	<property name="col_yourid" value="yourId"/>
+	<property name="col_mcontent" value="mcontent"/>
+	<property name="col_regdate" value ="regDate"/>
+	<property name="col_imagepath" value = "imagePath"/>
+	
 	
 	<!--UPLOAD_ONLINE -->
 	<property name="tbl_onlec" value="onlec"/>
@@ -33,18 +43,22 @@
 	<property name="col_lecname" value = "lecName"/>
 	<property name="col_lectype" value = "lecType"/>
 	<property name="col_leclike" value = "lecLike"/>
+	<property name="col_cnt" value = "cnt"/>
 
-	<!--MESSAGE -->
-	<property name="tbl_message" value="user_message"/>
-	<property name="col_mno" value="mno"/>
-	<property name="col_userid" value="userId"/>
-	<property name="col_yourid" value="yourId"/>
-	<property name="col_mcontent" value="mcontent"/>
-	<property name="col_regdate" value ="regDate"/>
-	<property name="col_imagepath" value = "imagePath"/>
+
+
+   <!--MESSAGE -->
+   <property name="tbl_message" value="messageham"/>
+   <property name="col_mno" value="mno"/>
+   <property name="col_userid" value="userId"/>
+   <property name="col_yourid" value="yourId"/>
+   <property name="col_mcontent" value="mcontent"/>
+   <property name="col_regdate" value ="regDate"/>
+   <property name="col_reador" value ="readOr"/>
+   <property name="col_imagepath" value ="imagePath"/>
 		
+
 	<!-- UPLOAD_OFFLINE -->
-	
 	<property name="tbl_offlec" value="offlec"/>
 	<property name="col_bno" value="bno"/>
 	<property name="col_userid" value="userid"/>
@@ -53,11 +67,14 @@
 	<property name="col_content" value="content"/>
 	<property name="col_meetingday" value="meetingday"/>
 	<property name="col_maxmember" value="maxmember"/>
+	<property name="col_curmember" value="curmember" />
 	<property name="col_regdate" value="regdate"/>
 	<property name="col_applyId" value="applyid"/>
 	<property name="col_waitingId" value="waitingid"/>	   
 	<property name="col_imgpath" value="imgpath"/>
 	<property name="col_location" value="location"/>
+	<property name="col_groupbno2" value="groupbno"/>
+	
 	
 	<!--  GROUP OFFLINE -->
 	<property name="tbl_groupoff" value = "groupoff"/>	
@@ -69,11 +86,21 @@
 	<property name="col_leccategory" value="lecCategory"/>
 	<property name="col_leclike" value = "lecLike"/>
 		
+
 	
 	<!-- Online Replies -->	
 	<property name="reply_board" value="on_replies"/>
 	<property name="col_rno" value="rno" />
 	
+
+	<!-- BlackBoard -->
+	<property name="tbl_blackboard" value ="blackboard"/>
+	<property name="col_bno" value="bno"/>
+	<property name="col_userid" value="userid"/>
+	<property name="col_json" value="json"/>
+	<property name="col_title" value="title"/>	
+		
+
 	</properties>
 	<!-- MyBatis 프레임워크에서 select의 결과를 저장할 Model 클래스(VO)를 찾기 위해서 -->
 	<typeAliases>

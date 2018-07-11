@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  DOCTYPE 필요함 복붙할 것! -->
+<!-- http://www.mybatis.org/mybatis-3/getting-started.html 여기서 복붙 한것. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="edu.job.project.mappers.BlackBoardMapper"><!--  이 접두사는 아이디가 어디에 들어 있는냐 -->
+  <!--  인터페이스와 .xml 을 같이 쓰려고 NAMESPACE 를 일부러 이렇게 만들었다.  -->
+  <!-- UploadMapper 인터페이스 에서 사용하기 위함.  -->
+  
+
+  		
+  	<select id="selectById" resultType="BlackBoard">
+  	SELECT * FROM ${tbl_blackboard} WHERE ${col_userid} = #{userid} ORDER BY ${col_bno}
+  	</select>	
+  	
+  	<insert id="insertById">
+  	INSERT INTO ${tbl_blackboard}(${col_userid},${col_title},${col_json}) VALUES (#{userid},#{title},#{json})
+  	</insert>
+  	
+  	<delete id="deleteByBNO">
+  	DELETE FROM ${tbl_blackboard} WHERE ${col_bno} = #{bno}
+  	</delete>
+  	
+  	<update id="updateByBNO">
+  	UPDATE ${tbl_blackboard} SET ${col_userid} = #{userid}, ${col_title} = #{title}, ${col_json} = #{json} where ${col_bno} = #{bno}
+  	</update>
+  		
+  </mapper>
